@@ -290,7 +290,7 @@ hal deploy apply
 ```
 
 !!! Error `Deploy apply` errors.
-    In some cases you may experience a deployment error related to your `kubeconfig` file(s).  
+    In some cases you may experience a deployment error related to your `kubeconfig` file(s).
 
 ```bash
 sudo hal deploy connect
