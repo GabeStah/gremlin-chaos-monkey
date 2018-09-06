@@ -7,7 +7,7 @@ email: gabe@gabewyatt.com
 baseurl: "/gremlin-chaos-monkey" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  gabestah
-theme: jekyll-theme-leap-day
+theme: jekyll-theme-tactile
 #remote_theme: hpstr-jekyll-theme
 
 # Build settings
