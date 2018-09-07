@@ -1706,12 +1706,12 @@ default-authentication-plugin = mysql_native_password
 ```
 
 !!! Warning
-  Chaos Monkey is currently *incompatible* with MySQL version 8.0 and higher.  
+    Chaos Monkey is currently *incompatible* with MySQL version 8.0 and higher.  
 
 ```
 [16097] 2018/09/04 14:07:43 ERROR - couldn't apply database migration: database migration failed: Error 1298: Unknown or incorrect time zone: 'UTC'
 ```
-Solution: Add timezone info to MySQL by executing:
+Solution: Add timezone info to MySQL by executing the following command.
 
 ```bash
 $ mysql_tzinfo_to_sql /usr/share/zoneinfo/|mysql -u root mysql -p
@@ -1723,7 +1723,7 @@ Warning: Unable to load '/usr/share/zoneinfo//zone1970.tab' as time zone. Skippi
 ```
 
 
-Alter `chaosmonkey` MySQL 8 user's identification policy to `mysql_native_password`.  Note: This is inherently less secure than default policy
+Alter `chaosmonkey` MySQL 8 user's identification policy to `mysql_native_password`.  Note: This is inherently less secure than the default policy.
 
 ```bash
 mysql> ALTER USER chaosmonkey@'localhost' IDENTIFIED WITH mysql_native_password by 'password';
@@ -1742,7 +1742,7 @@ Query OK, 0 rows affected (0.03 sec)
 1. If needed, install the [AWS CLI tool](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) on your machine.
 
 !!! Tip Simplifying AWS Credentials
-    You can make future AWS CLI commands easier by adding creating AWS `profiles`, which will add configuration and credentials to the local `~/.aws/credentials` file.  We'll be using two different accounts/profiles (`primary` or root AWS console account and `spinnaker-developer` as a managed account), so we can add credentials for both of these to `~/.aws/credentials` by using `aws configure --profile <profile-name>` commands:
+    You can make future AWS CLI commands easier by creating AWS `profiles`, which will add configuration and credentials to the local `~/.aws/credentials` file.  We'll be using two different accounts/profiles (`primary` or root AWS console account and `spinnaker-developer` as a managed account), so we can add credentials for both of these to `~/.aws/credentials` by using `aws configure --profile <profile-name>` commands:
     ```bash
     $ aws configure --profile spinnaker-developer
     AWS Access Key ID [None]: <AWS_ACCESS_KEY_ID>
