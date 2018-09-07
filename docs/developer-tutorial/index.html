@@ -74,35 +74,33 @@
 
 <h2 id="setting-up-chaos-monkey">Setting Up Chaos Monkey</h2>
 
-<p>###</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>######### WELCOME TO SPINNAKER ############
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">######### WELCOME TO SPINNAKER ############</span>
 
 Initializing systems!
 
-Default region is configured for Amazon AWS region:
+Default region is configured <span class="k">for </span>Amazon AWS region:
 
 GCE is disabled on this host. Refer to http://spinnaker.io/
-for more specific instructions.
+<span class="k">for </span>more specific instructions.
 
-You are in a VPC setting this . . .
-Amazon VPC ID is set to: vpc-08e215071274f2822
+You are <span class="k">in </span>a VPC setting this <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>
+Amazon VPC ID is <span class="nb">set </span>to: vpc-08e215071274f2822
 
-Amazon AWS Subnet is set to: subnet-0cee7f54078833309
+Amazon AWS Subnet is <span class="nb">set </span>to: subnet-0cee7f54078833309
 
-Reconfiguring deck . . . .
+Reconfiguring deck <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>
 
-Rewriting deck settings in "/opt/deck/html/settings.js".
-Restarting Spinnaker . . .
+Rewriting deck settings <span class="k">in</span> <span class="s2">"/opt/deck/html/settings.js"</span><span class="nb">.</span>
+Restarting Spinnaker <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>
 
 spinnaker start/running
 
-Edit /etc/default/spinnaker and restart Spinnaker if you wish to change this
+Edit /etc/default/spinnaker and restart Spinnaker <span class="k">if </span>you wish to change this
 Then execute:
-sudo service clouddriver restart
-sudo service rosco restart
+<span class="nb">sudo </span>service clouddriver restart
+<span class="nb">sudo </span>service rosco restart
 
------- You should be ready to go -----
+<span class="nt">------</span> You should be ready to go <span class="nt">-----</span>
 To connect create a SSH tunnel from your host to ec2-34-217-178-128.us-west-2.compute.amazonaws.com remote ports 9000 and 8084
 
 You may add this to ~/.ssh/config:
@@ -116,8 +114,8 @@ Host spinnaker
 
 If the ssh config file is new. Ensure it is chmod 400
 
-Execute: ssh -f -N spinnaker
-Open http://localhost:9000/ in your web browser
+Execute: ssh <span class="nt">-f</span> <span class="nt">-N</span> spinnaker
+Open http://localhost:9000/ <span class="k">in </span>your web browser
 
 This message will now self-destruct. Enjoy
 </code></pre></div></div>
@@ -625,7 +623,6 @@ This message will now self-destruct. Enjoy
 <ul>
   <li>Click <strong>Config</strong> in top-right of Spinnaker <code class="highlighter-rouge">Deck</code> application page.</li>
   <li>Select <strong>Chaos Monkey</strong> in side navigation. [SCREENSHOT]</li>
-  <li></li>
 </ul>
 
 <h3 id="spinnaker-configuration">Spinnaker COnfiguration</h3>
@@ -649,1687 +646,200 @@ This message will now self-destruct. Enjoy
       <li>Resolution: Remove <code class="highlighter-rouge">ena_support</code> reference line in <code class="highlighter-rouge">/opt/rosco/config/packer/aws-ebs.json</code>.</li>
     </ul>
   </li>
-  <li><code class="highlighter-rouge">Bake</code> stage can fail with:
-```
-==&gt; amazon-ebs: Prevalidating AMI Name…
-==&gt; amazon-ebs: Inspecting the source AMI…
-==&gt; amazon-ebs: Creating temporary keypair: packer 5b8e2add-3401-259c-7142-12708cc57144
-==&gt; amazon-ebs: Creating temporary security group for this instance…
-==&gt; amazon-ebs: Authorizing access to port 22 the temporary security group…
-==&gt; amazon-ebs: Launching a source AWS instance…
-  amazon-ebs: Instance ID: i-0524794dbeffb3381
-==&gt; amazon-ebs: Waiting for instance (i-0524794dbeffb3381) to become ready…
-==&gt; amazon-ebs: Waiting for SSH to become available…
-==&gt; amazon-ebs: Connected to SSH!
-==&gt; amazon-ebs: Pausing 30s before the next provisioner…
-==&gt; amazon-ebs: Provisioning with shell script: /opt/rosco/config/packer/install_packages.sh
-  amazon-ebs: repository=
-  amazon-ebs: package_type=deb
-  amazon-ebs: packages=redis-server
-  amazon-ebs: upgrade=
-  amazon-ebs: artifacts=
-  amazon-ebs: cat: /tmp/artifacts.json: No such file or directory
-==&gt; amazon-ebs: Terminating the source AWS instance…
-==&gt; amazon-ebs: No AMIs to cleanup
-==&gt; amazon-ebs: Deleting temporary security group…
-==&gt; amazon-ebs: Deleting temporary keypair…
-Build ‘amazon-ebs’ errored: Script exited with non-zero exit status: 1</li>
+  <li><code class="highlighter-rouge">Bake</code> stage can fail with:</li>
 </ul>
 
-<p>==&gt; Some builds didn’t complete successfully and had errors:
-–&gt; amazon-ebs: Script exited with non-zero exit status: 1</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">==&gt;</span> amazon-ebs: Prevalidating AMI Name...
+<span class="o">==&gt;</span> amazon-ebs: Inspecting the <span class="nb">source </span>AMI...
+<span class="o">==&gt;</span> amazon-ebs: Creating temporary keypair: packer 5b8e2add-3401-259c-7142-12708cc57144
+<span class="o">==&gt;</span> amazon-ebs: Creating temporary security group <span class="k">for </span>this instance...
+<span class="o">==&gt;</span> amazon-ebs: Authorizing access to port 22 the temporary security group...
+<span class="o">==&gt;</span> amazon-ebs: Launching a <span class="nb">source </span>AWS instance...
+    amazon-ebs: Instance ID: i-0524794dbeffb3381
+<span class="o">==&gt;</span> amazon-ebs: Waiting <span class="k">for </span>instance <span class="o">(</span>i-0524794dbeffb3381<span class="o">)</span> to become ready...
+<span class="o">==&gt;</span> amazon-ebs: Waiting <span class="k">for </span>SSH to become available...
+<span class="o">==&gt;</span> amazon-ebs: Connected to SSH!
+<span class="o">==&gt;</span> amazon-ebs: Pausing 30s before the next provisioner...
+<span class="o">==&gt;</span> amazon-ebs: Provisioning with shell script: /opt/rosco/config/packer/install_packages.sh
+    amazon-ebs: <span class="nv">repository</span><span class="o">=</span>
+    amazon-ebs: <span class="nv">package_type</span><span class="o">=</span>deb
+    amazon-ebs: <span class="nv">packages</span><span class="o">=</span>redis-server
+    amazon-ebs: <span class="nv">upgrade</span><span class="o">=</span>
+    amazon-ebs: <span class="nv">artifacts</span><span class="o">=</span>
+    amazon-ebs: <span class="nb">cat</span>: /tmp/artifacts.json: No such file or directory
+<span class="o">==&gt;</span> amazon-ebs: Terminating the <span class="nb">source </span>AWS instance...
+<span class="o">==&gt;</span> amazon-ebs: No AMIs to cleanup
+<span class="o">==&gt;</span> amazon-ebs: Deleting temporary security group...
+<span class="o">==&gt;</span> amazon-ebs: Deleting temporary keypair...
+Build <span class="s1">'amazon-ebs'</span> errored: Script exited with non-zero <span class="nb">exit </span>status: 1
 
-<p>==&gt; Builds finished but no artifacts were created.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  - Resolution: Execute the following command to override old `install_packages.sh` script with newer version.
+<span class="o">==&gt;</span> Some builds didn<span class="s1">'t complete successfully and had errors:
+--&gt; amazon-ebs: Script exited with non-zero exit status: 1
+
+==&gt; Builds finished but no artifacts were created.
+</span></code></pre></div></div>
+
+<ul>
+  <li>Resolution: Execute the following command to override old <code class="highlighter-rouge">install_packages.sh</code> script with newer version.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>curl https://raw.githubusercontent.com/spinnaker/rosco/master/rosco-web/config/packer/install_packages.sh <span class="nt">--output</span> /opt/rosco/config/packer/install_packages.sh
 </code></pre></div></div>
-<p>sudo curl https://raw.githubusercontent.com/spinnaker/rosco/master/rosco-web/config/packer/install_packages.sh –output /opt/rosco/config/packer/install_packages.sh</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-### Spinnaker: Add Application
 
-- Click **Actions &gt; Create Application**.
-- Input `bookstore` in the **Name** field.
-- Input your own email address in the **Owner Email** field.
-- Ensure `Chaos Monkey &gt; Enabled` is checked.
-- Input `My bookstore application` in the **Description** field.
-- Under **Instance Health**, tick the `Consider only cloud provider health when executing tasks` checkbox.
-- Click **Create** to add your new application.
+<h3 id="spinnaker-add-application">Spinnaker: Add Application</h3>
 
-#### Add Firewall
+<ul>
+  <li>Click <strong>Actions &gt; Create Application</strong>.</li>
+  <li>Input <code class="highlighter-rouge">bookstore</code> in the <strong>Name</strong> field.</li>
+  <li>Input your own email address in the <strong>Owner Email</strong> field.</li>
+  <li>Ensure <code class="highlighter-rouge">Chaos Monkey &gt; Enabled</code> is checked.</li>
+  <li>Input <code class="highlighter-rouge">My bookstore application</code> in the <strong>Description</strong> field.</li>
+  <li>Under <strong>Instance Health</strong>, tick the <code class="highlighter-rouge">Consider only cloud provider health when executing tasks</code> checkbox.</li>
+  <li>Click <strong>Create</strong> to add your new application.</li>
+</ul>
 
-- Navigate to the `bookstore` application, **INFRASTRUCTURE &gt; FIREWALLS** and click **Create Firewall**.
-- Input `dev` in the **Detail** field.
-- Input `Bookstore dev environment` in the **Description** field.
-- Within the **VPC** dropdown select `SpinnakerVPC`.
-- Under the **Ingress** header click **Add new Firewall Rule**. Set the following **Firewall Rule** settings:
-  - **Firewall**: `default`
-  - **Protocol**: `TCP`
-  - **Start Port**: `80`
-  - **End Port**: `80`
-- Click the **Create** button to finalize the firewall settings. [SCREENSHOT]
+<h4 id="add-firewall">Add Firewall</h4>
 
-#### Add Load Balancer
+<ul>
+  <li>Navigate to the <code class="highlighter-rouge">bookstore</code> application, <strong>INFRASTRUCTURE &gt; FIREWALLS</strong> and click <strong>Create Firewall</strong>.</li>
+  <li>Input <code class="highlighter-rouge">dev</code> in the <strong>Detail</strong> field.</li>
+  <li>Input <code class="highlighter-rouge">Bookstore dev environment</code> in the <strong>Description</strong> field.</li>
+  <li>Within the <strong>VPC</strong> dropdown select <code class="highlighter-rouge">SpinnakerVPC</code>.</li>
+  <li>Under the <strong>Ingress</strong> header click <strong>Add new Firewall Rule</strong>. Set the following <strong>Firewall Rule</strong> settings:
+    <ul>
+      <li><strong>Firewall</strong>: <code class="highlighter-rouge">default</code></li>
+      <li><strong>Protocol</strong>: <code class="highlighter-rouge">TCP</code></li>
+      <li><strong>Start Port</strong>: <code class="highlighter-rouge">80</code></li>
+      <li><strong>End Port</strong>: <code class="highlighter-rouge">80</code></li>
+    </ul>
+  </li>
+  <li>Click the <strong>Create</strong> button to finalize the firewall settings. [SCREENSHOT]</li>
+</ul>
 
-- Navigate to the `bookstore` application, **INFRASTRUCTURE &gt; LOAD BALANCERS** and click **Create Load Balancer**.
-- Select **Classic (Legacy)** and click **Configure Load Balancer**.
-- Input `test` in the **Stack** field.
-- In the **VPC Subnet** dropdown select `internal (vpc-...)`.
-- In the **Firewalls** dropdown select `bookstore--dev (...)`.
-- Click **Create** to generate the load balancer. [SCREENSHOT]
+<h4 id="add-load-balancer">Add Load Balancer</h4>
 
-#### Add Pipeline
+<ul>
+  <li>Navigate to the <code class="highlighter-rouge">bookstore</code> application, <strong>INFRASTRUCTURE &gt; LOAD BALANCERS</strong> and click <strong>Create Load Balancer</strong>.</li>
+  <li>Select <strong>Classic (Legacy)</strong> and click <strong>Configure Load Balancer</strong>.</li>
+  <li>Input <code class="highlighter-rouge">test</code> in the <strong>Stack</strong> field.</li>
+  <li>In the <strong>VPC Subnet</strong> dropdown select <code class="highlighter-rouge">internal (vpc-...)</code>.</li>
+  <li>In the <strong>Firewalls</strong> dropdown select <code class="highlighter-rouge">bookstore--dev (...)</code>.</li>
+  <li>Click <strong>Create</strong> to generate the load balancer. [SCREENSHOT]</li>
+</ul>
 
-- Navigate to the `bookstore` application, **PIPELINES** and click **Create Pipeline**.
-- Select `Pipeline` in the **Type** dropdown.
-- Input `Bookstore Dev to Test` in the **Pipeline Name** field.
-- Click **Create**. [SCREENSHOT]
+<h4 id="add-pipeline">Add Pipeline</h4>
 
-##### Add Stage 1
+<ul>
+  <li>Navigate to the <code class="highlighter-rouge">bookstore</code> application, <strong>PIPELINES</strong> and click <strong>Create Pipeline</strong>.</li>
+  <li>Select <code class="highlighter-rouge">Pipeline</code> in the <strong>Type</strong> dropdown.</li>
+  <li>Input <code class="highlighter-rouge">Bookstore Dev to Test</code> in the <strong>Pipeline Name</strong> field.</li>
+  <li>Click <strong>Create</strong>. [SCREENSHOT]</li>
+</ul>
 
-- Click the **Add stage** button.
-- Under **Type** select `Bake`.
-- Input `redis-server` in the **Package** field.
-- Select `trusty (v14.04)` in the **Base OS** dropdown.
-- Click **Save Changes** to finalize the stage.
+<h5 id="add-stage-1">Add Stage 1</h5>
 
-##### Add Stage 2
+<ul>
+  <li>Click the <strong>Add stage</strong> button.</li>
+  <li>Under <strong>Type</strong> select <code class="highlighter-rouge">Bake</code>.</li>
+  <li>Input <code class="highlighter-rouge">redis-server</code> in the <strong>Package</strong> field.</li>
+  <li>Select <code class="highlighter-rouge">trusty (v14.04)</code> in the <strong>Base OS</strong> dropdown.</li>
+  <li>Click <strong>Save Changes</strong> to finalize the stage.</li>
+</ul>
 
-- Click the **Add stage** button.
-- Under **Type** select `Deploy`.
-- Click the **Add server group** button to begin creating a new server group.
+<h5 id="add-stage-2">Add Stage 2</h5>
 
-##### Creating a Server Group
+<ul>
+  <li>Click the <strong>Add stage</strong> button.</li>
+  <li>Under <strong>Type</strong> select <code class="highlighter-rouge">Deploy</code>.</li>
+  <li>Click the <strong>Add server group</strong> button to begin creating a new server group.</li>
+</ul>
 
-- Select `internal (vpc-...)` in the **VPC Subnet** dropdown.
-- Input `dev` in the **Stack** field.
-- Under **Load Balancers &gt; Classic Load Balancers** select the `bookstore-dev` load balancer we created.
-- Under **Firewalls &gt; Firewalls** select the `bookstore--dev` firewall we also created.
-- Under **Instance Type** select the **Custom Type** of instance you think you'll need.  For this example we'll go with something small and cheap, like `t3.micro`.
-- Input `3` in the **Capacity &gt; Number of Instances** field.
-- Under **Advanced Settings &gt; Key Name** select the `spinnaker_developer` key name.
-- Click the **Add** button to create the deployment cluster configuration.
-- Finally, click **Save Changes** again at the bottom of the **Pipelines** interface to save the full `Configuration &gt; Bake &gt; Deploy` pipeline.
-- *Note: You may see a warning within the `Bake` stage that a `CI` trigger (such as Jenkins/Travis) is usually required, but we don't care in this simple example scenario.*
+<h5 id="creating-a-server-group">Creating a Server Group</h5>
 
-##### Try It Out
+<ul>
+  <li>Select <code class="highlighter-rouge">internal (vpc-...)</code> in the <strong>VPC Subnet</strong> dropdown.</li>
+  <li>Input <code class="highlighter-rouge">dev</code> in the <strong>Stack</strong> field.</li>
+  <li>Under <strong>Load Balancers &gt; Classic Load Balancers</strong> select the <code class="highlighter-rouge">bookstore-dev</code> load balancer we created.</li>
+  <li>Under <strong>Firewalls &gt; Firewalls</strong> select the <code class="highlighter-rouge">bookstore--dev</code> firewall we also created.</li>
+  <li>Under <strong>Instance Type</strong> select the <strong>Custom Type</strong> of instance you think you’ll need.  For this example we’ll go with something small and cheap, like <code class="highlighter-rouge">t3.micro</code>.</li>
+  <li>Input <code class="highlighter-rouge">3</code> in the <strong>Capacity &gt; Number of Instances</strong> field.</li>
+  <li>Under <strong>Advanced Settings &gt; Key Name</strong> select the <code class="highlighter-rouge">spinnaker_developer</code> key name.</li>
+  <li>Click the <strong>Add</strong> button to create the deployment cluster configuration.</li>
+  <li>Finally, click <strong>Save Changes</strong> again at the bottom of the <strong>Pipelines</strong> interface to save the full <code class="highlighter-rouge">Configuration &gt; Bake &gt; Deploy</code> pipeline.</li>
+  <li><em>Note: You may see a warning within the <code class="highlighter-rouge">Bake</code> stage that a <code class="highlighter-rouge">CI</code> trigger (such as Jenkins/Travis) is usually required, but we don’t care in this simple example scenario.</em></li>
+</ul>
 
-**Successful Bake Stage**:
+<h5 id="try-it-out">Try It Out</h5>
 
-</code></pre></div></div>
-<p>==&gt; amazon-ebs: Prevalidating AMI Name…
-==&gt; amazon-ebs: Inspecting the source AMI…
-==&gt; amazon-ebs: Creating temporary keypair: packer 5b8e2fbf-372c-b3c9-32b3-b01e379e886d
-==&gt; amazon-ebs: Creating temporary security group for this instance…
-==&gt; amazon-ebs: Authorizing access to port 22 the temporary security group…
-==&gt; amazon-ebs: Launching a source AWS instance…
+<p><strong>Successful Bake Stage</strong>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">==&gt;</span> amazon-ebs: Prevalidating AMI Name...
+<span class="o">==&gt;</span> amazon-ebs: Inspecting the <span class="nb">source </span>AMI...
+<span class="o">==&gt;</span> amazon-ebs: Creating temporary keypair: packer 5b8e2fbf-372c-b3c9-32b3-b01e379e886d
+<span class="o">==&gt;</span> amazon-ebs: Creating temporary security group <span class="k">for </span>this instance...
+<span class="o">==&gt;</span> amazon-ebs: Authorizing access to port 22 the temporary security group...
+<span class="o">==&gt;</span> amazon-ebs: Launching a <span class="nb">source </span>AWS instance...
     amazon-ebs: Instance ID: i-08d49753da1bfe24d
-==&gt; amazon-ebs: Waiting for instance (i-08d49753da1bfe24d) to become ready…
-==&gt; amazon-ebs: Waiting for SSH to become available…
-==&gt; amazon-ebs: Connected to SSH!
-==&gt; amazon-ebs: Pausing 30s before the next provisioner…
-==&gt; amazon-ebs: Provisioning with shell script: /opt/rosco/config/packer/install_packages.sh
-    amazon-ebs: repository=
-    amazon-ebs: package_type=deb
-    amazon-ebs: packages=redis-server
-    amazon-ebs: upgrade=
-    amazon-ebs: Ign http://us-west-2.ec2.archive.ubuntu.com trusty InRelease
-    amazon-ebs: Get:1 http://us-west-2.ec2.archive.ubuntu.com trusty-updates InRelease [65.9 kB]
-    amazon-ebs: Get:2 http://us-west-2.ec2.archive.ubuntu.com trusty-backports InRelease [65.9 kB]
-    amazon-ebs: Hit http://us-west-2.ec2.archive.ubuntu.com trusty Release.gpg
-    amazon-ebs: Hit http://us-west-2.ec2.archive.ubuntu.com trusty Release
-    amazon-ebs: Get:3 http://us-west-2.ec2.archive.ubuntu.com trusty-updates/main Sources [421 kB]
-    amazon-ebs: Get:4 http://us-west-2.ec2.archive.ubuntu.com trusty-updates/restricted Sources [6,322 B]
-    amazon-ebs: Get:5 http://us-west-2.ec2.archive.ubuntu.com trusty-updates/universe Sources [207 kB]
-    amazon-ebs: Get:6 http://us-west-2.ec2.archive.ubuntu.com trusty-updates/multiverse Sources [7,441 B]
-    amazon-ebs: Get:7 http://us-west-2.ec2.archive.ubuntu.com trusty-updates/main amd64 Packages [1,101 kB]
-    amazon-ebs: Get:8 http://us-west-2.ec2.archive.ubuntu.com trusty-updates/restricted amd64 Packages [17.2 kB]
-    amazon-ebs: Get:9 http://us-west-2.ec2.archive.ubuntu.com trusty-updates/universe amd64 Packages [472 kB]
-    amazon-ebs: Get:10 http://us-west-2.ec2.archive.ubuntu.com trusty-updates/multiverse amd64 Packages [14.6 kB]
-    amazon-ebs: Get:11 http://us-west-2.ec2.archive.ubuntu.com trusty-updates/main Translation-en [546 kB]
-    amazon-ebs: Get:12 http://us-west-2.ec2.archive.ubuntu.com trusty-updates/multiverse Translation-en [7,616 B]
-    amazon-ebs: Get:13 http://us-west-2.ec2.archive.ubuntu.com trusty-updates/restricted Translation-en [4,021 B]
-    amazon-ebs: Get:14 http://us-west-2.ec2.archive.ubuntu.com trusty-updates/universe Translation-en [253 kB]
-    amazon-ebs: Get:15 http://us-west-2.ec2.archive.ubuntu.com trusty-backports/main Sources [9,709 B]
-    amazon-ebs: Get:16 http://us-west-2.ec2.archive.ubuntu.com trusty-backports/restricted Sources [28 B]
-    amazon-ebs: Get:17 http://us-west-2.ec2.archive.ubuntu.com trusty-backports/universe Sources [35.4 kB]
-    amazon-ebs: Get:18 http://us-west-2.ec2.archive.ubuntu.com trusty-backports/multiverse Sources [1,896 B]
-    amazon-ebs: Get:19 http://us-west-2.ec2.archive.ubuntu.com trusty-backports/main amd64 Packages [13.3 kB]
-    amazon-ebs: Get:20 http://us-west-2.ec2.archive.ubuntu.com trusty-backports/restricted amd64 Packages [28 B]
-    amazon-ebs: Get:21 http://us-west-2.ec2.archive.ubuntu.com trusty-backports/universe amd64 Packages [43.1 kB]
-    amazon-ebs: Get:22 http://us-west-2.ec2.archive.ubuntu.com trusty-backports/multiverse amd64 Packages [1,567 B]
-    amazon-ebs: Get:23 http://us-west-2.ec2.archive.ubuntu.com trusty-backports/main Translation-en [7,503 B]
-    amazon-ebs: Get:24 http://us-west-2.ec2.archive.ubuntu.com trusty-backports/multiverse Translation-en [1,215 B]
-    amazon-ebs: Get:25 http://us-west-2.ec2.archive.ubuntu.com trusty-backports/restricted Translation-en [28 B]
-    amazon-ebs: Get:26 http://us-west-2.ec2.archive.ubuntu.com trusty-backports/universe Translation-en [36.8 kB]
-    amazon-ebs: Get:27 http://us-west-2.ec2.archive.ubuntu.com trusty/main Sources [1,064 kB]
-    amazon-ebs: Get:28 http://us-west-2.ec2.archive.ubuntu.com trusty/restricted Sources [5,433 B]
-    amazon-ebs: Get:29 http://us-west-2.ec2.archive.ubuntu.com trusty/universe Sources [6,399 kB]
-    amazon-ebs: Get:30 http://security.ubuntu.com trusty-security InRelease [65.9 kB]
-    amazon-ebs: Get:31 http://us-west-2.ec2.archive.ubuntu.com trusty/multiverse Sources [174 kB]
-    amazon-ebs: Hit http://us-west-2.ec2.archive.ubuntu.com trusty/main amd64 Packages
-    amazon-ebs: Hit http://us-west-2.ec2.archive.ubuntu.com trusty/restricted amd64 Packages
-    amazon-ebs: Hit http://us-west-2.ec2.archive.ubuntu.com trusty/universe amd64 Packages
-    amazon-ebs: Hit http://us-west-2.ec2.archive.ubuntu.com trusty/multiverse amd64 Packages
-    amazon-ebs: Hit http://us-west-2.ec2.archive.ubuntu.com trusty/main Translation-en
-    amazon-ebs: Hit http://us-west-2.ec2.archive.ubuntu.com trusty/multiverse Translation-en
-    amazon-ebs: Hit http://us-west-2.ec2.archive.ubuntu.com trusty/restricted Translation-en
-    amazon-ebs: Hit http://us-west-2.ec2.archive.ubuntu.com trusty/universe Translation-en
-    amazon-ebs: Ign http://us-west-2.ec2.archive.ubuntu.com trusty/main Translation-en_US
-    amazon-ebs: Ign http://us-west-2.ec2.archive.ubuntu.com trusty/multiverse Translation-en_US
-    amazon-ebs: Ign http://us-west-2.ec2.archive.ubuntu.com trusty/restricted Translation-en_US
-    amazon-ebs: Ign http://us-west-2.ec2.archive.ubuntu.com trusty/universe Translation-en_US
-    amazon-ebs: Get:32 http://security.ubuntu.com trusty-security/main Sources [161 kB]
-    amazon-ebs: Get:33 http://security.ubuntu.com trusty-security/universe Sources [79.3 kB]
-    amazon-ebs: Get:34 http://security.ubuntu.com trusty-security/main amd64 Packages [763 kB]
-    amazon-ebs: Get:35 http://security.ubuntu.com trusty-security/universe amd64 Packages [245 kB]
-    amazon-ebs: Get:36 http://security.ubuntu.com trusty-security/main Translation-en [412 kB]
-    amazon-ebs: Get:37 http://security.ubuntu.com trusty-security/universe Translation-en [133 kB]
-    amazon-ebs: Fetched 12.8 MB in 4s (2,618 kB/s)
-    amazon-ebs: Reading package lists… Done
-    amazon-ebs: Reading package lists… Done
-    amazon-ebs: Building dependency tree
-    amazon-ebs: Reading state information… Done
-    amazon-ebs: The following extra packages will be installed:
-    amazon-ebs: libjemalloc1 redis-tools
-    amazon-ebs: The following NEW packages will be installed:
-    amazon-ebs: libjemalloc1 redis-server redis-tools
-    amazon-ebs: 0 upgraded, 3 newly installed, 0 to remove and 99 not upgraded.
-    amazon-ebs: Need to get 410 kB of archives.
-    amazon-ebs: After this operation, 1,272 kB of additional disk space will be used.
-    amazon-ebs: Get:1 http://us-west-2.ec2.archive.ubuntu.com/ubuntu/ trusty/universe libjemalloc1 amd64 3.5.1-2 [76.8 kB]
-    amazon-ebs: Get:2 http://us-west-2.ec2.archive.ubuntu.com/ubuntu/ trusty/universe redis-tools amd64 2:2.8.4-2 [65.7 kB]
-    amazon-ebs: Get:3 http://us-west-2.ec2.archive.ubuntu.com/ubuntu/ trusty/universe redis-server amd64 2:2.8.4-2 [267 kB]
-    amazon-ebs: Fetched 410 kB in 0s (19.4 MB/s)
-    amazon-ebs: Selecting previously unselected package libjemalloc1.
-    amazon-ebs: (Reading database … 51285 files and directories currently installed.)
-    amazon-ebs: Preparing to unpack …/libjemalloc1_3.5.1-2_amd64.deb …
-    amazon-ebs: Unpacking libjemalloc1 (3.5.1-2) …
-    amazon-ebs: Selecting previously unselected package redis-tools.
-    amazon-ebs: Preparing to unpack …/redis-tools_2%3a2.8.4-2_amd64.deb …
-    amazon-ebs: Unpacking redis-tools (2:2.8.4-2) …
-    amazon-ebs: Selecting previously unselected package redis-server.
-    amazon-ebs: Preparing to unpack …/redis-server_2%3a2.8.4-2_amd64.deb …
-    amazon-ebs: Unpacking redis-server (2:2.8.4-2) …
-    amazon-ebs: Processing triggers for man-db (2.6.7.1-1ubuntu1) …
-    amazon-ebs: Processing triggers for ureadahead (0.100.0-16) …
-    amazon-ebs: Setting up libjemalloc1 (3.5.1-2) …
-    amazon-ebs: Setting up redis-tools (2:2.8.4-2) …
-    amazon-ebs: Setting up redis-server (2:2.8.4-2) …
-    amazon-ebs: Starting redis-server: redis-server.
-    amazon-ebs: Processing triggers for libc-bin (2.19-0ubuntu6.13) …
-    amazon-ebs: Processing triggers for ureadahead (0.100.0-16) …
-==&gt; amazon-ebs: Stopping the source instance…
-==&gt; amazon-ebs: Waiting for the instance to stop…
-==&gt; amazon-ebs: Creating the AMI: redis-server-all-20180904070951-trusty
-    amazon-ebs: AMI: ami-04c042b2789ec7760
-==&gt; amazon-ebs: Waiting for AMI to become ready…
-==&gt; amazon-ebs: Adding tags to AMI (ami-04c042b2789ec7760)…
-    amazon-ebs: Adding tag: “appversion”: “”
-    amazon-ebs: Adding tag: “build_host”: “”
-    amazon-ebs: Adding tag: “build_info_url”: “”
-==&gt; amazon-ebs: Tagging snapshot: snap-006359301dd1236f5
-==&gt; amazon-ebs: Terminating the source AWS instance…
-==&gt; amazon-ebs: Cleaning up any extra volumes…
-==&gt; amazon-ebs: No volumes to clean up, skipping
-==&gt; amazon-ebs: Deleting temporary security group…
-==&gt; amazon-ebs: Deleting temporary keypair…
-Build ‘amazon-ebs’ finished.</p>
+<span class="o">[</span>...]
+Build <span class="s1">'amazon-ebs'</span> finished.
 
-<p>==&gt; Builds finished. The artifacts of successful builds are:
-–&gt; amazon-ebs: AMIs were created:</p>
+<span class="o">==&gt;</span> Builds finished. The artifacts of successful builds are:
+<span class="nt">--</span><span class="o">&gt;</span> amazon-ebs: AMIs were created:
 
-<p>us-west-2: ami-04c042b2789ec7760</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-**Successful Deploy Stage**:
-
-**Cluster Instance Console Output**:
-
+us-west-2: ami-04c042b2789ec7760
 </code></pre></div></div>
-<p>[    0.000000] Initializing cgroup subsys cpuset</p>
 
-<p>[    0.000000] Initializing cgroup subsys cpu</p>
-
-<p>[    0.000000] Initializing cgroup subsys cpuacct</p>
-
-<p>[    0.000000] Linux version 3.13.0-137-generic (buildd@lgw01-amd64-058) (gcc version 4.8.4 (Ubuntu 4.8.4-2ubuntu1~14.04.3) ) #186-Ubuntu SMP Mon Dec 4 19:09:19 UTC 2017 (Ubuntu 3.13.0-137.186-generic 3.13.11-ckt39)</p>
-
-<p>[    0.000000] Command line: BOOT_IMAGE=/boot/vmlinuz-3.13.0-137-generic root=UUID=08df443d-a08d-4a06-ab5b-6fdacfc684d3 ro console=tty1 console=ttyS0</p>
-
-<p>[    0.000000] KERNEL supported cpus:</p>
-
-<p>[    0.000000]   Intel GenuineIntel</p>
-
-<p>[    0.000000]   AMD AuthenticAMD</p>
-
-<p>[    0.000000]   Centaur CentaurHauls</p>
-
-<p>[    0.000000] e820: BIOS-provided physical RAM map:</p>
-
-<p>[    0.000000] BIOS-e820: [mem 0x0000000000000000-0x000000000009fbff] usable</p>
-
-<p>[    0.000000] BIOS-e820: [mem 0x000000000009fc00-0x000000000009ffff] reserved</p>
-
-<p>[    0.000000] BIOS-e820: [mem 0x00000000000f0000-0x00000000000fffff] reserved</p>
-
-<p>[    0.000000] BIOS-e820: [mem 0x0000000000100000-0x000000003e3f9fff] usable</p>
-
-<p>[    0.000000] BIOS-e820: [mem 0x000000003e3fa000-0x000000003fffffff] reserved</p>
-
-<p>[    0.000000] BIOS-e820: [mem 0x00000000e0000000-0x00000000e03fffff] reserved</p>
-
-<p>[    0.000000] BIOS-e820: [mem 0x00000000fffc0000-0x00000000ffffffff] reserved</p>
-
-<p>[    0.000000] NX (Execute Disable) protection: active</p>
-
-<p>[    0.000000] SMBIOS 2.7 present.</p>
-
-<p>[    0.000000] Hypervisor detected: KVM</p>
-
-<p>[    0.000000] No AGP bridge found</p>
-
-<p>[    0.000000] e820: last_pfn = 0x3e3fa max_arch_pfn = 0x400000000</p>
-
-<p>[    0.000000] x86 PAT enabled: cpu 0, old 0x7040600070406, new 0x7010600070106</p>
-
-<p>[    0.000000] Scanning 1 areas for low memory corruption</p>
-
-<p>[    0.000000] Using GB pages for direct mapping</p>
-
-<p>[    0.000000] init_memory_mapping: [mem 0x00000000-0x000fffff]</p>
-
-<p>[    0.000000] init_memory_mapping: [mem 0x3e000000-0x3e1fffff]</p>
-
-<p>[    0.000000] init_memory_mapping: [mem 0x3c000000-0x3dffffff]</p>
-
-<p>[    0.000000] init_memory_mapping: [mem 0x00100000-0x3bffffff]</p>
-
-<p>[    0.000000] init_memory_mapping: [mem 0x3e200000-0x3e3f9fff]</p>
-
-<p>[    0.000000] RAMDISK: [mem 0x371de000-0x378e6fff]</p>
-
-<p>[    0.000000] ACPI: RSDP 00000000000f8fb0 000014 (v00 AMAZON)</p>
-
-<p>[    0.000000] ACPI: RSDT 000000003e3fe3d0 000038 (v01 AMAZON AMZNRSDT 00000001 AMZN 00000001)</p>
-
-<p>[    0.000000] ACPI: FACP 000000003e3fff80 000074 (v01 AMAZON AMZNFACP 00000001 AMZN 00000001)</p>
-
-<p>[    0.000000] ACPI: DSDT 000000003e3fe410 0010E9 (v01 AMAZON AMZNDSDT 00000001 AMZN 00000001)</p>
-
-<p>[    0.000000] ACPI: FACS 000000003e3fff40 000040</p>
-
-<p>[    0.000000] ACPI: SSDT 000000003e3ff6c0 00087A (v01 AMAZON AMZNSSDT 00000001 AMZN 00000001)</p>
-
-<p>[    0.000000] ACPI: APIC 000000003e3ff5d0 000076 (v01 AMAZON AMZNAPIC 00000001 AMZN 00000001)</p>
-
-<p>[    0.000000] ACPI: SRAT 000000003e3ff530 0000A0 (v01 AMAZON AMZNSRAT 00000001 AMZN 00000001)</p>
-
-<p>[    0.000000] ACPI: WAET 000000003e3ff500 000028 (v01 AMAZON AMZNWAET 00000001 AMZN 00000001)</p>
-
-<p>[    0.000000] SRAT: PXM 0 -&gt; APIC 0x00 -&gt; Node 0</p>
-
-<p>[    0.000000] SRAT: PXM 0 -&gt; APIC 0x01 -&gt; Node 0</p>
-
-<p>[    0.000000] SRAT: Node 0 PXM 0 [mem 0x00000000-0x3fffffff]</p>
-
-<p>[    0.000000] Initmem setup node 0 [mem 0x00000000-0x3e3f9fff]</p>
-
-<p>[    0.000000]   NODE_DATA [mem 0x3e3f5000-0x3e3f9fff]</p>
-
-<p>[    0.000000] kvm-clock: Using msrs 4b564d01 and 4b564d00</p>
-
-<p>[    0.000000] kvm-clock: cpu 0, msr 0:3e3f1001, boot clock</p>
-
-<p>[    7.895751] Zone ranges:</p>
-
-<p>[    7.895752]   DMA      [mem 0x00001000-0x00ffffff]</p>
-
-<p>[    7.895753]   DMA32    [mem 0x01000000-0xffffffff]</p>
-
-<p>[    7.895754]   Normal   empty</p>
-
-<p>[    7.895755] Movable zone start for each node</p>
-
-<p>[    7.895756] Early memory node ranges</p>
-
-<p>[    7.895757]   node   0: [mem 0x00001000-0x0009efff]</p>
-
-<p>[    7.895758]   node   0: [mem 0x00100000-0x3e3f9fff]</p>
-
-<p>[    7.899960] ACPI: PM-Timer IO Port: 0xb008</p>
-
-<p>[    7.899969] ACPI: LAPIC (acpi_id[0x00] lapic_id[0x00] enabled)</p>
-
-<p>[    7.899971] ACPI: LAPIC (acpi_id[0x01] lapic_id[0x01] enabled)</p>
-
-<p>[    7.899973] ACPI: LAPIC_NMI (acpi_id[0xff] dfl dfl lint[0x1])</p>
-
-<p>[    7.899975] ACPI: IOAPIC (id[0x00] address[0xfec00000] gsi_base[0])</p>
-
-<p>[    7.900007] IOAPIC[0]: apic_id 0, version 17, address 0xfec00000, GSI 0-23</p>
-
-<p>[    7.900009] ACPI: INT_SRC_OVR (bus 0 bus_irq 5 global_irq 5 high level)</p>
-
-<p>[    7.900010] ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 high level)</p>
-
-<p>[    7.900011] ACPI: INT_SRC_OVR (bus 0 bus_irq 10 global_irq 10 high level)</p>
-
-<p>[    7.900013] ACPI: INT_SRC_OVR (bus 0 bus_irq 11 global_irq 11 high level)</p>
-
-<p>[    7.900019] Using ACPI (MADT) for SMP configuration information</p>
-
-<p>[    7.900021] smpboot: Allowing 2 CPUs, 0 hotplug CPUs</p>
-
-<p>[    7.900047] PM: Registered nosave memory: [mem 0x0009f000-0x0009ffff]</p>
-
-<p>[    7.900049] PM: Registered nosave memory: [mem 0x000a0000-0x000effff]</p>
-
-<p>[    7.900051] PM: Registered nosave memory: [mem 0x000f0000-0x000fffff]</p>
-
-<p>[    7.900054] e820: [mem 0x40000000-0xdfffffff] available for PCI devices</p>
-
-<p>[    7.900055] Booting paravirtualized kernel on KVM</p>
-
-<p>[    7.900063] setup_percpu: NR_CPUS:256 nr_cpumask_bits:256 nr_cpu_ids:2 nr_node_ids:1</p>
-
-<p>[    7.900302] PERCPU: Embedded 27 pages/cpu @ffff88003e000000 s81536 r8192 d20864 u1048576</p>
-
-<p>[    7.900325] kvm-clock: cpu 0, msr 0:3e3f1001, primary cpu clock</p>
-
-<p>[    7.900333] KVM setup async PF for cpu 0</p>
-
-<p>[    7.900343] kvm-stealtime: cpu 0, msr 3e00d000</p>
-
-<p>[    7.900347] Built 1 zonelists in Node order, mobility grouping on.  Total pages: 250867</p>
-
-<p>[    7.900348] Policy zone: DMA32</p>
-
-<p>[    7.900349] Kernel command line: BOOT_IMAGE=/boot/vmlinuz-3.13.0-137-generic root=UUID=08df443d-a08d-4a06-ab5b-6fdacfc684d3 ro console=tty1 console=ttyS0</p>
-
-<p>[    7.901006] PID hash table entries: 4096 (order: 3, 32768 bytes)</p>
-
-<p>[    7.901060] xsave: enabled xstate_bv 0xe7, cntxt size 0xa80</p>
-
-<p>[    7.901065] Checking aperture…</p>
-
-<p>[    7.968066] No AGP bridge found</p>
-
-<p>[    7.970739] Memory: 979016K/1019488K available (7434K kernel code, 1147K rwdata, 3424K rodata, 1340K init, 1448K bss, 40472K reserved)</p>
-
-<p>[    7.970781] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=2, Nodes=1</p>
-
-<p>[    7.970794] Hierarchical RCU implementation.</p>
-
-<p>[    7.970794] 	RCU dyntick-idle grace-period acceleration is enabled.</p>
-
-<p>[    7.970795] 	RCU restricting CPUs from NR_CPUS=256 to nr_cpu_ids=2.</p>
-
-<p>[    7.970796] 	Offload RCU callbacks from all CPUs</p>
-
-<p>[    7.970797] 	Offload RCU callbacks from CPUs: 0-1.</p>
-
-<p>[    7.970802] NR_IRQS:16640 nr_irqs:512 16</p>
-
-<p>[    8.030304] Console: colour VGA+ 80x25</p>
-
-<p>[    8.208317] console [tty1] enabled</p>
-
-<p>[    8.304754] console [ttyS0] enabled</p>
-
-<p>[    8.307498] allocated 4194304 bytes of page_cgroup</p>
-
-<p>[    8.310257] please try ‘cgroup_disable=memory’ option if you don’t want memory cgroups</p>
-
-<p>[    8.314937] tsc: Detected 2500.000 MHz processor</p>
-
-<p>[    8.317519] Calibrating delay loop (skipped) preset value.. 5000.00 BogoMIPS (lpj=10000000)</p>
-
-<p>[    8.322407] pid_max: default: 32768 minimum: 301</p>
-
-<p>[    8.325129] Security Framework initialized</p>
-
-<p>[    8.327606] AppArmor: AppArmor initialized</p>
-
-<p>[    8.330030] Yama: becoming mindful.</p>
-
-<p>[    8.332381] Dentry cache hash table entries: 131072 (order: 8, 1048576 bytes)</p>
-
-<p>[    8.335920] Inode-cache hash table entries: 65536 (order: 7, 524288 bytes)</p>
-
-<p>[    8.339270] Mount-cache hash table entries: 2048 (order: 2, 16384 bytes)</p>
-
-<p>[    8.342582] Mountpoint-cache hash table entries: 2048 (order: 2, 16384 bytes)</p>
-
-<p>[    8.346119] Initializing cgroup subsys memory</p>
-
-<p>[    8.348644] Initializing cgroup subsys devices</p>
-
-<p>[    8.351206] Initializing cgroup subsys freezer</p>
-
-<p>[    8.353740] Initializing cgroup subsys blkio</p>
-
-<p>[    8.356335] Initializing cgroup subsys perf_event</p>
-
-<p>[    8.358892] Initializing cgroup subsys hugetlb</p>
-
-<p>[    8.361504] CPU: Physical Processor ID: 0</p>
-
-<p>[    8.363914] CPU: Processor Core ID: 0</p>
-
-<p>[    8.367284] mce: CPU supports 32 MCE banks</p>
-
-<p>[    8.369871] Last level iTLB entries: 4KB 0, 2MB 0, 4MB 0</p>
-
-<p>[    8.369871] Last level dTLB entries: 4KB 64, 2MB 0, 4MB 0</p>
-
-<p>[    8.369871] tlb_flushall_shift: 6</p>
-
-<p>[    8.380578] Freeing SMP alternatives memory: 32K (ffffffff81e6f000 - ffffffff81e77000)</p>
-
-<p>[    8.391802] ACPI: Core revision 20131115</p>
-
-<p>[    8.394848] ACPI: All ACPI Tables successfully acquired</p>
-
-<p>[    8.397983] ftrace: allocating 28679 entries in 113 pages</p>
-
-<p>[    8.452555] Enabling x2apic</p>
-
-<p>[    8.454578] Enabled x2apic</p>
-
-<p>[    8.456853] Switched APIC routing to physical x2apic.</p>
-
-<p>[    8.460933] ..TIMER: vector=0x30 apic1=0 pin1=0 apic2=-1 pin2=-1</p>
-
-<p>[    8.463960] smpboot: CPU0: Intel(R) Xeon(R) Platinum 8175M CPU @ 2.50GHz (fam: 06, model: 55, stepping: 04)</p>
-
-<p>[    8.469727] Performance Events: unsupported p6 CPU model 85 no PMU driver, software events only.</p>
-
-<p>[    8.482625] KVM setup paravirtual spinlock</p>
-
-<p>[    8.486824] NMI watchdog: disabled (cpu0): hardware events not enabled</p>
-
-<p>[    8.490081] x86: Booting SMP configuration:</p>
-
-<p>[    8.492545] …. node  #0, CPUs:      #1[    8.504236] kvm-clock: cpu 1, msr 0:3e3f1041, secondary cpu clock</p>
-
-<p>[    8.508665] x86: Booted up 1 node, 2 CPUs</p>
-
-<p>[    8.508668] KVM setup async PF for cpu 1</p>
-
-<p>[    8.508675] kvm-stealtime: cpu 1, msr 3e10d000</p>
-
-<p>[    8.517315] smpboot: Total of 2 processors activated (10000.00 BogoMIPS)</p>
-
-<p>[    8.521101] devtmpfs: initialized</p>
-
-<p>[    8.525513] EVM: security.selinux</p>
-
-<p>[    8.527788] EVM: security.SMACK64</p>
-
-<p>[    8.529964] EVM: security.ima</p>
-
-<p>[    8.532042] EVM: security.capability</p>
-
-<p>[    8.534948] pinctrl core: initialized pinctrl subsystem</p>
-
-<p>[    8.537742] regulator-dummy: no parameters</p>
-
-<p>[    8.540284] RTC time: 19:58:18, date: 09/04/18</p>
-
-<p>[    8.542911] NET: Registered protocol family 16</p>
-
-<p>[    8.545541] cpuidle: using governor ladder</p>
-
-<p>[    8.548006] cpuidle: using governor menu</p>
-
-<p>[    8.550504] ACPI: bus type PCI registered</p>
-
-<p>[    8.552937] acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5</p>
-
-<p>[    8.556173] PCI: Using configuration type 1 for base access</p>
-
-<p>[    8.559767] bio: create slab <bio-0> at 0</bio-0></p>
-
-<p>[    8.562326] ACPI: Added _OSI(Module Device)</p>
-
-<p>[    8.564788] ACPI: Added _OSI(Processor Device)</p>
-
-<p>[    8.567296] ACPI: Added _OSI(3.0 _SCP Extensions)</p>
-
-<p>[    8.569995] ACPI: Added _OSI(Processor Aggregator Device)</p>
-
-<p>[    8.574660] ACPI: Interpreter enabled</p>
-
-<p>[    8.576977] ACPI Exception: AE_NOT_FOUND, While evaluating Sleep State [_S1_] (20131115/hwxface-580)</p>
-
-<p>[    8.582295] ACPI Exception: AE_NOT_FOUND, While evaluating Sleep State [_S2_] (20131115/hwxface-580)</p>
-
-<p>[    8.587595] ACPI: (supports S0 S3 S4 S5)</p>
-
-<p>[    8.590048] ACPI: Using IOAPIC for interrupt routing</p>
-
-<p>[    8.592753] PCI: Using host bridge windows from ACPI; if necessary, use “pci=nocrs” and report a bug</p>
-
-<p>[    8.597964] ACPI: No dock devices found.</p>
-
-<p>[    8.602403] ACPI: PCI Root Bridge [PCI0] (domain 0000 [bus 00-ff])</p>
-
-<p>[    8.605561] acpi PNP0A03:00: _OSC: OS supports [ASPM ClockPM Segments MSI]</p>
-
-<p>[    8.608842] acpi PNP0A03:00: _OSC failed (AE_NOT_FOUND); disabling ASPM</p>
-
-<p>[    8.612088] acpi PNP0A03:00: fail to add MMCONFIG information, can’t access extended PCI configuration space under this bridge.</p>
-
-<p>[    8.617989] acpiphp: Slot [3] registered</p>
-
-<p>[    8.620368] acpiphp: Slot [4] registered</p>
-
-<p>[    8.622877] acpiphp: Slot [5] registered</p>
-
-<p>[    8.625255] acpiphp: Slot [6] registered</p>
-
-<p>[    8.627646] acpiphp: Slot [7] registered</p>
-
-<p>[    8.630056] acpiphp: Slot [8] registered</p>
-
-<p>[    8.632472] acpiphp: Slot [9] registered</p>
-
-<p>[    8.634869] acpiphp: Slot [10] registered</p>
-
-<p>[    8.637390] acpiphp: Slot [11] registered</p>
-
-<p>[    8.733113] acpiphp: Slot [12] registered</p>
-
-<p>[    8.735600] acpiphp: Slot [13] registered</p>
-
-<p>[    8.738044] acpiphp: Slot [14] registered</p>
-
-<p>[    8.740523] acpiphp: Slot [15] registered</p>
-
-<p>[    8.742936] acpiphp: Slot [16] registered</p>
-
-<p>[    8.745361] acpiphp: Slot [17] registered</p>
-
-<p>[    8.747875] acpiphp: Slot [18] registered</p>
-
-<p>[    8.750301] acpiphp: Slot [19] registered</p>
-
-<p>[    8.752767] acpiphp: Slot [20] registered</p>
-
-<p>[    8.755187] acpiphp: Slot [21] registered</p>
-
-<p>[    8.757588] acpiphp: Slot [22] registered</p>
-
-<p>[    8.760022] acpiphp: Slot [23] registered</p>
-
-<p>[    8.762533] acpiphp: Slot [24] registered</p>
-
-<p>[    8.764952] acpiphp: Slot [25] registered</p>
-
-<p>[    8.767362] acpiphp: Slot [26] registered</p>
-
-<p>[    8.769807] acpiphp: Slot [27] registered</p>
-
-<p>[    8.772233] acpiphp: Slot [28] registered</p>
-
-<p>[    8.774673] acpiphp: Slot [29] registered</p>
-
-<p>[    8.777195] acpiphp: Slot [30] registered</p>
-
-<p>[    8.779648] acpiphp: Slot [31] registered</p>
-
-<p>[    8.782102] PCI host bridge to bus 0000:00</p>
-
-<p>[    8.784591] pci_bus 0000:00: root bus resource [bus 00-ff]</p>
-
-<p>[    8.787473] pci_bus 0000:00: root bus resource [io  0x0000-0x0cf7]</p>
-
-<p>[    8.790558] pci_bus 0000:00: root bus resource [io  0x0d00-0xffff]</p>
-
-<p>[    8.793738] pci_bus 0000:00: root bus resource [mem 0x000a0000-0x000bffff]</p>
-
-<p>[    8.797029] pci_bus 0000:00: root bus resource [mem 0x80000000-0xfebfffff]</p>
-
-<p>[    8.805419] pci 0000:00:01.3: quirk: [io  0xb000-0xb03f] claimed by PIIX4 ACPI</p>
-
-<p>[    8.809975] pci 0000:00:01.3: quirk: [io  0xb100-0xb10f] claimed by PIIX4 SMB</p>
-
-<p>[    8.813429] pci 0000:00:01.3: PIIX4 devres E PIO at fff0-ffff</p>
-
-<p>[    8.816461] pci 0000:00:01.3: PIIX4 devres F MMIO at ffc00000-ffffffff</p>
-
-<p>[    8.819656] pci 0000:00:01.3: PIIX4 devres G PIO at fff0-ffff</p>
-
-<p>[    8.822629] pci 0000:00:01.3: PIIX4 devres H MMIO at ffc00000-ffffffff</p>
-
-<p>[    8.825966] pci 0000:00:01.3: PIIX4 devres I PIO at fff0-ffff</p>
-
-<p>[    8.829021] pci 0000:00:01.3: PIIX4 devres J PIO at fff0-ffff</p>
-
-<p>[    8.835574] ACPI: PCI Interrupt Link [LNKA] (IRQs 5 *10 11)</p>
-
-<p>[    8.839566] ACPI: PCI Interrupt Link [LNKB] (IRQs 5 *10 11)</p>
-
-<p>[    8.843414] ACPI: PCI Interrupt Link [LNKC] (IRQs 5 10 *11)</p>
-
-<p>[    8.847248] ACPI: PCI Interrupt Link [LNKD] (IRQs 5 10 *11)</p>
-
-<p>[    8.851040] ACPI: PCI Interrupt Link [LNKS] (IRQs *9)</p>
-
-<p>[    8.854728] ACPI: Enabled 16 GPEs in block 00 to 0F</p>
-
-<p>[    8.858132] vgaarb: setting as boot device: PCI:0000:00:03.0</p>
-
-<p>[    8.861090] vgaarb: device added: PCI:0000:00:03.0,decodes=io+mem,owns=io+mem,locks=none</p>
-
-<p>[    8.865823] vgaarb: loaded</p>
-
-<p>[    8.867853] vgaarb: bridge control possible 0000:00:03.0</p>
-
-<p>[    8.870777] SCSI subsystem initialized</p>
-
-<p>[    8.873290] ACPI: bus type USB registered</p>
-
-<p>[    8.875755] usbcore: registered new interface driver usbfs</p>
-
-<p>[    8.878868] usbcore: registered new interface driver hub</p>
-
-<p>[    8.881712] usbcore: registered new device driver usb</p>
-
-<p>[    8.884544] PCI: Using ACPI for IRQ routing</p>
-
-<p>[    8.887230] NetLabel: Initializing</p>
-
-<p>[    8.889563] NetLabel:  domain hash size = 128</p>
-
-<p>[    8.892060] NetLabel:  protocols = UNLABELED CIPSOv4</p>
-
-<p>[    8.894782] NetLabel:  unlabeled traffic allowed by default</p>
-
-<p>[    8.897726] Switched to clocksource kvm-clock</p>
-
-<p>[    8.904153] AppArmor: AppArmor Filesystem Enabled</p>
-
-<p>[    8.906775] pnp: PnP ACPI init</p>
-
-<p>[    8.908891] ACPI: bus type PNP registered</p>
-
-<p>[    8.911715] pnp: PnP ACPI: found 5 devices</p>
-
-<p>[    8.914131] ACPI: bus type PNP unregistered</p>
-
-<p>[    8.923389] NET: Registered protocol family 2</p>
-
-<p>[    8.926069] TCP established hash table entries: 8192 (order: 4, 65536 bytes)</p>
-
-<p>[    8.929376] TCP bind hash table entries: 8192 (order: 5, 131072 bytes)</p>
-
-<p>[    8.932584] TCP: Hash tables configured (established 8192 bind 8192)</p>
-
-<p>[    8.935843] TCP: reno registered</p>
-
-<p>[    8.937972] UDP hash table entries: 512 (order: 2, 16384 bytes)</p>
-
-<p>[    8.940945] UDP-Lite hash table entries: 512 (order: 2, 16384 bytes)</p>
-
-<p>[    8.944084] NET: Registered protocol family 1</p>
-
-<p>[    8.946580] pci 0000:00:00.0: Limiting direct PCI/PCI transfers</p>
-
-<p>[    8.949542] pci 0000:00:01.0: Activating ISA DMA hang workarounds</p>
-
-<p>[    8.952770] Trying to unpack rootfs image as initramfs…</p>
-
-<p>[    9.054639] Freeing initrd memory: 7204K (ffff8800371de000 - ffff8800378e7000)</p>
-
-<p>[    9.059210] microcode: CPU0 sig=0x50654, pf=0x1, revision=0x2000043</p>
-
-<p>[    9.062399] microcode: CPU1 sig=0x50654, pf=0x1, revision=0x2000043</p>
-
-<p>[    9.065686] microcode: Microcode Update Driver: v2.00 <a href="mailto:tigran@aivazian.fsnet.co.uk">tigran@aivazian.fsnet.co.uk</a>, Peter Oruba</p>
-
-<p>[    9.070556] Scanning for low memory corruption every 60 seconds</p>
-
-<p>[    9.073712] Initialise system trusted keyring</p>
-
-<p>[    9.076302] audit: initializing netlink socket (disabled)</p>
-
-<p>[    9.079100] type=2000 audit(1536091098.489:1): initialized</p>
-
-<p>[    9.103801] HugeTLB registered 2 MB page size, pre-allocated 0 pages</p>
-
-<p>[    9.107873] zbud: loaded</p>
-
-<p>[    9.109941] VFS: Disk quotas dquot_6.5.2</p>
-
-<p>[    9.112338] Dquot-cache hash table entries: 512 (order 0, 4096 bytes)</p>
-
-<p>[    9.115752] fuse init (API version 7.22)</p>
-
-<p>[    9.118196] msgmni has been set to 1926</p>
-
-<p>[    9.120554] Key type big_key registered</p>
-
-<p>[    9.126885] Key type asymmetric registered</p>
-
-<p>[    9.129279] Asymmetric key parser ‘x509’ registered</p>
-
-<p>[    9.131917] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 252)</p>
-
-<p>[    9.136315] io scheduler noop registered</p>
-
-<p>[    9.138733] io scheduler deadline registered (default)</p>
-
-<p>[    9.141476] io scheduler cfq registered</p>
-
-<p>[    9.143873] pci_hotplug: PCI Hot Plug PCI Core version: 0.5</p>
-
-<p>[    9.146711] pciehp: PCI Express Hot Plug Controller Driver version: 0.4</p>
-
-<p>[    9.149869] ipmi message handler version 39.2</p>
-
-<p>[    9.152342] input: Power Button as /devices/LNXSYSTM:00/LNXPWRBN:00/input/input0</p>
-
-<p>[    9.156877] ACPI: Power Button [PWRF]</p>
-
-<p>[    9.159273] GHES: HEST is not enabled!</p>
-
-<p>[    9.161645] Serial: 8250/16550 driver, 32 ports, IRQ sharing enabled</p>
-
-<p>[    9.187022] 00:04: ttyS0 at I/O 0x3f8 (irq = 4, base_baud = 115200) is a 16550A</p>
-
-<p>[    9.192618] Linux agpgart interface v0.103</p>
-
-<p>[    9.196162] brd: module loaded</p>
-
-<p>[    9.198814] loop: module loaded</p>
-
-<p>[    9.201254] libphy: Fixed MDIO Bus: probed</p>
-
-<p>[    9.203740] tun: Universal TUN/TAP device driver, 1.6</p>
-
-<p>[    9.206440] tun: (C) 1999-2004 Max Krasnyansky <a href="mailto:maxk@qualcomm.com">maxk@qualcomm.com</a></p>
-
-<p>[    9.209455] PPP generic driver version 2.4.2</p>
-
-<p>[    9.211920] ehci_hcd: USB 2.0 ‘Enhanced’ Host Controller (EHCI) Driver</p>
-
-<p>[    9.214965] ehci-pci: EHCI PCI platform driver</p>
-
-<p>[    9.217557] ehci-platform: EHCI generic platform driver</p>
-
-<p>[    9.220273] ohci_hcd: USB 1.1 ‘Open’ Host Controller (OHCI) Driver</p>
-
-<p>[    9.223228] ohci-pci: OHCI PCI platform driver</p>
-
-<p>[    9.225666] ohci-platform: OHCI generic platform driver</p>
-
-<p>[    9.228362] uhci_hcd: USB Universal Host Controller Interface driver</p>
-
-<p>[    9.231577] i8042: PNP: PS/2 Controller [PNP0303:KBD,PNP0f13:MOU] at 0x60,0x64 irq 1,12</p>
-
-<p>[    9.236392] i8042: Warning: Keylock active</p>
-
-<p>[   10.380973] serio: i8042 KBD port at 0x60,0x64 irq 1</p>
-
-<p>[   10.383838] mousedev: PS/2 mouse device common for all mice</p>
-
-<p>[   10.386964] rtc_cmos 00:00: RTC can wake from S4</p>
-
-<p>[   10.390153] rtc_cmos 00:00: rtc core: registered rtc_cmos as rtc0</p>
-
-<p>[   10.393250] rtc_cmos 00:00: alarms up to one day, 114 bytes nvram</p>
-
-<p>[   10.396316] device-mapper: uevent: version 1.0.3</p>
-
-<p>[   10.398931] device-mapper: ioctl: 4.27.0-ioctl (2013-10-30) initialised: dm-devel@redhat.com</p>
-
-<p>[   10.403459] ledtrig-cpu: registered to indicate activity on CPUs</p>
-
-<p>[   10.406546] TCP: cubic registered</p>
-
-<p>[   10.408674] NET: Registered protocol family 10</p>
-
-<p>[   10.411160] NET: Registered protocol family 17</p>
-
-<p>[   10.413556] Key type dns_resolver registered</p>
-
-<p>[   10.416146] Loading compiled-in X.509 certificates</p>
-
-<p>[   10.419213] Loaded X.509 cert ‘Magrathea: Glacier signing key: 4a0822c0b49428c1d91d265d12340260c61c8908’</p>
-
-<p>[   10.424175] registered taskstats version 1</p>
-
-<p>[   10.427891] Key type trusted registered</p>
-
-<p>[   10.432409] Key type encrypted registered</p>
-
-<p>[   10.434716] AppArmor: AppArmor sha1 policy hashing enabled</p>
-
-<p>[   10.437534] IMA: No TPM chip found, activating TPM-bypass!</p>
-
-<p>[   10.440467] regulator-dummy: disabling</p>
-
-<p>[   10.442765]   Magic number: 2:776:1000</p>
-
-<p>[   10.445022] i8042 aux 00:02: hash matches</p>
-
-<p>[   10.447517] rtc_cmos 00:00: setting system clock to 2018-09-04 19:58:20 UTC (1536091100)</p>
-
-<p>[   10.452098] BIOS EDD facility v0.16 2004-Jun-25, 0 devices found</p>
-
-<p>[   10.454960] EDD information not available.</p>
-
-<p>[   10.458834] Freeing unused kernel memory: 1340K (ffffffff81d20000 - ffffffff81e6f000)</p>
-
-<p>[   10.463301] Write protecting the kernel read-only data: 12288k</p>
-
-<p>[   10.466393] Freeing unused kernel memory: 744K (ffff880001746000 - ffff880001800000)</p>
-
-<p>[   10.472144] Freeing unused kernel memory: 672K (ffff880001b58000 - ffff880001c00000)</p>
-
-<p>Loading, please wait…</p>
-
-<p>[   10.487075] systemd-udevd[103]: starting version 204</p>
-
-<p>[   10.500370] ena: Elastic Network Adapter (ENA) v1.2.0k</p>
-
-<p>[   10.506134] ena 0000:00:05.0: Elastic Network Adapter (ENA) v1.2.0k</p>
-
-<p>[   10.609756] ena: ena device version: 0.10</p>
-
-<p>[   10.612137] ena: ena controller version: 0.0.1 implementation version 1</p>
-
-<p>[   10.886205] input: AT Translated Set 2 keyboard as /devices/platform/i8042/serio0/input/input1</p>
-
-<p>[   11.341780] ena 0000:00:05.0: creating 2 io queues. queue size: 1024</p>
-
-<p>[   11.347792] ena 0000:00:05.0: Elastic Network Adapter (ENA) found at mem febf4000, mac addr 02:12:05:f8:97:82 Queues 2</p>
-
-<p>[   11.353517] ACPI: PCI Interrupt Link [LNKD] enabled at IRQ 11</p>
-
-<p>[   11.566033]  nvme0n1: p1</p>
-
-<p>Begin: Loading essential drivers … done.</p>
-
-<p>Begin: Running /scripts/init-premount … done.</p>
-
-<p>Begin: Mounting root file system … Begin: Running /scripts/local-top … done.</p>
-
-<p>Begin: Running /scripts/local-premount … done.</p>
-
-<p>[   14.632201] EXT4-fs (nvme0n1p1): mounted filesystem with ordered data mode. Opts: (null)</p>
-
-<p>Begin: Running /scripts/local-bottom … done.</p>
-
-<p>done.</p>
-
-<p>Begin: Running /scripts/init-bottom … done.</p>
-
-<p>[   17.099229] random: init urandom read with 27 bits of entropy available</p>
-
-<ul>
-  <li>
-    <p>Stopping Send an event to indicate plymouth is up[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting Mount filesystems on boot[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting Fix-up sensitive /proc filesystem entries[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting Populate /dev filesystem[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting Populate and link to /run filesystem[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Stopping Fix-up sensitive /proc filesystem entries[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Stopping Populate and link to /run filesystem[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Stopping Populate /dev filesystem[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Stopping Track if upstart is running in a container[74G[ OK ]</p>
-  </li>
-</ul>
-
-<p>[   18.429286] EXT4-fs (nvme0n1p1): re-mounted. Opts: (null)</p>
-
-<ul>
-  <li>
-    <p>Starting Signal sysvinit that the rootfs is mounted[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting Clean /tmp directory[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting Initialize or finalize resolvconf[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Stopping Clean /tmp directory[74G[ OK ]</p>
-  </li>
-</ul>
-
-<p>Cloud-init v. 0.7.5 running ‘init-local’ at Tue, 04 Sep 2018 19:58:31 +0000. Up 13.01 seconds.</p>
-
-<p>cloud-init-nonet[14.17]: waiting 10 seconds for network device</p>
-
-<ul>
-  <li>
-    <p>Starting Signal sysvinit that virtual filesystems are mounted[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting Signal sysvinit that virtual filesystems are mounted[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting Bridge udev events into upstart[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting Signal sysvinit that remote filesystems are mounted[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting device node and kernel event manager[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting load modules from /etc/modules[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting cold plug devices[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting log initial device creation[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Stopping load modules from /etc/modules[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting Uncomplicated firewall[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting configure network device security[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting configure network device security[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting Mount network filesystems[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Stopping Mount network filesystems[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting Bridge socket events into upstart[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting configure network device[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting Mount network filesystems[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Stopping Mount network filesystems[74G[ OK ]</p>
-  </li>
-</ul>
-
-<p>cloud-init-nonet[16.53]: static networking is now up</p>
-
-<ul>
-  <li>Starting configure network device[74G[ OK ]</li>
-</ul>
-
-<p>Cloud-init v. 0.7.5 running ‘init’ at Tue, 04 Sep 2018 19:58:35 +0000. Up 17.03 seconds.</p>
-
-<p>ci-info: +++++++++++++++++++++++++++Net device info+++++++++++++++++++++++++++</p>
-
-<p>ci-info: +——–+——+—————+—————+——————-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>ci-info:</td>
-      <td>Device</td>
-      <td>Up</td>
-      <td>Address</td>
-      <td>Mask</td>
-      <td>Hw-Address</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>ci-info: +——–+——+—————+—————+——————-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>ci-info:</td>
-      <td>lo</td>
-      <td>True</td>
-      <td>127.0.0.1</td>
-      <td>255.0.0.0</td>
-      <td>.</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>ci-info:</td>
-      <td>eth0</td>
-      <td>True</td>
-      <td>10.100.10.237</td>
-      <td>255.255.255.0</td>
-      <td>02:12:05:f8:97:82</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>ci-info: +——–+——+—————+—————+——————-+</p>
-
-<p>ci-info: +++++++++++++++++++++++++++++++Route info++++++++++++++++++++++++++++++++</p>
-
-<p>ci-info: +——-+————-+————-+—————+———–+——-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>ci-info:</td>
-      <td>Route</td>
-      <td>Destination</td>
-      <td>Gateway</td>
-      <td>Genmask</td>
-      <td>Interface</td>
-      <td>Flags</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>ci-info: +——-+————-+————-+—————+———–+——-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>ci-info:</td>
-      <td>0</td>
-      <td>0.0.0.0</td>
-      <td>10.100.10.1</td>
-      <td>0.0.0.0</td>
-      <td>eth0</td>
-      <td>UG</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>ci-info:</td>
-      <td>1</td>
-      <td>10.100.10.0</td>
-      <td>0.0.0.0</td>
-      <td>255.255.255.0</td>
-      <td>eth0</td>
-      <td>U</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>ci-info: +——-+————-+————-+—————+———–+——-+</p>
-
-<ul>
-  <li>
-    <p>Stopping cold plug devices[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Stopping log initial device creation[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting load fallback graphics devices[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Stopping load fallback graphics devices[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting enable remaining boot-time encrypted block devices[74G[ OK ]</p>
-  </li>
-</ul>
-
-<p>Generating public/private rsa key pair.</p>
-
-<p>Your identification has been saved in /etc/ssh/ssh_host_rsa_key.</p>
-
-<p>Your public key has been saved in /etc/ssh/ssh_host_rsa_key.pub.</p>
-
-<p>The key fingerprint is:</p>
-
-<p>b0:7a:d8:90:3e:48:0d:7b:eb:20:7d:76:b1:a8:ca:e2 root@ip-10-100-10-237</p>
-
-<p>The key’s randomart image is:</p>
-
-<p>+–[ RSA 2048]—-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>.   .</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>+ . o</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>o = o S</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>o + B o</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>. + X =</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>o. * +</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>+E. .</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+—————–+</p>
-
-<p>Generating public/private dsa key pair.</p>
-
-<p>Your identification has been saved in /etc/ssh/ssh_host_dsa_key.</p>
-
-<p>Your public key has been saved in /etc/ssh/ssh_host_dsa_key.pub.</p>
-
-<p>The key fingerprint is:</p>
-
-<p>7c:c6:6b:54:49:25:48:0a:16:be:5f:24:75:c4:9a:dd root@ip-10-100-10-237</p>
-
-<p>The key’s randomart image is:</p>
-
-<p>+–[ DSA 1024]—-+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>+. .o+=..</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>o . o.o.o</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>. o .+o.</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>o +o.. E</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>. S *</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>. = .</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>. o</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>.</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+—————–+</p>
-
-<p>Generating public/private ecdsa key pair.</p>
-
-<p>Your identification has been saved in /etc/ssh/ssh_host_ecdsa_key.</p>
-
-<p>Your public key has been saved in /etc/ssh/ssh_host_ecdsa_key.pub.</p>
-
-<p>The key fingerprint is:</p>
-
-<p>ad:b5:8f:05:a9:da:7e:8b:2c:06:7f:33:4b:6d:75:8b root@ip-10-100-10-237</p>
-
-<p>The key’s randomart image is:</p>
-
-<p>+–[ECDSA  256]—+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>. .</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>S = . .</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>.    = + o .</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>o  + + E .</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>+=+o.+</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>..+*=o..</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+—————–+</p>
-
-<p>Generating public/private ed25519 key pair.</p>
-
-<p>Your identification has been saved in /etc/ssh/ssh_host_ed25519_key.</p>
-
-<p>Your public key has been saved in /etc/ssh/ssh_host_ed25519_key.pub.</p>
-
-<p>The key fingerprint is:</p>
-
-<p>6b:bf:7d:c9:56:44:0f:bc:c9:ec:1a:7d:09:2e:21:ec root@ip-10-100-10-237</p>
-
-<p>The key’s randomart image is:</p>
-
-<p>+–[ED25519  256–+</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>.</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>o .</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>.    o =.</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>o . .= o</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>S . oo…</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>E …o.o</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>o   .+ +</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>. . .. =</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <tbody>
-    <tr>
-      <td>o..o</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>+—————–+</p>
-
-<ul>
-  <li>
-    <p>Starting Signal sysvinit that local filesystems are mounted[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting configure network device security[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Stopping Mount filesystems on boot[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting Flush boot log to disk[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting flush early job output to logs[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Stopping Failsafe Boot Delay[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting System V initialisation compatibility[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Stopping flush early job output to logs[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting configure virtual network devices[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting Pollinate to seed the pseudo random number generator[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting D-Bus system message bus[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Stopping Flush boot log to disk[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Stopping Pollinate to seed the pseudo random number generator[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting Bridge file events into upstart[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting SystemD login management service[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting early crypto disks…       [80G 
-[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting system logging daemon[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting Handle applying cloud-config[74G[ OK ]</p>
-  </li>
-</ul>
-
-<p>Skipping profile in /etc/apparmor.d/disable: usr.sbin.rsyslogd</p>
-
-<ul>
-  <li>Starting AppArmor profiles       [80G 
-[74G[ OK ]</li>
-</ul>
-
-<p>Cloud-init v. 0.7.5 running ‘modules:config’ at Tue, 04 Sep 2018 19:58:37 +0000. Up 18.89 seconds.</p>
-
-<ul>
-  <li>
-    <p>Stopping System V initialisation compatibility[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting System V runlevel compatibility[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting deferred execution scheduler[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting regular background program processing daemon[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting ACPI daemon[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting save kernel messages[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Stopping save kernel messages[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting CPU interrupts balancing daemon[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Starting automatic crash report generation[74G[ OK ]</p>
-  </li>
-</ul>
-
-<p>Starting redis-server: redis-server.</p>
-
-<ul>
-  <li>Starting OpenSSH server[74G[ OK ]</li>
-</ul>
-
-<p>open-vm-tools: not starting as this is not a VMware VM</p>
-
-<p>landscape-client is not configured, please run landscape-config.</p>
-
-<ul>
-  <li>
-    <p>Restoring resolver state…       [80G 
-[74G[ OK ]</p>
-  </li>
-  <li>
-    <p>Stopping System V runlevel compatibility[74G[ OK ]</p>
-  </li>
-</ul>
-
-<p>Generating locales…</p>
-
-<p>Ubuntu 14.04.5 LTS ip-10-100-10-237 ttyS0</p>
-
-<p>ip-10-100-10-237 login:   en_US.UTF-8… up-to-date
-Generation complete.
-Cloud-init v. 0.7.5 running ‘modules:final’ at Tue, 04 Sep 2018 19:58:40 +0000. Up 21.66 seconds.
-ci-info: +++++++++++++++++++++++Authorized keys from /home/ubuntu/.ssh/authorized_keys for user ubuntu++++++++++++++++++++++++
-ci-info: +———+————————————————-+———+———————————————+
-ci-info: | Keytype |                Fingerprint (md5)                | Options |                   Comment                   |
-ci-info: +———+————————————————-+———+———————————————+
-ci-info: | ssh-rsa | 4c:73:9d:e5:f4:60:09:77:2e:09:1e:52:e3:79:78:26 |    -    | packer 5b8e2fbf-372c-b3c9-32b3-b01e379e886d |
-ci-info: | ssh-rsa | d6:94:ef:4e:e0:26:35:50:a0:72:8c:13:e9:f5:b8:6d |    -    |             spinnaker_developer             |
-ci-info: +———+————————————————-+———+———————————————+
-ec2: 
-ec2: #############################################################
-ec2: —–BEGIN SSH HOST KEY FINGERPRINTS—–
-ec2: 1024 7c:c6:6b:54:49:25:48:0a:16:be:5f:24:75:c4:9a:dd  root@ip-10-100-10-237 (DSA)
-ec2: 256 ad:b5:8f:05:a9:da:7e:8b:2c:06:7f:33:4b:6d:75:8b  root@ip-10-100-10-237 (ECDSA)
-ec2: 256 6b:bf:7d:c9:56:44:0f:bc:c9:ec:1a:7d:09:2e:21:ec  root@ip-10-100-10-237 (ED25519)
-ec2: 2048 b0:7a:d8:90:3e:48:0d:7b:eb:20:7d:76:b1:a8:ca:e2  root@ip-10-100-10-237 (RSA)
-ec2: —–END SSH HOST KEY FINGERPRINTS—–
-ec2: #############################################################
-—–BEGIN SSH HOST KEY KEYS—–
-ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPpr+er3f3udgTXl6EPI+7KGx6TXD6uSDR2iwHifbA/rgJqMHVg8Ziq+0dQ1jn6Upu1OgReLw+OG91rLAB+lHNY= root@ip-10-100-10-237
-ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGH5fGgBdTgC1nD8E/TekwJAet/K4f1f8DiBiQ4NYry/ root@ip-10-100-10-237
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCpCdv92wqd3FA503SQRIyr3vPAV2jBzlulqfdMFh8KMlLcJ5Myk5SLPZqxM9BVsCpNttEIFWAArKalPLg4Od6JuBQEI0EzhxWELE7kH/92urWy1VA1lWquWQnNNC0JXqqsZlUZ1PWcbCqRVBwQntKL30KY2GD3J4AfvcVljxCOJcBOej5YIAsapMqJVb95ouIbrVCLV1DUjkTy60XoUtmGmkLGoGea798Ux9MWSk6J+nyCB0jSOYVYjeaajv4ioyrkXumO4/7JoQCxfcAKk9vtMN+jNU6tnrfP+KmcrPJBxf3tAuycPrkVVMJW2fxXgsmAWgOTJpgRnkg4SNm025nR root@ip-10-100-10-237
-—–END SSH HOST KEY KEYS—–
-Cloud-init v. 0.7.5 finished at Tue, 04 Sep 2018 19:58:40 +0000. Datasource DataSourceEc2.  Up 21.79 seconds</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-**Failed Deploy Stage**:
-
+<p><strong>Successful Deploy Stage</strong>:</p>
+
+<p><strong>Cluster Instance Console Output</strong>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>    0.000000] Initializing cgroup subsys cpuset
+<span class="o">[</span>    0.000000] Initializing cgroup subsys cpu
+<span class="o">[</span>    0.000000] Initializing cgroup subsys cpuacct
+<span class="o">[</span>    0.000000] Linux version 3.13.0-137-generic <span class="o">(</span>buildd@lgw01-amd64-058<span class="o">)</span> <span class="o">(</span>gcc version 4.8.4 <span class="o">(</span>Ubuntu 4.8.4-2ubuntu1~14.04.3<span class="o">)</span> <span class="o">)</span> <span class="c">#186-Ubuntu SMP Mon Dec 4 19:09:19 UTC 2017 (Ubuntu 3.13.0-137.186-generic 3.13.11-ckt39)</span>
+<span class="o">[</span>    0.000000] Command line: <span class="nv">BOOT_IMAGE</span><span class="o">=</span>/boot/vmlinuz-3.13.0-137-generic <span class="nv">root</span><span class="o">=</span><span class="nv">UUID</span><span class="o">=</span>08df443d-a08d-4a06-ab5b-6fdacfc684d3 ro <span class="nv">console</span><span class="o">=</span>tty1 <span class="nv">console</span><span class="o">=</span>ttyS0
+<span class="o">[</span>    0.000000] KERNEL supported cpus:
+...
+Cloud-init v. 0.7.5 finished at Tue, 04 Sep 2018 19:58:40 +0000. Datasource DataSourceEc2.  Up 21.79 seconds
 </code></pre></div></div>
-<p>User: arn:aws:iam::709203678428:user/SpinnakerDevelopment-SpinnakerUser-18ZQ3LBIXDZZV is not authorized to perform: iam:PassRole on resource: arn:aws:iam::709203678428:role/BaseIAMRole (Service: AmazonAutoScaling; Status Code: 403; Error Code: AccessDenied; Request ID: 0ef99eda-b012-11e8-a6f7-6b1d7fcc227f)</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-</code></pre></div></div>
-<p>Invalid IamInstanceProfile: SpinnakerDevelopment-BaseIAMRole-6D9LJ9HS4PZ7 (Service: AmazonAutoScaling; Status Code: 400; Error Code: ValidationError; Request ID: 7312e684-b079-11e8-95a6-5baf58bb2ca8)</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Solution: Input **Instance Profile ARN** value of `BaseIAMRole` into `Bookstore Test to Dev &gt; Deploy stage &gt; Advanced Settings &gt; IAM Instance Profile` field (e.g. `arn:aws:iam::709203678428:instance-profile/BaseIAMRole`).
 
-</code></pre></div></div>
-<p>User: arn:aws:iam::709203678428:user/SpinnakerDevelopment-SpinnakerUser-18ZQ3LBIXDZZV is not authorized to perform: iam:PassRole on resource: arn:aws:iam::709203678428:role/BaseIAMRole (Service: AmazonAutoScaling; Status Code: 403; Error Code: AccessDenied; Request ID: 01c151d9-b07c-11e8-960b-0d81eade5556)</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Solution:
+<p><strong>Failed Deploy Stage</strong>:</p>
 
-- Navigate to **AWS &gt; IAM &gt; Users &gt; SpinnakerDevelopment-SpinnakerUser-18ZQ3LBIXDZZV &gt; Permissions**.
-- Expand `Spinnakerpassrole` policy and click **Edit Policy**.
-- Select the **JSON** tab and you'll see the auto-generated `SpinnakerDevelopment-BaseIAMRole` listed in `Resources`.
-- Add a new line for the `BaseIAMRole` we added previously, like so:
-
-```json
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "VisualEditor0",
-            "Effect": "Allow",
-            "Action": "iam:PassRole",
-            "Resource": [
-                "arn:aws:iam::123456789012:role/SpinnakerDevelopment-BaseIAMRole-6D9LJ9HS4PZ7",
-                "arn:aws:iam::123456789012:role/BaseIAMRole"
-            ]
-        }
-    ]
-}
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User: arn:aws:iam::709203678428:user/SpinnakerDevelopment-SpinnakerUser-18ZQ3LBIXDZZV is not authorized to perform: iam:PassRole on resource: arn:aws:iam::709203678428:role/BaseIAMRole <span class="o">(</span>Service: AmazonAutoScaling<span class="p">;</span> Status Code: 403<span class="p">;</span> Error Code: AccessDenied<span class="p">;</span> Request ID: 0ef99eda-b012-11e8-a6f7-6b1d7fcc227f<span class="o">)</span>
 </code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Invalid IamInstanceProfile: SpinnakerDevelopment-BaseIAMRole-6D9LJ9HS4PZ7 <span class="o">(</span>Service: AmazonAutoScaling<span class="p">;</span> Status Code: 400<span class="p">;</span> Error Code: ValidationError<span class="p">;</span> Request ID: 7312e684-b079-11e8-95a6-5baf58bb2ca8<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Solution: Input <strong>Instance Profile ARN</strong> value of <code class="highlighter-rouge">BaseIAMRole</code> into <code class="highlighter-rouge">Bookstore Test to Dev &gt; Deploy stage &gt; Advanced Settings &gt; IAM Instance Profile</code> field (e.g. <code class="highlighter-rouge">arn:aws:iam::709203678428:instance-profile/BaseIAMRole</code>).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User: arn:aws:iam::709203678428:user/SpinnakerDevelopment-SpinnakerUser-18ZQ3LBIXDZZV is not authorized to perform: iam:PassRole on resource: arn:aws:iam::709203678428:role/BaseIAMRole <span class="o">(</span>Service: AmazonAutoScaling<span class="p">;</span> Status Code: 403<span class="p">;</span> Error Code: AccessDenied<span class="p">;</span> Request ID: 01c151d9-b07c-11e8-960b-0d81eade5556<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Solution:</p>
+
+<ul>
+  <li>Navigate to <strong>AWS &gt; IAM &gt; Users &gt; SpinnakerDevelopment-SpinnakerUser-18ZQ3LBIXDZZV &gt; Permissions</strong>.</li>
+  <li>Expand <code class="highlighter-rouge">Spinnakerpassrole</code> policy and click <strong>Edit Policy</strong>.</li>
+  <li>Select the <strong>JSON</strong> tab and you’ll see the auto-generated <code class="highlighter-rouge">SpinnakerDevelopment-BaseIAMRole</code> listed in <code class="highlighter-rouge">Resources</code>.</li>
+  <li>Add a new line for the <code class="highlighter-rouge">BaseIAMRole</code> we added previously, like so:</li>
+</ul>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"Sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VisualEditor0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iam:PassRole"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"arn:aws:iam::123456789012:role/SpinnakerDevelopment-BaseIAMRole-6D9LJ9HS4PZ7"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"arn:aws:iam::123456789012:role/BaseIAMRole"</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
 
 <ul>
   <li>Click <strong>Review policy</strong> and then click <strong>Save changes</strong>.</li>
@@ -2378,9 +888,10 @@ To show all installed unit files use <span class="s1">'systemctl list-unit-files
 default-authentication-plugin = mysql_native_password
 </code></pre></div></div>
 
-<p>!!! Warning
-    Chaos Monkey is currently <em>incompatible</em> with MySQL version 8.0 and higher.</p>
+<div class="premonition warning"><div class="fa fa-exclamation-circle"></div><div class="content"><p class="header">Warning</p><p>Chaos Monkey is currently <em>incompatible</em> with MySQL version 8.0 and higher.</p>
 
+
+</div></div>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[16097] 2018/09/04 14:07:43 ERROR - couldn't apply database migration: database migration failed: Error 1298: Unknown or incorrect time zone: 'UTC'
 </code></pre></div></div>
 <p>Solution: Add timezone info to MySQL by executing the following command.</p>
@@ -2411,25 +922,24 @@ Query OK, 0 rows affected <span class="o">(</span>0.03 sec<span class="o">)</spa
   <li>If needed, install the <a href="https://docs.aws.amazon.com/cli/latest/userguide/installing.html">AWS CLI tool</a> on your machine.</li>
 </ol>
 
-<p>!!! Tip Simplifying AWS Credentials
-    You can make future AWS CLI commands easier by creating AWS <code class="highlighter-rouge">profiles</code>, which will add configuration and credentials to the local <code class="highlighter-rouge">~/.aws/credentials</code> file.  We’ll be using two different accounts/profiles (<code class="highlighter-rouge">primary</code> or root AWS console account and <code class="highlighter-rouge">spinnaker-developer</code> as a managed account), so we can add credentials for both of these to <code class="highlighter-rouge">~/.aws/credentials</code> by using <code class="highlighter-rouge">aws configure --profile &lt;profile-name&gt;</code> commands:
-    ```bash
-    $ aws configure –profile spinnaker-developer
-    AWS Access Key ID [None]: <AWS_ACCESS_KEY_ID>
-    AWS Secret Access Key [None]: <AWS_SECRET_ACCESS_KEY>
-    Default region name [None]: us-west-2
-    Default output format [None]: text</AWS_SECRET_ACCESS_KEY></AWS_ACCESS_KEY_ID></p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ aws configure --profile primary
-AWS Access Key ID [None]: &lt;AWS_ACCESS_KEY_ID&gt;
-AWS Secret Access Key [None]: &lt;AWS_SECRET_ACCESS_KEY&gt;
-Default region name [None]: us-west-2
-Default output format [None]: text
-```
-
-In the future, simply add the `--profile &lt;profile-name&gt;` flag to any AWS CLI command to force AWS CLI to use that account.
+<div class="premonition info"><div class="fa fa-info-circle"></div><div class="content"><p class="header">Simplifying AWS Credentials</p><p>You can make future AWS CLI commands easier by creating AWS <code class="highlighter-rouge">profiles</code>, which will add configuration and credentials to the local <code class="highlighter-rouge">~/.aws/credentials</code> file.  We’ll be using two different accounts/profiles (<code class="highlighter-rouge">primary</code> or root AWS console account and <code class="highlighter-rouge">spinnaker-developer</code> as a managed account), so we can add credentials for both of these to <code class="highlighter-rouge">~/.aws/credentials</code> by using <code class="highlighter-rouge">aws configure --profile &lt;profile-name&gt;</code> commands.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws configure <span class="nt">--profile</span> spinnaker-developer
+AWS Access Key ID <span class="o">[</span>None]: &lt;AWS_ACCESS_KEY_ID&gt;
+AWS Secret Access Key <span class="o">[</span>None]: &lt;AWS_SECRET_ACCESS_KEY&gt;
+Default region name <span class="o">[</span>None]: us-west-2
+Default output format <span class="o">[</span>None]: text
+   
+aws configure <span class="nt">--profile</span> primary
+AWS Access Key ID <span class="o">[</span>None]: &lt;AWS_ACCESS_KEY_ID&gt;
+AWS Secret Access Key <span class="o">[</span>None]: &lt;AWS_SECRET_ACCESS_KEY&gt;
+Default region name <span class="o">[</span>None]: us-west-2
+Default output format <span class="o">[</span>None]: text
 </code></pre></div></div>
 
+<p>In the future, simply add the <code class="highlighter-rouge">--profile &lt;profile-name&gt;</code> flag to any AWS CLI command to force AWS CLI to use that account.</p>
+
+
+</div></div>
 <ol>
   <li>Download <a href="https://d3079gxvs8ayeg.cloudfront.net/templates/managing.yaml">this</a> <code class="highlighter-rouge">managing.yaml</code> template.</li>
 </ol>
@@ -2448,16 +958,16 @@ Waiting <span class="k">for </span>stack create/update to <span class="nb">compl
 </span>Successfully created/updated stack - spinnaker-managing-infrastructure
 </code></pre></div></div>
 
-<p>!!! Error Error: Unresolved resource dependency for <code class="highlighter-rouge">SpinnakerInstanceProfile</code>.
-    If you receive an <code class="highlighter-rouge">Unresolved resource dependency</code> error while creating the <code class="highlighter-rouge">spinnaker-managing-infrastructure</code> stack related to the <code class="highlighter-rouge">SpinnakerInstanceProfile</code> you may need to edit the <code class="highlighter-rouge">managing.yaml</code> file and comment out the two <code class="highlighter-rouge">SpinnakerInstanceProfileArn</code> related lines under the <code class="highlighter-rouge">Outputs</code> block.
-    <code class="highlighter-rouge">bash
-    # ...
-    Outputs:
-    # ...
-    #  SpinnakerInstanceProfileArn:
-    #    Value: !GetAtt SpinnakerInstanceProfile.Arn
-   </code></p>
+<div class="premonition errpr"><div class="fa fa-check-square"></div><div class="content"><p>If you receive an <code class="highlighter-rouge">Unresolved resource dependency</code> error while creating the <code class="highlighter-rouge">spinnaker-managing-infrastructure</code> stack related to the <code class="highlighter-rouge">SpinnakerInstanceProfile</code> you may need to edit the <code class="highlighter-rouge">managing.yaml</code> file and comment out the two <code class="highlighter-rouge">SpinnakerInstanceProfileArn</code> related lines under the <code class="highlighter-rouge">Outputs</code> block.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># ...</span>
+Outputs:
+<span class="c"># ...</span>
+<span class="c">#  SpinnakerInstanceProfileArn:</span>
+<span class="c">#    Value: !GetAtt SpinnakerInstanceProfile.Arn</span>
+</code></pre></div></div>
 
+
+</div></div>
 <ol>
   <li>Once the <code class="highlighter-rouge">spinnaker-managing-infrastructure</code> stack has been created open the AWS console, navigate to the <code class="highlighter-rouge">CloudFormation</code> service, select the <strong>Outputs</strong> tab of the <code class="highlighter-rouge">spinnaker-managing-infrastructure</code> stack.  We’ll be using the <code class="highlighter-rouge">ManagingAccountId</code> and <code class="highlighter-rouge">AuthArn</code> values in the next step, which look something like the following:</li>
 </ol>
@@ -2533,9 +1043,10 @@ Problems <span class="k">in </span>default.provider.aws.default:
 + Successfully added account default <span class="k">for </span>provider aws.
 </code></pre></div></div>
 
-<p>!!! Tip
-    Spinnaker uses <code class="highlighter-rouge">accounts</code> added via the Halyard <code class="highlighter-rouge">hal config provider aws account</code> API to handle all actions performed within the specified provider (such as AWS, in this case).  For this example we’ll just be using our primary managing account, but you can freely add more accounts as needed.</p>
+<div class="premonition info"><div class="fa fa-info-circle"></div><div class="content"><p>Spinnaker uses <code class="highlighter-rouge">accounts</code> added via the Halyard <code class="highlighter-rouge">hal config provider aws account</code> API to handle all actions performed within the specified provider (such as AWS, in this case).  For this example we’ll just be using our primary managing account, but you can freely add more accounts as needed.</p>
 
+
+</div></div>
 <ol>
   <li>Finally, enable the AWS provider:</li>
 </ol>
@@ -2556,17 +1067,17 @@ Problems <span class="k">in </span>default.provider.aws.default:
 
 <p>In this step you can choose which type of environment on which you want to install Spinnaker.  Most production setups will want to use Kubernetes or another distributed solution, but for this smaller example we’ll just use a local Debian installation, putting Spinnaker on the same machine that Halyard is on.</p>
 
-<p>!!! Tip
-    By default, Halyard should install as a local Debian environmental setup, so you shouldn’t need to make any changes for the environment.  However, if you want to verify it’s already configured locally you can run the <code class="highlighter-rouge">hal config deploy edit --type localdebian</code> command:
-    <code class="highlighter-rouge">bash
-    $ hal config deploy edit --type localdebian
-    + Get current deployment
-      Success
-    + Get the deployment environment
-      Success
-    - No changes supplied.
-   </code></p>
+<div class="premonition info"><div class="fa fa-info-circle"></div><div class="content"><p>By default, Halyard should install as a local Debian environmental setup, so you shouldn’t need to make any changes for the environment.  However, if you want to verify it’s already configured locally you can run the <code class="highlighter-rouge">hal config deploy edit --type localdebian</code> command:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hal config deploy edit <span class="nt">--type</span> localdebian
++ Get current deployment
+  Success
++ Get the deployment environment
+  Success
+- No changes supplied.
+</code></pre></div></div>
 
+
+</div></div>
 <h3 id="setup-persistent-storage-for-spinnaker">Setup Persistent Storage for Spinnaker</h3>
 
 <ol>

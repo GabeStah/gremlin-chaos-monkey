@@ -44,17 +44,7 @@
   </header>
 
   <div class="post-content">
-    <ul>
-  <li>URL: <code class="highlighter-rouge">https://www.gremlin.com/chaos-monkey/advanced-tips</code></li>
-  <li>Parent: <code class="highlighter-rouge">Pillar Page: Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training</code></li>
-  <li>Content:
-    <ul>
-      <li>Per <strong>Austin</strong>, content to be determined after direction from <strong>Kolton</strong>.</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="how-to-deploy-spinnaker-on-aws-with-kubernetes">How to Deploy Spinnaker on AWS with Kubernetes</h2>
+    <h2 id="how-to-deploy-spinnaker-on-aws-with-kubernetes">How to Deploy Spinnaker on AWS with Kubernetes</h2>
 
 <h3 id="install-halyard">Install Halyard</h3>
 
@@ -149,9 +139,10 @@ Default output format <span class="o">[</span>None]: text
 <span class="nt">--parameter-overrides</span> <span class="nv">AuthArn</span><span class="o">=</span><span class="nv">$AUTH_ARN</span> <span class="nv">ManagingAccountId</span><span class="o">=</span><span class="nv">$MANAGING_ACCOUNT_ID</span>
 </code></pre></div></div>
 
-<p>!!! Note
-    If the second step of deploying <code class="highlighter-rouge">spinnaker-managing-infrastructure-setup</code> hasn’t completed yet, feel free to skip this step for the time being and proceed with installing <code class="highlighter-rouge">kubectl</code> and <code class="highlighter-rouge">AWS IAM Authenticator</code> below.  Just return to this step before moving past that point.</p>
+<div class="premonition info"><div class="fa fa-info-circle"></div><div class="content"><p>If the second step of deploying <code class="highlighter-rouge">spinnaker-managing-infrastructure-setup</code> hasn’t completed yet, feel free to skip this step for the time being and proceed with installing <code class="highlighter-rouge">kubectl</code> and <code class="highlighter-rouge">AWS IAM Authenticator</code> below.  Just return to this step before moving past that point.</p>
 
+
+</div></div>
 <h3 id="install-kubectl">Install Kubectl</h3>
 
 <p>We’ll need to install the <code class="highlighter-rouge">kubectl</code> client and the <code class="highlighter-rouge">AWS IAM Authenticator for Kubernetes</code>, which will allow Amazon EKS to use IAM for authentication to our Kubernetes cluster.</p>
@@ -267,9 +258,10 @@ Default output format <span class="o">[</span>None]: text
         <span class="c1">#   value: "&lt;aws-profile&gt;"</span>
 </code></pre></div></div>
 
-<p>!!! Tip Configuring Multiple Kubernetes Clusters
-    This guide assumes you’re just configuring <code class="highlighter-rouge">kubectl</code> to handle a single Kubernetes cluster, but if you need to configure and handle multiple clusters the convention for doing so is to create a unique <code class="highlighter-rouge">config</code> file for each cluster.  Simply name each <code class="highlighter-rouge">config</code> file <code class="highlighter-rouge">~/.kube/config-&lt;cluster-name&gt;</code>, where <code class="highlighter-rouge">&lt;cluster-name&gt;</code> is replaced by the name of the Kubernetes cluster you already created.</p>
+<div class="premonition info"><div class="fa fa-info-circle"></div><div class="content"><p class="header">Configuring Multiple Kubernetes Clusters</p><p>This guide assumes you’re just configuring <code class="highlighter-rouge">kubectl</code> to handle a single Kubernetes cluster, but if you need to configure and handle multiple clusters the convention for doing so is to create a unique <code class="highlighter-rouge">config</code> file for each cluster.  Simply name each <code class="highlighter-rouge">config</code> file <code class="highlighter-rouge">~/.kube/config-&lt;cluster-name&gt;</code>, where <code class="highlighter-rouge">&lt;cluster-name&gt;</code> is replaced by the name of the Kubernetes cluster you already created.</p>
 
+
+</div></div>
 <ol>
   <li>Replace the <code class="highlighter-rouge">&lt;...&gt;</code> placeholder strings with the following <code class="highlighter-rouge">EKS_CLUSTER_</code> environmental variable values from earlier:
     <ul>
@@ -280,9 +272,10 @@ Default output format <span class="o">[</span>None]: text
   </li>
 </ol>
 
-<p>!!! Tip Using a Specific <code class="highlighter-rouge">AWS::IAM::Role</code>
-    If you need to have the AWS IAM Authenticator and kubectl use a specific <code class="highlighter-rouge">Role</code> then uncomment the <code class="highlighter-rouge">- "-r"</code> and <code class="highlighter-rouge">- "&lt;role-arn&gt;"</code> lines and paste the <code class="highlighter-rouge">AWS::IAM::Role</code> ARN in place of <code class="highlighter-rouge">&lt;role-arn&gt;</code>.</p>
+<div class="premonition info"><div class="fa fa-info-circle"></div><div class="content"><p class="header">Using a Specific `AWS::IAM::Role`</p><p>If you need to have the AWS IAM Authenticator and kubectl use a specific <code class="highlighter-rouge">Role</code> then uncomment the <code class="highlighter-rouge">- "-r"</code> and <code class="highlighter-rouge">- "&lt;role-arn&gt;"</code> lines and paste the <code class="highlighter-rouge">AWS::IAM::Role</code> ARN in place of <code class="highlighter-rouge">&lt;role-arn&gt;</code>.</p>
 
+
+</div></div>
 <ol>
   <li>Your <code class="highlighter-rouge">~/.kube/config</code> file should now look something like this:</li>
 </ol>
@@ -419,9 +412,10 @@ hal config provider ecs <span class="nb">enable</span>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hal config deploy edit <span class="nt">--type</span> distributed <span class="nt">--account-name</span> kubernetes-master
 </code></pre></div></div>
 
-<p>!!! Error Error: <code class="highlighter-rouge">kubectl</code> not installed, or can’t be found by Halyard.
-    If you get such an error when issuing the distributed deployment command above, it likely means Halyard just needs to be restarted.  Simply issue the <code class="highlighter-rouge">hal shutdown</code> command to stop the Halyard daemon, then retry the deployment edit command again, which will automatically restart Halyard before executing.</p>
+<div class="premonition error"><div class="fa fa-exclamation-triangle"></div><div class="content"><p class="header">Error: `kubectl` not installed, or can't be found by Halyard.</p><p>If you get such an error when issuing the distributed deployment command above, it likely means Halyard just needs to be restarted.  Simply issue the <code class="highlighter-rouge">hal shutdown</code> command to stop the Halyard daemon, then retry the deployment edit command again, which will automatically restart Halyard before executing.</p>
 
+
+</div></div>
 <h3 id="use-s3-for-persistent-storage">Use S3 for Persistent Storage</h3>
 
 <p>We also need to allow Spinnaker to use AWS S3 for storing persistent data (in this case, creating a small S3 bucket).  Issue the following command by replacing <code class="highlighter-rouge">&lt;AWS_ACCESS_KEY_ID&gt;</code> with any AWS access key that has full S3 service privileges.</p>
@@ -533,24 +527,24 @@ ip-10-100-11-239.us-west-2.compute.internal   Ready     &lt;none&gt;    2m      
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hal deploy apply
 </code></pre></div></div>
 
-<p>!!! Error Handling <code class="highlighter-rouge">hal deploy apply</code> Errors
-    In some cases you may experience a deployment error, particularly when trying your first Spinnaker deployment.  Often the console output is quite vague, so the best course of action is to check your Spinnaker/Halyard log files.  Typically these are located in <code class="highlighter-rouge">/var/log/spinnaker</code> and <code class="highlighter-rouge">/var/log/spinnaker/halyard</code>.  Since Halyard runs on Java, logs let you see the entire Java error stack trace, rather than the basic (and often useless) error name.</p>
+<div class="premonition error"><div class="fa fa-exclamation-triangle"></div><div class="content"><p class="header">Handling `hal deploy apply` Errors</p><p>In some cases you may experience a deployment error, particularly when trying your first Spinnaker deployment.  Often the console output is quite vague, so the best course of action is to check your Spinnaker/Halyard log files.  Typically these are located in <code class="highlighter-rouge">/var/log/spinnaker</code> and <code class="highlighter-rouge">/var/log/spinnaker/halyard</code>.  Since Halyard runs on Java, logs let you see the entire Java error stack trace, rather than the basic (and often useless) error name.</p>
 
-<p>!!! Error Profile-related <code class="highlighter-rouge">IndexOutOfBoundsException</code>
-    With recent Halyard/Spinnaker versions there’s a <a href="https://github.com/spinnaker/spinnaker/issues/3280">known bug</a> that you may experience in which an <code class="highlighter-rouge">IndexOutOfBoundsException</code> occurs during deployment when using the AWS provider.  The cause usually seems to be that Halyard is assuming an explicit <code class="highlighter-rouge">region</code> value in the YAML configuration file for the AWS account being used.  Even though the <code class="highlighter-rouge">aws</code> block in the config has a <code class="highlighter-rouge">defaultRegions</code> key, that seems to be ignored, which can cause this error.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The current solution is to manually edit the primary AWS account and explicitly set the `region` value, which should solve the issue and allow you to run a Spinnaker deployment.
+</div></div>
+<div class="premonition error"><div class="fa fa-exclamation-triangle"></div><div class="content"><p class="header">Profile-related `IndexOutOfBoundsException`</p><p>With recent Halyard/Spinnaker versions there’s a <a href="https://github.com/spinnaker/spinnaker/issues/3280">known bug</a> that you may experience in which an <code class="highlighter-rouge">IndexOutOfBoundsException</code> occurs during deployment when using the AWS provider.  The cause usually seems to be that Halyard is assuming an explicit <code class="highlighter-rouge">region</code> value in the YAML configuration file for the AWS account being used.  Even though the <code class="highlighter-rouge">aws</code> block in the config has a <code class="highlighter-rouge">defaultRegions</code> key, that seems to be ignored, which can cause this error.</p>
 
-```bash
-hal config provider aws account edit aws-primary --add-region us-west-2
-```
+<p>The current solution is to manually edit the primary AWS account and explicitly set the <code class="highlighter-rouge">region</code> value, which should solve the issue and allow you to run a Spinnaker deployment.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hal config provider aws account edit aws-primary <span class="nt">--add-region</span> us-west-2
 </code></pre></div></div>
 
+
+</div></div>
 <p>That’s it, you should now have a Spinnaker deployment up and running on a Kubernetes cluster, using EKS and EC2 worker node instances!  Issue the <code class="highlighter-rouge">hal deploy connect</code> command to provide port forwarding on your local machine to the Kubernetes cluster running Spinnaker, then open <a href="http://localhost:9000">http://localhost:9000</a> to make sure everything is up and running.</p>
 
 <p>Select the <code class="highlighter-rouge">spinnaker</code> app and you should see your <code class="highlighter-rouge">aws-primary</code> account with a <code class="highlighter-rouge">spinnaker-eks-nodes-NodeGroup</code> containing your three EC2 worker node instances.</p>
 
-<p><img src="/images/advanced-tips-kubernetes-spinnaker.png" alt="advanced-tips-kubernetes-spinnaker" /></p>
+<p><img src="/gremlin-chaos-monkey/images/advanced-tips-kubernetes-spinnaker.png" alt="advanced-tips-kubernetes-spinnaker" /></p>
 
 <h2 id="using-chaos-monkey-on-kubernetes">Using Chaos Monkey on Kubernetes</h2>
 
@@ -558,9 +552,10 @@ hal config provider aws account edit aws-primary --add-region us-west-2
 
 <p>Chaos Monkey requires MySQL 5.6/5.7 to run, so make sure you install it on your local system if necessary.</p>
 
-<p>!!! Warning
-    Chaos Monkey is currently <em>incompatible</em> with MySQL version 8.0 or higher due to the removal of a value that Chaos Monkey binary tries to reference.</p>
+<div class="premonition warning"><div class="fa fa-exclamation-circle"></div><div class="content"><p class="header">Warning</p><p>Chaos Monkey is currently <em>incompatible</em> with MySQL version 8.0 or higher due to the removal of a value that Chaos Monkey binary tries to reference.</p>
 
+
+</div></div>
 <ol>
   <li>Download the latest <code class="highlighter-rouge">mysql-apt.deb</code> file from the <a href="https://dev.mysql.com/downloads/repo/apt/">official website</a>, which we’ll use to install MySQL</li>
 </ol>
@@ -579,7 +574,7 @@ hal config provider aws account edit aws-primary --add-region us-west-2
   <li>In the UI that appears press enter to change the <strong>MySQL Server &amp; Cluster</strong> version to <code class="highlighter-rouge">mysql-5.7</code>.  Leave the other options as default and move down to <code class="highlighter-rouge">Ok</code> and press <code class="highlighter-rouge">Enter</code> to finalize your choice.</li>
 </ol>
 
-<p><img src="/images/advanced-tips-mysql-install.png" alt="advanced-tips-mysql-install" /></p>
+<p><img src="/gremlin-chaos-monkey/images/advanced-tips-mysql-install.png" alt="advanced-tips-mysql-install" /></p>
 
 <ol>
   <li>Now use <code class="highlighter-rouge">sudo apt-get update</code> to update the MySQL packages related to the version we selected (<code class="highlighter-rouge">mysql-5.7</code>, in this case).</li>
@@ -669,7 +664,7 @@ hal config provider aws account edit aws-primary --add-region us-west-2
   <li>Navigate to <strong>Applications &gt; spinnaker &gt; CONFIG</strong> and select <strong>CHAOS MONKEY</strong> in the side navigation.</li>
 </ol>
 
-<p><img src="/images/advanced-tips-config-chaos-monkey.png" alt="advanced-tips-config-chaos-monkey" /></p>
+<p><img src="/gremlin-chaos-monkey/images/advanced-tips-config-chaos-monkey.png" alt="advanced-tips-config-chaos-monkey" /></p>
 
 <ol>
   <li>Check the <strong>Enabled</strong> box to enable Chaos Monkey.</li>

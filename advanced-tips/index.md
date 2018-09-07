@@ -16,11 +16,6 @@ sources:
 published: true
 ---
 
-- URL: `https://www.gremlin.com/chaos-monkey/advanced-tips`
-- Parent: `Pillar Page: Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training`
-- Content:
-  - Per **Austin**, content to be determined after direction from **Kolton**.
-
 ## How to Deploy Spinnaker on AWS with Kubernetes
 
 ### Install Halyard
@@ -102,8 +97,8 @@ aws cloudformation deploy --stack-name spinnaker-managed-infrastructure-setup --
 --parameter-overrides AuthArn=$AUTH_ARN ManagingAccountId=$MANAGING_ACCOUNT_ID
 ```
 
-!!! Note
-    If the second step of deploying `spinnaker-managing-infrastructure-setup` hasn't completed yet, feel free to skip this step for the time being and proceed with installing `kubectl` and `AWS IAM Authenticator` below.  Just return to this step before moving past that point.
+> info ""
+> If the second step of deploying `spinnaker-managing-infrastructure-setup` hasn't completed yet, feel free to skip this step for the time being and proceed with installing `kubectl` and `AWS IAM Authenticator` below.  Just return to this step before moving past that point.
 
 ### Install Kubectl
 
@@ -205,16 +200,16 @@ users:
         #   value: "<aws-profile>"
 ```
 
-!!! Tip Configuring Multiple Kubernetes Clusters
-    This guide assumes you're just configuring `kubectl` to handle a single Kubernetes cluster, but if you need to configure and handle multiple clusters the convention for doing so is to create a unique `config` file for each cluster.  Simply name each `config` file `~/.kube/config-<cluster-name>`, where `<cluster-name>` is replaced by the name of the Kubernetes cluster you already created.
+> info "Configuring Multiple Kubernetes Clusters"
+> This guide assumes you're just configuring `kubectl` to handle a single Kubernetes cluster, but if you need to configure and handle multiple clusters the convention for doing so is to create a unique `config` file for each cluster.  Simply name each `config` file `~/.kube/config-<cluster-name>`, where `<cluster-name>` is replaced by the name of the Kubernetes cluster you already created.
 
 2. Replace the `<...>` placeholder strings with the following `EKS_CLUSTER_` environmental variable values from earlier:
   - `<endpoint-url>`: `$EKS_CLUSTER_ENDPOINT`
   - `<base64-encoded-ca-cert>`: `$EKS_CLUSTER_CA_DATA`
   - `<cluster-name>`: `$EKS_CLUSTER_NAME`
 
-!!! Tip Using a Specific `AWS::IAM::Role`
-    If you need to have the AWS IAM Authenticator and kubectl use a specific `Role` then uncomment the `- "-r"` and `- "<role-arn>"` lines and paste the `AWS::IAM::Role` ARN in place of `<role-arn>`.
+> info "Using a Specific `AWS::IAM::Role`"
+> If you need to have the AWS IAM Authenticator and kubectl use a specific `Role` then uncomment the `- "-r"` and `- "<role-arn>"` lines and paste the `AWS::IAM::Role` ARN in place of `<role-arn>`.
 
 3. Your `~/.kube/config` file should now look something like this:
 
@@ -346,8 +341,8 @@ We also need to ensure Halyard deploys Spinnaker in a distributed fashion among 
 hal config deploy edit --type distributed --account-name kubernetes-master
 ```
 
-!!! Error Error: `kubectl` not installed, or can't be found by Halyard.
-    If you get such an error when issuing the distributed deployment command above, it likely means Halyard just needs to be restarted.  Simply issue the `hal shutdown` command to stop the Halyard daemon, then retry the deployment edit command again, which will automatically restart Halyard before executing.
+> error "Error: `kubectl` not installed, or can't be found by Halyard."
+> If you get such an error when issuing the distributed deployment command above, it likely means Halyard just needs to be restarted.  Simply issue the `hal shutdown` command to stop the Halyard daemon, then retry the deployment edit command again, which will automatically restart Halyard before executing.
 
 ### Use S3 for Persistent Storage
 
@@ -452,23 +447,23 @@ hal config version edit --version 1.9.2
 hal deploy apply
 ```
 
-!!! Error Handling `hal deploy apply` Errors
-    In some cases you may experience a deployment error, particularly when trying your first Spinnaker deployment.  Often the console output is quite vague, so the best course of action is to check your Spinnaker/Halyard log files.  Typically these are located in `/var/log/spinnaker` and `/var/log/spinnaker/halyard`.  Since Halyard runs on Java, logs let you see the entire Java error stack trace, rather than the basic (and often useless) error name.
+> error "Handling `hal deploy apply` Errors"
+> In some cases you may experience a deployment error, particularly when trying your first Spinnaker deployment.  Often the console output is quite vague, so the best course of action is to check your Spinnaker/Halyard log files.  Typically these are located in `/var/log/spinnaker` and `/var/log/spinnaker/halyard`.  Since Halyard runs on Java, logs let you see the entire Java error stack trace, rather than the basic (and often useless) error name.
 
-!!! Error Profile-related `IndexOutOfBoundsException`
-    With recent Halyard/Spinnaker versions there's a [known bug](https://github.com/spinnaker/spinnaker/issues/3280) that you may experience in which an `IndexOutOfBoundsException` occurs during deployment when using the AWS provider.  The cause usually seems to be that Halyard is assuming an explicit `region` value in the YAML configuration file for the AWS account being used.  Even though the `aws` block in the config has a `defaultRegions` key, that seems to be ignored, which can cause this error.
-
-    The current solution is to manually edit the primary AWS account and explicitly set the `region` value, which should solve the issue and allow you to run a Spinnaker deployment.
-
-    ```bash
-    hal config provider aws account edit aws-primary --add-region us-west-2
-    ```
+> error "Profile-related `IndexOutOfBoundsException`"
+> With recent Halyard/Spinnaker versions there's a [known bug](https://github.com/spinnaker/spinnaker/issues/3280) that you may experience in which an `IndexOutOfBoundsException` occurs during deployment when using the AWS provider.  The cause usually seems to be that Halyard is assuming an explicit `region` value in the YAML configuration file for the AWS account being used.  Even though the `aws` block in the config has a `defaultRegions` key, that seems to be ignored, which can cause this error.
+>
+> The current solution is to manually edit the primary AWS account and explicitly set the `region` value, which should solve the issue and allow you to run a Spinnaker deployment.
+> 
+> ```bash
+> hal config provider aws account edit aws-primary --add-region us-west-2
+> ```
 
 That's it, you should now have a Spinnaker deployment up and running on a Kubernetes cluster, using EKS and EC2 worker node instances!  Issue the `hal deploy connect` command to provide port forwarding on your local machine to the Kubernetes cluster running Spinnaker, then open [http://localhost:9000](http://localhost:9000) to make sure everything is up and running.
 
 Select the `spinnaker` app and you should see your `aws-primary` account with a `spinnaker-eks-nodes-NodeGroup` containing your three EC2 worker node instances.
 
-![advanced-tips-kubernetes-spinnaker](/images/advanced-tips-kubernetes-spinnaker.png)
+![advanced-tips-kubernetes-spinnaker](../images/advanced-tips-kubernetes-spinnaker.png)
 
 ## Using Chaos Monkey on Kubernetes
 
@@ -476,8 +471,8 @@ Select the `spinnaker` app and you should see your `aws-primary` account with a 
 
 Chaos Monkey requires MySQL 5.6/5.7 to run, so make sure you install it on your local system if necessary.
 
-!!! Warning
-    Chaos Monkey is currently *incompatible* with MySQL version 8.0 or higher due to the removal of a value that Chaos Monkey binary tries to reference.
+> warning "Warning"
+> Chaos Monkey is currently *incompatible* with MySQL version 8.0 or higher due to the removal of a value that Chaos Monkey binary tries to reference.
 
 1. Download the latest `mysql-apt.deb` file from the [official website](https://dev.mysql.com/downloads/repo/apt/), which we'll use to install MySQL
 
@@ -493,7 +488,7 @@ sudo dpkg -i mysql-apt-config_0.8.10-1_all.deb
 
 3. In the UI that appears press enter to change the **MySQL Server & Cluster** version to `mysql-5.7`.  Leave the other options as default and move down to `Ok` and press `Enter` to finalize your choice.
 
-![advanced-tips-mysql-install](/images/advanced-tips-mysql-install.png)
+![advanced-tips-mysql-install](../images/advanced-tips-mysql-install.png)
 
 4. Now use `sudo apt-get update` to update the MySQL packages related to the version we selected (`mysql-5.7`, in this case).
 
@@ -569,7 +564,7 @@ Since we already enabled the `chaos` feature of Spinnaker prior to deployment, w
 
 1. Navigate to **Applications > spinnaker > CONFIG** and select **CHAOS MONKEY** in the side navigation.
 
-![advanced-tips-config-chaos-monkey](/images/advanced-tips-config-chaos-monkey.png)
+![advanced-tips-config-chaos-monkey](../images/advanced-tips-config-chaos-monkey.png)
 
 2. Check the **Enabled** box to enable Chaos Monkey.
 3. The UI provides useful information for what every option does, but the most important options are the **mean** and **min** times between instance termination.  If your setup includes multiple clusters or stacks, altering the **grouping** may also make sense.  Finally, you can add **exceptions** as necessary, which acts as a kind of *whitelist* of instances that will be ignored by Chaos Monkey, so you can keep the most critical services up and running.
