@@ -61,11 +61,13 @@
     </ul>
   </li>
   <li>Source your <code class="highlighter-rouge">.bashrc</code> file by inputting: <code class="highlighter-rouge">$ . ~/.bashrc</code>.</li>
-  <li>Verify Halyard was installed by checking the version.</li>
-</ol>
+  <li>
+    <p>Verify Halyard was installed by checking the version.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hal <span class="nt">-v</span>
-</code></pre></div></div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> hal <span class="nt">-v</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
 
 <h3 id="install-aws-cli">Install AWS CLI</h3>
 
@@ -87,57 +89,61 @@ Default output format <span class="o">[</span>None]: text
 <p>Now that the AWS CLI is on your machine you’re ready to start the heavy lifting by deploying the EKS cluster via AWS CloudFormation.  This process takes a while for everything to propagate, so get it started while you work on the next few steps.</p>
 
 <ol>
-  <li>Download <a href="https://d3079gxvs8ayeg.cloudfront.net/templates/managing.yaml">this</a> <code class="highlighter-rouge">managing.yaml</code> template.</li>
-</ol>
+  <li>
+    <p>Download <a href="https://d3079gxvs8ayeg.cloudfront.net/templates/managing.yaml">this</a> <code class="highlighter-rouge">managing.yaml</code> template.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-O</span> https://d3079gxvs8ayeg.cloudfront.net/templates/managing.yaml
-</code></pre></div></div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-O</span> https://d3079gxvs8ayeg.cloudfront.net/templates/managing.yaml
+</code></pre></div>    </div>
+  </li>
+</ol>
 
 <div class="premonition info"><div class="fa fa-info-circle"></div><div class="content"><p class="header">Stack Configuration</p><p>If you need to configure the stack to your own particular needs you can easily edit the template YAML as necessary.  For example, in this guide we’re only using a single <strong>managing</strong> account to handle Spinnaker/Kubernetes in AWS, but if you need to also include additional <strong>managed</strong> accounts you’ll want to add their respective AWS ARN strings to the <code class="highlighter-rouge">managing.yaml</code> file <a href="https://gist.github.com/GabeStah/524fdb512e65e354076d71e53d9994eb#file-managing-yaml-L158">around this line</a>.</p>
 
 
 </div></div>
 <ol>
-  <li>Now we’ll use AWS CLI to issue a <code class="highlighter-rouge">cloudformation deploy</code> command to create a new <code class="highlighter-rouge">spinnaker-managing-infrastructure-setup</code> stack using the <code class="highlighter-rouge">managing.yaml</code> template.  From here on out this guide will use explicit names where applicable, but feel free to customize options as you see fit (such as the <strong>stack name</strong>, <strong>EksClusterName</strong>, and so forth).</li>
+  <li>
+    <p>Now we’ll use AWS CLI to issue a <code class="highlighter-rouge">cloudformation deploy</code> command to create a new <code class="highlighter-rouge">spinnaker-managing-infrastructure-setup</code> stack using the <code class="highlighter-rouge">managing.yaml</code> template.  From here on out this guide will use explicit names where applicable, but feel free to customize options as you see fit (such as the <strong>stack name</strong>, <strong>EksClusterName</strong>, and so forth).</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> aws cloudformation deploy <span class="nt">--stack-name</span> spinnaker-managing-infrastructure-setup <span class="nt">--template-file</span> managing.yaml <span class="nt">--capabilities</span> CAPABILITY_NAMED_IAM <span class="se">\</span>
+ <span class="nt">--parameter-overrides</span> <span class="nv">UseAccessKeyForAuthentication</span><span class="o">=</span><span class="nb">false </span><span class="nv">EksClusterName</span><span class="o">=</span>spinnaker-cluster
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>This process will take 10 - 15 minutes to complete issue the following commands, which will use the AWS CLI to assign some environment variables values from the <code class="highlighter-rouge">spinnaker-managing-infrastructure-setup</code> stack we just created.  We’ll be using these values throughout the remainder of this guide.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">VPC_ID</span><span class="o">=</span><span class="k">$(</span>aws cloudformation describe-stacks <span class="nt">--stack-name</span> spinnaker-managing-infrastructure-setup <span class="nt">--query</span> <span class="s1">'Stacks[0].Outputs[?OutputKey==`VpcId`].OutputValue'</span> <span class="nt">--output</span> text<span class="k">)</span>
+ <span class="nv">CONTROL_PLANE_SG</span><span class="o">=</span><span class="k">$(</span>aws cloudformation describe-stacks <span class="nt">--stack-name</span> spinnaker-managing-infrastructure-setup <span class="nt">--query</span> <span class="s1">'Stacks[0].Outputs[?OutputKey==`SecurityGroups`].OutputValue'</span> <span class="nt">--output</span> text<span class="k">)</span>
+ <span class="nv">AUTH_ARN</span><span class="o">=</span><span class="k">$(</span>aws cloudformation describe-stacks <span class="nt">--stack-name</span> spinnaker-managing-infrastructure-setup <span class="nt">--query</span> <span class="s1">'Stacks[0].Outputs[?OutputKey==`AuthArn`].OutputValue'</span> <span class="nt">--output</span> text<span class="k">)</span>
+ <span class="nv">SUBNETS</span><span class="o">=</span><span class="k">$(</span>aws cloudformation describe-stacks <span class="nt">--stack-name</span> spinnaker-managing-infrastructure-setup <span class="nt">--query</span> <span class="s1">'Stacks[0].Outputs[?OutputKey==`SubnetIds`].OutputValue'</span> <span class="nt">--output</span> text<span class="k">)</span>
+ <span class="nv">MANAGING_ACCOUNT_ID</span><span class="o">=</span><span class="k">$(</span>aws cloudformation describe-stacks <span class="nt">--stack-name</span> spinnaker-managing-infrastructure-setup <span class="nt">--query</span> <span class="s1">'Stacks[0].Outputs[?OutputKey==`ManagingAccountId`].OutputValue'</span> <span class="nt">--output</span> text<span class="k">)</span>
+ <span class="nv">EKS_CLUSTER_ENDPOINT</span><span class="o">=</span><span class="k">$(</span>aws cloudformation describe-stacks <span class="nt">--stack-name</span> spinnaker-managing-infrastructure-setup <span class="nt">--query</span> <span class="s1">'Stacks[0].Outputs[?OutputKey==`EksClusterEndpoint`].OutputValue'</span> <span class="nt">--output</span> text<span class="k">)</span>
+ <span class="nv">EKS_CLUSTER_NAME</span><span class="o">=</span><span class="k">$(</span>aws cloudformation describe-stacks <span class="nt">--stack-name</span> spinnaker-managing-infrastructure-setup <span class="nt">--query</span> <span class="s1">'Stacks[0].Outputs[?OutputKey==`EksClusterName`].OutputValue'</span> <span class="nt">--output</span> text<span class="k">)</span>
+ <span class="nv">EKS_CLUSTER_CA_DATA</span><span class="o">=</span><span class="k">$(</span>aws cloudformation describe-stacks <span class="nt">--stack-name</span> spinnaker-managing-infrastructure-setup <span class="nt">--query</span> <span class="s1">'Stacks[0].Outputs[?OutputKey==`EksClusterCA`].OutputValue'</span> <span class="nt">--output</span> text<span class="k">)</span>
+ <span class="nv">SPINNAKER_INSTANCE_PROFILE_ARN</span><span class="o">=</span><span class="k">$(</span>aws cloudformation describe-stacks <span class="nt">--stack-name</span> spinnaker-managing-infrastructure-setup <span class="nt">--query</span> <span class="s1">'Stacks[0].Outputs[?OutputKey==`SpinnakerInstanceProfileArn`].OutputValue'</span> <span class="nt">--output</span> text<span class="k">)</span>
+</code></pre></div>    </div>
+  </li>
 </ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws cloudformation deploy <span class="nt">--stack-name</span> spinnaker-managing-infrastructure-setup <span class="nt">--template-file</span> managing.yaml <span class="nt">--capabilities</span> CAPABILITY_NAMED_IAM <span class="se">\</span>
-<span class="nt">--parameter-overrides</span> <span class="nv">UseAccessKeyForAuthentication</span><span class="o">=</span><span class="nb">false </span><span class="nv">EksClusterName</span><span class="o">=</span>spinnaker-cluster
-</code></pre></div></div>
-
-<ol>
-  <li>This process will take 10 - 15 minutes to complete issue the following commands, which will use the AWS CLI to assign some environment variables values from the <code class="highlighter-rouge">spinnaker-managing-infrastructure-setup</code> stack we just created.  We’ll be using these values throughout the remainder of this guide.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">VPC_ID</span><span class="o">=</span><span class="k">$(</span>aws cloudformation describe-stacks <span class="nt">--stack-name</span> spinnaker-managing-infrastructure-setup <span class="nt">--query</span> <span class="s1">'Stacks[0].Outputs[?OutputKey==`VpcId`].OutputValue'</span> <span class="nt">--output</span> text<span class="k">)</span>
-<span class="nv">CONTROL_PLANE_SG</span><span class="o">=</span><span class="k">$(</span>aws cloudformation describe-stacks <span class="nt">--stack-name</span> spinnaker-managing-infrastructure-setup <span class="nt">--query</span> <span class="s1">'Stacks[0].Outputs[?OutputKey==`SecurityGroups`].OutputValue'</span> <span class="nt">--output</span> text<span class="k">)</span>
-<span class="nv">AUTH_ARN</span><span class="o">=</span><span class="k">$(</span>aws cloudformation describe-stacks <span class="nt">--stack-name</span> spinnaker-managing-infrastructure-setup <span class="nt">--query</span> <span class="s1">'Stacks[0].Outputs[?OutputKey==`AuthArn`].OutputValue'</span> <span class="nt">--output</span> text<span class="k">)</span>
-<span class="nv">SUBNETS</span><span class="o">=</span><span class="k">$(</span>aws cloudformation describe-stacks <span class="nt">--stack-name</span> spinnaker-managing-infrastructure-setup <span class="nt">--query</span> <span class="s1">'Stacks[0].Outputs[?OutputKey==`SubnetIds`].OutputValue'</span> <span class="nt">--output</span> text<span class="k">)</span>
-<span class="nv">MANAGING_ACCOUNT_ID</span><span class="o">=</span><span class="k">$(</span>aws cloudformation describe-stacks <span class="nt">--stack-name</span> spinnaker-managing-infrastructure-setup <span class="nt">--query</span> <span class="s1">'Stacks[0].Outputs[?OutputKey==`ManagingAccountId`].OutputValue'</span> <span class="nt">--output</span> text<span class="k">)</span>
-<span class="nv">EKS_CLUSTER_ENDPOINT</span><span class="o">=</span><span class="k">$(</span>aws cloudformation describe-stacks <span class="nt">--stack-name</span> spinnaker-managing-infrastructure-setup <span class="nt">--query</span> <span class="s1">'Stacks[0].Outputs[?OutputKey==`EksClusterEndpoint`].OutputValue'</span> <span class="nt">--output</span> text<span class="k">)</span>
-<span class="nv">EKS_CLUSTER_NAME</span><span class="o">=</span><span class="k">$(</span>aws cloudformation describe-stacks <span class="nt">--stack-name</span> spinnaker-managing-infrastructure-setup <span class="nt">--query</span> <span class="s1">'Stacks[0].Outputs[?OutputKey==`EksClusterName`].OutputValue'</span> <span class="nt">--output</span> text<span class="k">)</span>
-<span class="nv">EKS_CLUSTER_CA_DATA</span><span class="o">=</span><span class="k">$(</span>aws cloudformation describe-stacks <span class="nt">--stack-name</span> spinnaker-managing-infrastructure-setup <span class="nt">--query</span> <span class="s1">'Stacks[0].Outputs[?OutputKey==`EksClusterCA`].OutputValue'</span> <span class="nt">--output</span> text<span class="k">)</span>
-<span class="nv">SPINNAKER_INSTANCE_PROFILE_ARN</span><span class="o">=</span><span class="k">$(</span>aws cloudformation describe-stacks <span class="nt">--stack-name</span> spinnaker-managing-infrastructure-setup <span class="nt">--query</span> <span class="s1">'Stacks[0].Outputs[?OutputKey==`SpinnakerInstanceProfileArn`].OutputValue'</span> <span class="nt">--output</span> text<span class="k">)</span>
-</code></pre></div></div>
 
 <div class="premonition info"><div class="fa fa-info-circle"></div><div class="content"><p>You can easily output the value of an exported variable with <code class="highlighter-rouge">echo $VARIABLE_NAME</code>.  However, remember that unless you <code class="highlighter-rouge">export</code> these values they only temporarily exist in the console in which you issued the commands.  You may need to reissue the above commands later in the guide if you change terminal windows, so keep them handy.</p>
 
 
 </div></div>
 <ol>
-  <li>Download <a href="https://d3079gxvs8ayeg.cloudfront.net/templates/managed.yaml">this</a> <code class="highlighter-rouge">managed.yaml</code> template.  This template will create the <code class="highlighter-rouge">spinnakerManaged</code> <strong>AWS::IAM::Role</strong> that Spinnaker can use.</li>
+  <li>
+    <p>Download <a href="https://d3079gxvs8ayeg.cloudfront.net/templates/managed.yaml">this</a> <code class="highlighter-rouge">managed.yaml</code> template.  This template will create the <code class="highlighter-rouge">spinnakerManaged</code> <strong>AWS::IAM::Role</strong> that Spinnaker can use.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-O</span> https://d3079gxvs8ayeg.cloudfront.net/templates/managed.yaml
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Execute this secondary CloudFormation deployment using the <code class="highlighter-rouge">managed.yaml</code>.  Notice that this command (and many following commands) use some of the environmental variables we assigned previously, so the first stack deployment will need to be complete first.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> aws cloudformation deploy <span class="nt">--stack-name</span> spinnaker-managed-infrastructure-setup <span class="nt">--template-file</span> managed.yaml <span class="nt">--capabilities</span> CAPABILITY_NAMED_IAM <span class="se">\</span>
+ <span class="nt">--parameter-overrides</span> <span class="nv">AuthArn</span><span class="o">=</span><span class="nv">$AUTH_ARN</span> <span class="nv">ManagingAccountId</span><span class="o">=</span><span class="nv">$MANAGING_ACCOUNT_ID</span>
+</code></pre></div>    </div>
+  </li>
 </ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-O</span> https://d3079gxvs8ayeg.cloudfront.net/templates/managed.yaml
-</code></pre></div></div>
-
-<ol>
-  <li>Execute this secondary CloudFormation deployment using the <code class="highlighter-rouge">managed.yaml</code>.  Notice that this command (and many following commands) use some of the environmental variables we assigned previously, so the first stack deployment will need to be complete first.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws cloudformation deploy <span class="nt">--stack-name</span> spinnaker-managed-infrastructure-setup <span class="nt">--template-file</span> managed.yaml <span class="nt">--capabilities</span> CAPABILITY_NAMED_IAM <span class="se">\</span>
-<span class="nt">--parameter-overrides</span> <span class="nv">AuthArn</span><span class="o">=</span><span class="nv">$AUTH_ARN</span> <span class="nv">ManagingAccountId</span><span class="o">=</span><span class="nv">$MANAGING_ACCOUNT_ID</span>
-</code></pre></div></div>
 
 <div class="premonition info"><div class="fa fa-info-circle"></div><div class="content"><p>If the second step of deploying <code class="highlighter-rouge">spinnaker-managing-infrastructure-setup</code> hasn’t completed yet, feel free to skip this step for the time being and proceed with installing <code class="highlighter-rouge">kubectl</code> and <code class="highlighter-rouge">AWS IAM Authenticator</code> below.  Just return to this step before moving past that point.</p>
 
@@ -148,122 +154,124 @@ Default output format <span class="o">[</span>None]: text
 <p>We’ll need to install the <code class="highlighter-rouge">kubectl</code> client and the <code class="highlighter-rouge">AWS IAM Authenticator for Kubernetes</code>, which will allow Amazon EKS to use IAM for authentication to our Kubernetes cluster.</p>
 
 <ol>
-  <li>Download the appropriate <code class="highlighter-rouge">kubectl</code> binary.  <em>Note: For the remainder of this guide we’ll be using Linux examples, but most everything applies to other environments.</em>
+  <li>
+    <p>Download the appropriate <code class="highlighter-rouge">kubectl</code> binary.  <em>Note: For the remainder of this guide we’ll be using Linux examples, but most everything applies to other environments.</em></p>
+
     <ul>
       <li>Linux: https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/linux/amd64/kubectl</li>
       <li>MacOS: https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/darwin/amd64/kubectl</li>
       <li>Windows: https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/windows/amd64/kubectl.exe</li>
     </ul>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-O</span> https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/linux/amd64/kubectl
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Change permissions of <code class="highlighter-rouge">kubectl</code> so it’s executable.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> chmod +x ./kubectl
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Move <code class="highlighter-rouge">kubectl</code> to an appropriate <code class="highlighter-rouge">bin</code> directory and add to your <code class="highlighter-rouge">PATH</code>, if necessary.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> cp ./kubectl <span class="nv">$HOME</span>/bin/kubectl <span class="o">&amp;&amp;</span> <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/bin:<span class="nv">$PATH</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Verify that <code class="highlighter-rouge">kubectl</code> is installed.  The <code class="highlighter-rouge">--client</code> flag is used here since we’re just checking for the local installation, not making any connections yet.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> kubectl version <span class="nt">--client</span>
+</code></pre></div>    </div>
   </li>
 </ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-O</span> https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/linux/amd64/kubectl
-</code></pre></div></div>
-
-<ol>
-  <li>Change permissions of <code class="highlighter-rouge">kubectl</code> so it’s executable.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chmod +x ./kubectl
-</code></pre></div></div>
-
-<ol>
-  <li>Move <code class="highlighter-rouge">kubectl</code> to an appropriate <code class="highlighter-rouge">bin</code> directory and add to your <code class="highlighter-rouge">PATH</code>, if necessary.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp ./kubectl <span class="nv">$HOME</span>/bin/kubectl <span class="o">&amp;&amp;</span> <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/bin:<span class="nv">$PATH</span>
-</code></pre></div></div>
-
-<ol>
-  <li>Verify that <code class="highlighter-rouge">kubectl</code> is installed.  The <code class="highlighter-rouge">--client</code> flag is used here since we’re just checking for the local installation, not making any connections yet.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl version <span class="nt">--client</span>
-</code></pre></div></div>
 
 <h3 id="install-aws-iam-authenticator">Install AWS IAM Authenticator</h3>
 
 <p>We’ll follow the same basic steps as above to install the AWS IAM Authenticator as well.</p>
 
 <ol>
-  <li>Download the appropriate <code class="highlighter-rouge">aws-iam-authenticator</code> binary.
+  <li>
+    <p>Download the appropriate <code class="highlighter-rouge">aws-iam-authenticator</code> binary.</p>
+
     <ul>
       <li>Linux: https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/linux/amd64/aws-iam-authenticator</li>
       <li>MacOS: https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/darwin/amd64/aws-iam-authenticator</li>
       <li>Windows: https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/windows/amd64/aws-iam-authenticator.exe</li>
     </ul>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-O</span> https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/linux/amd64/aws-iam-authenticator
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Make <code class="highlighter-rouge">aws-iam-authenticator</code> executable.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> chmod +x ./aws-iam-authenticator
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Move <code class="highlighter-rouge">aws-iam-authenticator</code> to an appropriate <code class="highlighter-rouge">bin</code> directory and add to your <code class="highlighter-rouge">PATH</code>, if necessary.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> cp ./aws-iam-authenticator <span class="nv">$HOME</span>/bin/aws-iam-authenticator <span class="o">&amp;&amp;</span> <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/bin:<span class="nv">$PATH</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Test the <code class="highlighter-rouge">aws-iam-authenticator</code> installation.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> aws-iam-authenticator <span class="nb">help</span>
+</code></pre></div>    </div>
   </li>
 </ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-O</span> https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/linux/amd64/aws-iam-authenticator
-</code></pre></div></div>
-
-<ol>
-  <li>Make <code class="highlighter-rouge">aws-iam-authenticator</code> executable.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chmod +x ./aws-iam-authenticator
-</code></pre></div></div>
-
-<ol>
-  <li>Move <code class="highlighter-rouge">aws-iam-authenticator</code> to an appropriate <code class="highlighter-rouge">bin</code> directory and add to your <code class="highlighter-rouge">PATH</code>, if necessary.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp ./aws-iam-authenticator <span class="nv">$HOME</span>/bin/aws-iam-authenticator <span class="o">&amp;&amp;</span> <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/bin:<span class="nv">$PATH</span>
-</code></pre></div></div>
-
-<ol>
-  <li>Test the <code class="highlighter-rouge">aws-iam-authenticator</code> installation.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws-iam-authenticator <span class="nb">help</span>
-</code></pre></div></div>
 
 <h3 id="configure-kubectl">Configure Kubectl</h3>
 
 <p>The <a href="#setup-the-cloudformation-spinnaker-stack">CloudFormation Spinnaker Stack</a> setup step needs to be complete before proceeding.  With everything setup you can now edit the <code class="highlighter-rouge">kubectl</code> configuration files, which will inform <code class="highlighter-rouge">kubectl</code> how to connect to your Kubernetes/EKS cluster.</p>
 
 <ol>
-  <li>Copy and paste the following into the <code class="highlighter-rouge">~/.kube/config</code> file.</li>
-</ol>
+  <li>
+    <p>Copy and paste the following into the <code class="highlighter-rouge">~/.kube/config</code> file.</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
-<span class="na">clusters</span><span class="pi">:</span>
-<span class="pi">-</span> <span class="na">cluster</span><span class="pi">:</span>
-    <span class="na">server</span><span class="pi">:</span> <span class="s">&lt;endpoint-url&gt;</span>
-    <span class="na">certificate-authority-data</span><span class="pi">:</span> <span class="s">&lt;base64-encoded-ca-cert&gt;</span>
-  <span class="na">name</span><span class="pi">:</span> <span class="s">kubernetes</span>
-<span class="na">contexts</span><span class="pi">:</span>
-<span class="pi">-</span> <span class="na">context</span><span class="pi">:</span>
-    <span class="na">cluster</span><span class="pi">:</span> <span class="s">kubernetes</span>
-    <span class="na">user</span><span class="pi">:</span> <span class="s">aws</span>
-  <span class="na">name</span><span class="pi">:</span> <span class="s">aws</span>
-<span class="na">current-context</span><span class="pi">:</span> <span class="s">aws</span>
-<span class="na">kind</span><span class="pi">:</span> <span class="s">Config</span>
-<span class="na">preferences</span><span class="pi">:</span> <span class="pi">{}</span>
-<span class="na">users</span><span class="pi">:</span>
-<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">aws</span>
-  <span class="na">user</span><span class="pi">:</span>
-    <span class="na">exec</span><span class="pi">:</span>
-      <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">client.authentication.k8s.io/v1alpha1</span>
-      <span class="na">command</span><span class="pi">:</span> <span class="s">aws-iam-authenticator</span>
-      <span class="na">args</span><span class="pi">:</span>
-        <span class="pi">-</span> <span class="s2">"</span><span class="s">token"</span>
-        <span class="pi">-</span> <span class="s2">"</span><span class="s">-i"</span>
-        <span class="pi">-</span> <span class="s2">"</span><span class="s">&lt;cluster-name&gt;"</span>
-        <span class="c1"># - "-r"</span>
-        <span class="c1"># - "&lt;role-arn&gt;"</span>
-      <span class="c1"># env:</span>
-        <span class="c1"># - name: AWS_PROFILE</span>
-        <span class="c1">#   value: "&lt;aws-profile&gt;"</span>
-</code></pre></div></div>
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+ <span class="na">clusters</span><span class="pi">:</span>
+ <span class="pi">-</span> <span class="na">cluster</span><span class="pi">:</span>
+     <span class="na">server</span><span class="pi">:</span> <span class="s">&lt;endpoint-url&gt;</span>
+     <span class="na">certificate-authority-data</span><span class="pi">:</span> <span class="s">&lt;base64-encoded-ca-cert&gt;</span>
+   <span class="na">name</span><span class="pi">:</span> <span class="s">kubernetes</span>
+ <span class="na">contexts</span><span class="pi">:</span>
+ <span class="pi">-</span> <span class="na">context</span><span class="pi">:</span>
+     <span class="na">cluster</span><span class="pi">:</span> <span class="s">kubernetes</span>
+     <span class="na">user</span><span class="pi">:</span> <span class="s">aws</span>
+   <span class="na">name</span><span class="pi">:</span> <span class="s">aws</span>
+ <span class="na">current-context</span><span class="pi">:</span> <span class="s">aws</span>
+ <span class="na">kind</span><span class="pi">:</span> <span class="s">Config</span>
+ <span class="na">preferences</span><span class="pi">:</span> <span class="pi">{}</span>
+ <span class="na">users</span><span class="pi">:</span>
+ <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">aws</span>
+   <span class="na">user</span><span class="pi">:</span>
+     <span class="na">exec</span><span class="pi">:</span>
+       <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">client.authentication.k8s.io/v1alpha1</span>
+       <span class="na">command</span><span class="pi">:</span> <span class="s">aws-iam-authenticator</span>
+       <span class="na">args</span><span class="pi">:</span>
+         <span class="pi">-</span> <span class="s2">"</span><span class="s">token"</span>
+         <span class="pi">-</span> <span class="s2">"</span><span class="s">-i"</span>
+         <span class="pi">-</span> <span class="s2">"</span><span class="s">&lt;cluster-name&gt;"</span>
+         <span class="c1"># - "-r"</span>
+         <span class="c1"># - "&lt;role-arn&gt;"</span>
+       <span class="c1"># env:</span>
+         <span class="c1"># - name: AWS_PROFILE</span>
+         <span class="c1">#   value: "&lt;aws-profile&gt;"</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
 
 <div class="premonition info"><div class="fa fa-info-circle"></div><div class="content"><p class="header">Configuring Multiple Kubernetes Clusters</p><p>This guide assumes you’re just configuring <code class="highlighter-rouge">kubectl</code> to handle a single Kubernetes cluster, but if you need to configure and handle multiple clusters the convention for doing so is to create a unique <code class="highlighter-rouge">config</code> file for each cluster.  Simply name each <code class="highlighter-rouge">config</code> file <code class="highlighter-rouge">~/.kube/config-&lt;cluster-name&gt;</code>, where <code class="highlighter-rouge">&lt;cluster-name&gt;</code> is replaced by the name of the Kubernetes cluster you already created.</p>
 
 
 </div></div>
 <ol>
-  <li>Replace the <code class="highlighter-rouge">&lt;...&gt;</code> placeholder strings with the following <code class="highlighter-rouge">EKS_CLUSTER_</code> environmental variable values from earlier:
+  <li>
+    <p>Replace the <code class="highlighter-rouge">&lt;...&gt;</code> placeholder strings with the following <code class="highlighter-rouge">EKS_CLUSTER_</code> environmental variable values from earlier:</p>
+
     <ul>
       <li><code class="highlighter-rouge">&lt;endpoint-url&gt;</code>: <code class="highlighter-rouge">$EKS_CLUSTER_ENDPOINT</code></li>
       <li><code class="highlighter-rouge">&lt;base64-encoded-ca-cert&gt;</code>: <code class="highlighter-rouge">$EKS_CLUSTER_CA_DATA</code></li>
@@ -277,117 +285,117 @@ Default output format <span class="o">[</span>None]: text
 
 </div></div>
 <ol>
-  <li>Your <code class="highlighter-rouge">~/.kube/config</code> file should now look something like this:</li>
+  <li>
+    <p>Your <code class="highlighter-rouge">~/.kube/config</code> file should now look something like this:</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+ <span class="na">clusters</span><span class="pi">:</span>
+ <span class="pi">-</span> <span class="na">cluster</span><span class="pi">:</span>
+     <span class="na">server</span><span class="pi">:</span> <span class="s">https://51A93D4A4B1228D6D06BE160DA2D3A8A.yl4.us-west-2.eks.amazonaws.com</span>
+     <span class="na">certificate-authority-data</span><span class="pi">:</span> <span class="s">LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRFNE1Ea3dOakExTVRnME1BHeGFNN3QyaApzcm8wa1ZOWTdCQ1g5YVBBY09rRFVuRExGektpZTJnZVZLOFpxVHJvZEpLR0p3SEtjVDJNNUtsR0ZTSjMzSGpoCk5ZeVErTnJkd0VKT2puR2xZN3R1eVFvZjhnNU0vNWZzZSt0TWFMTjJjQ3NWNFA1NCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFKN3owTEI5NFVoZWNwTUh0VGYrVTkxVDlxU2IKNWFVRGQrdlVTNEpVTWwwdk01OXBqc05CNDU1Z1l6ZkpLelZ1YXI5TjJOVURiREllNUJsbjlCRjWb1hEVEk0TURrd016QTFNVGcwTVZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBT0h6CldrZ2pzTWZ0eEJYd3NZOGRuVXI5UUQTAzUVczazlaZHZlMWNYRlp4bHdqc3RSdWN3eUxRTG12eUh0VzJsTjE4RENqSXF5OGwxeUlYSENERQpXQjI3eHo4TXg3ZDJVSjIyaThjQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0V5OSTJHYjV4QU1vYjJBaWQwbEQrT2NncGdDcXQvQ3h2SlFJRGpxbjRKT1AKejh6RVkvWVVsQjBUOTVXUUFsRE9ZWnlKY3lDeWxYcFZRTnNDRWNSMFhUakRaVDFVbXMyMmk4NlozYy8xQ1IrWgpKNkNqZ3IvZkNadVVaV0VUbGt1WXhlSG5CQS91ZURJM1NsMVdnY0ZFMGFyNGxsVkVFVngyS01PZXhuM09FdHI0CjhBd1dmQWxzSUNXRWdjMjRKdzk5MG9LelNObXB0cWRaOEFwczhVaHJoZWtoNEh1blpFLzhud1prb213SE1TcTYKbjl5NFJN3RyR0xWN0RzMUxWUFBlWjkKVVB0eU1WODlieFVEeFhNV3I3d2tNRy9YckdtaC9nN1gwb1grdXRnUUtiSWdPaHZMZEFKSDNZUUlyTjhHS0krcwpIMGtjTnpYMWYzSGdabUVINUIxNXhER0R2SnA5a045Q29VdjRYVE5tdlljVlNVSy9vcWdwaXd1TU9oZz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=</span>
+   <span class="na">name</span><span class="pi">:</span> <span class="s">kubernetes</span>
+ <span class="na">contexts</span><span class="pi">:</span>
+ <span class="pi">-</span> <span class="na">context</span><span class="pi">:</span>
+     <span class="na">cluster</span><span class="pi">:</span> <span class="s">kubernetes</span>
+     <span class="na">user</span><span class="pi">:</span> <span class="s">aws</span>
+   <span class="na">name</span><span class="pi">:</span> <span class="s">aws</span>
+ <span class="na">current-context</span><span class="pi">:</span> <span class="s">aws</span>
+ <span class="na">kind</span><span class="pi">:</span> <span class="s">Config</span>
+ <span class="na">preferences</span><span class="pi">:</span> <span class="pi">{}</span>
+ <span class="na">users</span><span class="pi">:</span>
+ <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">aws</span>
+   <span class="na">user</span><span class="pi">:</span>
+     <span class="na">exec</span><span class="pi">:</span>
+       <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">client.authentication.k8s.io/v1alpha1</span>
+       <span class="na">command</span><span class="pi">:</span> <span class="s">aws-iam-authenticator</span>
+       <span class="na">args</span><span class="pi">:</span>
+         <span class="pi">-</span> <span class="s2">"</span><span class="s">token"</span>
+         <span class="pi">-</span> <span class="s2">"</span><span class="s">-i"</span>
+         <span class="pi">-</span> <span class="s2">"</span><span class="s">spinnaker-cluster"</span>
+         <span class="c1"># - "-r"</span>
+         <span class="c1"># - "&lt;role-arn&gt;"</span>
+       <span class="c1"># env:</span>
+         <span class="c1"># - name: AWS_PROFILE</span>
+         <span class="c1">#   value: "&lt;aws-profile&gt;"</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Save your <code class="highlighter-rouge">config</code> file and export the <code class="highlighter-rouge">KUBECONFIG</code> variable to include the new <code class="highlighter-rouge">config</code> location.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">export </span><span class="nv">KUBECONFIG</span><span class="o">=</span><span class="nv">$KUBECONFIG</span>:~/.kube/config
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Verify that <code class="highlighter-rouge">kubectl</code> is able to use your credentials to connect to your cluster with <code class="highlighter-rouge">kubectl get svc</code>:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span>kubectl get svc
+
+ NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>   AGE
+ kubernetes   ClusterIP   172.25.0.1   &lt;none&gt;        443/TCP   31m
+</code></pre></div>    </div>
+  </li>
 </ol>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
-<span class="na">clusters</span><span class="pi">:</span>
-<span class="pi">-</span> <span class="na">cluster</span><span class="pi">:</span>
-    <span class="na">server</span><span class="pi">:</span> <span class="s">https://51A93D4A4B1228D6D06BE160DA2D3A8A.yl4.us-west-2.eks.amazonaws.com</span>
-    <span class="na">certificate-authority-data</span><span class="pi">:</span> <span class="s">LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRFNE1Ea3dOakExTVRnME1BHeGFNN3QyaApzcm8wa1ZOWTdCQ1g5YVBBY09rRFVuRExGektpZTJnZVZLOFpxVHJvZEpLR0p3SEtjVDJNNUtsR0ZTSjMzSGpoCk5ZeVErTnJkd0VKT2puR2xZN3R1eVFvZjhnNU0vNWZzZSt0TWFMTjJjQ3NWNFA1NCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFKN3owTEI5NFVoZWNwTUh0VGYrVTkxVDlxU2IKNWFVRGQrdlVTNEpVTWwwdk01OXBqc05CNDU1Z1l6ZkpLelZ1YXI5TjJOVURiREllNUJsbjlCRjWb1hEVEk0TURrd016QTFNVGcwTVZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBT0h6CldrZ2pzTWZ0eEJYd3NZOGRuVXI5UUQTAzUVczazlaZHZlMWNYRlp4bHdqc3RSdWN3eUxRTG12eUh0VzJsTjE4RENqSXF5OGwxeUlYSENERQpXQjI3eHo4TXg3ZDJVSjIyaThjQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0V5OSTJHYjV4QU1vYjJBaWQwbEQrT2NncGdDcXQvQ3h2SlFJRGpxbjRKT1AKejh6RVkvWVVsQjBUOTVXUUFsRE9ZWnlKY3lDeWxYcFZRTnNDRWNSMFhUakRaVDFVbXMyMmk4NlozYy8xQ1IrWgpKNkNqZ3IvZkNadVVaV0VUbGt1WXhlSG5CQS91ZURJM1NsMVdnY0ZFMGFyNGxsVkVFVngyS01PZXhuM09FdHI0CjhBd1dmQWxzSUNXRWdjMjRKdzk5MG9LelNObXB0cWRaOEFwczhVaHJoZWtoNEh1blpFLzhud1prb213SE1TcTYKbjl5NFJN3RyR0xWN0RzMUxWUFBlWjkKVVB0eU1WODlieFVEeFhNV3I3d2tNRy9YckdtaC9nN1gwb1grdXRnUUtiSWdPaHZMZEFKSDNZUUlyTjhHS0krcwpIMGtjTnpYMWYzSGdabUVINUIxNXhER0R2SnA5a045Q29VdjRYVE5tdlljVlNVSy9vcWdwaXd1TU9oZz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=</span>
-  <span class="na">name</span><span class="pi">:</span> <span class="s">kubernetes</span>
-<span class="na">contexts</span><span class="pi">:</span>
-<span class="pi">-</span> <span class="na">context</span><span class="pi">:</span>
-    <span class="na">cluster</span><span class="pi">:</span> <span class="s">kubernetes</span>
-    <span class="na">user</span><span class="pi">:</span> <span class="s">aws</span>
-  <span class="na">name</span><span class="pi">:</span> <span class="s">aws</span>
-<span class="na">current-context</span><span class="pi">:</span> <span class="s">aws</span>
-<span class="na">kind</span><span class="pi">:</span> <span class="s">Config</span>
-<span class="na">preferences</span><span class="pi">:</span> <span class="pi">{}</span>
-<span class="na">users</span><span class="pi">:</span>
-<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">aws</span>
-  <span class="na">user</span><span class="pi">:</span>
-    <span class="na">exec</span><span class="pi">:</span>
-      <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">client.authentication.k8s.io/v1alpha1</span>
-      <span class="na">command</span><span class="pi">:</span> <span class="s">aws-iam-authenticator</span>
-      <span class="na">args</span><span class="pi">:</span>
-        <span class="pi">-</span> <span class="s2">"</span><span class="s">token"</span>
-        <span class="pi">-</span> <span class="s2">"</span><span class="s">-i"</span>
-        <span class="pi">-</span> <span class="s2">"</span><span class="s">spinnaker-cluster"</span>
-        <span class="c1"># - "-r"</span>
-        <span class="c1"># - "&lt;role-arn&gt;"</span>
-      <span class="c1"># env:</span>
-        <span class="c1"># - name: AWS_PROFILE</span>
-        <span class="c1">#   value: "&lt;aws-profile&gt;"</span>
-</code></pre></div></div>
-
-<ol>
-  <li>Save your <code class="highlighter-rouge">config</code> file and export the <code class="highlighter-rouge">KUBECONFIG</code> variable to include the new <code class="highlighter-rouge">config</code> location.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">KUBECONFIG</span><span class="o">=</span><span class="nv">$KUBECONFIG</span>:~/.kube/config
-</code></pre></div></div>
-
-<ol>
-  <li>Verify that <code class="highlighter-rouge">kubectl</code> is able to use your credentials to connect to your cluster with <code class="highlighter-rouge">kubectl get svc</code>:</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl get svc
-
-NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>   AGE
-kubernetes   ClusterIP   172.25.0.1   &lt;none&gt;        443/TCP   31m
-</code></pre></div></div>
 
 <h3 id="create-aws-accounts-and-roles">Create AWS Accounts and Roles</h3>
 
 <p>We now need to apply service accounts and roles to the <code class="highlighter-rouge">kubectl</code> <code class="highlighter-rouge">spinnaker</code> namespace.  In Kubernetes, a <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">namespace</a> is a <em>virtual</em> cluster, which can join other virtual clusters and all be housed within the same <em>physical</em> cluster.</p>
 
 <ol>
-  <li>Issue the following commands to create the <code class="highlighter-rouge">spinnaker</code> namespace, <code class="highlighter-rouge">spinnaker-service-account</code> service account, and <code class="highlighter-rouge">spinnaker-admin</code> binding.  The <a href="https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply"><code class="highlighter-rouge">apply</code></a> command in <code class="highlighter-rouge">kubectl</code> applies a configuration based on the passed resource (YAML files, in this case).</li>
-</ol>
+  <li>
+    <p>Issue the following commands to create the <code class="highlighter-rouge">spinnaker</code> namespace, <code class="highlighter-rouge">spinnaker-service-account</code> service account, and <code class="highlighter-rouge">spinnaker-admin</code> binding.  The <a href="https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply"><code class="highlighter-rouge">apply</code></a> command in <code class="highlighter-rouge">kubectl</code> applies a configuration based on the passed resource (YAML files, in this case).</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">CONTEXT</span><span class="o">=</span>aws
-kubectl create namespace spinnaker
-kubectl apply <span class="nt">-f</span> https://d3079gxvs8ayeg.cloudfront.net/templates/spinnaker-service-account.yaml
-kubectl apply <span class="nt">-f</span> https://d3079gxvs8ayeg.cloudfront.net/templates/spinnaker-cluster-role-binding.yaml
-</code></pre></div></div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">CONTEXT</span><span class="o">=</span>aws
+ kubectl create namespace spinnaker
+ kubectl apply <span class="nt">-f</span> https://d3079gxvs8ayeg.cloudfront.net/templates/spinnaker-service-account.yaml
+ kubectl apply <span class="nt">-f</span> https://d3079gxvs8ayeg.cloudfront.net/templates/spinnaker-cluster-role-binding.yaml
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Next, we’re creating the authentication <code class="highlighter-rouge">TOKEN</code> environmental variable.</p>
 
-<ol>
-  <li>Next, we’re creating the authentication <code class="highlighter-rouge">TOKEN</code> environmental variable.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">TOKEN</span><span class="o">=</span><span class="k">$(</span>kubectl get secret <span class="nt">--context</span> <span class="nv">$CONTEXT</span> <span class="se">\</span>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">TOKEN</span><span class="o">=</span><span class="k">$(</span>kubectl get secret <span class="nt">--context</span> <span class="nv">$CONTEXT</span> <span class="se">\</span>
    <span class="k">$(</span>kubectl get serviceaccount spinnaker-service-account <span class="se">\</span>
        <span class="nt">--context</span> <span class="nv">$CONTEXT</span> <span class="se">\</span>
        <span class="nt">-n</span> spinnaker <span class="se">\</span>
        <span class="nt">-o</span> <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.secrets[0].name}'</span><span class="k">)</span> <span class="se">\</span>
    <span class="nt">-n</span> spinnaker <span class="se">\</span>
    <span class="nt">-o</span> <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.data.token}'</span> | base64 <span class="nt">--decode</span><span class="k">)</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Pass the <code class="highlighter-rouge">TOKEN</code> to the following configuration commands to set <code class="highlighter-rouge">kubectl</code> credentials.</p>
 
-<ol>
-  <li>Pass the <code class="highlighter-rouge">TOKEN</code> to the following configuration commands to set <code class="highlighter-rouge">kubectl</code> credentials.</li>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> kubectl config set-credentials <span class="k">${</span><span class="nv">CONTEXT</span><span class="k">}</span><span class="nt">-token-user</span> <span class="nt">--token</span> <span class="nv">$TOKEN</span>
+ kubectl config set-context <span class="nv">$CONTEXT</span> <span class="nt">--user</span> <span class="k">${</span><span class="nv">CONTEXT</span><span class="k">}</span><span class="nt">-token-user</span>
+</code></pre></div>    </div>
+  </li>
 </ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl config set-credentials <span class="k">${</span><span class="nv">CONTEXT</span><span class="k">}</span><span class="nt">-token-user</span> <span class="nt">--token</span> <span class="nv">$TOKEN</span>
-kubectl config set-context <span class="nv">$CONTEXT</span> <span class="nt">--user</span> <span class="k">${</span><span class="nv">CONTEXT</span><span class="k">}</span><span class="nt">-token-user</span>
-</code></pre></div></div>
 
 <h3 id="add-kubernetes-provider-to-halyard">Add Kubernetes Provider to Halyard</h3>
 
 <p>The next step is to add Kubernetes as a provider to Halyard/Spinnaker. A <a href="https://www.spinnaker.io/concepts/providers/">provider</a> is just an interface to one of many virtual resources Spinnaker will utilize.  AWS, Azure, Docker, and many more are all considered providers, and are managed by Spinnaker via <code class="highlighter-rouge">accounts</code>.</p>
 
 <ol>
-  <li>Start by enabling the Kubernetes provider in Halyard.</li>
+  <li>
+    <p>Start by enabling the Kubernetes provider in Halyard.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> hal config provider kubernetes <span class="nb">enable</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Add the <code class="highlighter-rouge">kubernetes-master</code> account to Halyard.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> hal config provider kubernetes account add kubernetes-master <span class="nt">--provider-version</span> v2 <span class="nt">--context</span> <span class="k">$(</span>kubectl config current-context<span class="k">)</span><span class="sb">`</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Enable the <code class="highlighter-rouge">artifacts</code> and <code class="highlighter-rouge">chaos</code> features of Halyard.  <a href="https://www.spinnaker.io/reference/artifacts/">Artifacts</a> in Spinnaker merely reference any external resource, such as a remote file, a binary blob, and image, and so forth.  The <code class="highlighter-rouge">chaos</code> feature allows us to utilize Chaos Monkey, the base form of which is built into Spinnaker by default.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> hal config features edit <span class="nt">--artifacts</span> <span class="nb">true
+ </span>hal config features edit <span class="nt">--chaos</span> <span class="nb">true</span>
+</code></pre></div>    </div>
+  </li>
 </ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hal config provider kubernetes <span class="nb">enable</span>
-</code></pre></div></div>
-
-<ol>
-  <li>Add the <code class="highlighter-rouge">kubernetes-master</code> account to Halyard.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hal config provider kubernetes account add kubernetes-master <span class="nt">--provider-version</span> v2 <span class="nt">--context</span> <span class="k">$(</span>kubectl config current-context<span class="k">)</span><span class="sb">`</span>
-</code></pre></div></div>
-
-<ol>
-  <li>Enable the <code class="highlighter-rouge">artifacts</code> and <code class="highlighter-rouge">chaos</code> features of Halyard.  <a href="https://www.spinnaker.io/reference/artifacts/">Artifacts</a> in Spinnaker merely reference any external resource, such as a remote file, a binary blob, and image, and so forth.  The <code class="highlighter-rouge">chaos</code> feature allows us to utilize Chaos Monkey, the base form of which is built into Spinnaker by default.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hal config features edit <span class="nt">--artifacts</span> <span class="nb">true
-</span>hal config features edit <span class="nt">--chaos</span> <span class="nb">true</span>
-</code></pre></div></div>
 
 <h3 id="add-aws-provider-to-halyard">Add AWS Provider to Halyard</h3>
 
@@ -418,7 +426,7 @@ hal config provider ecs <span class="nb">enable</span>
 </div></div>
 <h3 id="use-s3-for-persistent-storage">Use S3 for Persistent Storage</h3>
 
-<p>We also need to allow Spinnaker to use AWS S3 for storing persistent data (in this case, creating a small S3 bucket).  Issue the following command by replacing <code class="highlighter-rouge">&lt;AWS_ACCESS_KEY_ID&gt;</code> with any AWS access key that has full S3 service privileges.</p>
+<p>Let’s tell Spinnaker to use AWS S3 for storing persistent data (in this case, creating a small S3 bucket).  Issue the following command by replacing <code class="highlighter-rouge">&lt;AWS_ACCESS_KEY_ID&gt;</code> with any AWS access key that has full S3 service privileges.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hal config storage s3 edit <span class="nt">--access-key-id</span> &lt;AWS_ACCESS_KEY_ID&gt; <span class="nt">--secret-access-key</span> <span class="nt">--region</span> us-west-2
 hal config storage edit <span class="nt">--type</span> s3
@@ -429,76 +437,75 @@ hal config storage edit <span class="nt">--type</span> s3
 <p>Now we’ll launch some AWS EC2 instances which will be our worker nodes for our Kubernetes cluster to manage.</p>
 
 <ol>
-  <li>Download <a href="https://d3079gxvs8ayeg.cloudfront.net/templates/amazon-eks-nodegroup.yaml">this</a> <code class="highlighter-rouge">amazon-eks-nodegroup.yml</code> template file.</li>
+  <li>
+    <p>Download <a href="https://d3079gxvs8ayeg.cloudfront.net/templates/amazon-eks-nodegroup.yaml">this</a> <code class="highlighter-rouge">amazon-eks-nodegroup.yml</code> template file.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-O</span> https://d3079gxvs8ayeg.cloudfront.net/templates/amazon-eks-nodegroup.yaml
+</code></pre></div>    </div>
+
+    <blockquote>
+      <p>info “Adjust Worker Nodes”
+The default template creates an auto-balancing collection of up to <strong>3</strong> worker nodes (instances).  Additionally, the deployment command we’ll be using below specifies <code class="highlighter-rouge">t2.large</code> instance types.  As always, feel free to modify the <code class="highlighter-rouge">amazon-eks-nodegroup.yaml</code> or instance types to meet your needs.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Issue the following command to use the template and create your worker node collection.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> aws cloudformation deploy <span class="nt">--stack-name</span> spinnaker-eks-nodes <span class="nt">--template-file</span> amazon-eks-nodegroup.yaml <span class="se">\</span>
+ <span class="nt">--parameter-overrides</span> <span class="nv">NodeInstanceProfile</span><span class="o">=</span><span class="nv">$SPINNAKER_INSTANCE_PROFILE_ARN</span> <span class="se">\</span>
+ <span class="nv">NodeInstanceType</span><span class="o">=</span>t2.large <span class="nv">ClusterName</span><span class="o">=</span><span class="nv">$EKS_CLUSTER_NAME</span> <span class="nv">NodeGroupName</span><span class="o">=</span>spinnaker-cluster-nodes <span class="nv">ClusterControlPlaneSecurityGroup</span><span class="o">=</span><span class="nv">$CONTROL_PLANE_SG</span> <span class="se">\</span>
+ <span class="nv">Subnets</span><span class="o">=</span><span class="nv">$SUBNETS</span> <span class="nv">VpcId</span><span class="o">=</span><span class="nv">$VPC_ID</span> <span class="nt">--capabilities</span> CAPABILITY_NAMED_IAM
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>To connect up our newly-launched worker instances with the Spinnaker cluster we previously deployed we need to create a new <code class="highlighter-rouge">~/.kube/aws-auth-cm.yaml</code> file.  Paste the following text into <code class="highlighter-rouge">aws-auth-cm.yaml</code>, replacing <code class="highlighter-rouge">&lt;AUTH_ARN&gt;</code> with the <code class="highlighter-rouge">AUTH_ARN</code> variable created previously (Remember, you can use <code class="highlighter-rouge">echo $AUTH_ARN</code> to print to console).</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+ <span class="na">kind</span><span class="pi">:</span> <span class="s">ConfigMap</span>
+ <span class="na">metadata</span><span class="pi">:</span>
+   <span class="na">name</span><span class="pi">:</span> <span class="s">aws-auth</span>
+   <span class="na">namespace</span><span class="pi">:</span> <span class="s">kube-system</span>
+ <span class="na">data</span><span class="pi">:</span>
+   <span class="na">mapRoles</span><span class="pi">:</span> <span class="pi">|</span>
+     <span class="no">- rolearn: &lt;AUTH_ARN&gt;</span>
+       <span class="no">username: system:node:</span>
+       <span class="no">groups:</span>
+         <span class="no">- system:bootstrappers</span>
+         <span class="no">- system:nodes</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Apply this newly created role mapping by issuing the following command.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> kubectl apply <span class="nt">-f</span> ~/.kube/aws-auth-cm.yaml
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Check the status of your Kubernetes nodes with <code class="highlighter-rouge">kubectl get nodes</code>.  The <code class="highlighter-rouge">--watch</code> flag can be added to perform constant updates.  Once all nodes have a <code class="highlighter-rouge">Ready</code> <strong>STATUS</strong> you’re all set to deploy Spinnaker.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> kubectl get nodes
+ NAME                                          STATUS    ROLES     AGE       VERSION
+ ip-10-100-10-178.us-west-2.compute.internal   Ready     &lt;none&gt;    2m        v1.10.3
+ ip-10-100-10-210.us-west-2.compute.internal   Ready     &lt;none&gt;    2m        v1.10.3
+ ip-10-100-11-239.us-west-2.compute.internal   Ready     &lt;none&gt;    2m        v1.10.3
+</code></pre></div>    </div>
+  </li>
 </ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-O</span> https://d3079gxvs8ayeg.cloudfront.net/templates/amazon-eks-nodegroup.yaml
-</code></pre></div></div>
-
-<div class="premonition info"><div class="fa fa-info-circle"></div><div class="content"><p class="header">Adjust Worker Nodes</p><p>The default template creates an auto-balancing collection of up to <strong>3</strong> worker nodes (instances).  Additionally, the deployment command we’ll be using below specifies <code class="highlighter-rouge">t2.large</code> instance types.  As always, feel free to modify the <code class="highlighter-rouge">amazon-eks-nodegroup.yaml</code> or instance types to meet your needs.</p>
-
-
-</div></div>
-<ol>
-  <li>Issue the following command to use the template and create your worker node collection.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws cloudformation deploy <span class="nt">--stack-name</span> spinnaker-eks-nodes <span class="nt">--template-file</span> amazon-eks-nodegroup.yaml <span class="se">\</span>
-<span class="nt">--parameter-overrides</span> <span class="nv">NodeInstanceProfile</span><span class="o">=</span><span class="nv">$SPINNAKER_INSTANCE_PROFILE_ARN</span> <span class="se">\</span>
-<span class="nv">NodeInstanceType</span><span class="o">=</span>t2.large <span class="nv">ClusterName</span><span class="o">=</span><span class="nv">$EKS_CLUSTER_NAME</span> <span class="nv">NodeGroupName</span><span class="o">=</span>spinnaker-cluster-nodes <span class="nv">ClusterControlPlaneSecurityGroup</span><span class="o">=</span><span class="nv">$CONTROL_PLANE_SG</span> <span class="se">\</span>
-<span class="nv">Subnets</span><span class="o">=</span><span class="nv">$SUBNETS</span> <span class="nv">VpcId</span><span class="o">=</span><span class="nv">$VPC_ID</span> <span class="nt">--capabilities</span> CAPABILITY_NAMED_IAM
-</code></pre></div></div>
-
-<ol>
-  <li>To connect up our newly-launched worker instances with the Spinnaker cluster we previously deployed we need to create a new <code class="highlighter-rouge">~/.kube/aws-auth-cm.yaml</code> file.  Paste the following text into <code class="highlighter-rouge">aws-auth-cm.yaml</code>, replacing <code class="highlighter-rouge">&lt;AUTH_ARN&gt;</code> with the <code class="highlighter-rouge">AUTH_ARN</code> variable created previously (Remember, you can use <code class="highlighter-rouge">echo $AUTH_ARN</code> to print to console).</li>
-</ol>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
-<span class="na">kind</span><span class="pi">:</span> <span class="s">ConfigMap</span>
-<span class="na">metadata</span><span class="pi">:</span>
-  <span class="na">name</span><span class="pi">:</span> <span class="s">aws-auth</span>
-  <span class="na">namespace</span><span class="pi">:</span> <span class="s">kube-system</span>
-<span class="na">data</span><span class="pi">:</span>
-  <span class="na">mapRoles</span><span class="pi">:</span> <span class="pi">|</span>
-    <span class="no">- rolearn: &lt;AUTH_ARN&gt;</span>
-      <span class="no">username: system:node:</span>
-      <span class="no">groups:</span>
-        <span class="no">- system:bootstrappers</span>
-        <span class="no">- system:nodes</span>
-</code></pre></div></div>
-
-<ol>
-  <li>Apply this newly created role mapping by issuing the following command.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl apply <span class="nt">-f</span> ~/.kube/aws-auth-cm.yaml
-</code></pre></div></div>
-
-<ol>
-  <li>Check the status of your Kubernetes nodes with <code class="highlighter-rouge">kubectl get nodes</code>.  The <code class="highlighter-rouge">--watch</code> flag can be added to perform constant updates.  Once all nodes have a <code class="highlighter-rouge">Ready</code> <strong>STATUS</strong> you’re all set to deploy Spinnaker.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl get nodes
-NAME                                          STATUS    ROLES     AGE       VERSION
-ip-10-100-10-178.us-west-2.compute.internal   Ready     &lt;none&gt;    2m        v1.10.3
-ip-10-100-10-210.us-west-2.compute.internal   Ready     &lt;none&gt;    2m        v1.10.3
-ip-10-100-11-239.us-west-2.compute.internal   Ready     &lt;none&gt;    2m        v1.10.3
-</code></pre></div></div>
 
 <h3 id="deploy-spinnaker">Deploy Spinnaker</h3>
 
 <ol>
-  <li>Start by listing the current Spinnaker versions with <code class="highlighter-rouge">hal version list</code>:</li>
-</ol>
+  <li>
+    <p>Start by listing the current Spinnaker versions with <code class="highlighter-rouge">hal version list</code>:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hal version list
-+ Get current deployment
-  Success
-+ Get Spinnaker version
-  Success
-+ Get released versions
-  Success
-+ You are on version <span class="s2">""</span>, and the following are available:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> hal version list
+ + Get current deployment
+   Success
+ + Get Spinnaker version
+   Success
+ + Get released versions
+   Success
+ + You are on version <span class="s2">""</span>, and the following are available:
  - 1.7.8 <span class="o">(</span>Ozark<span class="o">)</span>:
    Changelog: https://gist.github.com/spinnaker-release/75f98544672a4fc490d451c14688318e
    Published: Wed Aug 29 19:09:57 UTC 2018
@@ -511,21 +518,21 @@ ip-10-100-11-239.us-west-2.compute.internal   Ready     &lt;none&gt;    2m      
    Changelog: https://gist.github.com/spinnaker-release/9323c90ab2088d89e68ce2a7ef7e5809
    Published: Wed Aug 29 20:08:18 UTC 2018
    <span class="o">(</span>Requires Halyard <span class="o">&gt;=</span> 1.0.0<span class="o">)</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Specify the version you wish to install with the <code class="highlighter-rouge">--version</code> flag below.  We’ll be using the latest at the time of writing, <code class="highlighter-rouge">1.9.2</code>.</p>
 
-<ol>
-  <li>Specify the version you wish to install with the <code class="highlighter-rouge">--version</code> flag below.  We’ll be using the latest at the time of writing, <code class="highlighter-rouge">1.9.2</code>.</li>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> hal config version edit <span class="nt">--version</span> 1.9.2
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Now use <code class="highlighter-rouge">hal deploy apply</code> to deploy Spinnaker using all the configuration settings we’ve previously applied.  This will go about distributing Spinnaker in your EKS/Kubernetes cluster.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> hal deploy apply
+</code></pre></div>    </div>
+  </li>
 </ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hal config version edit <span class="nt">--version</span> 1.9.2
-</code></pre></div></div>
-
-<ol>
-  <li>Now use <code class="highlighter-rouge">hal deploy apply</code> to deploy Spinnaker using all the configuration settings we’ve previously applied.  This will go about distributing Spinnaker in your EKS/Kubernetes cluster.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hal deploy apply
-</code></pre></div></div>
 
 <div class="premonition error"><div class="fa fa-exclamation-triangle"></div><div class="content"><p class="header">Handling `hal deploy apply` Errors</p><p>In some cases you may experience a deployment error, particularly when trying your first Spinnaker deployment.  Often the console output is quite vague, so the best course of action is to check your Spinnaker/Halyard log files.  Typically these are located in <code class="highlighter-rouge">/var/log/spinnaker</code> and <code class="highlighter-rouge">/var/log/spinnaker/halyard</code>.  Since Halyard runs on Java, logs let you see the entire Java error stack trace, rather than the basic (and often useless) error name.</p>
 
@@ -540,11 +547,12 @@ ip-10-100-11-239.us-west-2.compute.internal   Ready     &lt;none&gt;    2m      
 
 
 </div></div>
-<p>That’s it, you should now have a Spinnaker deployment up and running on a Kubernetes cluster, using EKS and EC2 worker node instances!  Issue the <code class="highlighter-rouge">hal deploy connect</code> command to provide port forwarding on your local machine to the Kubernetes cluster running Spinnaker, then open <a href="http://localhost:9000">http://localhost:9000</a> to make sure everything is up and running.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>That's it, you should now have a Spinnaker deployment up and running on a Kubernetes cluster, using EKS and EC2 worker node instances!  Issue the `hal deploy connect` command to provide port forwarding on your local machine to the Kubernetes cluster running Spinnaker, then open [http://localhost:9000](http://localhost:9000) to make sure everything is up and running.
 
-<p>Select the <code class="highlighter-rouge">spinnaker</code> app and you should see your <code class="highlighter-rouge">aws-primary</code> account with a <code class="highlighter-rouge">spinnaker-eks-nodes-NodeGroup</code> containing your three EC2 worker node instances.</p>
+Select the `spinnaker` app and you should see your `aws-primary` account with a `spinnaker-eks-nodes-NodeGroup` containing your three EC2 worker node instances.
 
-<p><img src="/gremlin-chaos-monkey/images/advanced-tips-kubernetes-spinnaker.png" alt="advanced-tips-kubernetes-spinnaker" /></p>
+![advanced-tips-kubernetes-spinnaker](/gremlin-chaos-monkey/images/advanced-tips-kubernetes-spinnaker.png)
+</code></pre></div></div>
 
 <h2 id="using-chaos-monkey-on-kubernetes">Using Chaos Monkey on Kubernetes</h2>
 
@@ -557,48 +565,44 @@ ip-10-100-11-239.us-west-2.compute.internal   Ready     &lt;none&gt;    2m      
 
 </div></div>
 <ol>
-  <li>Download the latest <code class="highlighter-rouge">mysql-apt.deb</code> file from the <a href="https://dev.mysql.com/downloads/repo/apt/">official website</a>, which we’ll use to install MySQL</li>
-</ol>
+  <li>
+    <p>Download the latest <code class="highlighter-rouge">mysql-apt.deb</code> file from the <a href="https://dev.mysql.com/downloads/repo/apt/">official website</a>, which we’ll use to install MySQL</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-OL</span> https://dev.mysql.com/get/mysql-apt-config_0.8.10-1_all.deb
-</code></pre></div></div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-OL</span> https://dev.mysql.com/get/mysql-apt-config_0.8.10-1_all.deb
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Install <code class="highlighter-rouge">mysql-server</code> by using the <code class="highlighter-rouge">dpkg</code> command.</p>
 
-<ol>
-  <li>Install <code class="highlighter-rouge">mysql-server</code> by using the <code class="highlighter-rouge">dpkg</code> command.</li>
-</ol>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>dpkg <span class="nt">-i</span> mysql-apt-config_0.8.10-1_all.deb
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>In the UI that appears press enter to change the <strong>MySQL Server &amp; Cluster</strong> version to <code class="highlighter-rouge">mysql-5.7</code>.  Leave the other options as default and move down to <code class="highlighter-rouge">Ok</code> and press <code class="highlighter-rouge">Enter</code> to finalize your choice.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>dpkg <span class="nt">-i</span> mysql-apt-config_0.8.10-1_all.deb
-</code></pre></div></div>
+    <p><img src="/gremlin-chaos-monkey/images/advanced-tips-mysql-install.png" alt="advanced-tips-mysql-install" /></p>
+  </li>
+  <li>
+    <p>Now use <code class="highlighter-rouge">sudo apt-get update</code> to update the MySQL packages related to the version we selected (<code class="highlighter-rouge">mysql-5.7</code>, in this case).</p>
 
-<ol>
-  <li>In the UI that appears press enter to change the <strong>MySQL Server &amp; Cluster</strong> version to <code class="highlighter-rouge">mysql-5.7</code>.  Leave the other options as default and move down to <code class="highlighter-rouge">Ok</code> and press <code class="highlighter-rouge">Enter</code> to finalize your choice.</li>
-</ol>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt-get update
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Install <code class="highlighter-rouge">mysql-server</code> from the packages we just retrieved.  You’ll be prompted to enter a <code class="highlighter-rouge">root</code> password.</p>
 
-<p><img src="/gremlin-chaos-monkey/images/advanced-tips-mysql-install.png" alt="advanced-tips-mysql-install" /></p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt-get install mysql-server
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>You’re all set.  Check that MySQL server is running with <code class="highlighter-rouge">systemctl</code>.</p>
 
-<ol>
-  <li>Now use <code class="highlighter-rouge">sudo apt-get update</code> to update the MySQL packages related to the version we selected (<code class="highlighter-rouge">mysql-5.7</code>, in this case).</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get update
-</code></pre></div></div>
-
-<ol>
-  <li>Install <code class="highlighter-rouge">mysql-server</code> from the packages we just retrieved.  You’ll be prompted to enter a <code class="highlighter-rouge">root</code> password.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get install mysql-server
-</code></pre></div></div>
-
-<ol>
-  <li>You’re all set.  Check that MySQL server is running with <code class="highlighter-rouge">systemctl</code>.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl status mysql
-</code></pre></div></div>
-
-<ol>
-  <li>(Optional) You may also wish to issue the <code class="highlighter-rouge">mysql_secure_installation</code> command, which will walk you through a few security-related prompts.  Typically, the defaults are just fine.</li>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> systemctl status mysql
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>(Optional) You may also wish to issue the <code class="highlighter-rouge">mysql_secure_installation</code> command, which will walk you through a few security-related prompts.  Typically, the defaults are just fine.</p>
+  </li>
 </ol>
 
 <h3 id="setup-mysql-for-chaos-monkey">Setup MySQL for Chaos Monkey</h3>
@@ -606,67 +610,65 @@ ip-10-100-11-239.us-west-2.compute.internal   Ready     &lt;none&gt;    2m      
 <p>We now need to add a MySQL table for Chaos Monkey to use and create an associated user with appropriate permissions.</p>
 
 <ol>
-  <li>Launch the <code class="highlighter-rouge">mysql</code> CLI as the <code class="highlighter-rouge">root</code> user.</li>
+  <li>
+    <p>Launch the <code class="highlighter-rouge">mysql</code> CLI as the <code class="highlighter-rouge">root</code> user.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> mysql <span class="nt">-u</span> root <span class="nt">-p</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Create a <code class="highlighter-rouge">chaosmonkey</code> database for Chaos Monkey to use.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> CREATE DATABASE chaosmonkey<span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Add a <code class="highlighter-rouge">chaosmonkey</code> MySQL user.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> CREATE USER <span class="s1">'chaosmonkey'</span>@<span class="s1">'localhost'</span> IDENTIFIED BY <span class="s1">'password'</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Grant all privileges in the <code class="highlighter-rouge">chaosmonkey</code> database to the new <code class="highlighter-rouge">chaosmonkey</code> user.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> GRANT ALL PRIVILEGES ON chaosmonkey.<span class="k">*</span> TO <span class="s1">'chaosmonkey'</span>@<span class="s1">'localhost'</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Finally, save all changes made to the system.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> FLUSH PRIVILEGES<span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
 </ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mysql <span class="nt">-u</span> root <span class="nt">-p</span>
-</code></pre></div></div>
-
-<ol>
-  <li>Create a <code class="highlighter-rouge">chaosmonkey</code> database for Chaos Monkey to use.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CREATE DATABASE chaosmonkey<span class="p">;</span>
-</code></pre></div></div>
-
-<ol>
-  <li>Add a <code class="highlighter-rouge">chaosmonkey</code> MySQL user.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CREATE USER <span class="s1">'chaosmonkey'</span>@<span class="s1">'localhost'</span> IDENTIFIED BY <span class="s1">'password'</span><span class="p">;</span>
-</code></pre></div></div>
-
-<ol>
-  <li>Grant all privileges in the <code class="highlighter-rouge">chaosmonkey</code> database to the new <code class="highlighter-rouge">chaosmonkey</code> user.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GRANT ALL PRIVILEGES ON chaosmonkey.<span class="k">*</span> TO <span class="s1">'chaosmonkey'</span>@<span class="s1">'localhost'</span><span class="p">;</span>
-</code></pre></div></div>
-
-<ol>
-  <li>Finally, save all changes made to the system.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FLUSH PRIVILEGES<span class="p">;</span>
-</code></pre></div></div>
 
 <h3 id="install-chaos-monkey">Install Chaos Monkey</h3>
 
 <ol>
-  <li>(Optional) Install <code class="highlighter-rouge">golang</code> if you don’t have it on your local machine already.</li>
+  <li>
+    <p>(Optional) Install <code class="highlighter-rouge">golang</code> if you don’t have it on your local machine already.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt install golang-go
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Install the latest Chaos Monkey binary.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> go get github.com/netflix/chaosmonkey/cmd/chaosmonkey
+</code></pre></div>    </div>
+  </li>
 </ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt install golang-go
-</code></pre></div></div>
-
-<ol>
-  <li>Install the latest Chaos Monkey binary.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>go get github.com/netflix/chaosmonkey/cmd/chaosmonkey
-</code></pre></div></div>
 
 <h3 id="configure-chaos-monkey-on-spinnaker">Configure Chaos Monkey on Spinnaker</h3>
 
 <p>Since we already enabled the <code class="highlighter-rouge">chaos</code> feature of Spinnaker prior to deployment, we can add Chaos Monkey support to our <code class="highlighter-rouge">spinnaker</code> application fairly easily.</p>
 
 <ol>
-  <li>Navigate to <strong>Applications &gt; spinnaker &gt; CONFIG</strong> and select <strong>CHAOS MONKEY</strong> in the side navigation.</li>
-</ol>
+  <li>
+    <p>Navigate to <strong>Applications &gt; spinnaker &gt; CONFIG</strong> and select <strong>CHAOS MONKEY</strong> in the side navigation.</p>
 
-<p><img src="/gremlin-chaos-monkey/images/advanced-tips-config-chaos-monkey.png" alt="advanced-tips-config-chaos-monkey" /></p>
-
-<ol>
+    <p><img src="/gremlin-chaos-monkey/images/advanced-tips-config-chaos-monkey.png" alt="advanced-tips-config-chaos-monkey" /></p>
+  </li>
   <li>Check the <strong>Enabled</strong> box to enable Chaos Monkey.</li>
   <li>The UI provides useful information for what every option does, but the most important options are the <strong>mean</strong> and <strong>min</strong> times between instance termination.  If your setup includes multiple clusters or stacks, altering the <strong>grouping</strong> may also make sense.  Finally, you can add <strong>exceptions</strong> as necessary, which acts as a kind of <em>whitelist</em> of instances that will be ignored by Chaos Monkey, so you can keep the most critical services up and running.</li>
 </ol>
