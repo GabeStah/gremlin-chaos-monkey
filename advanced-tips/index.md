@@ -53,52 +53,52 @@ Now that the AWS CLI is on your machine you're ready to start the heavy lifting 
 
 1. Download [this](https://d3079gxvs8ayeg.cloudfront.net/templates/managing.yaml) `managing.yaml` template.
 
-```bash
-curl -O https://d3079gxvs8ayeg.cloudfront.net/templates/managing.yaml
-```
+    ```bash
+    curl -O https://d3079gxvs8ayeg.cloudfront.net/templates/managing.yaml
+    ```
 
-> info "Stack Configuration"
-> If you need to configure the stack to your own particular needs you can easily edit the template YAML as necessary.  For example, in this guide we're only using a single **managing** account to handle Spinnaker/Kubernetes in AWS, but if you need to also include additional **managed** accounts you'll want to add their respective AWS ARN strings to the `managing.yaml` file [around this line](https://gist.github.com/GabeStah/524fdb512e65e354076d71e53d9994eb#file-managing-yaml-L158).
+    > info "Stack Configuration"
+    > If you need to configure the stack to your own particular needs you can easily edit the template YAML as necessary.  For example, in this guide we're only using a single **managing** account to handle Spinnaker/Kubernetes in AWS, but if you need to also include additional **managed** accounts you'll want to add their respective AWS ARN strings to the `managing.yaml` file [around this line](https://gist.github.com/GabeStah/524fdb512e65e354076d71e53d9994eb#file-managing-yaml-L158).
 
 2. Now we'll use AWS CLI to issue a `cloudformation deploy` command to create a new `spinnaker-managing-infrastructure-setup` stack using the `managing.yaml` template.  From here on out this guide will use explicit names where applicable, but feel free to customize options as you see fit (such as the **stack name**, **EksClusterName**, and so forth).
 
-```bash
-aws cloudformation deploy --stack-name spinnaker-managing-infrastructure-setup --template-file managing.yaml --capabilities CAPABILITY_NAMED_IAM \
---parameter-overrides UseAccessKeyForAuthentication=false EksClusterName=spinnaker-cluster
-```
+    ```bash
+    aws cloudformation deploy --stack-name spinnaker-managing-infrastructure-setup --template-file managing.yaml --capabilities CAPABILITY_NAMED_IAM \
+    --parameter-overrides UseAccessKeyForAuthentication=false EksClusterName=spinnaker-cluster
+    ```
 
 3. This process will take 10 - 15 minutes to complete issue the following commands, which will use the AWS CLI to assign some environment variables values from the `spinnaker-managing-infrastructure-setup` stack we just created.  We'll be using these values throughout the remainder of this guide.
 
-```bash
-VPC_ID=$(aws cloudformation describe-stacks --stack-name spinnaker-managing-infrastructure-setup --query 'Stacks[0].Outputs[?OutputKey==`VpcId`].OutputValue' --output text)
-CONTROL_PLANE_SG=$(aws cloudformation describe-stacks --stack-name spinnaker-managing-infrastructure-setup --query 'Stacks[0].Outputs[?OutputKey==`SecurityGroups`].OutputValue' --output text)
-AUTH_ARN=$(aws cloudformation describe-stacks --stack-name spinnaker-managing-infrastructure-setup --query 'Stacks[0].Outputs[?OutputKey==`AuthArn`].OutputValue' --output text)
-SUBNETS=$(aws cloudformation describe-stacks --stack-name spinnaker-managing-infrastructure-setup --query 'Stacks[0].Outputs[?OutputKey==`SubnetIds`].OutputValue' --output text)
-MANAGING_ACCOUNT_ID=$(aws cloudformation describe-stacks --stack-name spinnaker-managing-infrastructure-setup --query 'Stacks[0].Outputs[?OutputKey==`ManagingAccountId`].OutputValue' --output text)
-EKS_CLUSTER_ENDPOINT=$(aws cloudformation describe-stacks --stack-name spinnaker-managing-infrastructure-setup --query 'Stacks[0].Outputs[?OutputKey==`EksClusterEndpoint`].OutputValue' --output text)
-EKS_CLUSTER_NAME=$(aws cloudformation describe-stacks --stack-name spinnaker-managing-infrastructure-setup --query 'Stacks[0].Outputs[?OutputKey==`EksClusterName`].OutputValue' --output text)
-EKS_CLUSTER_CA_DATA=$(aws cloudformation describe-stacks --stack-name spinnaker-managing-infrastructure-setup --query 'Stacks[0].Outputs[?OutputKey==`EksClusterCA`].OutputValue' --output text)
-SPINNAKER_INSTANCE_PROFILE_ARN=$(aws cloudformation describe-stacks --stack-name spinnaker-managing-infrastructure-setup --query 'Stacks[0].Outputs[?OutputKey==`SpinnakerInstanceProfileArn`].OutputValue' --output text)
-```
+    ```bash
+    VPC_ID=$(aws cloudformation describe-stacks --stack-name spinnaker-managing-infrastructure-setup --query 'Stacks[0].Outputs[?OutputKey==`VpcId`].OutputValue' --output text)
+    CONTROL_PLANE_SG=$(aws cloudformation describe-stacks --stack-name spinnaker-managing-infrastructure-setup --query 'Stacks[0].Outputs[?OutputKey==`SecurityGroups`].OutputValue' --output text)
+    AUTH_ARN=$(aws cloudformation describe-stacks --stack-name spinnaker-managing-infrastructure-setup --query 'Stacks[0].Outputs[?OutputKey==`AuthArn`].OutputValue' --output text)
+    SUBNETS=$(aws cloudformation describe-stacks --stack-name spinnaker-managing-infrastructure-setup --query 'Stacks[0].Outputs[?OutputKey==`SubnetIds`].OutputValue' --output text)
+    MANAGING_ACCOUNT_ID=$(aws cloudformation describe-stacks --stack-name spinnaker-managing-infrastructure-setup --query 'Stacks[0].Outputs[?OutputKey==`ManagingAccountId`].OutputValue' --output text)
+    EKS_CLUSTER_ENDPOINT=$(aws cloudformation describe-stacks --stack-name spinnaker-managing-infrastructure-setup --query 'Stacks[0].Outputs[?OutputKey==`EksClusterEndpoint`].OutputValue' --output text)
+    EKS_CLUSTER_NAME=$(aws cloudformation describe-stacks --stack-name spinnaker-managing-infrastructure-setup --query 'Stacks[0].Outputs[?OutputKey==`EksClusterName`].OutputValue' --output text)
+    EKS_CLUSTER_CA_DATA=$(aws cloudformation describe-stacks --stack-name spinnaker-managing-infrastructure-setup --query 'Stacks[0].Outputs[?OutputKey==`EksClusterCA`].OutputValue' --output text)
+    SPINNAKER_INSTANCE_PROFILE_ARN=$(aws cloudformation describe-stacks --stack-name spinnaker-managing-infrastructure-setup --query 'Stacks[0].Outputs[?OutputKey==`SpinnakerInstanceProfileArn`].OutputValue' --output text)
+    ```
 
-> info ""
-> You can easily output the value of an exported variable with `echo $VARIABLE_NAME`.  However, remember that unless you `export` these values they only temporarily exist in the console in which you issued the commands.  You may need to reissue the above commands later in the guide if you change terminal windows, so keep them handy.
+    > info ""
+    > You can easily output the value of an exported variable with `echo $VARIABLE_NAME`.  However, remember that unless you `export` these values they only temporarily exist in the console in which you issued the commands.  You may need to reissue the above commands later in the guide if you change terminal windows, so keep them handy.
 
 4. Download [this](https://d3079gxvs8ayeg.cloudfront.net/templates/managed.yaml) `managed.yaml` template.  This template will create the `spinnakerManaged` **AWS::IAM::Role** that Spinnaker can use.
 
-```bash
-curl -O https://d3079gxvs8ayeg.cloudfront.net/templates/managed.yaml
-```
+    ```bash
+    curl -O https://d3079gxvs8ayeg.cloudfront.net/templates/managed.yaml
+    ```
 
 5. Execute this secondary CloudFormation deployment using the `managed.yaml`.  Notice that this command (and many following commands) use some of the environmental variables we assigned previously, so the first stack deployment will need to be complete first.
 
-```bash
-aws cloudformation deploy --stack-name spinnaker-managed-infrastructure-setup --template-file managed.yaml --capabilities CAPABILITY_NAMED_IAM \
---parameter-overrides AuthArn=$AUTH_ARN ManagingAccountId=$MANAGING_ACCOUNT_ID
-```
+    ```bash
+    aws cloudformation deploy --stack-name spinnaker-managed-infrastructure-setup --template-file managed.yaml --capabilities CAPABILITY_NAMED_IAM \
+    --parameter-overrides AuthArn=$AUTH_ARN ManagingAccountId=$MANAGING_ACCOUNT_ID
+    ```
 
-> info ""
-> If the second step of deploying `spinnaker-managing-infrastructure-setup` hasn't completed yet, feel free to skip this step for the time being and proceed with installing `kubectl` and `AWS IAM Authenticator` below.  Just return to this step before moving past that point.
+    > info ""
+    > If the second step of deploying `spinnaker-managing-infrastructure-setup` hasn't completed yet, feel free to skip this step for the time being and proceed with installing `kubectl` and `AWS IAM Authenticator` below.  Just return to this step before moving past that point.
 
 ### Install Kubectl
 
