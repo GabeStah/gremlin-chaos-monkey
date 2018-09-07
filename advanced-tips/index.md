@@ -462,11 +462,11 @@ Now we'll launch some AWS EC2 instances which will be our worker nodes for our K
 > hal config provider aws account edit aws-primary --add-region us-west-2
 > ```
 
-    That's it, you should now have a Spinnaker deployment up and running on a Kubernetes cluster, using EKS and EC2 worker node instances!  Issue the `hal deploy connect` command to provide port forwarding on your local machine to the Kubernetes cluster running Spinnaker, then open [http://localhost:9000](http://localhost:9000) to make sure everything is up and running.
+That's it, you should now have a Spinnaker deployment up and running on a Kubernetes cluster, using EKS and EC2 worker node instances!  Issue the `hal deploy connect` command to provide port forwarding on your local machine to the Kubernetes cluster running Spinnaker, then open [http://localhost:9000](http://localhost:9000) to make sure everything is up and running.
 
-    Select the `spinnaker` app and you should see your `aws-primary` account with a `spinnaker-eks-nodes-NodeGroup` containing your three EC2 worker node instances.
+Select the `spinnaker` app and you should see your `aws-primary` account with a `spinnaker-eks-nodes-NodeGroup` containing your three EC2 worker node instances.
 
-    ![advanced-tips-kubernetes-spinnaker](../images/advanced-tips-kubernetes-spinnaker.png)
+![advanced-tips-kubernetes-spinnaker](../images/advanced-tips-kubernetes-spinnaker.png)
 
 ## Using Chaos Monkey on Kubernetes
 

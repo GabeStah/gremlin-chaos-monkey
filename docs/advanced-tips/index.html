@@ -547,12 +547,11 @@ The default template creates an auto-balancing collection of up to <strong>3</st
 
 
 </div></div>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>That's it, you should now have a Spinnaker deployment up and running on a Kubernetes cluster, using EKS and EC2 worker node instances!  Issue the `hal deploy connect` command to provide port forwarding on your local machine to the Kubernetes cluster running Spinnaker, then open [http://localhost:9000](http://localhost:9000) to make sure everything is up and running.
+<p>That’s it, you should now have a Spinnaker deployment up and running on a Kubernetes cluster, using EKS and EC2 worker node instances!  Issue the <code class="highlighter-rouge">hal deploy connect</code> command to provide port forwarding on your local machine to the Kubernetes cluster running Spinnaker, then open <a href="http://localhost:9000">http://localhost:9000</a> to make sure everything is up and running.</p>
 
-Select the `spinnaker` app and you should see your `aws-primary` account with a `spinnaker-eks-nodes-NodeGroup` containing your three EC2 worker node instances.
+<p>Select the <code class="highlighter-rouge">spinnaker</code> app and you should see your <code class="highlighter-rouge">aws-primary</code> account with a <code class="highlighter-rouge">spinnaker-eks-nodes-NodeGroup</code> containing your three EC2 worker node instances.</p>
 
-![advanced-tips-kubernetes-spinnaker](/gremlin-chaos-monkey/images/advanced-tips-kubernetes-spinnaker.png)
-</code></pre></div></div>
+<p><img src="/gremlin-chaos-monkey/images/advanced-tips-kubernetes-spinnaker.png" alt="advanced-tips-kubernetes-spinnaker" /></p>
 
 <h2 id="using-chaos-monkey-on-kubernetes">Using Chaos Monkey on Kubernetes</h2>
 
