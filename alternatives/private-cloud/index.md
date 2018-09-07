@@ -8,8 +8,6 @@ sources: "See: _docs/resources.md"
 published: true
 ---
 
-# Chaos Monkey Alternatives - Private Cloud
-
 - URL: `https://www.gremlin.com/chaos-monkey/alternatives/private-cloud`
 - Parent: `Category Section: Infrastructure`
 - Content:

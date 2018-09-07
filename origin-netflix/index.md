@@ -8,8 +8,6 @@ sources: "See: _docs/resources.md"
 published: true
 ---
 
-# The Origin of Chaos Monkey - Why Netflix Needed to Create Failure
-
 - URL: `https://www.gremlin.com/chaos-monkey/origin-netflix`
 - Parent: `Pillar Page: Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training`
 - Content:

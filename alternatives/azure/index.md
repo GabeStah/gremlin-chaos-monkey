@@ -8,8 +8,6 @@ sources: "See: _docs/resources.md"
 published: true
 ---
 
-# Chaos Monkey Alternatives - Azure
-
 - URL: `https://www.gremlin.com/chaos-monkey/alternatives/azure`
 - Parent: `Category Section: Infrastructure`
 - Content:

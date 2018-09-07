@@ -8,8 +8,6 @@ sources: "See: _docs/resources.md"
 published: true
 ---
 
-# Taking Chaos Monkey to the Next Level - Advanced Developer Guide
-
 - URL: `https://www.gremlin.com/chaos-monkey/advanced-tips`
 - Parent: `Pillar Page: Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training`
 - Content:

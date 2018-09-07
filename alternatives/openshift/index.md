@@ -8,8 +8,6 @@ sources: "See: _docs/resources.md"
 published: true
 ---
 
-# Chaos Monkey Alternatives - OpenShift
-
 - URL: `https://www.gremlin.com/chaos-monkey/alternatives/openshift`
 - Parent: `Category Section: Infrastructure`
 - Content:

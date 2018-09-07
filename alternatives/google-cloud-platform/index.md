@@ -8,8 +8,6 @@ sources: "See: _docs/resources.md"
 published: true
 ---
 
-# Chaos Monkey Alternatives - Google Cloud Platform
-
 - URL: `https://www.gremlin.com/chaos-monkey/alternatives/google-cloud-platform`
 - Parent: `Category Section: Infrastructure`
 - Content:

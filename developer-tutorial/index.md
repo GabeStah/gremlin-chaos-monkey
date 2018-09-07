@@ -8,8 +8,6 @@ sources: "See: _docs/resources.md"
 published: true
 ---
 
-# Chaos Monkey Tutorial - A Step-by-Step Guide to Creating Failure on AWS
-
 - URL: `https://www.gremlin.com/chaos-monkey/developer-tutorial`
 - Parent: `Pillar Page: Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training`
 - Content:

@@ -9,7 +9,7 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  gabestah
 theme: minima
 #theme: jekyll-theme-minimal
-remote_theme: minima
+#remote_theme: minima
 
 # Build settings
 markdown: kramdown

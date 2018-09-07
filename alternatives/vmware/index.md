@@ -8,8 +8,6 @@ sources: "See: _docs/resources.md"
 published: true
 ---
 
-# Chaos Monkey Alternatives - VMWare
-
 - URL: `https://www.gremlin.com/chaos-monkey/alternatives/vmware`
 - Parent: `Category Section: Infrastructure`
 - Content:

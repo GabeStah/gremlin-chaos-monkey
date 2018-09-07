@@ -8,8 +8,6 @@ sources: "See: _docs/resources.md"
 published: true
 ---
 
-# Chaos Monkey Resources, Guides, and Downloads for Engineers
-
 - URL: `https://www.gremlin.com/chaos-monkey/downloads-resources`
 - Parent: `Pillar Page: Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training`
 - Layout: Model based on [this resource collection](https://www.helpscout.net/customer-acquisition/).

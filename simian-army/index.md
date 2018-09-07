@@ -8,8 +8,6 @@ sources: "See: _docs/resources.md"
 published: true
 ---
 
-# The Simian Army - Overview and Resources
-
 - URL: `https://www.gremlin.com/chaos-monkey/simian-army`
 - Parent: `Pillar Page: Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training`
 - Content:

@@ -8,8 +8,6 @@ sources: "See: _docs/resources.md"
 published: true
 ---
 
-# Chaos Monkey Alternatives - Spring Boot
-
 - URL: `https://www.gremlin.com/chaos-monkey/alternatives/spring-boot`
 - Parent: `Category Section: Java`
 - Content:

@@ -8,8 +8,6 @@ sources: "See: _docs/resources.md"
 published: true
 ---
 
-# Chaos Monkey Alternatives - Tools for Creating Chaos Outside of AWS
-
 - URL: `https://www.gremlin.com/chaos-monkey/alternatives`
 - Parent: `Pillar Page: Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training`
 - Layout: Model based on [this landing page list](https://instapage.com/blog/landing-page-examples).  A top-level `table of contents` should be anchored to `categories` and `sections` within the content.

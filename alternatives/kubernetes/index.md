@@ -8,8 +8,6 @@ sources: "See: _docs/resources.md"
 published: true
 ---
 
-# Chaos Monkey Alternatives - Kubernetes
-
 - URL: `https://www.gremlin.com/chaos-monkey/alternatives/kubernetes`
 - Parent: `Category Section: Infrastructure`
 - Content:

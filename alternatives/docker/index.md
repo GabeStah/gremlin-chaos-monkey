@@ -8,8 +8,6 @@ sources: "See: _docs/resources.md"
 published: true
 ---
 
-# Chaos Monkey Alternatives - Docker
-
 - URL: `https://www.gremlin.com/chaos-monkey/alternatives/docker`
 - Parent: `Category Section: Containers`
 - Content:
