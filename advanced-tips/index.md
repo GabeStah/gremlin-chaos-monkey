@@ -41,17 +41,16 @@ hal -v
 
 Install the [AWS CLI tool](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) on your machine, if you haven't done so already.
 
-!!! Tip Simplifying AWS Credentials
-    You can make future AWS CLI commands easier by adding creating AWS `profiles`, which will add configuration and credentials to the local `~/.aws/credentials` file.  We'll just be using a single (`default`) profile here, so we don't need to specify an actual profile name, but we could do so with the `--profile <profile-name>` flag as part of the `aws configure` command.  Check out the [official documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) for more info.
-    ```bash
-    $ aws configure
-    AWS Access Key ID [None]: <AWS_ACCESS_KEY_ID>
-    AWS Secret Access Key [None]: <AWS_SECRET_ACCESS_KEY>
-    Default region name [None]: us-west-2
-    Default output format [None]: text
-    ```
-
-    In the future, simply add the `--profile <profile-name>` flag to any AWS CLI command to force AWS CLI to use a specific profile/account.
+> info "Simplifying AWS Credentials"
+> You can make future AWS CLI commands easier by adding creating AWS `profiles`, which will add configuration and credentials to the local `~/.aws/credentials` file.  > We'll just be using a single (`default`) profile here, so we don't need to specify an actual profile name, but we could do so with the `--profile <profile-name>` flag as part of the `aws configure` command.  Check out the [official documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) for more info.
+> ```bash
+> $ aws configure
+> AWS Access Key ID [None]: <AWS_ACCESS_KEY_ID>
+> AWS Secret Access Key [None]: <AWS_SECRET_ACCESS_KEY>
+> Default region name [None]: us-west-2
+> Default output format [None]: text
+> ```
+> In the future, simply add the `--profile <profile-name>` flag to any AWS CLI command to force AWS CLI to use a specific profile/account.
 
 ### Setup the CloudFormation Spinnaker Stack
 
@@ -63,8 +62,8 @@ Now that the AWS CLI is on your machine you're ready to start the heavy lifting 
 curl -O https://d3079gxvs8ayeg.cloudfront.net/templates/managing.yaml
 ```
 
-!!! Tip Stack Configuration
-    If you need to configure the stack to your own particular needs you can easily edit the template YAML as necessary.  For example, in this guide we're only using a single **managing** account to handle Spinnaker/Kubernetes in AWS, but if you need to also include additional **managed** accounts you'll want to add their respective AWS ARN strings to the `managing.yaml` file [around this line](https://gist.github.com/GabeStah/524fdb512e65e354076d71e53d9994eb#file-managing-yaml-L158).
+> info "Stack Configuration"
+> If you need to configure the stack to your own particular needs you can easily edit the template YAML as necessary.  For example, in this guide we're only using a single **managing** account to handle Spinnaker/Kubernetes in AWS, but if you need to also include additional **managed** accounts you'll want to add their respective AWS ARN strings to the `managing.yaml` file [around this line](https://gist.github.com/GabeStah/524fdb512e65e354076d71e53d9994eb#file-managing-yaml-L158).
 
 2. Now we'll use AWS CLI to issue a `cloudformation deploy` command to create a new `spinnaker-managing-infrastructure-setup` stack using the `managing.yaml` template.  From here on out this guide will use explicit names where applicable, but feel free to customize options as you see fit (such as the **stack name**, **EksClusterName**, and so forth).
 
@@ -87,8 +86,8 @@ EKS_CLUSTER_CA_DATA=$(aws cloudformation describe-stacks --stack-name spinnaker-
 SPINNAKER_INSTANCE_PROFILE_ARN=$(aws cloudformation describe-stacks --stack-name spinnaker-managing-infrastructure-setup --query 'Stacks[0].Outputs[?OutputKey==`SpinnakerInstanceProfileArn`].OutputValue' --output text)
 ```
 
-!!! Tip
-    You can easily output the value of an exported variable with `echo $VARIABLE_NAME`.  However, remember that unless you `export` these values they only temporarily exist in the console in which you issued the commands.  You may need to reissue the above commands later in the guide if you change terminal windows, so keep them handy.
+> info ""
+> You can easily output the value of an exported variable with `echo $VARIABLE_NAME`.  However, remember that unless you `export` these values they only temporarily exist in the console in which you issued the commands.  You may need to reissue the above commands later in the guide if you change terminal windows, so keep them handy.
 
 4. Download [this](https://d3079gxvs8ayeg.cloudfront.net/templates/managed.yaml) `managed.yaml` template.  This template will create the `spinnakerManaged` **AWS::IAM::Role** that Spinnaker can use.
 
@@ -369,8 +368,8 @@ Now we'll launch some AWS EC2 instances which will be our worker nodes for our K
 curl -O https://d3079gxvs8ayeg.cloudfront.net/templates/amazon-eks-nodegroup.yaml
 ```
 
-!!! Tip Adjust Worker Nodes
-    The default template creates an auto-balancing collection of up to **3** worker nodes (instances).  Additionally, the deployment command we'll be using below specifies `t2.large` instance types.  As always, feel free to modify the `amazon-eks-nodegroup.yaml` or instance types to meet your needs.
+> info "Adjust Worker Nodes"
+> The default template creates an auto-balancing collection of up to **3** worker nodes (instances).  Additionally, the deployment command we'll be using below specifies `t2.large` instance types.  As always, feel free to modify the `amazon-eks-nodegroup.yaml` or instance types to meet your needs.
 
 2. Issue the following command to use the template and create your worker node collection.
 

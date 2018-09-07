@@ -213,6 +213,7 @@ GEM
       sawyer (~> 0.8.0, >= 0.5.3)
     pathutil (0.16.1)
       forwardable-extended (~> 2.6)
+    premonition (2.0.0)
     public_suffix (2.0.5)
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
@@ -251,6 +252,7 @@ DEPENDENCIES
   jekyll-feed (~> 0.6)
   jekyll-toc
   minima (~> 2.0)
+  premonition (~> 2.0.0)
   tzinfo-data
   wdm (~> 0.1.0)
 
