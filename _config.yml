@@ -8,11 +8,11 @@ baseurl: "/gremlin-chaos-monkey" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  gabestah
 theme: minima
+#theme: jekyll-theme-minimal
 #remote_theme: hpstr-jekyll-theme
 
 # Build settings
 markdown: kramdown
-#theme: minima
 plugins:
   - jekyll-feed
   - jekyll-toc
