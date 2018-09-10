@@ -17,8 +17,8 @@ title                    : "Gremlin: Chaos Monkey"
 title_separator          : "-"
 name                     : "Gabe Wyatt"
 description              : "An amazing website."
-#baseurl                  : "/gremlin-chaos-monkey" # the subpath of your site, e.g. /blog
-baseurl                  : "" # the subpath of your site, e.g. /blog
+baseurl                  : "/gremlin-chaos-monkey" # the subpath of your site, e.g. /blog
+#baseurl                  : "" # the subpath of your site, e.g. /blog
 url                      : "" # the base hostname & protocol for your site, e.g. http://example.com
 repository               : GabeStah/gremlin-chaos-monkey
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"

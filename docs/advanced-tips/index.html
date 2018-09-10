@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Gremlin: Chaos Monkey">
 <meta property="og:title" content="Taking Chaos Monkey to the Next Level - Advanced Developer Guide">
-<meta property="og:url" content="http://localhost:4000/advanced-tips/">
+<meta property="og:url" content="http://localhost:4000/gremlin-chaos-monkey/advanced-tips/">
 
 
 
@@ -38,7 +38,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/advanced-tips/">
+<link rel="canonical" href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips/">
 
 
 
@@ -51,7 +51,7 @@
       "@context": "http://schema.org",
       "@type": "Person",
       "name": "Gabe Wyatt",
-      "url": "http://localhost:4000",
+      "url": "http://localhost:4000/gremlin-chaos-monkey",
       "sameAs": null
     }
   </script>
@@ -65,7 +65,7 @@
 <!-- end _includes/seo.html -->
 
 
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Gremlin: Chaos Monkey Feed">
+<link href="/gremlin-chaos-monkey/feed.xml" type="application/atom+xml" rel="alternate" title="Gremlin: Chaos Monkey Feed">
 
 <!-- http://t.co/dKP3o1e -->
 <meta name="HandheldFriendly" content="True">
@@ -77,7 +77,7 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/gremlin-chaos-monkey/assets/css/main.css">
 
 <!--[if lte IE 9]>
   <style>
@@ -114,7 +114,7 @@
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
-        <a class="site-title" href="/">Gremlin: Chaos Monkey</a>
+        <a class="site-title" href="/gremlin-chaos-monkey/">Gremlin: Chaos Monkey</a>
         <ul class="visible-links"></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
@@ -144,7 +144,7 @@
     
       
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <a href="http://localhost:4000/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
           <meta itemprop="position" content="1" />
         </li>
         <span class="sep">/</span>
@@ -192,7 +192,7 @@
             
             
 
-            <li><a href="/" class="">Chaos Monkey Guide for Engineers</a></li>
+            <li><a href="/gremlin-chaos-monkey/" class="">Chaos Monkey Guide for Engineers</a></li>
           
             
             
@@ -200,7 +200,7 @@
             
             
 
-            <li><a href="/origin-netflix" class="">The Origin of Chaos Monkey</a></li>
+            <li><a href="/gremlin-chaos-monkey/origin-netflix" class="">The Origin of Chaos Monkey</a></li>
           
             
             
@@ -208,7 +208,7 @@
             
             
 
-            <li><a href="/developer-tutorial" class="">Chaos Monkey Tutorial</a></li>
+            <li><a href="/gremlin-chaos-monkey/developer-tutorial" class="">Chaos Monkey Tutorial</a></li>
           
             
             
@@ -216,7 +216,7 @@
             
             
 
-            <li><a href="/advanced-tips" class="">Advanced Developer Guide</a></li>
+            <li><a href="/gremlin-chaos-monkey/advanced-tips" class="">Advanced Developer Guide</a></li>
           
             
             
@@ -224,7 +224,7 @@
             
             
 
-            <li><a href="/simian-army" class="">The Simian Army</a></li>
+            <li><a href="/gremlin-chaos-monkey/simian-army" class="">The Simian Army</a></li>
           
             
             
@@ -232,7 +232,7 @@
             
             
 
-            <li><a href="/downloads-resources" class="">Chaos Monkey Resources</a></li>
+            <li><a href="/gremlin-chaos-monkey/downloads-resources" class="">Chaos Monkey Resources</a></li>
           
             
             
@@ -240,7 +240,7 @@
             
             
 
-            <li><a href="/alternatives" class="">Chaos Monkey Alternatives</a></li>
+            <li><a href="/gremlin-chaos-monkey/alternatives" class="">Chaos Monkey Alternatives</a></li>
           
         </ul>
         
@@ -790,7 +790,7 @@ hal config storage edit <span class="nt">--type</span> s3
 
 <p>Select the <code class="highlighter-rouge">spinnaker</code> app and you should see your <code class="highlighter-rouge">aws-primary</code> account with a <code class="highlighter-rouge">spinnaker-eks-nodes-NodeGroup</code> containing your three EC2 worker node instances.</p>
 
-<p><img src="/images/advanced-tips-kubernetes-spinnaker.png" alt="advanced-tips-kubernetes-spinnaker" /></p>
+<p><img src="/gremlin-chaos-monkey/images/advanced-tips-kubernetes-spinnaker.png" alt="advanced-tips-kubernetes-spinnaker" /></p>
 
 <h2 id="using-chaos-monkey-on-kubernetes">Using Chaos Monkey on Kubernetes</h2>
 
@@ -816,7 +816,7 @@ hal config storage edit <span class="nt">--type</span> s3
   <li>
     <p>In the UI that appears press enter to change the <strong>MySQL Server &amp; Cluster</strong> version to <code class="highlighter-rouge">mysql-5.7</code>.  Leave the other options as default and move down to <code class="highlighter-rouge">Ok</code> and press <code class="highlighter-rouge">Enter</code> to finalize your choice.</p>
 
-    <p><img src="/images/advanced-tips-mysql-install.png" alt="advanced-tips-mysql-install" /></p>
+    <p><img src="/gremlin-chaos-monkey/images/advanced-tips-mysql-install.png" alt="advanced-tips-mysql-install" /></p>
   </li>
   <li>
     <p>Now use <code class="highlighter-rouge">sudo apt-get update</code> to update the MySQL packages related to the version we selected (<code class="highlighter-rouge">mysql-5.7</code>, in this case).</p>
@@ -933,7 +933,7 @@ hal config storage edit <span class="nt">--type</span> s3
   <li>
     <p>Navigate to <strong>Applications &gt; spinnaker &gt; CONFIG</strong> and select <strong>CHAOS MONKEY</strong> in the side navigation.</p>
 
-    <p><img src="/images/advanced-tips-config-chaos-monkey.png" alt="advanced-tips-config-chaos-monkey" /></p>
+    <p><img src="/gremlin-chaos-monkey/images/advanced-tips-config-chaos-monkey.png" alt="advanced-tips-config-chaos-monkey" /></p>
   </li>
   <li>Check the <strong>Enabled</strong> box to enable Chaos Monkey.</li>
   <li>The UI provides useful information for what every option does, but the most important options are the <strong>mean</strong> and <strong>min</strong> times between instance termination.  If your setup includes multiple clusters or stacks, altering the <strong>grouping</strong> may also make sense.  Finally, you can add <strong>exceptions</strong> as necessary, which acts as a kind of <em>whitelist</em> of instances that will be ignored by Chaos Monkey, so you can keep the most critical services up and running.</li>
@@ -1070,7 +1070,7 @@ ip-10-100-11-180.us-west-2.compute.internal   Ready     &lt;none&gt;    20s     
 
 <p>Spinnaker also tracks this information.  Navigating to the <strong><code class="highlighter-rouge">spinnaker</code> app &gt; INFRASTRUCTURE &gt; CLUSTERS &gt; <code class="highlighter-rouge">spinnaker-eks-nodes-NodeGroup</code> &gt; CAPACITY</strong> and click <strong>View Scaling Activities</strong> to see the Spinnaker scaling activities log for this node group.  In this case we see the successful activities that lead to the health check failure and new instance start.</p>
 
-<p><img src="/images/advanced-tips-nodegroup-scaling-activities.png" alt="advanced-tips-nodegroup-scaling-activities" /></p>
+<p><img src="/gremlin-chaos-monkey/images/advanced-tips-nodegroup-scaling-activities.png" alt="advanced-tips-nodegroup-scaling-activities" /></p>
 
 <h3 id="scheduling-chaos-monkey-terminations">Scheduling Chaos Monkey Terminations</h3>
 
@@ -1154,13 +1154,13 @@ ip-10-100-11-180.us-west-2.compute.internal   Ready     &lt;none&gt;    20s     
       <section class="page__share">
   
 
-  <a href="https://twitter.com/intent/tweet?text=Taking+Chaos+Monkey+to+the+Next+Level+-+Advanced+Developer+Guide%20http%3A%2F%2Flocalhost%3A4000%2Fadvanced-tips%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Taking+Chaos+Monkey+to+the+Next+Level+-+Advanced+Developer+Guide%20http%3A%2F%2Flocalhost%3A4000%2Fgremlin-chaos-monkey%2Fadvanced-tips%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fadvanced-tips%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fgremlin-chaos-monkey%2Fadvanced-tips%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=http%3A%2F%2Flocalhost%3A4000%2Fadvanced-tips%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=http%3A%2F%2Flocalhost%3A4000%2Fgremlin-chaos-monkey%2Fadvanced-tips%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fadvanced-tips%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fgremlin-chaos-monkey%2Fadvanced-tips%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -1190,7 +1190,7 @@ ip-10-100-11-180.us-west-2.compute.internal   Ready     &lt;none&gt;    20s     
     
     
     
-    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    <li><a href="/gremlin-chaos-monkey/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
   </ul>
 </div>
 
@@ -1200,7 +1200,7 @@ ip-10-100-11-180.us-west-2.compute.internal   Ready     &lt;none&gt;    20s     
     </div>
 
     
-  <script src="/assets/js/main.min.js"></script>
+  <script src="/gremlin-chaos-monkey/assets/js/main.min.js"></script>
   <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 
