@@ -11,7 +11,7 @@ gem "github-pages", group: :jekyll_plugins
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.6"
   gem "jekyll-toc"
-  gem "premonition", "~> 2.0.0"
+  gem "premonition", path: "D:/dev/languages/ruby/gems/premonition"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -37,6 +37,58 @@
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
+        <ul>
+  <li><a href="#">Chaos Monkey Tutorial - A Step-by-Step Guide to Creating Failure on AWS</a>
+    <ul>
+      <li><a href="#setting-up-chaos-monkey">Setting Up Chaos Monkey</a>
+        <ul>
+          <li><a href="#ssh-configuration">SSH Configuration</a></li>
+          <li><a href="#aws-ec2-bastion--spinnaker">AWS EC2 Bastion &amp; Spinnaker</a></li>
+          <li><a href="#chaos-monkey--spinnaker-setup">Chaos Monkey + Spinnaker Setup</a></li>
+          <li><a href="#spinnaker-configuration">Spinnaker COnfiguration</a></li>
+          <li><a href="#known-issues">Known Issues</a></li>
+          <li><a href="#spinnaker-add-application">Spinnaker: Add Application</a>
+            <ul>
+              <li><a href="#add-firewall">Add Firewall</a></li>
+              <li><a href="#add-load-balancer">Add Load Balancer</a></li>
+              <li><a href="#add-pipeline">Add Pipeline</a>
+                <ul>
+                  <li><a href="#add-stage-1">Add Stage 1</a></li>
+                  <li><a href="#add-stage-2">Add Stage 2</a></li>
+                  <li><a href="#creating-a-server-group">Creating a Server Group</a></li>
+                  <li><a href="#try-it-out">Try It Out</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#how-to-deploy-chaos-monkey">How to Deploy Chaos Monkey</a></li>
+      <li><a href="#manual-spinnaker-installation">Manual Spinnaker Installation</a>
+        <ul>
+          <li><a href="#chaos-monkey--go--mysql-8-authentication-error">Chaos Monkey + Go + MySQL 8 Authentication Error</a></li>
+        </ul>
+      </li>
+      <li><a href="#spinnaker-full-installation-via-aws-cli">Spinnaker Full Installation via AWS CLI</a>
+        <ul>
+          <li><a href="#create-aws-cloudformation-spinnaker-stack">Create AWS CloudFormation Spinnaker Stack</a></li>
+          <li><a href="#select-installation-environment">Select Installation Environment</a></li>
+          <li><a href="#setup-persistent-storage-for-spinnaker">Setup Persistent Storage for Spinnaker</a></li>
+          <li><a href="#deploy-spinnaker">Deploy Spinnaker</a></li>
+        </ul>
+      </li>
+      <li><a href="#spinnaker-full-installation">Spinnaker Full Installation</a>
+        <ul>
+          <li><a href="#install-halyard">Install Halyard</a></li>
+          <li><a href="#create-aws-cloudformation-spinnaker-stack-1">Create AWS CloudFormation Spinnaker Stack</a></li>
+          <li><a href="#setup-persistent-storage-for-spinnaker-1">Setup Persistent Storage for Spinnaker</a></li>
+          <li><a href="#deploy-spinnaker-1">Deploy Spinnaker</a></li>
+          <li><a href="#create-spinnaker-application">Create Spinnaker Application</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
         <article class="post">
 
   <header class="post-header">
@@ -888,10 +940,8 @@ To show all installed unit files use <span class="s1">'systemctl list-unit-files
 default-authentication-plugin = mysql_native_password
 </code></pre></div></div>
 
-<div class="premonition warning"><div class="fa fa-exclamation-circle"></div><div class="content"><p class="header">Warning</p><p>Chaos Monkey is currently <em>incompatible</em> with MySQL version 8.0 and higher.</p>
+<div class="premonition warning modified"><div class="fa fa-exclamation-circle"></div><div class="content"><p class="header">Warning</p><p>Chaos Monkey is currently <em>incompatible</em> with MySQL version 8.0 and higher.</p></div></div>
 
-
-</div></div>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[16097] 2018/09/04 14:07:43 ERROR - couldn't apply database migration: database migration failed: Error 1298: Unknown or incorrect time zone: 'UTC'
 </code></pre></div></div>
 <p>Solution: Add timezone info to MySQL by executing the following command.</p>
@@ -922,7 +972,7 @@ Query OK, 0 rows affected <span class="o">(</span>0.03 sec<span class="o">)</spa
   <li>If needed, install the <a href="https://docs.aws.amazon.com/cli/latest/userguide/installing.html">AWS CLI tool</a> on your machine.</li>
 </ol>
 
-<div class="premonition info"><div class="fa fa-info-circle"></div><div class="content"><p class="header">Simplifying AWS Credentials</p><p>You can make future AWS CLI commands easier by creating AWS <code class="highlighter-rouge">profiles</code>, which will add configuration and credentials to the local <code class="highlighter-rouge">~/.aws/credentials</code> file.  We’ll be using two different accounts/profiles (<code class="highlighter-rouge">primary</code> or root AWS console account and <code class="highlighter-rouge">spinnaker-developer</code> as a managed account), so we can add credentials for both of these to <code class="highlighter-rouge">~/.aws/credentials</code> by using <code class="highlighter-rouge">aws configure --profile &lt;profile-name&gt;</code> commands.</p>
+<div class="premonition info modified"><div class="fa fa-info-circle"></div><div class="content"><p class="header">Simplifying AWS Credentials</p><p>You can make future AWS CLI commands easier by creating AWS <code class="highlighter-rouge">profiles</code>, which will add configuration and credentials to the local <code class="highlighter-rouge">~/.aws/credentials</code> file.  We’ll be using two different accounts/profiles (<code class="highlighter-rouge">primary</code> or root AWS console account and <code class="highlighter-rouge">spinnaker-developer</code> as a managed account), so we can add credentials for both of these to <code class="highlighter-rouge">~/.aws/credentials</code> by using <code class="highlighter-rouge">aws configure --profile &lt;profile-name&gt;</code> commands.</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws configure <span class="nt">--profile</span> spinnaker-developer
 AWS Access Key ID <span class="o">[</span>None]: &lt;AWS_ACCESS_KEY_ID&gt;
 AWS Secret Access Key <span class="o">[</span>None]: &lt;AWS_SECRET_ACCESS_KEY&gt;
@@ -936,10 +986,8 @@ Default region name <span class="o">[</span>None]: us-west-2
 Default output format <span class="o">[</span>None]: text
 </code></pre></div></div>
 
-<p>In the future, simply add the <code class="highlighter-rouge">--profile &lt;profile-name&gt;</code> flag to any AWS CLI command to force AWS CLI to use that account.</p>
+<p>In the future, simply add the <code class="highlighter-rouge">--profile &lt;profile-name&gt;</code> flag to any AWS CLI command to force AWS CLI to use that account.</p></div></div>
 
-
-</div></div>
 <ol>
   <li>Download <a href="https://d3079gxvs8ayeg.cloudfront.net/templates/managing.yaml">this</a> <code class="highlighter-rouge">managing.yaml</code> template.</li>
 </ol>
@@ -958,16 +1006,14 @@ Waiting <span class="k">for </span>stack create/update to <span class="nb">compl
 </span>Successfully created/updated stack - spinnaker-managing-infrastructure
 </code></pre></div></div>
 
-<div class="premonition errpr"><div class="fa fa-check-square"></div><div class="content"><p>If you receive an <code class="highlighter-rouge">Unresolved resource dependency</code> error while creating the <code class="highlighter-rouge">spinnaker-managing-infrastructure</code> stack related to the <code class="highlighter-rouge">SpinnakerInstanceProfile</code> you may need to edit the <code class="highlighter-rouge">managing.yaml</code> file and comment out the two <code class="highlighter-rouge">SpinnakerInstanceProfileArn</code> related lines under the <code class="highlighter-rouge">Outputs</code> block.</p>
+<div class="premonition errpr modified"><div class="fa fa-check-square"></div><div class="content"><p>If you receive an <code class="highlighter-rouge">Unresolved resource dependency</code> error while creating the <code class="highlighter-rouge">spinnaker-managing-infrastructure</code> stack related to the <code class="highlighter-rouge">SpinnakerInstanceProfile</code> you may need to edit the <code class="highlighter-rouge">managing.yaml</code> file and comment out the two <code class="highlighter-rouge">SpinnakerInstanceProfileArn</code> related lines under the <code class="highlighter-rouge">Outputs</code> block.</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># ...</span>
 Outputs:
 <span class="c"># ...</span>
 <span class="c">#  SpinnakerInstanceProfileArn:</span>
 <span class="c">#    Value: !GetAtt SpinnakerInstanceProfile.Arn</span>
-</code></pre></div></div>
+</code></pre></div></div></div></div>
 
-
-</div></div>
 <ol>
   <li>Once the <code class="highlighter-rouge">spinnaker-managing-infrastructure</code> stack has been created open the AWS console, navigate to the <code class="highlighter-rouge">CloudFormation</code> service, select the <strong>Outputs</strong> tab of the <code class="highlighter-rouge">spinnaker-managing-infrastructure</code> stack.  We’ll be using the <code class="highlighter-rouge">ManagingAccountId</code> and <code class="highlighter-rouge">AuthArn</code> values in the next step, which look something like the following:</li>
 </ol>
@@ -1043,10 +1089,8 @@ Problems <span class="k">in </span>default.provider.aws.default:
 + Successfully added account default <span class="k">for </span>provider aws.
 </code></pre></div></div>
 
-<div class="premonition info"><div class="fa fa-info-circle"></div><div class="content"><p>Spinnaker uses <code class="highlighter-rouge">accounts</code> added via the Halyard <code class="highlighter-rouge">hal config provider aws account</code> API to handle all actions performed within the specified provider (such as AWS, in this case).  For this example we’ll just be using our primary managing account, but you can freely add more accounts as needed.</p>
+<div class="premonition info modified"><div class="fa fa-info-circle"></div><div class="content"><p>Spinnaker uses <code class="highlighter-rouge">accounts</code> added via the Halyard <code class="highlighter-rouge">hal config provider aws account</code> API to handle all actions performed within the specified provider (such as AWS, in this case).  For this example we’ll just be using our primary managing account, but you can freely add more accounts as needed.</p></div></div>
 
-
-</div></div>
 <ol>
   <li>Finally, enable the AWS provider:</li>
 </ol>
@@ -1067,17 +1111,15 @@ Problems <span class="k">in </span>default.provider.aws.default:
 
 <p>In this step you can choose which type of environment on which you want to install Spinnaker.  Most production setups will want to use Kubernetes or another distributed solution, but for this smaller example we’ll just use a local Debian installation, putting Spinnaker on the same machine that Halyard is on.</p>
 
-<div class="premonition info"><div class="fa fa-info-circle"></div><div class="content"><p>By default, Halyard should install as a local Debian environmental setup, so you shouldn’t need to make any changes for the environment.  However, if you want to verify it’s already configured locally you can run the <code class="highlighter-rouge">hal config deploy edit --type localdebian</code> command:</p>
+<div class="premonition info modified"><div class="fa fa-info-circle"></div><div class="content"><p>By default, Halyard should install as a local Debian environmental setup, so you shouldn’t need to make any changes for the environment.  However, if you want to verify it’s already configured locally you can run the <code class="highlighter-rouge">hal config deploy edit --type localdebian</code> command:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hal config deploy edit <span class="nt">--type</span> localdebian
 + Get current deployment
   Success
 + Get the deployment environment
   Success
 - No changes supplied.
-</code></pre></div></div>
+</code></pre></div></div></div></div>
 
-
-</div></div>
 <h3 id="setup-persistent-storage-for-spinnaker">Setup Persistent Storage for Spinnaker</h3>
 
 <ol>

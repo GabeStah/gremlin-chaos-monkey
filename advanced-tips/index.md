@@ -57,8 +57,8 @@ Now that the AWS CLI is on your machine you're ready to start the heavy lifting 
     curl -O https://d3079gxvs8ayeg.cloudfront.net/templates/managing.yaml
     ```
 
-> info "Stack Configuration"
-> If you need to configure the stack to your own particular needs you can easily edit the template YAML as necessary.  For example, in this guide we're only using a single **managing** account to handle Spinnaker/Kubernetes in AWS, but if you need to also include additional **managed** accounts you'll want to add their respective AWS ARN strings to the `managing.yaml` file [around this line](https://gist.github.com/GabeStah/524fdb512e65e354076d71e53d9994eb#file-managing-yaml-L158).
+    > info "Stack Configuration"
+    > If you need to configure the stack to your own particular needs you can easily edit the template YAML as necessary.  For example, in this guide we're only using a single **managing** account to handle Spinnaker/Kubernetes in AWS, but if you need to also include additional **managed** accounts you'll want to add their respective AWS ARN strings to the `managing.yaml` file [around this line](https://gist.github.com/GabeStah/524fdb512e65e354076d71e53d9994eb#file-managing-yaml-L158).
 
 2. Now we'll use AWS CLI to issue a `cloudformation deploy` command to create a new `spinnaker-managing-infrastructure-setup` stack using the `managing.yaml` template.  From here on out this guide will use explicit names where applicable, but feel free to customize options as you see fit (such as the **stack name**, **EksClusterName**, and so forth).
 
@@ -81,8 +81,8 @@ Now that the AWS CLI is on your machine you're ready to start the heavy lifting 
     SPINNAKER_INSTANCE_PROFILE_ARN=$(aws cloudformation describe-stacks --stack-name spinnaker-managing-infrastructure-setup --query 'Stacks[0].Outputs[?OutputKey==`SpinnakerInstanceProfileArn`].OutputValue' --output text)
     ```
 
-> info ""
-> You can easily output the value of an exported variable with `echo $VARIABLE_NAME`.  However, remember that unless you `export` these values they only temporarily exist in the console in which you issued the commands.  You may need to reissue the above commands later in the guide if you change terminal windows, so keep them handy.
+    > info ""
+    > You can easily output the value of an exported variable with `echo $VARIABLE_NAME`.  However, remember that unless you `export` these values they only temporarily exist in the console in which you issued the commands.  You may need to reissue the above commands later in the guide if you change terminal windows, so keep them handy.
 
 4. Download [this](https://d3079gxvs8ayeg.cloudfront.net/templates/managed.yaml) `managed.yaml` template.  This template will create the `spinnakerManaged` **AWS::IAM::Role** that Spinnaker can use.
 
@@ -97,8 +97,8 @@ Now that the AWS CLI is on your machine you're ready to start the heavy lifting 
     --parameter-overrides AuthArn=$AUTH_ARN ManagingAccountId=$MANAGING_ACCOUNT_ID
     ```
 
-> info ""
-> If the second step of deploying `spinnaker-managing-infrastructure-setup` hasn't completed yet, feel free to skip this step for the time being and proceed with installing `kubectl` and `AWS IAM Authenticator` below.  Just return to this step before moving past that point.
+    > info ""
+    > If the second step of deploying `spinnaker-managing-infrastructure-setup` hasn't completed yet, feel free to skip this step for the time being and proceed with installing `kubectl` and `AWS IAM Authenticator` below.  Just return to this step before moving past that point.
 
 ### Install Kubectl
 
@@ -152,7 +152,7 @@ We'll follow the same basic steps as above to install the AWS IAM Authenticator 
     chmod +x ./aws-iam-authenticator
     ```
 
-3. Move `aws-iam-authenticator` to an appropriate `bin` directory and add to your `PATH`, if necessary.
+3. Move `aws352-iam-authenticator` to an appropriate `bin` directory and add to your `PATH`, if necessary.
 
     ```bash
     cp ./aws-iam-authenticator $HOME/bin/aws-iam-authenticator && export PATH=$HOME/bin:$PATH
@@ -202,8 +202,8 @@ The [CloudFormation Spinnaker Stack](#setup-the-cloudformation-spinnaker-stack) 
             #   value: "<aws-profile>"
     ```
 
-> info "Configuring Multiple Kubernetes Clusters"
-> This guide assumes you're just configuring `kubectl` to handle a single Kubernetes cluster, but if you need to configure and handle multiple clusters the convention for doing so is to create a unique `config` file for each cluster.  Simply name each `config` file `~/.kube/config-<cluster-name>`, where `<cluster-name>` is replaced by the name of the Kubernetes cluster you already created.
+    > info "Configuring Multiple Kubernetes Clusters"
+    > This guide assumes you're just configuring `kubectl` to handle a single Kubernetes cluster, but if you need to configure and handle multiple clusters the convention for doing so is to create a unique `config` file for each cluster.  Simply name each `config` file `~/.kube/config-<cluster-name>`, where `<cluster-name>` is replaced by the name of the Kubernetes cluster you already created.
 
 2. Replace the `<...>` placeholder strings with the following `EKS_CLUSTER_` environmental variable values from earlier:
   
@@ -211,8 +211,8 @@ The [CloudFormation Spinnaker Stack](#setup-the-cloudformation-spinnaker-stack) 
     - `<base64-encoded-ca-cert>`: `$EKS_CLUSTER_CA_DATA`
     - `<cluster-name>`: `$EKS_CLUSTER_NAME`
 
-> info "Using a Specific `AWS::IAM::Role`"
-> If you need to have the AWS IAM Authenticator and kubectl use a specific `Role` then uncomment the `- "-r"` and `- "<role-arn>"` lines and paste the `AWS::IAM::Role` ARN in place of `<role-arn>`.
+    > info "Using a Specific `AWS::IAM::Role`"
+    > If you need to have the AWS IAM Authenticator and kubectl use a specific `Role` then uncomment the `- "-r"` and `- "<role-arn>"` lines and paste the `AWS::IAM::Role` ARN in place of `<role-arn>`.
 
 3. Your `~/.kube/config` file should now look something like this:
 
@@ -299,7 +299,7 @@ We now need to apply service accounts and roles to the `kubectl` `spinnaker` nam
 
 The next step is to add Kubernetes as a provider to Halyard/Spinnaker. A [provider](https://www.spinnaker.io/concepts/providers/) is just an interface to one of many virtual resources Spinnaker will utilize.  AWS, Azure, Docker, and many more are all considered providers, and are managed by Spinnaker via `accounts`.
 
-1. Start by enabling the Kubernetes provider in Halyard.
+1. Start by enabling the Kubernetes provider in Halyard.4
 
     ```bash
     hal config provider kubernetes enable
@@ -450,17 +450,15 @@ Now we'll launch some AWS EC2 instances which will be our worker nodes for our K
     hal deploy apply
     ```
 
-> error "Handling `hal deploy apply` Errors"
-> In some cases you may experience a deployment error, particularly when trying your first Spinnaker deployment.  Often the console output is quite vague, so the best course of action is to check your Spinnaker/Halyard log files.  Typically these are located in `/var/log/spinnaker` and `/var/log/spinnaker/halyard`.  Since Halyard runs on Java, logs let you see the entire Java error stack trace, rather than the basic (and often useless) error name.
+    > error "Handling `hal deploy apply` Errors"
+    > In some cases you may experience a deployment error, particularly when trying your first Spinnaker deployment.  Often the console output is quite vague, so the best course of action is to check your Spinnaker/Halyard log files.  Typically these are located in `/var/log/spinnaker` and `/var/log/spinnaker/halyard`.  Since Halyard runs on Java, logs let you see the entire Java error stack trace, rather than the basic (and often useless) error name.
 
-> error "Profile-related `IndexOutOfBoundsException`"
-> With recent Halyard/Spinnaker versions there's a [known bug](https://github.com/spinnaker/spinnaker/issues/3280) that you may experience in which an `IndexOutOfBoundsException` occurs during deployment when using the AWS provider.  The cause usually seems to be that Halyard is assuming an explicit `region` value in the YAML configuration file for the AWS account being used.  Even though the `aws` block in the config has a `defaultRegions` key, that seems to be ignored, which can cause this error.
->
-> The current solution is to manually edit the primary AWS account and explicitly set the `region` value, which should solve the issue and allow you to run a Spinnaker deployment.
->
-> ```bash
-> hal config provider aws account edit aws-primary --add-region us-west-2
-> ```
+    > error "Profile-related `IndexOutOfBoundsException`"
+    > With recent Halyard/Spinnaker versions there's a [known bug](https://github.com/spinnaker/spinnaker/issues/3280) that you may experience in which an `IndexOutOfBoundsException` occurs during deployment when using the AWS provider.  The cause usually seems to be that Halyard is assuming an explicit `region` value in the YAML configuration file for the AWS account being used.  Even though the `aws` block in the config has a `defaultRegions` key, that seems to be ignored, which can cause this error.  The current solution is to manually edit the primary AWS account and explicitly set the `region` value, which should solve the issue and allow you to run a Spinnaker deployment.
+
+```bash
+hal config provider aws account edit aws-primary --add-region us-west-2
+```
 
 That's it, you should now have a Spinnaker deployment up and running on a Kubernetes cluster, using EKS and EC2 worker node instances!  Issue the `hal deploy connect` command to provide port forwarding on your local machine to the Kubernetes cluster running Spinnaker, then open [http://localhost:9000](http://localhost:9000) to make sure everything is up and running.
 
@@ -549,13 +547,39 @@ We now need to add a MySQL table for Chaos Monkey to use and create an associate
 
 ### Install Chaos Monkey
 
-1. (Optional) Install `golang` if you don't have it on your local machine already.
+1. (Optional) Install `go` if you don't have it on your local machine already.
+
+    1. Go to [this](https://golang.org/dl/) download page and download the latest binary appropriate to your environment.
+
+        ```bash
+        curl -O https://dl.google.com/go/go1.11.linux-amd64.tar.gz
+        ```
+
+    2. Extract the archive to the `/usr/local` directory.
+
+        ```bash
+        sudo tar -C /usr/local -xzf go1.11.linux-amd64.tar.gz
+        ```
+
+    3. Add `/usr/local/go/bin` to your `$PATH` environment variable.
+
+        ```bash
+        export PATH=$PATH:/usr/local/go/bin
+        echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
+        ```
+
+2. (Optional) Check if your `$GOPATH` & `$GOBIN` variables are set with `echo $GOPATH` and `echo $GOBIN`.  If not, `export` them and add to your bash profile.
 
     ```bash
-    sudo apt install golang-go
+    export GOPATH=$HOME/go
+    echo 'export GOPATH=$HOME/go' >> ~/.bashrc
+    export GOBIN=$HOME/go/bin
+    echo 'export GOBIN=$HOME/go/bin' >> ~/.bashrc
+    export PATH=$PATH:$GOBIN
+    echo 'export PATH=$PATH:$GOBIN' >> ~/.bashrc
     ```
 
-2. Install the latest Chaos Monkey binary.
+3. Install the latest Chaos Monkey binary.
 
     ```bash
     go get github.com/netflix/chaosmonkey/cmd/chaosmonkey
@@ -571,6 +595,204 @@ Since we already enabled the `chaos` feature of Spinnaker prior to deployment, w
 
 2. Check the **Enabled** box to enable Chaos Monkey.
 3. The UI provides useful information for what every option does, but the most important options are the **mean** and **min** times between instance termination.  If your setup includes multiple clusters or stacks, altering the **grouping** may also make sense.  Finally, you can add **exceptions** as necessary, which acts as a kind of *whitelist* of instances that will be ignored by Chaos Monkey, so you can keep the most critical services up and running.
+4. Once your changes are made click the **Save Changes** button.
+
+## How to Deploy Chaos Monkey
+
+1. Start by creating the `chaosmonkey.toml` configuration file in the director of your choice.  Chaos Monkey looks for such a file in four different locations, until a configuration is found:
+    - *(current directory)*
+    - `/apps/chaosmonkey`
+    - `/etc`
+    - `/etc/chaosmonkey`
+
+    > tip ""
+    > Generally, if you're configuring *multiple* Chaos Monkey installations on the same machine you should use application-specific configurations, so putting them in separate directories is ideal.  However, if you're just using one installation on the machine then `/apps/chaosmonkey/chaosmonkey.toml` works well.
+
+2. Add the following basic configuration structure to your `chaosmonkey.toml` file, replacing appropriate `<DATABASE_>` configuration values with your own settings.
+
+    ```toml
+    [chaosmonkey]
+    enabled = true
+    schedule_enabled = true
+    leashed = false
+    accounts = ["aws-primary"]
+
+    start_hour = 9      # time during day when starts terminating
+    end_hour = 15       # time during day when stops terminating
+
+    # location of command Chaos Monkey uses for doing terminations
+    term_path = "/apps/chaosmonkey/chaosmonkey-terminate.sh"
+
+    # cron file that Chaos Monkey writes to each day for scheduling kills
+    cron_path = "/etc/cron.d/chaosmonkey-schedule"
+
+    [database]
+    host = "localhost"
+    name = "<DATABASE_NAME>"
+    user = "<DATABASE_USER>"
+    encrypted_password = "<DATABASE_USER_PASSWORD>"
+
+    [spinnaker]
+    endpoint = "http://localhost:8084"
+    ```
+
+3. With Chaos Monkey configured it's time to migrate it to the MySQL
+
+    ```bash
+    chaosmonkey migrate
+    [16264] 2018/09/04 14:11:16 Successfully applied database migrations. Number of migrations applied:  1
+    [16264] 2018/09/04 14:11:16 database migration applied successfully
+    ```
+
+> error "Error: 1298: Unknown or incorrect time zone: 'UTC'"
+> If you experience a timezone error this typically indicates a configuration problem with MySQL.  Just run the `mysql_tzinfo_to_sql` command to update your MySQL installation.
+> ```bash
+> mysql_tzinfo_to_sql /usr/share/zoneinfo/|mysql -u root mysql -p
+> ```
+
+## Using Chaos Monkey
+
+Using the `chaosmonkey` command line tool is fairly simple.  Start by making sure it can connect to your `spinnaker` instance with `chaosmonkey config spinnaker`.
+
+```bash
+chaosmonkey config spinnaker
+```
+
+```bash
+# OUTPUT
+(*chaosmonkey.AppConfig)(0xc00006ca00)({
+ Enabled: (bool) true,
+ RegionsAreIndependent: (bool) true,
+ MeanTimeBetweenKillsInWorkDays: (int) 2,
+ MinTimeBetweenKillsInWorkDays: (int) 1,
+ Grouping: (chaosmonkey.Group) cluster,
+ Exceptions: ([]chaosmonkey.Exception) {
+ },
+ Whitelist: (*[]chaosmonkey.Exception)(<nil>)
+})
+```
+
+Now it's time to test termination.  Remember that we can use the `kubectl get nodes --watch` command to keep watch of our Kubernetes nodes.
+
+```bash
+kubectl get nodes --watch
+```
+
+You'll see an output similar to the following.
+
+```bash
+# OUTPUT
+ip-10-100-11-239.us-west-2.compute.internal   Ready     <none>    3d        v1.10.3
+ip-10-100-10-178.us-west-2.compute.internal   Ready     <none>    3d        v1.10.3
+ip-10-100-10-210.us-west-2.compute.internal   Ready     <none>    3d        v1.10.3
+```
+
+To manually terminate an instance with Chaos Monkey we use the `chaosmonkey terminate` command.
+
+```bash
+chaosmonkey terminate <app> <account> [--region=<region>] [--stack=<stack>] [--cluster=<cluster>] [--leashed]
+```
+
+For this guide our **app** is `spinnaker` and our **account** is `aws-primary`, so using just those two values and leaving the rest default should work.
+
+```bash
+chaosmonkey terminate spinnaker aws-primary
+```
+
+```bash
+# OUTPUT
+[11533] 2018/09/08 18:39:26 Picked: {spinnaker aws-primary us-west-2 eks spinnaker-eks-nodes-NodeGroup-KLBYTZDP0F89 spinnaker-eks-nodes-NodeGroup-KLBYTZDP0F89 i-054152fc4ed41d7b7 aws}
+```
+
+Now look back at the terminal window running `kubectl get nodes --watch` and after a moment you'll see one of the nodes has been terminated.
+
+```bash
+ip-10-100-10-178.us-west-2.compute.internal   Ready     <none>    3d        v1.10.3
+ip-10-100-11-239.us-west-2.compute.internal   Ready     <none>    3d        v1.10.3
+ip-10-100-10-210.us-west-2.compute.internal   NotReady   <none>    3d        v1.10.3
+ip-10-100-10-178.us-west-2.compute.internal   Ready     <none>    3d        v1.10.3
+ip-10-100-11-239.us-west-2.compute.internal   Ready     <none>    3d        v1.10.3
+```
+
+![awesome-gif](https://media.giphy.com/media/3ohzdIuqJoo8QdKlnW/giphy.gif)
+
+If you quickly open up your Spinnaker Deck UI you'll see only two of the three instances in the cluster are active, as we see in `kubectl` above.  However, wait a few more moments and Spinnaker will notice the loss of an instance, recognize it has been stopped/terminated due to an EC2 health check, and will immediately propagate a new instance to replace it, thus ensuring the server group's desired capacity remains at `3` instances.
+
+The `kubectl get nodes --watch` output confirms this (in this case, the new local `ip-10-100-11-180.us-west-2.compute.internal` instance was added).
+
+```
+ip-10-100-11-239.us-west-2.compute.internal   Ready     <none>    3d        v1.10.3
+ip-10-100-10-178.us-west-2.compute.internal   Ready     <none>    3d        v1.10.3
+ip-10-100-11-180.us-west-2.compute.internal   NotReady   <none>    10s       v1.10.3
+ip-10-100-11-239.us-west-2.compute.internal   Ready     <none>    3d        v1.10.3
+ip-10-100-10-178.us-west-2.compute.internal   Ready     <none>    3d        v1.10.3
+ip-10-100-11-180.us-west-2.compute.internal   Ready     <none>    20s       v1.10.3
+```
+
+Spinnaker also tracks this information.  Navigating to the **`spinnaker` app > INFRASTRUCTURE > CLUSTERS > `spinnaker-eks-nodes-NodeGroup` > CAPACITY** and click **View Scaling Activities** to see the Spinnaker scaling activities log for this node group.  In this case we see the successful activities that lead to the health check failure and new instance start.
+
+![advanced-tips-nodegroup-scaling-activities](../images/advanced-tips-nodegroup-scaling-activities.png)
+
+### Scheduling Chaos Monkey Terminations
+
+Before we get to scheduling anything you'll want to copy the `chaosmonkey` executable to the `/apps/chaosmonkey` directory.  While you can leave it in the default `$GOBIN` directory, it'll be easier to use with cron jobs and other system commands if it's in a global location.
+
+```bash
+sudo cp ~/go/bin/chaosmonkey /apps/chaosmonkey/
+```
+
+Now that we've confirmed we can manually terminate instances via Chaos Monkey you may want to setup an automated system for doing so.  The primary way to do this is to create a series of scripts that regenerate a unique `crontab` job that is scheduled to execute on a specific date and time.  This cron job is created every day (or however often you like), and the execution time is randomized based on the `start_hour`, `end_hour`, and `time_zone` settings in the `chaosmonkey.toml` configuration.  We'll be using four files for this: Two crontab files and two bash scripts.
+
+- `/apps/chaosmonkey/chaosmonkey-schedule.sh`: 
+- `/apps/chaosmonkey/chaosmonkey-terminate.sh`: 
+- `/etc/cron.d/chaosmonkey-schedule`:
+- `/etc/cron.d/chaosmonkey-daily-scheduler`: 
+
+1. Start by creating the four files we'll be using for this.
+
+    ```bash
+    sudo touch /apps/chaosmonkey/chaosmonkey-schedule.sh
+    sudo touch /apps/chaosmonkey/chaosmonkey-terminate.sh
+    sudo touch /etc/cron.d/chaosmonkey-schedule
+    sudo touch /etc/cron.d/chaosmonkey-daily-scheduler
+    ```
+
+2. Now set executable permissions for the two bash scripts so the cron (root) user doesn't have permissions problems.
+
+    ```bash
+    sudo chmod a+rx /apps/chaosmonkey/chaosmonkey-schedule.sh
+    sudo chmod a+rx /apps/chaosmonkey/chaosmonkey-terminate.sh
+    ```
+
+3. Now we'll add some commands to each script in the order they're expected to call one another.  First, the `/etc/cron.d/chaosmonkey-daily-scheduler` is executed once a day at a time you specify.  This will call the `/apps/chaosmonkey/chaosmonkey-schedule.sh` script, which will perform the actual scheduling for termination.  Paste the following into `/etc/cron.d/chaosmonkey-daily-scheduler` (as with any cron job you can freely edit the schedule to determine when the cron job should be executed).
+
+    ```bash
+    # min  hour  dom  month  day  user  command
+    0      12    *    *      *    root  /apps/chaosmonkey/chaosmonkey-schedule.sh
+    ```
+
+4. The `/apps/chaosmonkey/chaosmonkey-schedule.sh` should perform the actual `chaosmonkey schedule` command, so paste the following into `/apps/chaosmonkey/chaosmonkey-schedule.sh`.
+
+    ```bash
+    #!/bin/bash
+    /apps/chaosmonkey/chaosmonkey schedule >> /var/log/chaosmonkey-schedule.log 2>&1
+    ```
+
+5. When the `chaosmonkey schedule` command is called by the `/apps/chaosmonkey/chaosmonkey-schedule.sh` script it will automatically write to the `/etc/cron.d/chaosmonkey-schedule` file with a randomized timestamp for execution based on the Chaos Monkey configuration.  Here's an example of what the generated `/etc/cron.d/chaosmonkey-schedule` looks like.
+
+    ```bash
+    # /etc/cron.d/chaosmonkey-schedule
+    9 16 9 9 0 root /apps/chaosmonkey/chaosmonkey-terminate.sh spinnaker aws-primary --cluster=spinnaker-eks-nodes-NodeGroup-KLBYTZDP0F89 --region=us-west-2
+    ```
+
+6. Lastly, the `/apps/chaosmonkey/chaosmonkey-terminate.sh` script that is called by the generated `/etc/cron.d/chaosmonkey-schedule` cron job should issue the `chaosmonkey terminate` command and output the result to the log.  Paste the following into ``/apps/chaosmonkey/chaosmonkey-terminate.sh`.
+
+    ```bash
+    #!/bin/bash
+    /apps/chaosmonkey/chaosmonkey terminate "$@" >> /var/log/chaosmonkey-terminate.log 2>&1
+    ```
+
+You're all set now!  Chaos Monkey will perform a cron job once a day in which it generates the daily termination schedule by calling `chaosmonkey schedule`.  Once the cron job executes the `chaosmonkey terminate` command will be called, terminating the selected instance based on Chaos Monkey/Spinnaker/Kubernetes configuration!
 
 [/]:                                    /
 [/advanced-tips]:                       /advanced-tips
