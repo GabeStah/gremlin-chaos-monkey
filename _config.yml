@@ -270,4 +270,5 @@ defaults:
       sidebar:
         nav: "docs"
       toc: true
+      toc_sticky: false
       related: true

@@ -21,11 +21,30 @@ published: true
 ### Install Halyard
 
 1. Download Halyard installation script.
-    - For Debian/Ubuntu: `$ curl -O https://raw.githubusercontent.com/spinnaker/halyard/master/install/debian/InstallHalyard.sh`
-    - For MacOS: `$ curl -O https://raw.githubusercontent.com/spinnaker/halyard/master/install/macos/InstallHalyard.sh`
-2. Install Halyard: `$ sudo bash InstallHalyard.sh`
+    - Debian/Ubuntu
+
+        ```bash
+        curl -O https://raw.githubusercontent.com/spinnaker/halyard/master/install/debian/InstallHalyard.sh
+        ```
+
+    - MacOS
+
+        ```bash
+        curl -O https://raw.githubusercontent.com/spinnaker/halyard/master/install/macos/InstallHalyard.sh
+        ```
+2. Install Halyard.
     - If prompted, default values are typically OK.
-3. Source your `.bashrc` file by inputting: `$ . ~/.bashrc`.
+
+    ```bash
+    sudo bash InstallHalyard.sh
+    ```
+
+3. Source your `.bashrc` file.
+
+    ```bash
+    . ~/.bashrc
+    ```
+
 4. Verify Halyard was installed by checking the version.
 
     ```bash
@@ -39,7 +58,7 @@ Install the [AWS CLI tool](https://docs.aws.amazon.com/cli/latest/userguide/inst
 > info "Simplifying AWS Credentials"
 > You can make future AWS CLI commands easier by adding creating AWS `profiles`, which will add configuration and credentials to the local `~/.aws/credentials` file.  > We'll just be using a single (`default`) profile here, so we don't need to specify an actual profile name, but we could do so with the `--profile <profile-name>` flag as part of the `aws configure` command.  Check out the [official documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) for more info.
 > ```bash
-> $ aws configure
+> aws configure
 > AWS Access Key ID [None]: <AWS_ACCESS_KEY_ID>
 > AWS Secret Access Key [None]: <AWS_SECRET_ACCESS_KEY>
 > Default region name [None]: us-west-2
@@ -257,7 +276,7 @@ The [CloudFormation Spinnaker Stack](#setup-the-cloudformation-spinnaker-stack) 
 5. Verify that `kubectl` is able to use your credentials to connect to your cluster with `kubectl get svc`:
 
     ```bash
-    $ kubectl get svc
+    kubectl get svc
 
     NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
     kubernetes   ClusterIP   172.25.0.1   <none>        443/TCP   31m

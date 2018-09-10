@@ -325,16 +325,34 @@
 <ol>
   <li>Download Halyard installation script.
     <ul>
-      <li>For Debian/Ubuntu: <code class="highlighter-rouge">$ curl -O https://raw.githubusercontent.com/spinnaker/halyard/master/install/debian/InstallHalyard.sh</code></li>
-      <li>For MacOS: <code class="highlighter-rouge">$ curl -O https://raw.githubusercontent.com/spinnaker/halyard/master/install/macos/InstallHalyard.sh</code></li>
+      <li>
+        <p>Debian/Ubuntu</p>
+
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  curl <span class="nt">-O</span> https://raw.githubusercontent.com/spinnaker/halyard/master/install/debian/InstallHalyard.sh
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>MacOS</p>
+
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  curl <span class="nt">-O</span> https://raw.githubusercontent.com/spinnaker/halyard/master/install/macos/InstallHalyard.sh
+</code></pre></div>        </div>
+      </li>
     </ul>
   </li>
-  <li>Install Halyard: <code class="highlighter-rouge">$ sudo bash InstallHalyard.sh</code>
+  <li>Install Halyard.
     <ul>
       <li>If prompted, default values are typically OK.</li>
     </ul>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>bash InstallHalyard.sh
+</code></pre></div>    </div>
   </li>
-  <li>Source your <code class="highlighter-rouge">.bashrc</code> file by inputting: <code class="highlighter-rouge">$ . ~/.bashrc</code>.</li>
+  <li>
+    <p>Source your <code class="highlighter-rouge">.bashrc</code> file.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">.</span> ~/.bashrc
+</code></pre></div>    </div>
+  </li>
   <li>
     <p>Verify Halyard was installed by checking the version.</p>
 
@@ -348,7 +366,7 @@
 <p>Install the <a href="https://docs.aws.amazon.com/cli/latest/userguide/installing.html">AWS CLI tool</a> on your machine, if you haven’t done so already.</p>
 
 <div class="premonition info modified"><div class="fa fa-info-circle"></div><div class="content"><p class="header">Simplifying AWS Credentials</p><p>You can make future AWS CLI commands easier by adding creating AWS <code class="highlighter-rouge">profiles</code>, which will add configuration and credentials to the local <code class="highlighter-rouge">~/.aws/credentials</code> file.  &gt; We’ll just be using a single (<code class="highlighter-rouge">default</code>) profile here, so we don’t need to specify an actual profile name, but we could do so with the <code class="highlighter-rouge">--profile &lt;profile-name&gt;</code> flag as part of the <code class="highlighter-rouge">aws configure</code> command.  Check out the <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html">official documentation</a> for more info.</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>aws configure
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws configure
 AWS Access Key ID <span class="o">[</span>None]: &lt;AWS_ACCESS_KEY_ID&gt;
 AWS Secret Access Key <span class="o">[</span>None]: &lt;AWS_SECRET_ACCESS_KEY&gt;
 Default region name <span class="o">[</span>None]: us-west-2
@@ -578,7 +596,7 @@ Default output format <span class="o">[</span>None]: text
   <li>
     <p>Verify that <code class="highlighter-rouge">kubectl</code> is able to use your credentials to connect to your cluster with <code class="highlighter-rouge">kubectl get svc</code>:</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span>kubectl get svc
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> kubectl get svc
 
  NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>   AGE
  kubernetes   ClusterIP   172.25.0.1   &lt;none&gt;        443/TCP   31m
