@@ -1,0 +1,22 @@
+# main links
+# main:
+#   - title: "Quick-Start Guide"
+#     url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+
+docs:
+  - title: Hub Pages
+    children:
+      - title: "Chaos Monkey Guide for Engineers"
+        url: /
+      - title: "The Origin of Chaos Monkey"
+        url: /origin-netflix
+      - title: "Chaos Monkey Tutorial"
+        url: /developer-tutorial      
+      - title: "Advanced Developer Guide"
+        url: /advanced-tips
+      - title: "The Simian Army"
+        url: /simian-army
+      - title: "Chaos Monkey Resources"
+        url: /downloads-resources
+      - title: "Chaos Monkey Alternatives"
+        url: /alternatives

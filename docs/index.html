@@ -1,65 +1,282 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training | Gremlin: Chaos Monkey</title>
-<meta name="generator" content="Jekyll v3.7.3" />
-<meta property="og:title" content="Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="A summary of the full Chaos Monkey Guide for Engineers." />
-<meta property="og:description" content="A summary of the full Chaos Monkey Guide for Engineers." />
-<link rel="canonical" href="http://localhost:4000/gremlin-chaos-monkey/" />
-<meta property="og:url" content="http://localhost:4000/gremlin-chaos-monkey/" />
-<meta property="og:site_name" content="Gremlin: Chaos Monkey" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2018-08-26T00:00:00-07:00" />
-<script type="application/ld+json">
-{"name":"Gremlin: Chaos Monkey","description":"A summary of the full Chaos Monkey Guide for Engineers.","@type":"WebSite","url":"http://localhost:4000/gremlin-chaos-monkey/","headline":"Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training","dateModified":"2018-08-26T00:00:00-07:00","datePublished":"2018-08-26T00:00:00-07:00","@context":"http://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/gremlin-chaos-monkey/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/gremlin-chaos-monkey/feed.xml" title="Gremlin: Chaos Monkey" /><link rel="icon" href="/favicon.ico" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-</head>
-<body><header class="site-header" role="banner">
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.12.2 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
 
-  <div class="wrapper"><a class="site-title" rel="author" href="/gremlin-chaos-monkey/">Gremlin: Chaos Monkey</a><nav class="site-nav">
-        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
-        <label for="nav-trigger">
-          <span class="menu-icon">
-            <svg viewBox="0 0 18 15" width="18px" height="15px">
-              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
-            </svg>
-          </span>
-        </label>
+<!-- begin _includes/seo.html --><title>Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training - Gremlin: Chaos Monkey</title>
+<meta name="description" content="A summary of the full Chaos Monkey Guide for Engineers.">
 
-        <div class="trigger"><a class="page-link" href="/gremlin-chaos-monkey/advanced-tips/">Taking Chaos Monkey to the Next Level - Advanced Developer Guide</a><a class="page-link" href="/gremlin-chaos-monkey/alternatives/azure/">Chaos Monkey Alternatives - Azure</a><a class="page-link" href="/gremlin-chaos-monkey/alternatives/docker/">Chaos Monkey Alternatives - Docker</a><a class="page-link" href="/gremlin-chaos-monkey/alternatives/google-cloud-platform/">Chaos Monkey Alternatives - Google Cloud Platform</a><a class="page-link" href="/gremlin-chaos-monkey/alternatives/kubernetes/">Chaos Monkey Alternatives - Kubernetes</a><a class="page-link" href="/gremlin-chaos-monkey/alternatives/openshift/">Chaos Monkey Alternatives - OpenShift</a><a class="page-link" href="/gremlin-chaos-monkey/alternatives/private-cloud/">Chaos Monkey Alternatives - Private Cloud</a><a class="page-link" href="/gremlin-chaos-monkey/alternatives/sprint-boot/">Chaos Monkey Alternatives - Spring Boot</a><a class="page-link" href="/gremlin-chaos-monkey/alternatives/vmware/">Chaos Monkey Alternatives - VMWare</a><a class="page-link" href="/gremlin-chaos-monkey/alternatives/">Chaos Monkey Alternatives - Tools for Creating Chaos Outside of AWS</a><a class="page-link" href="/gremlin-chaos-monkey/developer-tutorial/">Chaos Monkey Tutorial - A Step-by-Step Guide to Creating Failure on AWS</a><a class="page-link" href="/gremlin-chaos-monkey/downloads-resources/">Chaos Monkey Resources, Guides, and Downloads for Engineers</a><a class="page-link" href="/gremlin-chaos-monkey/origin-netflix/">The Origin of Chaos Monkey - Why Netflix Needed to Create Failure</a><a class="page-link" href="/gremlin-chaos-monkey/simian-army/">The Simian Army - Overview and Resources</a><a class="page-link" href="/gremlin-chaos-monkey/">Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training</a></div>
-      </nav></div>
-</header>
-<main class="page-content" aria-label="Content">
-      <div class="wrapper">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Gremlin: Chaos Monkey">
+<meta property="og:title" content="Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training">
+<meta property="og:url" content="http://localhost:4000/">
+
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2018-08-26T00:00:00-07:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Gabe Wyatt",
+      "url": "http://localhost:4000",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Gremlin: Chaos Monkey Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+<link rel="icon" href="/favicon.ico" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">Gremlin: Chaos Monkey</a>
+        <ul class="visible-links"></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">Hub Pages</span>
+        
+
+        
         <ul>
-  <li><a href="#">Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training</a>
-    <ul>
-      <li><a href="#what-is-this-guide">What Is This Guide?</a></li>
-      <li><a href="#who-is-this-guide-for">Who Is This Guide For?</a></li>
-      <li><a href="#why-did-we-create-this-guide">Why Did We Create This Guide?</a></li>
-      <li><a href="#when-and-where-should-this-guide-be-used">When and Where Should This Guide Be Used?</a></li>
-      <li><a href="#the-pros-and-cons-of-chaos-monkey">The Pros and Cons of Chaos Monkey</a>
-        <ul>
-          <li><a href="#pros-of-chaos-monkey">Pros of Chaos Monkey</a></li>
-          <li><a href="#cons-of-chaos-monkey">Cons of Chaos Monkey</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/" class="active">Chaos Monkey Guide for Engineers</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/origin-netflix" class="">The Origin of Chaos Monkey</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/developer-tutorial" class="">Chaos Monkey Tutorial</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/advanced-tips" class="">Advanced Developer Guide</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/simian-army" class="">The Simian Army</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/downloads-resources" class="">Chaos Monkey Resources</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/alternatives" class="">Chaos Monkey Alternatives</a></li>
+          
         </ul>
+        
       </li>
-      <li><a href="#the-origin-of-chaos-monkey---why-netflix-needed-to-create-failure">The Origin of Chaos Monkey - Why Netflix Needed to Create Failure</a></li>
-      <li><a href="#chaos-monkey-tutorial---a-step-by-step-guide-to-creating-failure-on-aws">Chaos Monkey Tutorial - A Step-by-Step Guide to Creating Failure on AWS</a></li>
-      <li><a href="#taking-chaos-monkey-to-the-next-level---advanced-developer-guide">Taking Chaos Monkey to the Next Level - Advanced Developer Guide</a></li>
-      <li><a href="#the-simian-army---overview-and-resources">The Simian Army - Overview and Resources</a></li>
-      <li><a href="#chaos-monkey-resources-guides-and-downloads-for-engineers">Chaos Monkey Resources, Guides, and Downloads for Engineers</a></li>
-      <li><a href="#chaos-monkey-alternatives---tools-for-creating-chaos-outside-of-aws">Chaos Monkey Alternatives - Tools for Creating Chaos Outside of AWS</a></li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training">
+    
+    <meta itemprop="datePublished" content="August 26, 2018">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  9 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> </h4></header>
+              <ul class="toc__menu">
+  <li><a href="#what-is-this-guide">What Is This Guide?</a></li>
+  <li><a href="#who-is-this-guide-for">Who Is This Guide For?</a></li>
+  <li><a href="#why-did-we-create-this-guide">Why Did We Create This Guide?</a></li>
+  <li><a href="#when-and-where-should-this-guide-be-used">When and Where Should This Guide Be Used?</a></li>
+  <li><a href="#the-pros-and-cons-of-chaos-monkey">The Pros and Cons of Chaos Monkey</a>
+    <ul>
+      <li><a href="#pros-of-chaos-monkey">Pros of Chaos Monkey</a></li>
+      <li><a href="#cons-of-chaos-monkey">Cons of Chaos Monkey</a></li>
     </ul>
   </li>
+  <li><a href="#the-origin-of-chaos-monkey---why-netflix-needed-to-create-failure">The Origin of Chaos Monkey - Why Netflix Needed to Create Failure</a></li>
+  <li><a href="#chaos-monkey-tutorial---a-step-by-step-guide-to-creating-failure-on-aws">Chaos Monkey Tutorial - A Step-by-Step Guide to Creating Failure on AWS</a></li>
+  <li><a href="#taking-chaos-monkey-to-the-next-level---advanced-developer-guide">Taking Chaos Monkey to the Next Level - Advanced Developer Guide</a></li>
+  <li><a href="#the-simian-army---overview-and-resources">The Simian Army - Overview and Resources</a></li>
+  <li><a href="#chaos-monkey-resources-guides-and-downloads-for-engineers">Chaos Monkey Resources, Guides, and Downloads for Engineers</a></li>
+  <li><a href="#chaos-monkey-alternatives---tools-for-creating-chaos-outside-of-aws">Chaos Monkey Alternatives - Tools for Creating Chaos Outside of AWS</a></li>
 </ul>
-        <div class="home"><h1 class="page-heading">Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training</h1><blockquote>
+            </nav>
+          </aside>
+        
+        <blockquote>
   <p>This section should be a broad overview of chaos monkey, and link to all the subsections of the guide while answering the questions, “what is chaos monkey” and other basic awareness level questions. 
 Below this intro section, there should be links + descriptions to all other pages in this content plan, each new page will be linked to and listed below, mimicking the format of the Machine Learning Guide for Marketers. 
 http://ipullrank.com/machine-learning-guide/</p>
@@ -172,33 +389,78 @@ http://ipullrank.com/machine-learning-guide/</p>
   </li>
 </ul>
 
-</div>
 
-      </div>
-    </main><footer class="site-footer h-card">
-  <data class="u-url" href="/gremlin-chaos-monkey/"></data>
+        
+      </section>
 
-  <div class="wrapper">
+      <footer class="page__meta">
+        
+        
 
-    <h2 class="footer-heading">Gremlin: Chaos Monkey</h2>
 
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li class="p-name">Gremlin: Chaos Monkey</li><li><a class="u-email" href="mailto:gabe@gabewyatt.com">gabe@gabewyatt.com</a></li></ul>
-      </div>
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-08-26T00:00:00-07:00">August 26, 2018</time></p>
+        
+      </footer>
 
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/gabestah"><svg class="svg-icon"><use xlink:href="/gremlin-chaos-monkey/assets/minima-social-icons.svg#github"></use></svg> <span class="username">gabestah</span></a></li></ul>
-</div>
+      <section class="page__share">
+  
 
-      <div class="footer-col footer-col-3">
-        <p></p>
-      </div>
+  <a href="https://twitter.com/intent/tweet?text=Chaos+Monkey+Guide+for+Engineers+-+Tips%2C+Tutorials%2C+and+Training%20http%3A%2F%2Flocalhost%3A4000%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=http%3A%2F%2Flocalhost%3A4000%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
     </div>
 
-  </div>
+    
+  </article>
 
-</footer>
-</body>
+  
+  
+</div>
+    </div>
 
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+    
+    
+    
+    
+    
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2018 Gabe Wyatt. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+
+
+
+
+
+
+
+  </body>
 </html>
