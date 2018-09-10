@@ -27,7 +27,7 @@
 
 
 
-  <meta property="article:published_time" content="2018-08-30T00:00:00-07:00">
+  <meta property="article:published_time" content="2018-09-07T00:00:00-07:00">
 
 
 
@@ -96,7 +96,7 @@
 
 
     <!-- start custom head snippets -->
-<link rel="icon" href="/favicon.ico" />
+<link rel="icon" href="https://www.gremlin.com/favicon-32x32.png" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
 
@@ -115,7 +115,9 @@
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
         <a class="site-title" href="/gremlin-chaos-monkey/">Gremlin: Chaos Monkey</a>
-        <ul class="visible-links"></ul>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/gremlin-chaos-monkey/notes" >Notes to Editor</a>
+            </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Toggle Menu</span>
@@ -246,6 +248,82 @@
         
       </li>
     
+      <li>
+        
+          <span class="nav__sub-title">Alternatives</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/azure" class="">Azure</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/docker" class="">Docker</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/google-cloud-platform" class="">Google Cloud Platform</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/kubernetes" class="">Kubernetes</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/openshift" class="">OpenShift</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/private-cloud" class="">Private Cloud</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/spring-boot" class="">Spring Boot</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/vmware" class="">VMWare</a></li>
+          
+        </ul>
+        
+      </li>
+    
   </ul>
 </nav>
     
@@ -256,7 +334,7 @@
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     <meta itemprop="headline" content="Chaos Monkey Tutorial - A Step-by-Step Guide to Creating Failure on AWS">
     
-    <meta itemprop="datePublished" content="August 30, 2018">
+    <meta itemprop="datePublished" content="September 07, 2018">
     
 
     <div class="page__inner-wrap">
@@ -270,7 +348,7 @@
 
 
 
-  23 minute read
+  24 minute read
 </p>
           
         </header>
@@ -282,7 +360,21 @@
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> </h4></header>
               <ul class="toc__menu">
-  <li><a href="#setting-up-chaos-monkey">Setting Up Chaos Monkey</a>
+  <li><a href="#deploying-spinnaker">Deploying Spinnaker</a>
+    <ul>
+      <li><a href="#rapid-spinnaker-deployment-aws-quick-start">Rapid Spinnaker Deployment: AWS Quick Start</a>
+        <ul>
+          <li><a href="#creating-the-spinnaker-stack">Creating the Spinnaker Stack</a></li>
+          <li><a href="#connect-to-the-bastion-host">Connect to the Bastion Host</a></li>
+          <li><a href="#connect-to-the-spinnaker-host">Connect to the Spinnaker Host</a></li>
+          <li><a href="#create-a-spinnaker-application">Create a Spinnaker Application</a></li>
+        </ul>
+      </li>
+      <li><a href="#manual-spinnaker-deployment-with-halyard">Manual Spinnaker Deployment With Halyard</a></li>
+      <li><a href="#deploying-spinnaker-on-aws-ekskubernetes">Deploying Spinnaker on AWS EKS/Kubernetes</a></li>
+    </ul>
+  </li>
+  <li><a href="#installing-chaos-monkey">Installing Chaos Monkey</a>
     <ul>
       <li><a href="#ssh-configuration">SSH Configuration</a></li>
       <li><a href="#aws-ec2-bastion--spinnaker">AWS EC2 Bastion &amp; Spinnaker</a></li>
@@ -332,7 +424,9 @@
             </nav>
           </aside>
         
-        <ul>
+        <p><strong>(TODO)</strong>: Continue cleanup/organize sections; move some content to <code class="highlighter-rouge">advanced tips</code>.</p>
+
+<ul>
   <li>URL: <code class="highlighter-rouge">https://www.gremlin.com/chaos-monkey/developer-tutorial</code></li>
   <li>Parent: <code class="highlighter-rouge">Pillar Page: Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training</code></li>
   <li>Content:
@@ -360,7 +454,108 @@
   </li>
 </ul>
 
-<h2 id="setting-up-chaos-monkey">Setting Up Chaos Monkey</h2>
+<h2 id="deploying-spinnaker">Deploying Spinnaker</h2>
+
+<p>Love it or hate it, Chaos Monkey <strong>requires</strong> the use of <a href="https://www.spinnaker.io/">Spinnaker.io</a>, which is an open-source, multi-cloud continuous delivery platform developed by Netflix.  Spinnaker allows for automated deployments across multiple cloud platforms (such as AWS, Azure, Google Cloud Platform, and more).  Spinnaker can also be used to deploy across multiple accounts and regions, often using <strong>pipelines</strong> that define a series of events that should occur every time a new version is released.  Spinnaker is a powerful tool, but since both Spinnaker and Chaos Monkey were developed by and for Netflix’s own network architecture, you may find that trying to use Chaos Monkey and related tools is more painful than you might expect, as Spinnaker isn’t perfectly suited to all organizations or applications.</p>
+
+<p>That said, in this first section we’ll explore the two easiest ways to get Spinnaker up and running, which will then allow you to move onto <a href="#installing-chaos-moneky">installing</a> and then <a href="#using-chaos-monkey">using</a>.</p>
+
+<h3 id="rapid-spinnaker-deployment-aws-quick-start">Rapid Spinnaker Deployment: AWS Quick Start</h3>
+
+<p>By far the easiest method for getting Spinnaker up and running with AWS is to use the <a href="https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Spinnaker&amp;templateURL=https:%2F%2Fs3.amazonaws.com%2Faws-quickstart%2Fquickstart-spinnaker%2Ftemplates%2Fquickstart-spinnakercf.template">CloudFormation Quick Start</a> template.</p>
+
+<p>The AWS Spinnaker Quick Start will create a simple architecture for you containing two Virtual Private Cloud (VPC) subnets (one public and one private).  The public VPC contains a <a href="https://en.wikipedia.org/wiki/Bastion_host">Bastion host</a> instance designed to be strictly accessible (only port 22 is open for SSH).  The Bastion host will then allow a pass through connection to the private VPC that is running Spinnaker.</p>
+
+<p><img src="../images/developer-tutorial-aws-spinnaker-quick-start-architecture.png" alt="developer-tutorial-aws-spinnaker-quick-start-architecture" title="AWS Spinnaker Quick Start Architecture" /></p>
+
+<p><em>Figure 1: AWS Spinnaker Quick Start Architecture - <strong>Courtesy of AWS</strong></em></p>
+
+<p>This quick start process will take about 10 - 15 minutes and is mostly automated.</p>
+
+<h4 id="creating-the-spinnaker-stack">Creating the Spinnaker Stack</h4>
+
+<ol>
+  <li><em>(Optional)</em> If necessary, visit <a href="https://aws.amazon.com/">https://aws.amazon.com/</a> to sign up for or login to your AWS account.</li>
+  <li><em>(Optional)</em> You’ll need at least one AWS EC2 Key Pair for securely connecting via SSH.
+    <ol>
+      <li>If you don’t have a KeyPair already start by opening the AWS Console and navigate to <strong>EC2 &gt; NETWORK &amp; SECURITY &gt; Key Pairs</strong>.</li>
+      <li>Click <strong>Create Key Pair</strong> and enter an identifying name in the <strong>Key pair name</strong> field.</li>
+      <li>Click <strong>Create</strong> to download the private <code class="highlighter-rouge">.pem</code> key file to your local system.</li>
+      <li>Save this key to an appropriate location (typically your local user <code class="highlighter-rouge">~/.ssh</code> directory).</li>
+    </ol>
+  </li>
+  <li>After you’ve signed into the AWS console visit <a href="https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Spinnaker&amp;templateURL=https:%2F%2Fs3.amazonaws.com%2Faws-quickstart%2Fquickstart-spinnaker%2Ftemplates%2Fquickstart-spinnakercf.template">this page</a>, which should load the <a href="https://s3.amazonaws.com/aws-quickstart/quickstart-spinnaker/templates/quickstart-spinnakercf.template"><code class="highlighter-rouge">quickstart-spinnakercf.template</code></a>.</li>
+  <li>Click <strong>Next</strong>.</li>
+  <li>(Optional) If you haven’t already done so, you’ll need to create at least one AWS Access Key, which is a</li>
+  <li>Select the <strong>KeyName</strong> of the key pair you previously created.</li>
+  <li>Input a secure password in the <strong>Password</strong> field.</li>
+  <li><em>(Optional)</em> Modify the IP address range in the <strong>SSHLocation</strong> field to indicate what IP range is allowed to SSH into the Bastion host.  For example, if your public IP address is <code class="highlighter-rouge">1.2.3.4</code> you might enter <code class="highlighter-rouge">1.2.3.4/32</code> into this field.  If you aren’t sure, you can enter <code class="highlighter-rouge">0.0.0.0/0</code> to allow any IP address to connect, though this is obviously less secure.</li>
+  <li>Click <strong>Next</strong>.</li>
+  <li><em>(Optional)</em> Select an <strong>IAM Role</strong> with proper CloudFormation permissions necessary to deploy a stack.  If you aren’t sure, leave this blank and deployment will use your account’s permissions.</li>
+  <li>Modify any other fields on this screen you wish, then click <strong>Next</strong> to continue.</li>
+  <li>
+    <p>Check the <strong>I acknowledge that AWS CloudFormation might create IAM resources with custom names.</strong> checkbox and click <strong>Create</strong> to generate the stack.</p>
+
+    <div class="premonition warning modified"><div class="fa fa-exclamation-circle"></div><div class="content"><p>If your AWS account already contains the <code class="highlighter-rouge">BaseIAMRole</code> AWS::IAM::Role you may have to delete it before this template will succeed.</p></div></div>
+  </li>
+  <li>Once the <code class="highlighter-rouge">Spinnaker</code> stack has a <code class="highlighter-rouge">CREATE_COMPLETE</code> <strong>Status</strong>, select the <strong>Outputs</strong> tab, which has some auto-generated strings you’ll need to paste in your terminal in the next section.</li>
+</ol>
+
+<h4 id="connect-to-the-bastion-host">Connect to the Bastion Host</h4>
+
+<ol>
+  <li>Copy the <strong>Value</strong> of the <strong>SSHString1</strong> field from the stack <strong>Outputs</strong> tab above.</li>
+  <li>
+    <p>Execute the <strong>SSHString1</strong> value in your terminal and enter <code class="highlighter-rouge">yes</code> when prompted to continue connecting to this host.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ssh <span class="nt">-A</span> <span class="nt">-L</span> 9000:localhost:9000 <span class="nt">-L</span> 8084:localhost:8084 <span class="nt">-L</span> 8087:localhost:8087 ec2-user@34.217.41.184
+</code></pre></div>    </div>
+
+    <div class="premonition error modified"><div class="fa fa-exclamation-triangle"></div><div class="content"><p class="header">Permission denied (publickey).</p><p>If you received a permission denied SSH error you may have forgotten to place your <code class="highlighter-rouge">.pem</code> private key file that you downloaded from the AWS EC2 Key Pair creation page.  Make sure it is located in your <code class="highlighter-rouge">~/.ssh</code> user directory.  Otherwise you can specify the key by adding an optional <code class="highlighter-rouge">-i &lt;identify_file_path&gt;</code> flag, indicating the path to the <code class="highlighter-rouge">.pem</code> file.</p></div></div>
+  </li>
+  <li>
+    <p>You should now be connected as the <code class="highlighter-rouge">ec2-user</code> to the Bastion instance.  Before you can connect to the Spinnaker instance you’ll probably need to copy your <code class="highlighter-rouge">.pem</code> file to the Spinnaker instance’s <code class="highlighter-rouge">~/.ssh</code> directory.</p>
+
+    <ul>
+      <li>
+        <p>Once the key is copied, make sure you set proper permissions otherwise SSH will complain.</p>
+
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  chmod 400 ~/.ssh/my_key.pem
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="connect-to-the-spinnaker-host">Connect to the Spinnaker Host</h4>
+
+<ol>
+  <li>
+    <p>To connect to the Spinnaker instance copy and paste the <strong>SSHString2</strong> <strong>Value</strong> into the terminal.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ssh –L 9000:localhost:9000 <span class="nt">-L</span> 8084:localhost:8084 <span class="nt">-L</span> 8087:localhost:8087 ubuntu@10.100.10.182 <span class="nt">-i</span> ~/.ssh/my_key.pem
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>You should now be connected to the <code class="highlighter-rouge">SpinnakerWebServer</code>!</p>
+
+    <div class="premonition warning modified"><div class="fa fa-exclamation-circle"></div><div class="content"><p class="header">System restart required</p><p>Upon connecting to the Spinnaker instance you may see a message indicating the system needs to be restarted.  You can do this through the AWS EC2 console, or just enter the <code class="highlighter-rouge">sudo reboot</code> command in the terminal, then reconnect after a few moments.</p></div></div>
+  </li>
+</ol>
+
+<h4 id="create-a-spinnaker-application">Create a Spinnaker Application</h4>
+
+<p><strong>(TODO)</strong></p>
+
+<h3 id="manual-spinnaker-deployment-with-halyard">Manual Spinnaker Deployment With Halyard</h3>
+
+<p><strong>(TODO)</strong></p>
+
+<h3 id="deploying-spinnaker-on-aws-ekskubernetes">Deploying Spinnaker on AWS EKS/Kubernetes</h3>
+
+<div class="premonition info modified"><div class="fa fa-info-circle"></div><div class="content"><p>Since deploying Spinnaker on a Kubernetes cluster is a fairly lengthy and complex process, you can find the full tutorial for this over in the <a href="https://www.gremlin.com/chaos-monkey/advanced-tips#how-to-deploy-spinnaker-on-aws-with-kubernetes">Advanced Developer Guide</a>.</p></div></div>
+
+<h2 id="installing-chaos-monkey">Installing Chaos Monkey</h2>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">######### WELCOME TO SPINNAKER ############</span>
 
@@ -416,495 +611,7 @@ This message will now self-destruct. Enjoy
 
 <h3 id="aws-ec2-bastion--spinnaker">AWS EC2 Bastion &amp; Spinnaker</h3>
 
-<table>
-  <thead>
-    <tr>
-      <th>Timestamp</th>
-      <th>Status</th>
-      <th>Type</th>
-      <th>Logical ID</th>
-      <th>Status Reason</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>16:31:51 UTC-0700</td>
-      <td>CREATE_COMPLETE</td>
-      <td>AWS::CloudFormation::Stack</td>
-      <td>Spinnaker</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:31:48 UTC-0700</td>
-      <td>CREATE_COMPLETE</td>
-      <td>AWS::EC2::Instance</td>
-      <td>SpinnakerWebServer</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:31:32 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::Instance</td>
-      <td>SpinnakerWebServer</td>
-      <td>Resource creation Initiated</td>
-    </tr>
-    <tr>
-      <td>16:31:31 UTC-0700</td>
-      <td>CREATE_COMPLETE</td>
-      <td>AWS::EC2::Route</td>
-      <td>SpinnakerPrivateRoute</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:31:30 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::Instance</td>
-      <td>SpinnakerWebServer</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:31:28 UTC-0700</td>
-      <td>CREATE_COMPLETE</td>
-      <td>AWS::IAM::InstanceProfile</td>
-      <td>SpinnakerInstanceProfile</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:31:15 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::Route</td>
-      <td>SpinnakerPrivateRoute</td>
-      <td>Resource creation Initiated</td>
-    </tr>
-    <tr>
-      <td>16:31:15 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::Route</td>
-      <td>SpinnakerPrivateRoute</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:31:13 UTC-0700</td>
-      <td>CREATE_COMPLETE</td>
-      <td>AWS::EC2::NatGateway</td>
-      <td>NAT</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:58 UTC-0700</td>
-      <td>CREATE_COMPLETE</td>
-      <td>AWS::EC2::Instance</td>
-      <td>BastionServer</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:46 UTC-0700</td>
-      <td>CREATE_COMPLETE</td>
-      <td>AWS::IAM::AccessKey</td>
-      <td>SpinnakerAccessKey</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:45 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::IAM::AccessKey</td>
-      <td>SpinnakerAccessKey</td>
-      <td>Resource creation Initiated</td>
-    </tr>
-    <tr>
-      <td>16:29:45 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::IAM::AccessKey</td>
-      <td>SpinnakerAccessKey</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:43 UTC-0700</td>
-      <td>CREATE_COMPLETE</td>
-      <td>AWS::EC2::Route</td>
-      <td>SpinnakerPublicRoute</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:43 UTC-0700</td>
-      <td>CREATE_COMPLETE</td>
-      <td>AWS::IAM::User</td>
-      <td>SpinnakerUser</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:43 UTC-0700</td>
-      <td>CREATE_COMPLETE</td>
-      <td>AWS::EC2::SubnetRouteTableAssociation</td>
-      <td>SpinnakerPublicSubnetRouteTableAssociation</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:39 UTC-0700</td>
-      <td>CREATE_COMPLETE</td>
-      <td>AWS::EC2::SubnetRouteTableAssociation</td>
-      <td>SpinnakerPrivateSubnetRouteTableAssociation</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:27 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::Route</td>
-      <td>SpinnakerPublicRoute</td>
-      <td>Resource creation Initiated</td>
-    </tr>
-    <tr>
-      <td>16:29:27 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::IAM::InstanceProfile</td>
-      <td>SpinnakerInstanceProfile</td>
-      <td>Resource creation Initiated</td>
-    </tr>
-    <tr>
-      <td>16:29:27 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::SubnetRouteTableAssociation</td>
-      <td>SpinnakerPublicSubnetRouteTableAssociation</td>
-      <td>Resource creation Initiated</td>
-    </tr>
-    <tr>
-      <td>16:29:27 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::IAM::InstanceProfile</td>
-      <td>SpinnakerInstanceProfile</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:27 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::Route</td>
-      <td>SpinnakerPublicRoute</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:26 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::SubnetRouteTableAssociation</td>
-      <td>SpinnakerPublicSubnetRouteTableAssociation</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:25 UTC-0700</td>
-      <td>CREATE_COMPLETE</td>
-      <td>AWS::IAM::Role</td>
-      <td>SpinnakerRole</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:25 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::Instance</td>
-      <td>BastionServer</td>
-      <td>Resource creation Initiated</td>
-    </tr>
-    <tr>
-      <td>16:29:24 UTC-0700</td>
-      <td>CREATE_COMPLETE</td>
-      <td>AWS::EC2::RouteTable</td>
-      <td>SpinnakerPublicRouteTable</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:24 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::NatGateway</td>
-      <td>NAT</td>
-      <td>Resource creation Initiated</td>
-    </tr>
-    <tr>
-      <td>16:29:24 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::NatGateway</td>
-      <td>NAT</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:24 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::SubnetRouteTableAssociation</td>
-      <td>SpinnakerPrivateSubnetRouteTableAssociation</td>
-      <td>Resource creation Initiated</td>
-    </tr>
-    <tr>
-      <td>16:29:23 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::RouteTable</td>
-      <td>SpinnakerPublicRouteTable</td>
-      <td>Resource creation Initiated</td>
-    </tr>
-    <tr>
-      <td>16:29:23 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::Instance</td>
-      <td>BastionServer</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:23 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::RouteTable</td>
-      <td>SpinnakerPublicRouteTable</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:23 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::SubnetRouteTableAssociation</td>
-      <td>SpinnakerPrivateSubnetRouteTableAssociation</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:21 UTC-0700</td>
-      <td>CREATE_COMPLETE</td>
-      <td>AWS::EC2::Subnet</td>
-      <td>SpinnakerPublicSubnet</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:21 UTC-0700</td>
-      <td>CREATE_COMPLETE</td>
-      <td>AWS::EC2::Subnet</td>
-      <td>SpinnakerPrivateSubnet</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:21 UTC-0700</td>
-      <td>CREATE_COMPLETE</td>
-      <td>AWS::EC2::VPCGatewayAttachment</td>
-      <td>SpinnakerAttachGateway</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:18 UTC-0700</td>
-      <td>CREATE_COMPLETE</td>
-      <td>AWS::EC2::SecurityGroup</td>
-      <td>SpinnakerWebServerSecurityGroup</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:17 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::SecurityGroup</td>
-      <td>SpinnakerWebServerSecurityGroup</td>
-      <td>Resource creation Initiated</td>
-    </tr>
-    <tr>
-      <td>16:29:12 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::SecurityGroup</td>
-      <td>SpinnakerWebServerSecurityGroup</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:10 UTC-0700</td>
-      <td>CREATE_COMPLETE</td>
-      <td>AWS::EC2::SecurityGroup</td>
-      <td>SpinnakerBastionSecurityGroup</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:09 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::SecurityGroup</td>
-      <td>SpinnakerBastionSecurityGroup</td>
-      <td>Resource creation Initiated</td>
-    </tr>
-    <tr>
-      <td>16:29:06 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::IAM::User</td>
-      <td>SpinnakerUser</td>
-      <td>Resource creation Initiated</td>
-    </tr>
-    <tr>
-      <td>16:29:06 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::IAM::Role</td>
-      <td>SpinnakerRole</td>
-      <td>Resource creation Initiated</td>
-    </tr>
-    <tr>
-      <td>16:29:06 UTC-0700</td>
-      <td>CREATE_COMPLETE</td>
-      <td>AWS::EC2::RouteTable</td>
-      <td>SpinnakerPrivateRouteTable</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:05 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::IAM::User</td>
-      <td>SpinnakerUser</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:05 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::VPCGatewayAttachment</td>
-      <td>SpinnakerAttachGateway</td>
-      <td>Resource creation Initiated</td>
-    </tr>
-    <tr>
-      <td>16:29:05 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::IAM::Role</td>
-      <td>SpinnakerRole</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:05 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::Subnet</td>
-      <td>SpinnakerPrivateSubnet</td>
-      <td>Resource creation Initiated</td>
-    </tr>
-    <tr>
-      <td>16:29:05 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::Subnet</td>
-      <td>SpinnakerPublicSubnet</td>
-      <td>Resource creation Initiated</td>
-    </tr>
-    <tr>
-      <td>16:29:05 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::VPCGatewayAttachment</td>
-      <td>SpinnakerAttachGateway</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:05 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::Subnet</td>
-      <td>SpinnakerPrivateSubnet</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:04 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::RouteTable</td>
-      <td>SpinnakerPrivateRouteTable</td>
-      <td>Resource creation Initiated</td>
-    </tr>
-    <tr>
-      <td>16:29:04 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::Subnet</td>
-      <td>SpinnakerPublicSubnet</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:04 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::SecurityGroup</td>
-      <td>SpinnakerBastionSecurityGroup</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:04 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::RouteTable</td>
-      <td>SpinnakerPrivateRouteTable</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:03 UTC-0700</td>
-      <td>CREATE_COMPLETE</td>
-      <td>AWS::IAM::Role</td>
-      <td>BaseIAMRole</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:03 UTC-0700</td>
-      <td>CREATE_COMPLETE</td>
-      <td>AWS::EC2::VPC</td>
-      <td>SpinnakerVPC</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:02 UTC-0700</td>
-      <td>CREATE_COMPLETE</td>
-      <td>AWS::EC2::EIP</td>
-      <td>NATEIP</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:29:02 UTC-0700</td>
-      <td>CREATE_COMPLETE</td>
-      <td>AWS::EC2::InternetGateway</td>
-      <td>SpinnakerInternetGateway</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:28:46 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::EIP</td>
-      <td>NATEIP</td>
-      <td>Resource creation Initiated</td>
-    </tr>
-    <tr>
-      <td>16:28:46 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::VPC</td>
-      <td>SpinnakerVPC</td>
-      <td>Resource creation Initiated</td>
-    </tr>
-    <tr>
-      <td>16:28:46 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::InternetGateway</td>
-      <td>SpinnakerInternetGateway</td>
-      <td>Resource creation Initiated</td>
-    </tr>
-    <tr>
-      <td>16:28:46 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::IAM::Role</td>
-      <td>BaseIAMRole</td>
-      <td>Resource creation Initiated</td>
-    </tr>
-    <tr>
-      <td>16:28:45 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::EIP</td>
-      <td>NATEIP</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:28:45 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::VPC</td>
-      <td>SpinnakerVPC</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:28:45 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::EC2::InternetGateway</td>
-      <td>SpinnakerInternetGateway</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:28:45 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::IAM::Role</td>
-      <td>BaseIAMRole</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16:28:43 UTC-0700</td>
-      <td>CREATE_IN_PROGRESS</td>
-      <td>AWS::CloudFormation::Stack</td>
-      <td>Spinnaker</td>
-      <td>User Initiated</td>
-    </tr>
-  </tbody>
-</table>
+<p><strong>(TODO)</strong></p>
 
 <h3 id="chaos-monkey--spinnaker-setup">Chaos Monkey + Spinnaker Setup</h3>
 
@@ -1347,8 +1054,10 @@ Problems <span class="k">in </span>default.provider.aws.default:
 
 <p>In this step you can choose which type of environment on which you want to install Spinnaker.  Most production setups will want to use Kubernetes or another distributed solution, but for this smaller example we’ll just use a local Debian installation, putting Spinnaker on the same machine that Halyard is on.</p>
 
-<div class="premonition info modified"><div class="fa fa-info-circle"></div><div class="content"><p>By default, Halyard should install as a local Debian environmental setup, so you shouldn’t need to make any changes for the environment.  However, if you want to verify it’s already configured locally you can run the <code class="highlighter-rouge">hal config deploy edit --type localdebian</code> command:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hal config deploy edit <span class="nt">--type</span> localdebian
+<div class="premonition info modified"><div class="fa fa-info-circle"></div><div class="content"><p>By default, Halyard should install as a local Debian environmental setup, so you shouldn’t need to make any changes for the environment.  However, if you want to verify it’s already configured locally you can run the <code class="highlighter-rouge">hal config deploy edit --type localdebian</code> command.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hal config deploy edit <span class="nt">--type</span> localdebian
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># OUTPUT</span>
 + Get current deployment
   Success
 + Get the deployment environment
@@ -1724,22 +1433,11 @@ Problems <span class="k">in </span>default.provider.aws.spinnaker-developer:
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-08-30T00:00:00-07:00">August 30, 2018</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-09-07T00:00:00-07:00">September 07, 2018</time></p>
         
       </footer>
 
-      <section class="page__share">
-  
-
-  <a href="https://twitter.com/intent/tweet?text=Chaos+Monkey+Tutorial+-+A+Step-by-Step+Guide+to+Creating+Failure+on+AWS%20http%3A%2F%2Flocalhost%3A4000%2Fgremlin-chaos-monkey%2Fdeveloper-tutorial%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
-
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fgremlin-chaos-monkey%2Fdeveloper-tutorial%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
-
-  <a href="https://plus.google.com/share?url=http%3A%2F%2Flocalhost%3A4000%2Fgremlin-chaos-monkey%2Fdeveloper-tutorial%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
-
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fgremlin-chaos-monkey%2Fdeveloper-tutorial%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
-</section>
-
+      
 
       
     </div>
@@ -1771,7 +1469,7 @@ Problems <span class="k">in </span>default.provider.aws.spinnaker-developer:
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2018 Gabe Wyatt. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2018 Gabe Wyatt</div>
 
       </footer>
     </div>

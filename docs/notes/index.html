@@ -9,16 +9,16 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Chaos Monkey Alternatives - Spring Boot - Gremlin: Chaos Monkey</title>
-<meta name="description" content="Explores Chaos Monkey alternative technologies on Spring Boot.">
+<!-- begin _includes/seo.html --><title>Notes to Gremlin Editors - Gremlin: Chaos Monkey</title>
+<meta name="description" content="A step-by-step guide on setting up and using Chaos Monkey with AWS, and also explores specific scenarios in which Chaos Monkey may (or may not) be relevant.">
 
 
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Gremlin: Chaos Monkey">
-<meta property="og:title" content="Chaos Monkey Alternatives - Spring Boot">
-<meta property="og:url" content="http://localhost:4000/gremlin-chaos-monkey/alternatives/sprint-boot/">
+<meta property="og:title" content="Notes to Gremlin Editors">
+<meta property="og:url" content="http://localhost:4000/gremlin-chaos-monkey/notes/">
 
 
 
@@ -27,7 +27,7 @@
 
 
 
-  <meta property="article:published_time" content="2018-08-30T00:00:00-07:00">
+  <meta property="article:published_time" content="2018-09-07T00:00:00-07:00">
 
 
 
@@ -38,7 +38,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/gremlin-chaos-monkey/alternatives/sprint-boot/">
+<link rel="canonical" href="http://localhost:4000/gremlin-chaos-monkey/notes/">
 
 
 
@@ -96,7 +96,7 @@
 
 
     <!-- start custom head snippets -->
-<link rel="icon" href="/favicon.ico" />
+<link rel="icon" href="https://www.gremlin.com/favicon-32x32.png" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
 
@@ -115,7 +115,9 @@
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
         <a class="site-title" href="/gremlin-chaos-monkey/">Gremlin: Chaos Monkey</a>
-        <ul class="visible-links"></ul>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/gremlin-chaos-monkey/notes" >Notes to Editor</a>
+            </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Toggle Menu</span>
@@ -150,17 +152,7 @@
         <span class="sep">/</span>
       
       
-        
-        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-          <a href="/gremlin-chaos-monkey/alternatives" itemprop="item"><span itemprop="name">Alternatives</span></a>
-          <meta itemprop="position" content="2" />
-        </li>
-        <span class="sep">/</span>
-      
-    
-      
-      
-        <li class="current">Chaos Monkey Alternatives - Spring Boot</li>
+        <li class="current">Notes to Gremlin Editors</li>
       
     
   </ol>
@@ -256,6 +248,82 @@
         
       </li>
     
+      <li>
+        
+          <span class="nav__sub-title">Alternatives</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/azure" class="">Azure</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/docker" class="">Docker</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/google-cloud-platform" class="">Google Cloud Platform</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/kubernetes" class="">Kubernetes</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/openshift" class="">OpenShift</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/private-cloud" class="">Private Cloud</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/spring-boot" class="">Spring Boot</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/vmware" class="">VMWare</a></li>
+          
+        </ul>
+        
+      </li>
+    
   </ul>
 </nav>
     
@@ -264,15 +332,15 @@
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Chaos Monkey Alternatives - Spring Boot">
+    <meta itemprop="headline" content="Notes to Gremlin Editors">
     
-    <meta itemprop="datePublished" content="August 30, 2018">
+    <meta itemprop="datePublished" content="September 07, 2018">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Chaos Monkey Alternatives - Spring Boot
+          <h1 id="page-title" class="page__title" itemprop="headline">Notes to Gremlin Editors
 </h1>
           
             <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
@@ -291,20 +359,21 @@
           <aside class="sidebar__right ">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> </h4></header>
-              
+              <ul class="toc__menu">
+  <li><a href="#images">Images</a></li>
+</ul>
             </nav>
           </aside>
         
-        <ul>
-  <li>URL: <code class="highlighter-rouge">https://www.gremlin.com/chaos-monkey/alternatives/spring-boot</code></li>
-  <li>Parent: <code class="highlighter-rouge">Category Section: Java</code></li>
-  <li>Content:
-    <ul>
-      <li><code class="highlighter-rouge">Overview</code>: <em>See above.</em></li>
-      <li><a href="https://codecentric.github.io/chaos-monkey-spring-boot/"><code class="highlighter-rouge">Spring Boot Chaos Monkey</code></a>: A small library which implements a Chaos Monkey for testing and attacking a <a href="http://spring.io/projects/spring-boot"><code class="highlighter-rouge">Spring Boot</code></a> application.</li>
-    </ul>
-  </li>
-</ul>
+        <p>The following items are assorted things for Austin and/or other editors to take note of and evaluate.</p>
+
+<h2 id="images">Images</h2>
+
+<ol>
+  <li>The following <code class="highlighter-rouge">AWS Spinnaker Quick Start Architecture</code> image, as used in the <a href="/gremlin-chaos-monkey/developer-tutorial">Developer Tutorial</a>, is <strong>copyright of AWS</strong>.  If desired, please recreate image for Gremlin.</li>
+</ol>
+
+<p><img src="../images/developer-tutorial-aws-spinnaker-quick-start-architecture.png" alt="developer-tutorial-aws-spinnaker-quick-start-architecture" title="AWS Spinnaker Quick Start Architecture" /></p>
 
 
         
@@ -316,22 +385,11 @@
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-08-30T00:00:00-07:00">August 30, 2018</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-09-07T00:00:00-07:00">September 07, 2018</time></p>
         
       </footer>
 
-      <section class="page__share">
-  
-
-  <a href="https://twitter.com/intent/tweet?text=Chaos+Monkey+Alternatives+-+Spring+Boot%20http%3A%2F%2Flocalhost%3A4000%2Fgremlin-chaos-monkey%2Falternatives%2Fsprint-boot%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
-
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fgremlin-chaos-monkey%2Falternatives%2Fsprint-boot%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
-
-  <a href="https://plus.google.com/share?url=http%3A%2F%2Flocalhost%3A4000%2Fgremlin-chaos-monkey%2Falternatives%2Fsprint-boot%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
-
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fgremlin-chaos-monkey%2Falternatives%2Fsprint-boot%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
-</section>
-
+      
 
       
     </div>
@@ -363,7 +421,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2018 Gabe Wyatt. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2018 Gabe Wyatt</div>
 
       </footer>
     </div>

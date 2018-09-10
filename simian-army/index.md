@@ -1,7 +1,6 @@
 ---
 title: "The Simian Army - Overview and Resources"
 description: "Details what the Simian Army is and how it relates to the more well known topic of Chaos Monkey."
-date: 2018-08-30
 path: "/chaos-monkey/simian-army"
 url: "https://www.gremlin.com/chaos-monkey/simian-army"
 sources: "See: _docs/resources.md"
@@ -36,66 +35,112 @@ https://www.spinnaker.io/
 
 ### Chaos Gorilla
 
+**(TODO)**
+
 ### Chaos Kong
+
+**(TODO)**
 
 ### Latency Monkey
 
+**(TODO)**
+
 ### Doctor Monkey
+
+**(TODO)**
 
 ### Janitor Monkey
 
+**(TODO)**
+
 ### Conformity Monkey
+
+**(TODO)**
 
 ### Security Monkey
 
+**(TODO)**
+
 ### 10-18 Monkey
+
+**(TODO)**
 
 ## Simian Army Strategies
 
-https://github.com/Netflix/SimianArmy/wiki/The-Chaos-Monkey-Army
+**(TODO)**: https://github.com/Netflix/SimianArmy/wiki/The-Chaos-Monkey-Army
 
 ### Instance Shutdown (Simius Mortus)
 
+**(TODO)**
+
 ### Network Traffic Blocker (Simius Quies)
+
+**(TODO)**
 
 ### EBS Volume Detachment (Simius Amputa)
 
+**(TODO)**
+
 ### Burn-CPU (Simius Cogitarius)
+
+**(TODO)**
 
 ### Burn-IO (Simius Occupatus)
 
+**(TODO)**
+
 ### Fill Disk (Simius Plenus)
+
+**(TODO)**
 
 ### Kill Processes (Simius Delirius)
 
+**(TODO)**
+
 ### Null-Route (Simius Desertus)
+
+**(TODO)**
 
 ### Fail DNS (Simius Nonomenius)
 
+**(TODO)**
+
 ### Fail EC2 API (Simius Noneccius)
+
+**(TODO)**
 
 ### Fail S3 API (Simius Amnesius)
 
+**(TODO)**
+
 ### Fail DynamoDB API (Simius Nodynamus)
+
+**(TODO)**
 
 ### Network Corruption (Simius Politicus)
 
+**(TODO)**
+
 ### Network Latency (Simius Tardus)
+
+**(TODO)**
 
 ### Network Loss (Simius Perditus)
 
-[/]:                                    /
-[/advanced-tips]:                       /advanced-tips
-[/alternatives]:                        /alternatives
-[/alternatives/azure]:                  /alternatives/azure
-[/alternatives/docker]:                 /alternatives/docker
-[/alternatives/google-cloud-platform]:  /alternatives/google-cloud-platform
-[/alternatives/kubernetes]:             /alternatives/kubernetes
-[/alternatives/openshift]:              /alternatives/openshift
-[/alternatives/private-cloud]:          /alternatives/private-cloud
-[/alternatives/spring-boot]:            /alternatives/spring-boot
-[/alternatives/vmware]:                 /alternatives/vmware
-[/developer-tutorial]:                  /developer-tutorial
-[/downloads-resources]:                 /downloads-resources
-[/origin-netflix]:                      /origin-netflix
-[/simian-army]:                         /simian-army
+**(TODO)**
+
+[/]:                                    /gremlin-chaos-monkey/
+[/advanced-tips]:                       /gremlin-chaos-monkey/advanced-tips
+[/alternatives]:                        /gremlin-chaos-monkey/alternatives
+[/alternatives/azure]:                  /gremlin-chaos-monkey/alternatives/azure
+[/alternatives/docker]:                 /gremlin-chaos-monkey/alternatives/docker
+[/alternatives/google-cloud-platform]:  /gremlin-chaos-monkey/alternatives/google-cloud-platform
+[/alternatives/kubernetes]:             /gremlin-chaos-monkey/alternatives/kubernetes
+[/alternatives/openshift]:              /gremlin-chaos-monkey/alternatives/openshift
+[/alternatives/private-cloud]:          /gremlin-chaos-monkey/alternatives/private-cloud
+[/alternatives/spring-boot]:            /gremlin-chaos-monkey/alternatives/spring-boot
+[/alternatives/vmware]:                 /gremlin-chaos-monkey/alternatives/vmware
+[/developer-tutorial]:                  /gremlin-chaos-monkey/developer-tutorial
+[/downloads-resources]:                 /gremlin-chaos-monkey/downloads-resources
+[/origin-netflix]:                      /gremlin-chaos-monkey/origin-netflix
+[/simian-army]:                         /gremlin-chaos-monkey/simian-army

@@ -22,7 +22,7 @@
 <loc>http://localhost:4000/gremlin-chaos-monkey/alternatives/private-cloud/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/gremlin-chaos-monkey/alternatives/sprint-boot/</loc>
+<loc>http://localhost:4000/gremlin-chaos-monkey/alternatives/spring-boot/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/gremlin-chaos-monkey/alternatives/vmware/</loc>
@@ -35,6 +35,9 @@
 </url>
 <url>
 <loc>http://localhost:4000/gremlin-chaos-monkey/downloads-resources/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/gremlin-chaos-monkey/notes/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/gremlin-chaos-monkey/origin-netflix/</loc>

@@ -1,12 +1,13 @@
 ---
 title: "Chaos Monkey Tutorial - A Step-by-Step Guide to Creating Failure on AWS"
 description: "A step-by-step guide on setting up and using Chaos Monkey with AWS, and also explores specific scenarios in which Chaos Monkey may (or may not) be relevant."
-date: 2018-08-30
 path: "/chaos-monkey/developer-tutorial"
 url: "https://www.gremlin.com/chaos-monkey/developer-tutorial"
 sources: "See: _docs/resources.md"
 published: true
 ---
+
+**(TODO)**: Continue cleanup/organize sections; move some content to `advanced tips`.
 
 - URL: `https://www.gremlin.com/chaos-monkey/developer-tutorial`
 - Parent: `Pillar Page: Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training`
@@ -25,7 +26,95 @@ published: true
   - [`Building Your Own Customized Monkey`](https://blog.serverdensity.com/building-chaos-monkey/)
   - `Additional Resources`: Section to include an abundance of additional links and resources, with careful consideration for _types_ of curated content.  Resources should include written tutorials, books, research papers, talks/conferences, podcasts, videos, and so forth.
 
-## Setting Up Chaos Monkey
+## Deploying Spinnaker
+
+Love it or hate it, Chaos Monkey **requires** the use of [Spinnaker.io](https://www.spinnaker.io/), which is an open-source, multi-cloud continuous delivery platform developed by Netflix.  Spinnaker allows for automated deployments across multiple cloud platforms (such as AWS, Azure, Google Cloud Platform, and more).  Spinnaker can also be used to deploy across multiple accounts and regions, often using **pipelines** that define a series of events that should occur every time a new version is released.  Spinnaker is a powerful tool, but since both Spinnaker and Chaos Monkey were developed by and for Netflix's own network architecture, you may find that trying to use Chaos Monkey and related tools is more painful than you might expect, as Spinnaker isn't perfectly suited to all organizations or applications.
+
+That said, in this first section we'll explore the two easiest ways to get Spinnaker up and running, which will then allow you to move onto [installing](#installing-chaos-moneky) and then [using](#using-chaos-monkey).
+
+### Rapid Spinnaker Deployment: AWS Quick Start
+
+By far the easiest method for getting Spinnaker up and running with AWS is to use the [CloudFormation Quick Start](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Spinnaker&templateURL=https:%2F%2Fs3.amazonaws.com%2Faws-quickstart%2Fquickstart-spinnaker%2Ftemplates%2Fquickstart-spinnakercf.template) template.
+
+The AWS Spinnaker Quick Start will create a simple architecture for you containing two Virtual Private Cloud (VPC) subnets (one public and one private).  The public VPC contains a [Bastion host](https://en.wikipedia.org/wiki/Bastion_host) instance designed to be strictly accessible (only port 22 is open for SSH).  The Bastion host will then allow a pass through connection to the private VPC that is running Spinnaker.
+
+![developer-tutorial-aws-spinnaker-quick-start-architecture](../images/developer-tutorial-aws-spinnaker-quick-start-architecture.png 'AWS Spinnaker Quick Start Architecture')
+
+*Figure 1: AWS Spinnaker Quick Start Architecture - **Courtesy of AWS***
+
+This quick start process will take about 10 - 15 minutes and is mostly automated.
+
+#### Creating the Spinnaker Stack
+
+1. *(Optional)* If necessary, visit [https://aws.amazon.com/](https://aws.amazon.com/) to sign up for or login to your AWS account.
+2. *(Optional)* You'll need at least one AWS EC2 Key Pair for securely connecting via SSH.  
+    1. If you don't have a KeyPair already start by opening the AWS Console and navigate to **EC2 > NETWORK & SECURITY > Key Pairs**.
+    2. Click **Create Key Pair** and enter an identifying name in the **Key pair name** field.
+    3. Click **Create** to download the private `.pem` key file to your local system.
+    4. Save this key to an appropriate location (typically your local user `~/.ssh` directory).
+3. After you've signed into the AWS console visit [this page](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Spinnaker&templateURL=https:%2F%2Fs3.amazonaws.com%2Faws-quickstart%2Fquickstart-spinnaker%2Ftemplates%2Fquickstart-spinnakercf.template), which should load the [`quickstart-spinnakercf.template`](https://s3.amazonaws.com/aws-quickstart/quickstart-spinnaker/templates/quickstart-spinnakercf.template).
+4. Click **Next**.
+5. (Optional) If you haven't already done so, you'll need to create at least one AWS Access Key, which is a 
+6. Select the **KeyName** of the key pair you previously created.
+7. Input a secure password in the **Password** field.
+8. *(Optional)* Modify the IP address range in the **SSHLocation** field to indicate what IP range is allowed to SSH into the Bastion host.  For example, if your public IP address is `1.2.3.4` you might enter `1.2.3.4/32` into this field.  If you aren't sure, you can enter `0.0.0.0/0` to allow any IP address to connect, though this is obviously less secure.
+9. Click **Next**.
+10. *(Optional)* Select an **IAM Role** with proper CloudFormation permissions necessary to deploy a stack.  If you aren't sure, leave this blank and deployment will use your account's permissions.
+11. Modify any other fields on this screen you wish, then click **Next** to continue.
+12. Check the **I acknowledge that AWS CloudFormation might create IAM resources with custom names.** checkbox and click **Create** to generate the stack.
+
+    > warning ""
+    > If your AWS account already contains the `BaseIAMRole` AWS::IAM::Role you may have to delete it before this template will succeed.
+
+13. Once the `Spinnaker` stack has a `CREATE_COMPLETE` **Status**, select the **Outputs** tab, which has some auto-generated strings you'll need to paste in your terminal in the next section.
+
+#### Connect to the Bastion Host
+
+1. Copy the **Value** of the **SSHString1** field from the stack **Outputs** tab above.
+2. Execute the **SSHString1** value in your terminal and enter `yes` when prompted to continue connecting to this host.
+
+    ```bash
+    ssh -A -L 9000:localhost:9000 -L 8084:localhost:8084 -L 8087:localhost:8087 ec2-user@34.217.41.184
+    ```
+
+    > error "Permission denied (publickey)."
+    > If you received a permission denied SSH error you may have forgotten to place your `.pem` private key file that you downloaded from the AWS EC2 Key Pair creation page.  Make sure it is located in your `~/.ssh` user directory.  Otherwise you can specify the key by adding an optional `-i <identify_file_path>` flag, indicating the path to the `.pem` file.
+
+3. You should now be connected as the `ec2-user` to the Bastion instance.  Before you can connect to the Spinnaker instance you'll probably need to copy your `.pem` file to the Spinnaker instance's `~/.ssh` directory.
+
+    - Once the key is copied, make sure you set proper permissions otherwise SSH will complain.
+    
+        ```bash
+        chmod 400 ~/.ssh/my_key.pem
+        ```
+
+#### Connect to the Spinnaker Host
+
+1. To connect to the Spinnaker instance copy and paste the **SSHString2** **Value** into the terminal.
+
+    ```bash
+    ssh –L 9000:localhost:9000 -L 8084:localhost:8084 -L 8087:localhost:8087 ubuntu@10.100.10.182 -i ~/.ssh/my_key.pem
+    ```
+
+2. You should now be connected to the `SpinnakerWebServer`!
+
+    > warning "System restart required"
+    > Upon connecting to the Spinnaker instance you may see a message indicating the system needs to be restarted.  You can do this through the AWS EC2 console, or just enter the `sudo reboot` command in the terminal, then reconnect after a few moments.
+
+#### Create a Spinnaker Application
+
+**(TODO)**
+
+### Manual Spinnaker Deployment With Halyard
+
+**(TODO)**
+
+### Deploying Spinnaker on AWS EKS/Kubernetes
+
+> info ""
+> Since deploying Spinnaker on a Kubernetes cluster is a fairly lengthy and complex process, you can find the full tutorial for this over in the [Advanced Developer Guide](https://www.gremlin.com/chaos-monkey/advanced-tips#how-to-deploy-spinnaker-on-aws-with-kubernetes).
+
+## Installing Chaos Monkey
 
 ```bash
 ######### WELCOME TO SPINNAKER ############
@@ -80,76 +169,7 @@ This message will now self-destruct. Enjoy
 
 ### AWS EC2 Bastion & Spinnaker
 
-| Timestamp         | Status             | Type                                  | Logical ID                                  | Status Reason               |
-| ----------------- | ------------------ | ------------------------------------- | ------------------------------------------- | --------------------------- |
-| 16:31:51 UTC-0700 | CREATE_COMPLETE    | AWS::CloudFormation::Stack            | Spinnaker                                   |                             |
-| 16:31:48 UTC-0700 | CREATE_COMPLETE    | AWS::EC2::Instance                    | SpinnakerWebServer                          |                             |
-| 16:31:32 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::Instance                    | SpinnakerWebServer                          | Resource creation Initiated |
-| 16:31:31 UTC-0700 | CREATE_COMPLETE    | AWS::EC2::Route                       | SpinnakerPrivateRoute                       |                             |
-| 16:31:30 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::Instance                    | SpinnakerWebServer                          |                             |
-| 16:31:28 UTC-0700 | CREATE_COMPLETE    | AWS::IAM::InstanceProfile             | SpinnakerInstanceProfile                    |                             |
-| 16:31:15 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::Route                       | SpinnakerPrivateRoute                       | Resource creation Initiated |
-| 16:31:15 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::Route                       | SpinnakerPrivateRoute                       |                             |
-| 16:31:13 UTC-0700 | CREATE_COMPLETE    | AWS::EC2::NatGateway                  | NAT                                         |                             |
-| 16:29:58 UTC-0700 | CREATE_COMPLETE    | AWS::EC2::Instance                    | BastionServer                               |                             |
-| 16:29:46 UTC-0700 | CREATE_COMPLETE    | AWS::IAM::AccessKey                   | SpinnakerAccessKey                          |                             |
-| 16:29:45 UTC-0700 | CREATE_IN_PROGRESS | AWS::IAM::AccessKey                   | SpinnakerAccessKey                          | Resource creation Initiated |
-| 16:29:45 UTC-0700 | CREATE_IN_PROGRESS | AWS::IAM::AccessKey                   | SpinnakerAccessKey                          |                             |
-| 16:29:43 UTC-0700 | CREATE_COMPLETE    | AWS::EC2::Route                       | SpinnakerPublicRoute                        |                             |
-| 16:29:43 UTC-0700 | CREATE_COMPLETE    | AWS::IAM::User                        | SpinnakerUser                               |                             |
-| 16:29:43 UTC-0700 | CREATE_COMPLETE    | AWS::EC2::SubnetRouteTableAssociation | SpinnakerPublicSubnetRouteTableAssociation  |                             |
-| 16:29:39 UTC-0700 | CREATE_COMPLETE    | AWS::EC2::SubnetRouteTableAssociation | SpinnakerPrivateSubnetRouteTableAssociation |                             |
-| 16:29:27 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::Route                       | SpinnakerPublicRoute                        | Resource creation Initiated |
-| 16:29:27 UTC-0700 | CREATE_IN_PROGRESS | AWS::IAM::InstanceProfile             | SpinnakerInstanceProfile                    | Resource creation Initiated |
-| 16:29:27 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::SubnetRouteTableAssociation | SpinnakerPublicSubnetRouteTableAssociation  | Resource creation Initiated |
-| 16:29:27 UTC-0700 | CREATE_IN_PROGRESS | AWS::IAM::InstanceProfile             | SpinnakerInstanceProfile                    |                             |
-| 16:29:27 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::Route                       | SpinnakerPublicRoute                        |                             |
-| 16:29:26 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::SubnetRouteTableAssociation | SpinnakerPublicSubnetRouteTableAssociation  |                             |
-| 16:29:25 UTC-0700 | CREATE_COMPLETE    | AWS::IAM::Role                        | SpinnakerRole                               |                             |
-| 16:29:25 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::Instance                    | BastionServer                               | Resource creation Initiated |
-| 16:29:24 UTC-0700 | CREATE_COMPLETE    | AWS::EC2::RouteTable                  | SpinnakerPublicRouteTable                   |                             |
-| 16:29:24 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::NatGateway                  | NAT                                         | Resource creation Initiated |
-| 16:29:24 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::NatGateway                  | NAT                                         |                             |
-| 16:29:24 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::SubnetRouteTableAssociation | SpinnakerPrivateSubnetRouteTableAssociation | Resource creation Initiated |
-| 16:29:23 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::RouteTable                  | SpinnakerPublicRouteTable                   | Resource creation Initiated |
-| 16:29:23 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::Instance                    | BastionServer                               |                             |
-| 16:29:23 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::RouteTable                  | SpinnakerPublicRouteTable                   |                             |
-| 16:29:23 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::SubnetRouteTableAssociation | SpinnakerPrivateSubnetRouteTableAssociation |                             |
-| 16:29:21 UTC-0700 | CREATE_COMPLETE    | AWS::EC2::Subnet                      | SpinnakerPublicSubnet                       |                             |
-| 16:29:21 UTC-0700 | CREATE_COMPLETE    | AWS::EC2::Subnet                      | SpinnakerPrivateSubnet                      |                             |
-| 16:29:21 UTC-0700 | CREATE_COMPLETE    | AWS::EC2::VPCGatewayAttachment        | SpinnakerAttachGateway                      |                             |
-| 16:29:18 UTC-0700 | CREATE_COMPLETE    | AWS::EC2::SecurityGroup               | SpinnakerWebServerSecurityGroup             |                             |
-| 16:29:17 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::SecurityGroup               | SpinnakerWebServerSecurityGroup             | Resource creation Initiated |
-| 16:29:12 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::SecurityGroup               | SpinnakerWebServerSecurityGroup             |                             |
-| 16:29:10 UTC-0700 | CREATE_COMPLETE    | AWS::EC2::SecurityGroup               | SpinnakerBastionSecurityGroup               |                             |
-| 16:29:09 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::SecurityGroup               | SpinnakerBastionSecurityGroup               | Resource creation Initiated |
-| 16:29:06 UTC-0700 | CREATE_IN_PROGRESS | AWS::IAM::User                        | SpinnakerUser                               | Resource creation Initiated |
-| 16:29:06 UTC-0700 | CREATE_IN_PROGRESS | AWS::IAM::Role                        | SpinnakerRole                               | Resource creation Initiated |
-| 16:29:06 UTC-0700 | CREATE_COMPLETE    | AWS::EC2::RouteTable                  | SpinnakerPrivateRouteTable                  |                             |
-| 16:29:05 UTC-0700 | CREATE_IN_PROGRESS | AWS::IAM::User                        | SpinnakerUser                               |                             |
-| 16:29:05 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::VPCGatewayAttachment        | SpinnakerAttachGateway                      | Resource creation Initiated |
-| 16:29:05 UTC-0700 | CREATE_IN_PROGRESS | AWS::IAM::Role                        | SpinnakerRole                               |                             |
-| 16:29:05 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::Subnet                      | SpinnakerPrivateSubnet                      | Resource creation Initiated |
-| 16:29:05 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::Subnet                      | SpinnakerPublicSubnet                       | Resource creation Initiated |
-| 16:29:05 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::VPCGatewayAttachment        | SpinnakerAttachGateway                      |                             |
-| 16:29:05 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::Subnet                      | SpinnakerPrivateSubnet                      |                             |
-| 16:29:04 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::RouteTable                  | SpinnakerPrivateRouteTable                  | Resource creation Initiated |
-| 16:29:04 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::Subnet                      | SpinnakerPublicSubnet                       |                             |
-| 16:29:04 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::SecurityGroup               | SpinnakerBastionSecurityGroup               |                             |
-| 16:29:04 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::RouteTable                  | SpinnakerPrivateRouteTable                  |                             |
-| 16:29:03 UTC-0700 | CREATE_COMPLETE    | AWS::IAM::Role                        | BaseIAMRole                                 |                             |
-| 16:29:03 UTC-0700 | CREATE_COMPLETE    | AWS::EC2::VPC                         | SpinnakerVPC                                |                             |
-| 16:29:02 UTC-0700 | CREATE_COMPLETE    | AWS::EC2::EIP                         | NATEIP                                      |                             |
-| 16:29:02 UTC-0700 | CREATE_COMPLETE    | AWS::EC2::InternetGateway             | SpinnakerInternetGateway                    |                             |
-| 16:28:46 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::EIP                         | NATEIP                                      | Resource creation Initiated |
-| 16:28:46 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::VPC                         | SpinnakerVPC                                | Resource creation Initiated |
-| 16:28:46 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::InternetGateway             | SpinnakerInternetGateway                    | Resource creation Initiated |
-| 16:28:46 UTC-0700 | CREATE_IN_PROGRESS | AWS::IAM::Role                        | BaseIAMRole                                 | Resource creation Initiated |
-| 16:28:45 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::EIP                         | NATEIP                                      |                             |
-| 16:28:45 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::VPC                         | SpinnakerVPC                                |                             |
-| 16:28:45 UTC-0700 | CREATE_IN_PROGRESS | AWS::EC2::InternetGateway             | SpinnakerInternetGateway                    |                             |
-| 16:28:45 UTC-0700 | CREATE_IN_PROGRESS | AWS::IAM::Role                        | BaseIAMRole                                 |                             |
-| 16:28:43 UTC-0700 | CREATE_IN_PROGRESS | AWS::CloudFormation::Stack            | Spinnaker                                   | User Initiated              |
+**(TODO)**
 
 ### Chaos Monkey + Spinnaker Setup
 
@@ -556,9 +576,12 @@ Problems in default.provider.aws.default:
 In this step you can choose which type of environment on which you want to install Spinnaker.  Most production setups will want to use Kubernetes or another distributed solution, but for this smaller example we'll just use a local Debian installation, putting Spinnaker on the same machine that Halyard is on.
 
 > info ""
-> By default, Halyard should install as a local Debian environmental setup, so you shouldn't need to make any changes for the environment.  However, if you want to verify it's already configured locally you can run the `hal config deploy edit --type localdebian` command:
+> By default, Halyard should install as a local Debian environmental setup, so you shouldn't need to make any changes for the environment.  However, if you want to verify it's already configured locally you can run the `hal config deploy edit --type localdebian` command.
 > ```bash
-> $ hal config deploy edit --type localdebian
+> hal config deploy edit --type localdebian
+> ```
+> ```bash
+> # OUTPUT
 > + Get current deployment
 >   Success
 > + Get the deployment environment
@@ -869,19 +892,18 @@ Problems in default.provider.aws.spinnaker-developer:
 ### Create Spinnaker Application
 
 
-
-[/]:                                    /
-[/advanced-tips]:                       /advanced-tips
-[/alternatives]:                        /alternatives
-[/alternatives/azure]:                  /alternatives/azure
-[/alternatives/docker]:                 /alternatives/docker
-[/alternatives/google-cloud-platform]:  /alternatives/google-cloud-platform
-[/alternatives/kubernetes]:             /alternatives/kubernetes
-[/alternatives/openshift]:              /alternatives/openshift
-[/alternatives/private-cloud]:          /alternatives/private-cloud
-[/alternatives/spring-boot]:            /alternatives/spring-boot
-[/alternatives/vmware]:                 /alternatives/vmware
-[/developer-tutorial]:                  /developer-tutorial
-[/downloads-resources]:                 /downloads-resources
-[/origin-netflix]:                      /origin-netflix
-[/simian-army]:                         /simian-army
+[/]:                                    /gremlin-chaos-monkey/
+[/advanced-tips]:                       /gremlin-chaos-monkey/advanced-tips
+[/alternatives]:                        /gremlin-chaos-monkey/alternatives
+[/alternatives/azure]:                  /gremlin-chaos-monkey/alternatives/azure
+[/alternatives/docker]:                 /gremlin-chaos-monkey/alternatives/docker
+[/alternatives/google-cloud-platform]:  /gremlin-chaos-monkey/alternatives/google-cloud-platform
+[/alternatives/kubernetes]:             /gremlin-chaos-monkey/alternatives/kubernetes
+[/alternatives/openshift]:              /gremlin-chaos-monkey/alternatives/openshift
+[/alternatives/private-cloud]:          /gremlin-chaos-monkey/alternatives/private-cloud
+[/alternatives/spring-boot]:            /gremlin-chaos-monkey/alternatives/spring-boot
+[/alternatives/vmware]:                 /gremlin-chaos-monkey/alternatives/vmware
+[/developer-tutorial]:                  /gremlin-chaos-monkey/developer-tutorial
+[/downloads-resources]:                 /gremlin-chaos-monkey/downloads-resources
+[/origin-netflix]:                      /gremlin-chaos-monkey/origin-netflix
+[/simian-army]:                         /gremlin-chaos-monkey/simian-army

@@ -19,8 +19,8 @@
     color: $default-color;
   
     code {
-      background-color: #fff;
-      color: $default-color;
+      //background-color: #fff;
+      //color: $default-color;
     }
   
     .header {
@@ -50,9 +50,9 @@
         color: $c;
         text-decoration: underline;
       }
-      code {
-        color: $c;
-      }
+      // code {
+      //   color: $c;
+      // }
       .header {
         color: $c;
       }

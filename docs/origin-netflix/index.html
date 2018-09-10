@@ -27,7 +27,7 @@
 
 
 
-  <meta property="article:published_time" content="2018-08-30T00:00:00-07:00">
+  <meta property="article:published_time" content="2018-09-07T00:00:00-07:00">
 
 
 
@@ -96,7 +96,7 @@
 
 
     <!-- start custom head snippets -->
-<link rel="icon" href="/favicon.ico" />
+<link rel="icon" href="https://www.gremlin.com/favicon-32x32.png" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
 
@@ -115,7 +115,9 @@
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
         <a class="site-title" href="/gremlin-chaos-monkey/">Gremlin: Chaos Monkey</a>
-        <ul class="visible-links"></ul>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/gremlin-chaos-monkey/notes" >Notes to Editor</a>
+            </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Toggle Menu</span>
@@ -246,6 +248,82 @@
         
       </li>
     
+      <li>
+        
+          <span class="nav__sub-title">Alternatives</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/azure" class="">Azure</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/docker" class="">Docker</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/google-cloud-platform" class="">Google Cloud Platform</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/kubernetes" class="">Kubernetes</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/openshift" class="">OpenShift</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/private-cloud" class="">Private Cloud</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/spring-boot" class="">Spring Boot</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/vmware" class="">VMWare</a></li>
+          
+        </ul>
+        
+      </li>
+    
   </ul>
 </nav>
     
@@ -256,7 +334,7 @@
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     <meta itemprop="headline" content="The Origin of Chaos Monkey - Why Netflix Needed to Create Failure">
     
-    <meta itemprop="datePublished" content="August 30, 2018">
+    <meta itemprop="datePublished" content="September 07, 2018">
     
 
     <div class="page__inner-wrap">
@@ -327,22 +405,24 @@
 
 <p>In 2010, taking inspiration from the frequently dramatic behaviors of a beloved sub-group of primates, engineers at <a href="https://www.netflix.com">Netflix</a> announced the existence and success of their own <a href="https://medium.com/netflix-techblog/5-lessons-weve-learned-using-aws-1f2a28588e4c">resiliency tool</a>, which they lovingly dubbed <em>Chaos Monkey</em>.  <a href="https://medium.com/netflix-techblog/5-lessons-weve-learned-using-aws-1f2a28588e4c">Chaos Monkey served</a> a specific yet vitally important role – to test system stability by enforcing failures through the random killing of instances and services within Netflix’s architecture.  With the Netflix service being directly linked to and reliant upon Amazon Web Services (AWS), Netflix needed a technology that could force their hand by deliberately taking down critical components of their microservice infrastructure <em>within</em> the production environment.  The Netflix team was banking on the notion that their ability to handle this single, common type of failure without negatively impacting the customer experience would suss out any weaknesses in their systems and guide them towards automated solutions that could gracefully manage these failures in the future.  Given Netflix’s growing success, popularity, and stability over the last half decade, we can deduce that the engineering team was correct in their assumptions.  Chaos Monkey was built to accomplish one particular task for Netflix’s particular architecture, and it worked beautifully in that regard.</p>
 
-<p>By the following year, <a href="https://medium.com/netflix-techblog/the-netflix-simian-army-16e57fbab116">Netflix had announced</a> the evolution of Chaos Monkey with a series of additional tools known as <em>The Simian Army</em>.  Inspired by the success of their original Chaos Monkey tool aimed at randomly disabling production instances and services, the engineering team developed additional “simians” built to cause other types of failure and induce abnormal system conditions.  For example, the <code class="highlighter-rouge">Latency Monkey</code> tool introduces artificial delays in RESTful client-server communication, allowing the team at Netflix to simulate service unavailability without actually taking down said service.  We’ll dive into all the details of The Simian Army – including a close look at every member of that fearsome, technological fighting squad – in <a href="/simian-army">The Simian Army - Overview and Resources</a> section of this guide.</p>
+<p>By the following year, <a href="https://medium.com/netflix-techblog/the-netflix-simian-army-16e57fbab116">Netflix had announced</a> the evolution of Chaos Monkey with a series of additional tools known as <em>The Simian Army</em>.  Inspired by the success of their original Chaos Monkey tool aimed at randomly disabling production instances and services, the engineering team developed additional “simians” built to cause other types of failure and induce abnormal system conditions.  For example, the <code class="highlighter-rouge">Latency Monkey</code> tool introduces artificial delays in RESTful client-server communication, allowing the team at Netflix to simulate service unavailability without actually taking down said service.  We’ll dive into all the details of The Simian Army – including a close look at every member of that fearsome, technological fighting squad – in <a href="/gremlin-chaos-monkey/simian-army">The Simian Army - Overview and Resources</a> section of this guide.</p>
 
 <p>With a stable codebase and ample real-world testing in their pockets, Netflix’s engineers publicly released the Chaos Monkey <a href="https://github.com/Netflix/chaosmonkey">source code on GitHub</a> a few months later in 2012.</p>
 
 <h2 id="the-simian-army">The Simian Army</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Briefly explore Simian Army, as introduction and lead into `The Simian Army - Overview and Resources` `hub page`.
-</code></pre></div></div>
+<p><strong>(TODO)</strong>: Briefly explore Simian Army, as introduction and lead into <a href="/gremlin-chaos-monkey/simian-army">The Simian Army - Overview and Resources</a> chapter.</p>
 
 <h2 id="chaos-monkey-today">Chaos Monkey Today</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Examine modern and future Chaos Monkey iterations (2.0+).
-- Explain changes and upgrade paths from 1.0 to 2.0.
-- Explore [Netflix Failure Injection Testing (FIT)](https://medium.com/netflix-techblog/fit-failure-injection-testing-35d8e2a9bb2)
-- Discuss Netflix's (and others') use of [`Spinnaker`](https://www.spinnaker.io/) and the potential issues and limitations such tools may present (investment in setup and propagation, maintenance, forced `continuous delivery` solution, etc).
-</code></pre></div></div>
+<p><strong>(TODO)</strong>: Expound on points below.</p>
+
+<ul>
+  <li>Examine modern and future Chaos Monkey iterations (2.0+).</li>
+  <li>Explain changes and upgrade paths from 1.0 to 2.0.</li>
+  <li>Explore <a href="https://medium.com/netflix-techblog/fit-failure-injection-testing-35d8e2a9bb2">Netflix Failure Injection Testing (FIT)</a></li>
+  <li>Discuss Netflix’s (and others’) use of <a href="https://www.spinnaker.io/"><code class="highlighter-rouge">Spinnaker</code></a> and the potential issues and limitations such tools may present (investment in setup and propagation, maintenance, forced <code class="highlighter-rouge">continuous delivery</code> solution, etc).</li>
+</ul>
 
 
         
@@ -354,22 +434,11 @@
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-08-30T00:00:00-07:00">August 30, 2018</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-09-07T00:00:00-07:00">September 07, 2018</time></p>
         
       </footer>
 
-      <section class="page__share">
-  
-
-  <a href="https://twitter.com/intent/tweet?text=The+Origin+of+Chaos+Monkey+-+Why+Netflix+Needed+to+Create+Failure%20http%3A%2F%2Flocalhost%3A4000%2Fgremlin-chaos-monkey%2Forigin-netflix%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
-
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fgremlin-chaos-monkey%2Forigin-netflix%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
-
-  <a href="https://plus.google.com/share?url=http%3A%2F%2Flocalhost%3A4000%2Fgremlin-chaos-monkey%2Forigin-netflix%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
-
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fgremlin-chaos-monkey%2Forigin-netflix%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
-</section>
-
+      
 
       
     </div>
@@ -401,7 +470,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2018 Gabe Wyatt. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2018 Gabe Wyatt</div>
 
       </footer>
     </div>

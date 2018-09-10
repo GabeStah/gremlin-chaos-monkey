@@ -1,7 +1,6 @@
-# main links
-# main:
-#   - title: "Quick-Start Guide"
-#     url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+main:
+  - title: "Notes to Editor"
+    url: /notes
 
 docs:
   - title: Hub Pages
@@ -20,3 +19,21 @@ docs:
         url: /downloads-resources
       - title: "Chaos Monkey Alternatives"
         url: /alternatives
+  - title: Alternatives
+    children:
+      - title: "Azure"
+        url: /alternatives/azure
+      - title: "Docker"
+        url: /alternatives/docker
+      - title: "Google Cloud Platform"
+        url: /alternatives/google-cloud-platform
+      - title: "Kubernetes"
+        url: /alternatives/kubernetes
+      - title: "OpenShift"
+        url: /alternatives/openshift
+      - title: "Private Cloud"
+        url: /alternatives/private-cloud
+      - title: "Spring Boot"
+        url: /alternatives/spring-boot
+      - title: "VMWare"
+        url: /alternatives/vmware

@@ -1,7 +1,6 @@
 ---
 title: "Chaos Monkey Resources, Guides, and Downloads for Engineers"
 description: "Provides the full list of resources, tools, and other links discovered during research on this project, all of which should be valid and valuable to readers of all kinds."
-date: 2018-08-30
 path: "/chaos-monkey/downloads-resources"
 url: "https://www.gremlin.com/chaos-monkey/downloads-resources"
 sources: "See: _docs/resources.md"
@@ -31,18 +30,22 @@ published: true
     - Tutorials
   - `Additional Chaos Monkey Resources`: In addition to outside resources, _all_ unique pages/URLs found within this guide should be included in this section.  It can later be determined how best to format this, but one possibility is a separate section containing a `site map` link collection.
 
-[/]:                                    /
-[/advanced-tips]:                       /advanced-tips
-[/alternatives]:                        /alternatives
-[/alternatives/azure]:                  /alternatives/azure
-[/alternatives/docker]:                 /alternatives/docker
-[/alternatives/google-cloud-platform]:  /alternatives/google-cloud-platform
-[/alternatives/kubernetes]:             /alternatives/kubernetes
-[/alternatives/openshift]:              /alternatives/openshift
-[/alternatives/private-cloud]:          /alternatives/private-cloud
-[/alternatives/spring-boot]:            /alternatives/spring-boot
-[/alternatives/vmware]:                 /alternatives/vmware
-[/developer-tutorial]:                  /developer-tutorial
-[/downloads-resources]:                 /downloads-resources
-[/origin-netflix]:                      /origin-netflix
-[/simian-army]:                         /simian-army
+## Resources
+
+**(TODO)**: Format `_docs/outline/resourcesmd` per layout style.
+
+[/]:                                    /gremlin-chaos-monkey/
+[/advanced-tips]:                       /gremlin-chaos-monkey/advanced-tips
+[/alternatives]:                        /gremlin-chaos-monkey/alternatives
+[/alternatives/azure]:                  /gremlin-chaos-monkey/alternatives/azure
+[/alternatives/docker]:                 /gremlin-chaos-monkey/alternatives/docker
+[/alternatives/google-cloud-platform]:  /gremlin-chaos-monkey/alternatives/google-cloud-platform
+[/alternatives/kubernetes]:             /gremlin-chaos-monkey/alternatives/kubernetes
+[/alternatives/openshift]:              /gremlin-chaos-monkey/alternatives/openshift
+[/alternatives/private-cloud]:          /gremlin-chaos-monkey/alternatives/private-cloud
+[/alternatives/spring-boot]:            /gremlin-chaos-monkey/alternatives/spring-boot
+[/alternatives/vmware]:                 /gremlin-chaos-monkey/alternatives/vmware
+[/developer-tutorial]:                  /gremlin-chaos-monkey/developer-tutorial
+[/downloads-resources]:                 /gremlin-chaos-monkey/downloads-resources
+[/origin-netflix]:                      /gremlin-chaos-monkey/origin-netflix
+[/simian-army]:                         /gremlin-chaos-monkey/simian-army
