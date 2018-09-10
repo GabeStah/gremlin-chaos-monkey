@@ -74,7 +74,7 @@ This quick start process will take about 10 - 15 minutes and is mostly automated
 2. Execute the **SSHString1** value in your terminal and enter `yes` when prompted to continue connecting to this host.
 
     ```bash
-    ssh -A -L 9000:localhost:9000 -L 8084:localhost:8084 -L 8087:localhost:8087 ec2-user@34.217.41.184
+    ssh -A -L 9000:localhost:9000 -L 8084:localhost:8084 -L 8087:localhost:8087 ec2-user@54.244.189.78
     ```
 
     > error "Permission denied (publickey)."
@@ -93,7 +93,7 @@ This quick start process will take about 10 - 15 minutes and is mostly automated
 1. To connect to the Spinnaker instance copy and paste the **SSHString2** **Value** into the terminal.
 
     ```bash
-    ssh –L 9000:localhost:9000 -L 8084:localhost:8084 -L 8087:localhost:8087 ubuntu@10.100.10.182 -i ~/.ssh/my_key.pem
+    ssh –L 9000:localhost:9000 -L 8084:localhost:8084 -L 8087:localhost:8087 ubuntu@54.218.73.7 -i ~/.ssh/my_key.pem
     ```
 
 2. You should now be connected to the `SpinnakerWebServer`!

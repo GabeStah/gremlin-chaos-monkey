@@ -358,7 +358,7 @@
 
       <section class="page__content" itemprop="text">
         
-          <aside class="sidebar__right ">
+          <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> </h4></header>
               <ul class="toc__menu">
@@ -510,7 +510,7 @@
   <li>
     <p>Execute the <strong>SSHString1</strong> value in your terminal and enter <code class="highlighter-rouge">yes</code> when prompted to continue connecting to this host.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ssh <span class="nt">-A</span> <span class="nt">-L</span> 9000:localhost:9000 <span class="nt">-L</span> 8084:localhost:8084 <span class="nt">-L</span> 8087:localhost:8087 ec2-user@34.217.41.184
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ssh <span class="nt">-A</span> <span class="nt">-L</span> 9000:localhost:9000 <span class="nt">-L</span> 8084:localhost:8084 <span class="nt">-L</span> 8087:localhost:8087 ec2-user@54.244.189.78
 </code></pre></div>    </div>
 
     <div class="premonition error modified"><div class="fa fa-exclamation-triangle"></div><div class="content"><p class="header">Permission denied (publickey).</p><p>If you received a permission denied SSH error you may have forgotten to place your <code class="highlighter-rouge">.pem</code> private key file that you downloaded from the AWS EC2 Key Pair creation page.  Make sure it is located in your <code class="highlighter-rouge">~/.ssh</code> user directory.  Otherwise you can specify the key by adding an optional <code class="highlighter-rouge">-i &lt;identify_file_path&gt;</code> flag, indicating the path to the <code class="highlighter-rouge">.pem</code> file.</p></div></div>
@@ -535,7 +535,7 @@
   <li>
     <p>To connect to the Spinnaker instance copy and paste the <strong>SSHString2</strong> <strong>Value</strong> into the terminal.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ssh –L 9000:localhost:9000 <span class="nt">-L</span> 8084:localhost:8084 <span class="nt">-L</span> 8087:localhost:8087 ubuntu@10.100.10.182 <span class="nt">-i</span> ~/.ssh/my_key.pem
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ssh –L 9000:localhost:9000 <span class="nt">-L</span> 8084:localhost:8084 <span class="nt">-L</span> 8087:localhost:8087 ubuntu@54.218.73.7 <span class="nt">-i</span> ~/.ssh/my_key.pem
 </code></pre></div>    </div>
   </li>
   <li>

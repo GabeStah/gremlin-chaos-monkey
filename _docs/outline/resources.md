@@ -136,3 +136,5 @@
     - https://github.com/Netflix/SimianArmy/wiki/The-Chaos-Monkey-Army
   - Variants
     - https://en.wikipedia.org/wiki/Chaos_Monkey#Chaos_Monkey
+- Spinnaker
+  - https://www.spinnaker.io/publications/ebook/ContinuousDeliveryWithSpinnaker.pdf
