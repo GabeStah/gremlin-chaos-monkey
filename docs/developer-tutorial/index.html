@@ -350,7 +350,7 @@
 
 
 
-  24 minute read
+  23 minute read
 </p>
           
         </header>
@@ -362,73 +362,53 @@
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> </h4></header>
               <ul class="toc__menu">
-  <li><a href="#deploying-spinnaker">Deploying Spinnaker</a>
+  <li><a href="#how-to-quickly-deploy-spinnaker">How to Quickly Deploy Spinnaker</a>
     <ul>
-      <li><a href="#rapid-spinnaker-deployment-aws-quick-start">Rapid Spinnaker Deployment: AWS Quick Start</a>
+      <li><a href="#creating-the-spinnaker-stack">Creating the Spinnaker Stack</a></li>
+      <li><a href="#connecting-to-the-bastion-host">Connecting to the Bastion Host</a></li>
+      <li><a href="#connecting-to-the-spinnaker-host">Connecting to the Spinnaker Host</a></li>
+      <li><a href="#configuring-spinnaker">Configuring Spinnaker</a></li>
+      <li><a href="#creating-an-application">Creating an Application</a></li>
+      <li><a href="#adding-a-firewall">Adding a Firewall</a></li>
+      <li><a href="#adding-a-load-balancer">Adding a Load Balancer</a></li>
+      <li><a href="#creating-a-pipeline-in-spinnaker">Creating a Pipeline in Spinnaker</a>
         <ul>
-          <li><a href="#creating-the-spinnaker-stack">Creating the Spinnaker Stack</a></li>
-          <li><a href="#connect-to-the-bastion-host">Connect to the Bastion Host</a></li>
-          <li><a href="#connect-to-the-spinnaker-host">Connect to the Spinnaker Host</a></li>
-          <li><a href="#create-a-spinnaker-application">Create a Spinnaker Application</a></li>
+          <li><a href="#adding-a-bake-stage">Adding a Bake Stage</a></li>
+          <li><a href="#adding-a-deploy-stage">Adding a Deploy Stage</a></li>
+          <li><a href="#adding-a-server-group">Adding a Server Group</a></li>
         </ul>
       </li>
-      <li><a href="#manual-spinnaker-deployment-with-halyard">Manual Spinnaker Deployment With Halyard</a></li>
-      <li><a href="#deploying-spinnaker-on-aws-ekskubernetes">Deploying Spinnaker on AWS EKS/Kubernetes</a></li>
-    </ul>
-  </li>
-  <li><a href="#installing-chaos-monkey">Installing Chaos Monkey</a>
-    <ul>
-      <li><a href="#ssh-configuration">SSH Configuration</a></li>
-      <li><a href="#aws-ec2-bastion--spinnaker">AWS EC2 Bastion &amp; Spinnaker</a></li>
-      <li><a href="#chaos-monkey--spinnaker-setup">Chaos Monkey + Spinnaker Setup</a></li>
-      <li><a href="#spinnaker-configuration">Spinnaker COnfiguration</a></li>
-      <li><a href="#known-issues">Known Issues</a></li>
-      <li><a href="#spinnaker-add-application">Spinnaker: Add Application</a>
+      <li><a href="#executing-the-pipeline">Executing the Pipeline</a>
         <ul>
-          <li><a href="#add-firewall">Add Firewall</a></li>
-          <li><a href="#add-load-balancer">Add Load Balancer</a></li>
-          <li><a href="#add-pipeline">Add Pipeline</a>
-            <ul>
-              <li><a href="#add-stage-1">Add Stage 1</a></li>
-              <li><a href="#add-stage-2">Add Stage 2</a></li>
-              <li><a href="#creating-a-server-group">Creating a Server Group</a></li>
-              <li><a href="#try-it-out">Try It Out</a></li>
-            </ul>
-          </li>
+          <li><a href="#troubleshooting-pipeline-executions">Troubleshooting Pipeline Executions</a></li>
         </ul>
       </li>
     </ul>
   </li>
-  <li><a href="#how-to-deploy-chaos-monkey">How to Deploy Chaos Monkey</a></li>
-  <li><a href="#manual-spinnaker-installation">Manual Spinnaker Installation</a>
+  <li><a href="#how-to-install-chaos-monkey">How to Install Chaos Monkey</a>
     <ul>
-      <li><a href="#chaos-monkey--go--mysql-8-authentication-error">Chaos Monkey + Go + MySQL 8 Authentication Error</a></li>
+      <li><a href="#installing-mysql">Installing MySQL</a></li>
+      <li><a href="#setup-mysql-for-chaos-monkey">Setup MySQL for Chaos Monkey</a></li>
+      <li><a href="#installing-chaos-monkey">Installing Chaos Monkey</a></li>
+      <li><a href="#configure-spinnaker-for-chaos-monkey">Configure Spinnaker for Chaos Monkey</a></li>
     </ul>
   </li>
-  <li><a href="#spinnaker-full-installation-via-aws-cli">Spinnaker Full Installation via AWS CLI</a>
+  <li><a href="#how-to-configure-chaos-monkey">How to Configure Chaos Monkey</a></li>
+  <li><a href="#how-to-use-chaos-monkey">How to Use Chaos Monkey</a>
     <ul>
-      <li><a href="#create-aws-cloudformation-spinnaker-stack">Create AWS CloudFormation Spinnaker Stack</a></li>
-      <li><a href="#select-installation-environment">Select Installation Environment</a></li>
-      <li><a href="#setup-persistent-storage-for-spinnaker">Setup Persistent Storage for Spinnaker</a></li>
-      <li><a href="#deploy-spinnaker">Deploy Spinnaker</a></li>
+      <li><a href="#how-to-schedule-chaos-monkey-terminations">How to Schedule Chaos Monkey Terminations</a></li>
     </ul>
   </li>
-  <li><a href="#spinnaker-full-installation">Spinnaker Full Installation</a>
-    <ul>
-      <li><a href="#install-halyard">Install Halyard</a></li>
-      <li><a href="#create-aws-cloudformation-spinnaker-stack-1">Create AWS CloudFormation Spinnaker Stack</a></li>
-      <li><a href="#setup-persistent-storage-for-spinnaker-1">Setup Persistent Storage for Spinnaker</a></li>
-      <li><a href="#deploy-spinnaker-1">Deploy Spinnaker</a></li>
-      <li><a href="#create-spinnaker-application">Create Spinnaker Application</a></li>
-    </ul>
-  </li>
+  <li><a href="#next-steps">Next Steps</a></li>
 </ul>
             </nav>
           </aside>
         
-        <p><strong>(TODO)</strong>: Continue cleanup/organize sections; move some content to <code class="highlighter-rouge">advanced tips</code>.</p>
-
-<ul>
+        <ul>
+  <li><strong>(TODO)</strong>: Break out into non-published sections to reorganize.</li>
+  <li>
+    <p><strong>(TODO)</strong>: Continue cleanup/organize sections; move some (non-quick start?) content to <code class="highlighter-rouge">advanced tips</code>.</p>
+  </li>
   <li>URL: <code class="highlighter-rouge">https://www.gremlin.com/chaos-monkey/developer-tutorial</code></li>
   <li>Parent: <code class="highlighter-rouge">Pillar Page: Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training</code></li>
   <li>Content:
@@ -456,17 +436,17 @@
   </li>
 </ul>
 
-<h2 id="deploying-spinnaker">Deploying Spinnaker</h2>
+<h2 id="how-to-quickly-deploy-spinnaker">How to Quickly Deploy Spinnaker</h2>
 
-<p>Love it or hate it, Chaos Monkey <strong>requires</strong> the use of <a href="https://www.spinnaker.io/">Spinnaker.io</a>, which is an open-source, multi-cloud continuous delivery platform developed by Netflix.  Spinnaker allows for automated deployments across multiple cloud platforms (such as AWS, Azure, Google Cloud Platform, and more).  Spinnaker can also be used to deploy across multiple accounts and regions, often using <strong>pipelines</strong> that define a series of events that should occur every time a new version is released.  Spinnaker is a powerful tool, but since both Spinnaker and Chaos Monkey were developed by and for Netflix’s own network architecture, you may find that trying to use Chaos Monkey and related tools is more painful than you might expect, as Spinnaker isn’t perfectly suited to all organizations or applications.</p>
+<p>Love it or hate it, Chaos Monkey <strong>requires</strong> the use of <a href="https://www.spinnaker.io/">Spinnaker</a>, which is an open-source, multi-cloud continuous delivery platform developed by Netflix.  Spinnaker allows for automated deployments across multiple cloud platforms (such as AWS, Azure, Google Cloud Platform, and more).  Spinnaker can also be used to deploy across multiple accounts and regions, often using <strong>pipelines</strong> that define a series of events that should occur every time a new version is released.  Spinnaker is a powerful tool, but since both Spinnaker and Chaos Monkey were developed by and for Netflix’s own network architecture, you may find that trying to use Chaos Monkey and related tools is more painful than you might expect, as Spinnaker isn’t perfectly suited to all organizations or applications.</p>
 
-<p>That said, in this first section we’ll explore the two easiest ways to get Spinnaker up and running, which will then allow you to move onto <a href="#installing-chaos-moneky">installing</a> and then <a href="#using-chaos-monkey">using</a>.</p>
+<p>That said, in this first section we’ll explore the fastest and simplest way to get Spinnaker up and running, which will then allow you to move onto <a href="#installing-chaos-moneky">installing</a> and then <a href="#using-chaos-monkey">using</a>.</p>
 
-<h3 id="rapid-spinnaker-deployment-aws-quick-start">Rapid Spinnaker Deployment: AWS Quick Start</h3>
+<p>We’ll be deploying Spinnaker on AWS, and the easiest method for doing so is to use the <a href="https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Spinnaker&amp;templateURL=https:%2F%2Fs3.amazonaws.com%2Faws-quickstart%2Fquickstart-spinnaker%2Ftemplates%2Fquickstart-spinnakercf.template">CloudFormation Quick Start</a> template.</p>
 
-<p>By far the easiest method for getting Spinnaker up and running with AWS is to use the <a href="https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Spinnaker&amp;templateURL=https:%2F%2Fs3.amazonaws.com%2Faws-quickstart%2Fquickstart-spinnaker%2Ftemplates%2Fquickstart-spinnakercf.template">CloudFormation Quick Start</a> template.</p>
+<div class="premonition info modified"><div class="fa fa-info-circle"></div><div class="content"><p class="header">Looking to Deploy Spinnaker In Another Environment?</p><p>If you’re looking to have the utmost control over your Spinnaker deployment you should check out our <strong>(TODO)</strong> <a href="#">How to Manually Deploy Spinnaker</a> guide, which provides a step-by-step tutorial for setting up Halyard and Spinnaker on a local or virtual machine of your choice.</p></div></div>
 
-<p>The AWS Spinnaker Quick Start will create a simple architecture for you containing two Virtual Private Cloud (VPC) subnets (one public and one private).  The public VPC contains a <a href="https://en.wikipedia.org/wiki/Bastion_host">Bastion host</a> instance designed to be strictly accessible (only port 22 is open for SSH).  The Bastion host will then allow a pass through connection to the private VPC that is running Spinnaker.</p>
+<p>The <em>AWS Spinnaker Quick Start</em> will create a simple architecture for you containing two Virtual Private Cloud (VPC) subnets (one public and one private).  The public VPC contains a <a href="https://en.wikipedia.org/wiki/Bastion_host">Bastion host</a> instance designed to be strictly accessible, with just port 22 open for SSH access.  The Bastion host will then allow a pass through connection to the private VPC that is running Spinnaker.</p>
 
 <p><img src="../images/developer-tutorial-aws-spinnaker-quick-start-architecture.png" alt="developer-tutorial-aws-spinnaker-quick-start-architecture" title="AWS Spinnaker Quick Start Architecture" /></p>
 
@@ -474,7 +454,7 @@
 
 <p>This quick start process will take about 10 - 15 minutes and is mostly automated.</p>
 
-<h4 id="creating-the-spinnaker-stack">Creating the Spinnaker Stack</h4>
+<h3 id="creating-the-spinnaker-stack">Creating the Spinnaker Stack</h3>
 
 <ol>
   <li><em>(Optional)</em> If necessary, visit <a href="https://aws.amazon.com/">https://aws.amazon.com/</a> to sign up for or login to your AWS account.</li>
@@ -503,7 +483,7 @@
   <li>Once the <code class="highlighter-rouge">Spinnaker</code> stack has a <code class="highlighter-rouge">CREATE_COMPLETE</code> <strong>Status</strong>, select the <strong>Outputs</strong> tab, which has some auto-generated strings you’ll need to paste in your terminal in the next section.</li>
 </ol>
 
-<h4 id="connect-to-the-bastion-host">Connect to the Bastion Host</h4>
+<h3 id="connecting-to-the-bastion-host">Connecting to the Bastion Host</h3>
 
 <ol>
   <li>Copy the <strong>Value</strong> of the <strong>SSHString1</strong> field from the stack <strong>Outputs</strong> tab above.</li>
@@ -529,13 +509,13 @@
   </li>
 </ol>
 
-<h4 id="connect-to-the-spinnaker-host">Connect to the Spinnaker Host</h4>
+<h3 id="connecting-to-the-spinnaker-host">Connecting to the Spinnaker Host</h3>
 
 <ol>
   <li>
     <p>To connect to the Spinnaker instance copy and paste the <strong>SSHString2</strong> <strong>Value</strong> into the terminal.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ssh –L 9000:localhost:9000 <span class="nt">-L</span> 8084:localhost:8084 <span class="nt">-L</span> 8087:localhost:8087 ubuntu@54.218.73.7 <span class="nt">-i</span> ~/.ssh/my_key.pem
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ssh –L 9000:localhost:9000 <span class="nt">-L</span> 8084:localhost:8084 <span class="nt">-L</span> 8087:localhost:8087 ubuntu@10.100.10.167 <span class="nt">-i</span> ~/.ssh/my_key.pem
 </code></pre></div>    </div>
   </li>
   <li>
@@ -545,164 +525,65 @@
   </li>
 </ol>
 
-<h4 id="create-a-spinnaker-application">Create a Spinnaker Application</h4>
+<h3 id="configuring-spinnaker">Configuring Spinnaker</h3>
 
-<p><strong>(TODO)</strong></p>
+<p>The <a href="https://www.spinnaker.io/reference/architecture/">Spinnaker architecture</a> is composed of a collection of microservices that each handle various aspects of the entire service.  For example, <a href="https://github.com/spinnaker/deck">Deck</a> is the web interface you’ll spend most time interacting with, <a href="https://github.com/spinnaker/gate">Gate</a> is the API gateway that handles most communication between microservices, and <a href="https://github.com/spinnaker/clouddriver">CloudDriver</a> is the service that communicates and configures all cloud providers Spinnaker is working with.</p>
 
-<h3 id="manual-spinnaker-deployment-with-halyard">Manual Spinnaker Deployment With Halyard</h3>
+<p>Since so much of Spinnaker is blown out into smaller microservices, configuring Spinnaker can require messing with a few different files.  If there’s an issue you’ll likely have to look through individual logs for each different service, depending on the problem.</p>
 
-<p><strong>(TODO)</strong></p>
+<p>Spinnaker is configured through <code class="highlighter-rouge">/opt/spinnaker/config/spinnaker.yml</code> file.  However, this file will be overwritten by Halyard or other changes, so for user-generated configuration you should actually modify the <code class="highlighter-rouge">/opt/spinnaker/config/spinnaker-local.yml</code> file.  Here’s a basic example of what that file looks like.</p>
 
-<h3 id="deploying-spinnaker-on-aws-ekskubernetes">Deploying Spinnaker on AWS EKS/Kubernetes</h3>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># /opt/spinnaker/config/spinnaker-local.yml</span>
 
-<div class="premonition info modified"><div class="fa fa-info-circle"></div><div class="content"><p>Since deploying Spinnaker on a Kubernetes cluster is a fairly lengthy and complex process, you can find the full tutorial for this over in the <a href="https://www.gremlin.com/chaos-monkey/advanced-tips#how-to-deploy-spinnaker-on-aws-with-kubernetes">Advanced Developer Guide</a>.</p></div></div>
+<span class="na">global</span><span class="pi">:</span>
+  <span class="na">spinnaker</span><span class="pi">:</span>
+    <span class="na">timezone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">America/Los_Angeles'</span>
 
-<h2 id="installing-chaos-monkey">Installing Chaos Monkey</h2>
+<span class="na">providers</span><span class="pi">:</span>
+  <span class="na">aws</span><span class="pi">:</span>
+    <span class="c1"># For more information on configuring Amazon Web Services (aws), see</span>
+    <span class="c1"># http://www.spinnaker.io/v1.0/docs/target-deployment-setup#section-amazon-web-services-setup</span>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">######### WELCOME TO SPINNAKER ############</span>
+    <span class="na">enabled</span><span class="pi">:</span> <span class="s">${SPINNAKER_AWS_ENABLED:</span><span class="no">false</span><span class="s">}</span>
+    <span class="na">defaultRegion</span><span class="pi">:</span> <span class="s">${SPINNAKER_AWS_DEFAULT_REGION:us-west-2}</span>
+    <span class="na">defaultIAMRole</span><span class="pi">:</span> <span class="s">Spinnaker-BaseIAMRole-GAT2AISI7TMJ</span>
+    <span class="na">primaryCredentials</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">default</span>
+      <span class="c1"># Store actual credentials in $HOME/.aws/credentials. See spinnaker.yml</span>
+      <span class="c1"># for more information, including alternatives.</span>
 
-Initializing systems!
+    <span class="c1">#  will be interpolated with the aws account name (e.g. "my-aws-account-keypair").</span>
+    <span class="na">defaultKeyPairTemplate</span><span class="pi">:</span> <span class="s2">"</span><span class="s">-keypair"</span>
 
-Default region is configured <span class="k">for </span>Amazon AWS region:
-
-GCE is disabled on this host. Refer to http://spinnaker.io/
-<span class="k">for </span>more specific instructions.
-
-You are <span class="k">in </span>a VPC setting this <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>
-Amazon VPC ID is <span class="nb">set </span>to: vpc-08e215071274f2822
-
-Amazon AWS Subnet is <span class="nb">set </span>to: subnet-0cee7f54078833309
-
-Reconfiguring deck <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>
-
-Rewriting deck settings <span class="k">in</span> <span class="s2">"/opt/deck/html/settings.js"</span><span class="nb">.</span>
-Restarting Spinnaker <span class="nb">.</span> <span class="nb">.</span> <span class="nb">.</span>
-
-spinnaker start/running
-
-Edit /etc/default/spinnaker and restart Spinnaker <span class="k">if </span>you wish to change this
-Then execute:
-<span class="nb">sudo </span>service clouddriver restart
-<span class="nb">sudo </span>service rosco restart
-
-<span class="nt">------</span> You should be ready to go <span class="nt">-----</span>
-To connect create a SSH tunnel from your host to ec2-34-217-178-128.us-west-2.compute.amazonaws.com remote ports 9000 and 8084
-
-You may add this to ~/.ssh/config:
-Host spinnaker
-    HostName ec2-34-217-178-128.us-west-2.compute.amazonaws.com
-    IdentityFile /path/to/private/key
-    LocalForward 9000 127.0.0.1:9000
-    LocalForward 8084 127.0.0.1:8084
-    LocalForward 8087 127.0.0.1:8087
-    User ubuntu
-
-If the ssh config file is new. Ensure it is chmod 400
-
-Execute: ssh <span class="nt">-f</span> <span class="nt">-N</span> spinnaker
-Open http://localhost:9000/ <span class="k">in </span>your web browser
-
-This message will now self-destruct. Enjoy
+    <span class="c1"># ...</span>
 </code></pre></div></div>
 
-<h3 id="ssh-configuration">SSH Configuration</h3>
+<p>Standalone Spinnaker installations (such as the one created via the <a href="#rapid-spinnaker-deployment">AWS Quick Start</a>) are configured directly through the <code class="highlighter-rouge">spinnaker.yml</code> and <code class="highlighter-rouge">spinnaker-local.yml</code> override configuration files.</p>
 
-<ul>
-  <li>May need to modify auto-generated <code class="highlighter-rouge">SpinnakerWebServerSecurityGroup</code> AWS Secury Group to add your local IP address/range [SCREENSHOT].</li>
-</ul>
+<h3 id="creating-an-application">Creating an Application</h3>
 
-<h3 id="aws-ec2-bastion--spinnaker">AWS EC2 Bastion &amp; Spinnaker</h3>
+<p>In this section we’ll manually create a Spinnaker <strong>application</strong> containing a <strong>pipeline</strong> that first <em>bakes</em> a virtual machine image and then <em>deploys</em> that image to a cluster.</p>
 
-<p><strong>(TODO)</strong></p>
-
-<h3 id="chaos-monkey--spinnaker-setup">Chaos Monkey + Spinnaker Setup</h3>
-
-<ul>
-  <li>Click <strong>Config</strong> in top-right of Spinnaker <code class="highlighter-rouge">Deck</code> application page.</li>
-  <li>Select <strong>Chaos Monkey</strong> in side navigation. [SCREENSHOT]</li>
-</ul>
-
-<h3 id="spinnaker-configuration">Spinnaker COnfiguration</h3>
-
-<ul>
-  <li><code class="highlighter-rouge">/opt/spinnaker</code></li>
-  <li><code class="highlighter-rouge">/opt/deck/html/settings.js</code></li>
-  <li><code class="highlighter-rouge">/opt/rosco</code>: Bakery service that handles pipelines.</li>
-</ul>
-
-<h3 id="known-issues">Known Issues</h3>
-
-<ul>
-  <li><code class="highlighter-rouge">Bake</code> stage can fail with <code class="highlighter-rouge">Error launching source spot instance</code> due to <code class="highlighter-rouge">invalid spot instance price</code> (see: <a href="https://github.com/spinnaker/spinnaker/issues/2889">#2889</a>).
-    <ul>
-      <li>Resolution: Remove <code class="highlighter-rouge">spot</code> reference lines in <code class="highlighter-rouge">/opt/rosco/config/packer/aws-ebs.json</code>.</li>
-    </ul>
-  </li>
-  <li><code class="highlighter-rouge">Bake</code> stage can fail with <code class="highlighter-rouge">Unknown configuration key: "ena_support"</code> error (see: <a href="https://github.com/spinnaker/spinnaker/issues/2237">#2237</a>).
-    <ul>
-      <li>Resolution: Remove <code class="highlighter-rouge">ena_support</code> reference line in <code class="highlighter-rouge">/opt/rosco/config/packer/aws-ebs.json</code>.</li>
-    </ul>
-  </li>
-  <li><code class="highlighter-rouge">Bake</code> stage can fail with:</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">==&gt;</span> amazon-ebs: Prevalidating AMI Name...
-<span class="o">==&gt;</span> amazon-ebs: Inspecting the <span class="nb">source </span>AMI...
-<span class="o">==&gt;</span> amazon-ebs: Creating temporary keypair: packer 5b8e2add-3401-259c-7142-12708cc57144
-<span class="o">==&gt;</span> amazon-ebs: Creating temporary security group <span class="k">for </span>this instance...
-<span class="o">==&gt;</span> amazon-ebs: Authorizing access to port 22 the temporary security group...
-<span class="o">==&gt;</span> amazon-ebs: Launching a <span class="nb">source </span>AWS instance...
-    amazon-ebs: Instance ID: i-0524794dbeffb3381
-<span class="o">==&gt;</span> amazon-ebs: Waiting <span class="k">for </span>instance <span class="o">(</span>i-0524794dbeffb3381<span class="o">)</span> to become ready...
-<span class="o">==&gt;</span> amazon-ebs: Waiting <span class="k">for </span>SSH to become available...
-<span class="o">==&gt;</span> amazon-ebs: Connected to SSH!
-<span class="o">==&gt;</span> amazon-ebs: Pausing 30s before the next provisioner...
-<span class="o">==&gt;</span> amazon-ebs: Provisioning with shell script: /opt/rosco/config/packer/install_packages.sh
-    amazon-ebs: <span class="nv">repository</span><span class="o">=</span>
-    amazon-ebs: <span class="nv">package_type</span><span class="o">=</span>deb
-    amazon-ebs: <span class="nv">packages</span><span class="o">=</span>redis-server
-    amazon-ebs: <span class="nv">upgrade</span><span class="o">=</span>
-    amazon-ebs: <span class="nv">artifacts</span><span class="o">=</span>
-    amazon-ebs: <span class="nb">cat</span>: /tmp/artifacts.json: No such file or directory
-<span class="o">==&gt;</span> amazon-ebs: Terminating the <span class="nb">source </span>AWS instance...
-<span class="o">==&gt;</span> amazon-ebs: No AMIs to cleanup
-<span class="o">==&gt;</span> amazon-ebs: Deleting temporary security group...
-<span class="o">==&gt;</span> amazon-ebs: Deleting temporary keypair...
-Build <span class="s1">'amazon-ebs'</span> errored: Script exited with non-zero <span class="nb">exit </span>status: 1
-
-<span class="o">==&gt;</span> Some builds didn<span class="s1">'t complete successfully and had errors:
---&gt; amazon-ebs: Script exited with non-zero exit status: 1
-
-==&gt; Builds finished but no artifacts were created.
-</span></code></pre></div></div>
-
-<ul>
-  <li>Resolution: Execute the following command to override old <code class="highlighter-rouge">install_packages.sh</code> script with newer version.</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>curl https://raw.githubusercontent.com/spinnaker/rosco/master/rosco-web/config/packer/install_packages.sh <span class="nt">--output</span> /opt/rosco/config/packer/install_packages.sh
-</code></pre></div></div>
-
-<h3 id="spinnaker-add-application">Spinnaker: Add Application</h3>
-
-<ul>
-  <li>Click <strong>Actions &gt; Create Application</strong>.</li>
+<ol>
+  <li>Open the Spinnaker web UI (<strong>Deck</strong>) and click <strong>Actions &gt; Create Application</strong>.</li>
   <li>Input <code class="highlighter-rouge">bookstore</code> in the <strong>Name</strong> field.</li>
   <li>Input your own email address in the <strong>Owner Email</strong> field.</li>
-  <li>Ensure <code class="highlighter-rouge">Chaos Monkey &gt; Enabled</code> is checked.</li>
+  <li>(Optional) If you’ve enabled Chaos Monkey in Spinnaker you can opt to enable Chaos Monkey by checking the <strong>Chaos Monkey &gt; Enabled</strong> box.</li>
   <li>Input <code class="highlighter-rouge">My bookstore application</code> in the <strong>Description</strong> field.</li>
-  <li>Under <strong>Instance Health</strong>, tick the <code class="highlighter-rouge">Consider only cloud provider health when executing tasks</code> checkbox.</li>
+  <li>Under <strong>Instance Health</strong>, tick the <strong>Consider only cloud provider health when executing tasks</strong> checkbox.</li>
   <li>Click <strong>Create</strong> to add your new application.</li>
-</ul>
+</ol>
 
-<h4 id="add-firewall">Add Firewall</h4>
+<p><img src="../images/developer-tutorial-add-spinnaker-application.png" alt="developer-tutorial-add-spinnaker-application" title="New Application Spinnaker Dialog" /></p>
 
-<ul>
-  <li>Navigate to the <code class="highlighter-rouge">bookstore</code> application, <strong>INFRASTRUCTURE &gt; FIREWALLS</strong> and click <strong>Create Firewall</strong>.</li>
+<h3 id="adding-a-firewall">Adding a Firewall</h3>
+
+<ol>
+  <li>Navigate to the <code class="highlighter-rouge">bookstore</code> application, <strong>INFRASTRUCTURE &gt; FIREWALLS</strong>, and click <strong>Create Firewall</strong>.</li>
   <li>Input <code class="highlighter-rouge">dev</code> in the <strong>Detail</strong> field.</li>
   <li>Input <code class="highlighter-rouge">Bookstore dev environment</code> in the <strong>Description</strong> field.</li>
   <li>Within the <strong>VPC</strong> dropdown select <code class="highlighter-rouge">SpinnakerVPC</code>.</li>
-  <li>Under the <strong>Ingress</strong> header click <strong>Add new Firewall Rule</strong>. Set the following <strong>Firewall Rule</strong> settings:
+  <li>Under the <strong>Ingress</strong> header click <strong>Add new Firewall Rule</strong>. Set the following <strong>Firewall Rule</strong> settings.
     <ul>
       <li><strong>Firewall</strong>: <code class="highlighter-rouge">default</code></li>
       <li><strong>Protocol</strong>: <code class="highlighter-rouge">TCP</code></li>
@@ -710,720 +591,509 @@ Build <span class="s1">'amazon-ebs'</span> errored: Script exited with non-zero 
       <li><strong>End Port</strong>: <code class="highlighter-rouge">80</code></li>
     </ul>
   </li>
-  <li>Click the <strong>Create</strong> button to finalize the firewall settings. [SCREENSHOT]</li>
-</ul>
+  <li>Click the <strong>Create</strong> button to finalize the firewall settings.</li>
+</ol>
 
-<h4 id="add-load-balancer">Add Load Balancer</h4>
+<p><img src="../images/developer-tutorial-add-firewall-spinnaker.png" alt="developer-tutorial-add-firewall-spinnaker" title="Add Firewall Spinnaker Dialog" /></p>
 
-<ul>
-  <li>Navigate to the <code class="highlighter-rouge">bookstore</code> application, <strong>INFRASTRUCTURE &gt; LOAD BALANCERS</strong> and click <strong>Create Load Balancer</strong>.</li>
+<h3 id="adding-a-load-balancer">Adding a Load Balancer</h3>
+
+<ol>
+  <li>Navigate to the <code class="highlighter-rouge">bookstore</code> application, <strong>INFRASTRUCTURE &gt; LOAD BALANCERS</strong>, and click <strong>Create Load Balancer</strong>.</li>
   <li>Select <strong>Classic (Legacy)</strong> and click <strong>Configure Load Balancer</strong>.</li>
   <li>Input <code class="highlighter-rouge">test</code> in the <strong>Stack</strong> field.</li>
   <li>In the <strong>VPC Subnet</strong> dropdown select <code class="highlighter-rouge">internal (vpc-...)</code>.</li>
   <li>In the <strong>Firewalls</strong> dropdown select <code class="highlighter-rouge">bookstore--dev (...)</code>.</li>
-  <li>Click <strong>Create</strong> to generate the load balancer. [SCREENSHOT]</li>
-</ul>
+  <li>Click <strong>Create</strong> to generate the load balancer.</li>
+</ol>
 
-<h4 id="add-pipeline">Add Pipeline</h4>
+<p><img src="../images/developer-tutorial-add-load-balancer-spinnaker.png" alt="developer-tutorial-add-load-balancer-spinnaker" title="Add Load Balancer Spinnaker Dialog" /></p>
 
-<ul>
+<h3 id="creating-a-pipeline-in-spinnaker">Creating a Pipeline in Spinnaker</h3>
+
+<p>The final step is to add a <strong>pipeline</strong>, which is where we tell Spinnaker what it should actually “do”!  In this case we’ll tell it to <strong>bake</strong> a virtual machine image containing <a href="https://redis.io/">Redis</a>, then to <strong>deploy</strong> that image to our waiting EC2 instance.</p>
+
+<ol>
   <li>Navigate to the <code class="highlighter-rouge">bookstore</code> application, <strong>PIPELINES</strong> and click <strong>Create Pipeline</strong>.</li>
   <li>Select <code class="highlighter-rouge">Pipeline</code> in the <strong>Type</strong> dropdown.</li>
   <li>Input <code class="highlighter-rouge">Bookstore Dev to Test</code> in the <strong>Pipeline Name</strong> field.</li>
-  <li>Click <strong>Create</strong>. [SCREENSHOT]</li>
-</ul>
+  <li>Click <strong>Create</strong>.</li>
+</ol>
 
-<h5 id="add-stage-1">Add Stage 1</h5>
+<h4 id="adding-a-bake-stage">Adding a Bake Stage</h4>
 
-<ul>
+<ol>
   <li>Click the <strong>Add stage</strong> button.</li>
   <li>Under <strong>Type</strong> select <code class="highlighter-rouge">Bake</code>.</li>
   <li>Input <code class="highlighter-rouge">redis-server</code> in the <strong>Package</strong> field.</li>
   <li>Select <code class="highlighter-rouge">trusty (v14.04)</code> in the <strong>Base OS</strong> dropdown.</li>
   <li>Click <strong>Save Changes</strong> to finalize the stage.</li>
-</ul>
+</ol>
 
-<h5 id="add-stage-2">Add Stage 2</h5>
+<p><img src="../images/developer-tutorial-bake-stage-spinnaker.png" alt="developer-tutorial-bake-stage-spinnaker" title="Add Bake Deployment Stage Spinnaker Dialog" /></p>
 
-<ul>
+<div class="premonition note modified"><div class="fa fa-check-square"></div><div class="content"><p class="header">Ignoring Jenkins/Travis</p><p>In production environments you’ll likely also want to incorporate Travis, Jenkins, or another CI solution as a preceding stage to the <strong>bake</strong> stage.  Otherwise, Spinnaker will default to baking and deploying the most recently built package.  For our purposes here we don’t care, since we’re using an unchanging image.</p></div></div>
+
+<h4 id="adding-a-deploy-stage">Adding a Deploy Stage</h4>
+
+<ol>
   <li>Click the <strong>Add stage</strong> button.</li>
   <li>Under <strong>Type</strong> select <code class="highlighter-rouge">Deploy</code>.</li>
   <li>Click the <strong>Add server group</strong> button to begin creating a new server group.</li>
-</ul>
+</ol>
 
-<h5 id="creating-a-server-group">Creating a Server Group</h5>
+<h4 id="adding-a-server-group">Adding a Server Group</h4>
 
-<ul>
+<ol>
   <li>Select <code class="highlighter-rouge">internal (vpc-...)</code> in the <strong>VPC Subnet</strong> dropdown.</li>
   <li>Input <code class="highlighter-rouge">dev</code> in the <strong>Stack</strong> field.</li>
   <li>Under <strong>Load Balancers &gt; Classic Load Balancers</strong> select the <code class="highlighter-rouge">bookstore-dev</code> load balancer we created.</li>
   <li>Under <strong>Firewalls &gt; Firewalls</strong> select the <code class="highlighter-rouge">bookstore--dev</code> firewall we also created.</li>
-  <li>Under <strong>Instance Type</strong> select the <strong>Custom Type</strong> of instance you think you’ll need.  For this example we’ll go with something small and cheap, like <code class="highlighter-rouge">t3.micro</code>.</li>
+  <li>Under <strong>Instance Type</strong> select the <strong>Custom Type</strong> of instance you think you’ll need.  For this example we’ll go with something small and cheap, such as <code class="highlighter-rouge">t2.large</code>.</li>
   <li>Input <code class="highlighter-rouge">3</code> in the <strong>Capacity &gt; Number of Instances</strong> field.</li>
-  <li>Under <strong>Advanced Settings &gt; Key Name</strong> select the <code class="highlighter-rouge">spinnaker_developer</code> key name.</li>
-  <li>Click the <strong>Add</strong> button to create the deployment cluster configuration.</li>
-  <li>Finally, click <strong>Save Changes</strong> again at the bottom of the <strong>Pipelines</strong> interface to save the full <code class="highlighter-rouge">Configuration &gt; Bake &gt; Deploy</code> pipeline.</li>
-  <li><em>Note: You may see a warning within the <code class="highlighter-rouge">Bake</code> stage that a <code class="highlighter-rouge">CI</code> trigger (such as Jenkins/Travis) is usually required, but we don’t care in this simple example scenario.</em></li>
-</ul>
-
-<h5 id="try-it-out">Try It Out</h5>
-
-<p><strong>Successful Bake Stage</strong>:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">==&gt;</span> amazon-ebs: Prevalidating AMI Name...
-<span class="o">==&gt;</span> amazon-ebs: Inspecting the <span class="nb">source </span>AMI...
-<span class="o">==&gt;</span> amazon-ebs: Creating temporary keypair: packer 5b8e2fbf-372c-b3c9-32b3-b01e379e886d
-<span class="o">==&gt;</span> amazon-ebs: Creating temporary security group <span class="k">for </span>this instance...
-<span class="o">==&gt;</span> amazon-ebs: Authorizing access to port 22 the temporary security group...
-<span class="o">==&gt;</span> amazon-ebs: Launching a <span class="nb">source </span>AWS instance...
-    amazon-ebs: Instance ID: i-08d49753da1bfe24d
-<span class="o">[</span>...]
-Build <span class="s1">'amazon-ebs'</span> finished.
-
-<span class="o">==&gt;</span> Builds finished. The artifacts of successful builds are:
-<span class="nt">--</span><span class="o">&gt;</span> amazon-ebs: AMIs were created:
-
-us-west-2: ami-04c042b2789ec7760
-</code></pre></div></div>
-
-<p><strong>Successful Deploy Stage</strong>:</p>
-
-<p><strong>Cluster Instance Console Output</strong>:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>    0.000000] Initializing cgroup subsys cpuset
-<span class="o">[</span>    0.000000] Initializing cgroup subsys cpu
-<span class="o">[</span>    0.000000] Initializing cgroup subsys cpuacct
-<span class="o">[</span>    0.000000] Linux version 3.13.0-137-generic <span class="o">(</span>buildd@lgw01-amd64-058<span class="o">)</span> <span class="o">(</span>gcc version 4.8.4 <span class="o">(</span>Ubuntu 4.8.4-2ubuntu1~14.04.3<span class="o">)</span> <span class="o">)</span> <span class="c">#186-Ubuntu SMP Mon Dec 4 19:09:19 UTC 2017 (Ubuntu 3.13.0-137.186-generic 3.13.11-ckt39)</span>
-<span class="o">[</span>    0.000000] Command line: <span class="nv">BOOT_IMAGE</span><span class="o">=</span>/boot/vmlinuz-3.13.0-137-generic <span class="nv">root</span><span class="o">=</span><span class="nv">UUID</span><span class="o">=</span>08df443d-a08d-4a06-ab5b-6fdacfc684d3 ro <span class="nv">console</span><span class="o">=</span>tty1 <span class="nv">console</span><span class="o">=</span>ttyS0
-<span class="o">[</span>    0.000000] KERNEL supported cpus:
-...
-Cloud-init v. 0.7.5 finished at Tue, 04 Sep 2018 19:58:40 +0000. Datasource DataSourceEc2.  Up 21.79 seconds
-</code></pre></div></div>
-
-<p><strong>Failed Deploy Stage</strong>:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User: arn:aws:iam::709203678428:user/SpinnakerDevelopment-SpinnakerUser-18ZQ3LBIXDZZV is not authorized to perform: iam:PassRole on resource: arn:aws:iam::709203678428:role/BaseIAMRole <span class="o">(</span>Service: AmazonAutoScaling<span class="p">;</span> Status Code: 403<span class="p">;</span> Error Code: AccessDenied<span class="p">;</span> Request ID: 0ef99eda-b012-11e8-a6f7-6b1d7fcc227f<span class="o">)</span>
-</code></pre></div></div>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Invalid IamInstanceProfile: SpinnakerDevelopment-BaseIAMRole-6D9LJ9HS4PZ7 <span class="o">(</span>Service: AmazonAutoScaling<span class="p">;</span> Status Code: 400<span class="p">;</span> Error Code: ValidationError<span class="p">;</span> Request ID: 7312e684-b079-11e8-95a6-5baf58bb2ca8<span class="o">)</span>
-</code></pre></div></div>
-
-<p>Solution: Input <strong>Instance Profile ARN</strong> value of <code class="highlighter-rouge">BaseIAMRole</code> into <code class="highlighter-rouge">Bookstore Test to Dev &gt; Deploy stage &gt; Advanced Settings &gt; IAM Instance Profile</code> field (e.g. <code class="highlighter-rouge">arn:aws:iam::709203678428:instance-profile/BaseIAMRole</code>).</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User: arn:aws:iam::709203678428:user/SpinnakerDevelopment-SpinnakerUser-18ZQ3LBIXDZZV is not authorized to perform: iam:PassRole on resource: arn:aws:iam::709203678428:role/BaseIAMRole <span class="o">(</span>Service: AmazonAutoScaling<span class="p">;</span> Status Code: 403<span class="p">;</span> Error Code: AccessDenied<span class="p">;</span> Request ID: 01c151d9-b07c-11e8-960b-0d81eade5556<span class="o">)</span>
-</code></pre></div></div>
-
-<p>Solution:</p>
-
-<ul>
-  <li>Navigate to <strong>AWS &gt; IAM &gt; Users &gt; SpinnakerDevelopment-SpinnakerUser-18ZQ3LBIXDZZV &gt; Permissions</strong>.</li>
-  <li>Expand <code class="highlighter-rouge">Spinnakerpassrole</code> policy and click <strong>Edit Policy</strong>.</li>
-  <li>Select the <strong>JSON</strong> tab and you’ll see the auto-generated <code class="highlighter-rouge">SpinnakerDevelopment-BaseIAMRole</code> listed in <code class="highlighter-rouge">Resources</code>.</li>
-  <li>Add a new line for the <code class="highlighter-rouge">BaseIAMRole</code> we added previously, like so:</li>
-</ul>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"Sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VisualEditor0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iam:PassRole"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="s2">"arn:aws:iam::123456789012:role/SpinnakerDevelopment-BaseIAMRole-6D9LJ9HS4PZ7"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"arn:aws:iam::123456789012:role/BaseIAMRole"</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<ul>
-  <li>Click <strong>Review policy</strong> and then click <strong>Save changes</strong>.</li>
-  <li><code class="highlighter-rouge">Deploy</code> stage should now succeed.</li>
-</ul>
-
-<p><strong>Failed CloudDriver</strong></p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl list-units <span class="nt">--state</span><span class="o">=</span>failed
-  UNIT                LOAD   ACTIVE SUB    DESCRIPTION
-● clouddriver.service loaded failed failed Spinnaker Clouddriver
-
-LOAD   <span class="o">=</span> Reflects whether the unit definition was properly loaded.
-ACTIVE <span class="o">=</span> The high-level unit activation state, i.e. generalization of SUB.
-SUB    <span class="o">=</span> The low-level unit activation state, values depend on unit type.
-
-1 loaded units listed. Pass <span class="nt">--all</span> to see loaded but inactive units, too.
-To show all installed unit files use <span class="s1">'systemctl list-unit-files'</span><span class="nb">.</span>
-</code></pre></div></div>
-
-<h2 id="how-to-deploy-chaos-monkey">How to Deploy Chaos Monkey</h2>
-
-<ol>
-  <li>Once your application is up and running through Spinnaker, you can</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>chaosmonkey migrate
-<span class="o">[</span>16264] 2018/09/04 14:11:16 Successfully applied database migrations. Number of migrations applied:  0
-<span class="o">[</span>16264] 2018/09/04 14:11:16 database migration applied successfully
-</code></pre></div></div>
-
-<h2 id="manual-spinnaker-installation">Manual Spinnaker Installation</h2>
-
-<p><strong><em>TODO</em></strong>: https://www.spinnaker.io/setup/install/</p>
-
-<h3 id="chaos-monkey--go--mysql-8-authentication-error">Chaos Monkey + Go + MySQL 8 Authentication Error</h3>
-
-<p>See: <a href="https://github.com/go-sql-driver/mysql/issues/785">#785</a></p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ 6593] 2018/09/04 13:26:03 ERROR - couldn't apply database migration: database migration failed: this authentication plugin is not supported
-</code></pre></div></div>
-
-<p>Solution: Add <code class="highlighter-rouge">default-authentication-plugin = mysql_native_password</code> directive to <code class="highlighter-rouge">[mysqld]</code> section of <code class="highlighter-rouge">/etc/mysql/mysql.conf.d/mysqld.cnf</code>:</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[mysqld]
-default-authentication-plugin = mysql_native_password
-</code></pre></div></div>
-
-<div class="premonition warning modified"><div class="fa fa-exclamation-circle"></div><div class="content"><p class="header">Warning</p><p>Chaos Monkey is currently <em>incompatible</em> with MySQL version 8.0 and higher.</p></div></div>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[16097] 2018/09/04 14:07:43 ERROR - couldn't apply database migration: database migration failed: Error 1298: Unknown or incorrect time zone: 'UTC'
-</code></pre></div></div>
-<p>Solution: Add timezone info to MySQL by executing the following command.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>mysql_tzinfo_to_sql /usr/share/zoneinfo/|mysql <span class="nt">-u</span> root mysql <span class="nt">-p</span>
-Enter password: 
-Warning: Unable to load <span class="s1">'/usr/share/zoneinfo//iso3166.tab'</span> as <span class="nb">time </span>zone. Skipping it.
-Warning: Unable to load <span class="s1">'/usr/share/zoneinfo//leap-seconds.list'</span> as <span class="nb">time </span>zone. Skipping it.
-Warning: Unable to load <span class="s1">'/usr/share/zoneinfo//zone.tab'</span> as <span class="nb">time </span>zone. Skipping it.
-Warning: Unable to load <span class="s1">'/usr/share/zoneinfo//zone1970.tab'</span> as <span class="nb">time </span>zone. Skipping it.
-</code></pre></div></div>
-
-<p>Alter <code class="highlighter-rouge">chaosmonkey</code> MySQL 8 user’s identification policy to <code class="highlighter-rouge">mysql_native_password</code>.  Note: This is inherently less secure than the default policy.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mysql&gt; ALTER USER chaosmonkey@<span class="s1">'localhost'</span> IDENTIFIED WITH mysql_native_password by <span class="s1">'password'</span><span class="p">;</span>
-Query OK, 0 rows affected <span class="o">(</span>0.03 sec<span class="o">)</span>
-</code></pre></div></div>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mysql&gt; ALTER USER root@<span class="s1">'localhost'</span> IDENTIFIED WITH mysql_native_password by <span class="s1">'password'</span><span class="p">;</span>
-Query OK, 0 rows affected <span class="o">(</span>0.03 sec<span class="o">)</span>
-</code></pre></div></div>
-
-<h2 id="spinnaker-full-installation-via-aws-cli">Spinnaker Full Installation via AWS CLI</h2>
-
-<h3 id="create-aws-cloudformation-spinnaker-stack">Create AWS CloudFormation Spinnaker Stack</h3>
-
-<ol>
-  <li>If needed, install the <a href="https://docs.aws.amazon.com/cli/latest/userguide/installing.html">AWS CLI tool</a> on your machine.</li>
-</ol>
-
-<div class="premonition info modified"><div class="fa fa-info-circle"></div><div class="content"><p class="header">Simplifying AWS Credentials</p><p>You can make future AWS CLI commands easier by creating AWS <code class="highlighter-rouge">profiles</code>, which will add configuration and credentials to the local <code class="highlighter-rouge">~/.aws/credentials</code> file.  We’ll be using two different accounts/profiles (<code class="highlighter-rouge">primary</code> or root AWS console account and <code class="highlighter-rouge">spinnaker-developer</code> as a managed account), so we can add credentials for both of these to <code class="highlighter-rouge">~/.aws/credentials</code> by using <code class="highlighter-rouge">aws configure --profile &lt;profile-name&gt;</code> commands.</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws configure <span class="nt">--profile</span> spinnaker-developer
-AWS Access Key ID <span class="o">[</span>None]: &lt;AWS_ACCESS_KEY_ID&gt;
-AWS Secret Access Key <span class="o">[</span>None]: &lt;AWS_SECRET_ACCESS_KEY&gt;
-Default region name <span class="o">[</span>None]: us-west-2
-Default output format <span class="o">[</span>None]: text
-   
-aws configure <span class="nt">--profile</span> primary
-AWS Access Key ID <span class="o">[</span>None]: &lt;AWS_ACCESS_KEY_ID&gt;
-AWS Secret Access Key <span class="o">[</span>None]: &lt;AWS_SECRET_ACCESS_KEY&gt;
-Default region name <span class="o">[</span>None]: us-west-2
-Default output format <span class="o">[</span>None]: text
-</code></pre></div></div>
-
-<p>In the future, simply add the <code class="highlighter-rouge">--profile &lt;profile-name&gt;</code> flag to any AWS CLI command to force AWS CLI to use that account.</p></div></div>
-
-<ol>
-  <li>Download <a href="https://d3079gxvs8ayeg.cloudfront.net/templates/managing.yaml">this</a> <code class="highlighter-rouge">managing.yaml</code> template.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-OL</span> https://d3079gxvs8ayeg.cloudfront.net/templates/managing.yaml
-</code></pre></div></div>
-
-<ol>
-  <li>Now we’ll use AWS CLI to create the <code class="highlighter-rouge">spinnaker-managing-infrastructure</code> stack via CloudFormation.  We want to use the <code class="highlighter-rouge">primary</code> or managing account for this, so we’ll specify the <code class="highlighter-rouge">--profile primary</code>, which will grab the appropriate credentials, region, and so forth:</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>aws cloudformation deploy <span class="nt">--stack-name</span> spinnaker-managing-infrastructure <span class="nt">--template-file</span> managing.yaml <span class="nt">--parameter-overrides</span> <span class="nv">UseAccessKeyForAuthentication</span><span class="o">=</span><span class="nb">true</span> <span class="nt">--capabilities</span> CAPABILITY_NAMED_IAM <span class="nt">--profile</span> primary
-
-Waiting <span class="k">for </span>changeset to be created..
-Waiting <span class="k">for </span>stack create/update to <span class="nb">complete
-</span>Successfully created/updated stack - spinnaker-managing-infrastructure
-</code></pre></div></div>
-
-<div class="premonition errpr modified"><div class="fa fa-check-square"></div><div class="content"><p>If you receive an <code class="highlighter-rouge">Unresolved resource dependency</code> error while creating the <code class="highlighter-rouge">spinnaker-managing-infrastructure</code> stack related to the <code class="highlighter-rouge">SpinnakerInstanceProfile</code> you may need to edit the <code class="highlighter-rouge">managing.yaml</code> file and comment out the two <code class="highlighter-rouge">SpinnakerInstanceProfileArn</code> related lines under the <code class="highlighter-rouge">Outputs</code> block.</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># ...</span>
-Outputs:
-<span class="c"># ...</span>
-<span class="c">#  SpinnakerInstanceProfileArn:</span>
-<span class="c">#    Value: !GetAtt SpinnakerInstanceProfile.Arn</span>
-</code></pre></div></div></div></div>
-
-<ol>
-  <li>Once the <code class="highlighter-rouge">spinnaker-managing-infrastructure</code> stack has been created open the AWS console, navigate to the <code class="highlighter-rouge">CloudFormation</code> service, select the <strong>Outputs</strong> tab of the <code class="highlighter-rouge">spinnaker-managing-infrastructure</code> stack.  We’ll be using the <code class="highlighter-rouge">ManagingAccountId</code> and <code class="highlighter-rouge">AuthArn</code> values in the next step, which look something like the following:</li>
-</ol>
-
-<table>
-  <thead>
-    <tr>
-      <th>Key</th>
-      <th>Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>ManagingAccountId</td>
-      <td>123456789012</td>
-    </tr>
-    <tr>
-      <td>AuthArn</td>
-      <td>arn:aws:iam::123456789012:user/spinnaker-managing-infrastructure-SpinnakerUser-15UU17KIS3EK1</td>
-    </tr>
-  </tbody>
-</table>
-
-<ol>
-  <li>Download <a href="https://d3079gxvs8ayeg.cloudfront.net/templates/managed.yaml">this</a> <code class="highlighter-rouge">managed.yaml</code> template.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-OL</span> https://d3079gxvs8ayeg.cloudfront.net/templates/managed.yaml
-</code></pre></div></div>
-
-<ol>
-  <li>Now enter the following command to create the companion <code class="highlighter-rouge">spinnaker-managed-infrastructure</code> stack in CloudFormation.  Be sure to specify the appropriate <strong>profile</strong> value and paste the appropriate <code class="highlighter-rouge">ManagingAccountId</code> and <code class="highlighter-rouge">AuthArn</code> values from above:</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>aws cloudformation deploy <span class="nt">--stack-name</span> spinnaker-managed-infrastructure <span class="nt">--template-file</span> managed.yaml <span class="se">\</span>
-<span class="nt">--capabilities</span> CAPABILITY_NAMED_IAM <span class="nt">--profile</span> spinnaker-developer <span class="nt">--parameter-overrides</span> <span class="se">\</span>
-<span class="nv">AuthArn</span><span class="o">=</span>&lt;ManagingStack_AuthArnValue&gt; <span class="se">\</span>
-<span class="nv">ManagingAccountId</span><span class="o">=</span>&lt;ManagingStack_ManagingAccountId&gt;
-
-Waiting <span class="k">for </span>changeset to be created..
-Waiting <span class="k">for </span>stack create/update to <span class="nb">complete
-</span>Successfully created/updated stack - spinnaker-managed-infrastructure
-</code></pre></div></div>
-
-<ol>
-  <li>Add your AWS Access and Secret Keys to Halyard:</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hal config provider aws edit <span class="nt">--access-key-id</span> &lt;AWS_ACCESS_KEY_ID&gt; <span class="nt">--secret-access-key</span>
-Your AWS Secret Key.. Note that <span class="k">if </span>you are baking AMI<span class="s1">'s via Rosco, you may also need to set the secret key on the AWS bakery default options.:
-+ Get current deployment
-  Success
-+ Get the aws provider
-  Success
-+ Edit the aws provider
-  Success
-+ Successfully edited provider aws.
-</span></code></pre></div></div>
-
-<ol>
-  <li>Add your default managing account to Spinnaker:</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hal config provider aws account add default <span class="nt">--account-id</span> 123456789012 <span class="nt">--assume-role</span> role/spinnakerManaged <span class="nt">--regions</span> us-west-2
-+ Get current deployment
-  Success
-+ Add the default account
-  Success
-Problems <span class="k">in </span>default.provider.aws.default:
-- WARNING No validation <span class="k">for </span>the AWS provider has been
-  implemented.
-
-+ Successfully added account default <span class="k">for </span>provider aws.
-</code></pre></div></div>
-
-<div class="premonition info modified"><div class="fa fa-info-circle"></div><div class="content"><p>Spinnaker uses <code class="highlighter-rouge">accounts</code> added via the Halyard <code class="highlighter-rouge">hal config provider aws account</code> API to handle all actions performed within the specified provider (such as AWS, in this case).  For this example we’ll just be using our primary managing account, but you can freely add more accounts as needed.</p></div></div>
-
-<ol>
-  <li>Finally, enable the AWS provider:</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hal config provider aws <span class="nb">enable</span>
-+ Get current deployment
-  Success
-+ Edit the aws provider
-  Success
-Problems <span class="k">in </span>default.provider.aws.default:
-- WARNING No validation <span class="k">for </span>the AWS provider has been
-  implemented.
-
-+ Successfully enabled aws
-</code></pre></div></div>
-
-<h3 id="select-installation-environment">Select Installation Environment</h3>
-
-<p>In this step you can choose which type of environment on which you want to install Spinnaker.  Most production setups will want to use Kubernetes or another distributed solution, but for this smaller example we’ll just use a local Debian installation, putting Spinnaker on the same machine that Halyard is on.</p>
-
-<div class="premonition info modified"><div class="fa fa-info-circle"></div><div class="content"><p>By default, Halyard should install as a local Debian environmental setup, so you shouldn’t need to make any changes for the environment.  However, if you want to verify it’s already configured locally you can run the <code class="highlighter-rouge">hal config deploy edit --type localdebian</code> command.</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hal config deploy edit <span class="nt">--type</span> localdebian
-</code></pre></div></div>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># OUTPUT</span>
-+ Get current deployment
-  Success
-+ Get the deployment environment
-  Success
-- No changes supplied.
-</code></pre></div></div></div></div>
-
-<h3 id="setup-persistent-storage-for-spinnaker">Setup Persistent Storage for Spinnaker</h3>
-
-<ol>
-  <li>Add <code class="highlighter-rouge">s3</code> storage configuration to Halyard (you’ll be prompted to paste your secret key after entry).</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hal config storage s3 edit <span class="nt">--access-key-id</span> &lt;AWS_ACCESS_KEY_ID&gt; <span class="nt">--secret-access-key</span> <span class="nt">--region</span> us-west-2
-Your AWS Secret Key.:
-+ Get current deployment
-  Success
-+ Get persistent store
-  Success
-Generated bucket name: spin-6d40b949-3e2d-4240-96f6-1b9467572b79
-+ Edit persistent store
-  Success
-Problems <span class="k">in </span>default.persistentStorage:
-- WARNING Your deployment will most likely fail <span class="k">until </span>you configure
-  and <span class="nb">enable </span>a persistent store.
-
-+ Successfully edited persistent store <span class="s2">"s3"</span><span class="nb">.</span>
-</code></pre></div></div>
-
-<ol>
-  <li>Tell halyard to use <code class="highlighter-rouge">--type s3</code> storage:</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hal config storage edit <span class="nt">--type</span> s3
-+ Get current deployment
-  Success
-+ Get persistent storage settings
-  Success
-+ Edit persistent storage settings
-  Success
-+ Successfully edited persistent storage.
-</code></pre></div></div>
-
-<h3 id="deploy-spinnaker">Deploy Spinnaker</h3>
-
-<ol>
-  <li>Use the <code class="highlighter-rouge">hal version list</code> command to view the current Spinnaker version list:</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hal version list
-+ Get current deployment
-  Success
-+ Get Spinnaker version
-  Success
-+ Get released versions
-  Success
-+ You are on version <span class="s2">""</span>, and the following are available:
- - 1.7.8 <span class="o">(</span>Ozark<span class="o">)</span>:
-   Changelog: https://gist.github.com/spinnaker-release/75f98544672a4fc490d451c14688318e
-   Published: Wed Aug 29 19:09:57 UTC 2018
-   <span class="o">(</span>Requires Halyard <span class="o">&gt;=</span> 1.0.0<span class="o">)</span>
- - 1.8.6 <span class="o">(</span>Dark<span class="o">)</span>:
-   Changelog: https://gist.github.com/spinnaker-release/0844fadacaf2299d214a82e88217d97c
-   Published: Wed Aug 29 19:11:34 UTC 2018
-   <span class="o">(</span>Requires Halyard <span class="o">&gt;=</span> 1.0.0<span class="o">)</span>
- - 1.9.2 <span class="o">(</span>Bright<span class="o">)</span>:
-   Changelog: https://gist.github.com/spinnaker-release/9323c90ab2088d89e68ce2a7ef7e5809
-   Published: Wed Aug 29 20:08:18 UTC 2018
-   <span class="o">(</span>Requires Halyard <span class="o">&gt;=</span> 1.0.0<span class="o">)</span>
-</code></pre></div></div>
-
-<ol>
-  <li>Configure halyard to use version <code class="highlighter-rouge">1.9.2</code> of Spinnaker:</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hal config version edit <span class="nt">--version</span> 1.9.2
-+ Get current deployment
-  Success
-+ Edit Spinnaker version
-  Success
-+ Spinnaker has been configured to update/install version <span class="s2">"1.9.2"</span><span class="nb">.</span>
-  Deploy this version of Spinnaker with <span class="sb">`</span>hal deploy apply<span class="sb">`</span><span class="nb">.</span>
-</code></pre></div></div>
-
-<ol>
-  <li>Add Chaos Monkey enabled flag to halyard config:</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hal config features edit <span class="nt">--chaos</span> <span class="nb">true</span>
-+ Get current deployment
-  Success
-+ Get features
-  Success
-+ Edit features
-  Success
-+ Successfully updated features.
-</code></pre></div></div>
-
-<ol>
-  <li>Now use <code class="highlighter-rouge">sudo hal deploy apply</code> to deploy Spinnaker to the local machine:</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>hal deploy apply
-
-+ Get current deployment
-  Success
-+ Prep deployment
-  Success
-Problems <span class="k">in </span>default.provider.aws.spinnaker-developer:
-- WARNING No validation <span class="k">for </span>the AWS provider has been
-  implemented.
-
-+ Preparation complete... deploying Spinnaker
-+ Get current deployment
-  Success
-+ Apply deployment
-  Success
-+ Run <span class="sb">`</span>hal deploy connect<span class="sb">`</span> to connect to Spinnaker.
-...
-</code></pre></div></div>
-
-<ol>
-  <li>After deployment finishes you should have a functioning Spinnaker installation!  Navigate to <a href="http://localhost:9000">localhost:9000</a> to see it in action.  If necessary, you may need to setup an SSH tunnel to the Halyard/Spinnaker EC2 instance.</li>
-</ol>
-
-<h2 id="spinnaker-full-installation">Spinnaker Full Installation</h2>
-
-<h3 id="install-halyard">Install Halyard</h3>
-
-<p>https://www.spinnaker.io/setup/install/halyard/</p>
-
-<ol>
-  <li>Download Halyard installation script.
-    <ul>
-      <li>For Debian/Ubuntu: <code class="highlighter-rouge">$ curl -O https://raw.githubusercontent.com/spinnaker/halyard/master/install/debian/InstallHalyard.sh</code></li>
-      <li>For MacOS: <code class="highlighter-rouge">$ curl -O https://raw.githubusercontent.com/spinnaker/halyard/master/install/macos/InstallHalyard.sh</code></li>
-    </ul>
-  </li>
-  <li>Install Halyard: <code class="highlighter-rouge">$ sudo bash InstallHalyard.sh</code>
-    <ul>
-      <li>If prompted, default values are typically OK.</li>
-    </ul>
-  </li>
-  <li>Source your <code class="highlighter-rouge">.bashrc</code> file by inputting: <code class="highlighter-rouge">$ . ~/.bashrc</code>.</li>
-  <li>Verify Halyard was installed by checking the version.</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hal <span class="nt">-v</span>
-1.9.1-20180830145737
-</code></pre></div></div>
-
-<h3 id="create-aws-cloudformation-spinnaker-stack-1">Create AWS CloudFormation Spinnaker Stack</h3>
-
-<ol>
-  <li>In AWS navigate to <strong>CloudFormation</strong> and click <strong>Create Stack</strong>.</li>
-  <li>Download <a href="https://d3079gxvs8ayeg.cloudfront.net/templates/managing.yaml">this</a> <code class="highlighter-rouge">managing.yaml</code> file to your local machine.</li>
-  <li>Under <strong>Choose a template</strong> click the <strong>Choose File</strong> button under <strong>Upload a template to Amazon S3</strong> and select the downloaded <code class="highlighter-rouge">managing.yaml</code>.</li>
-  <li>Click <strong>Next</strong>.</li>
-  <li>Input <code class="highlighter-rouge">spinnaker-managing-infrastructure-setup</code> into the <strong>Stack name</strong> field.</li>
-  <li>Select <code class="highlighter-rouge">false</code> in the <strong>UseAccessKeyForAuthentication</strong> dropdown.</li>
-  <li>Click <strong>Next</strong>.</li>
-  <li>On the <strong>Options</strong> screen leave defaults and click <strong>Next</strong>, again.</li>
-  <li>Check the <strong>I acknowledge that AWS CloudFormation might create IAM resources with custom names.</strong> checkbox and click <strong>Create</strong> to generate the stack.
-    <ul>
-      <li><em>Note: If your AWS account already contains the <code class="highlighter-rouge">BaseIAMRole</code> AWS::IAM::ROLE you may have to delete it before this template will succeed.</em></li>
-    </ul>
-  </li>
-  <li>Once the <code class="highlighter-rouge">spinnaker-managing-infrastructure-setup</code> stack has a <code class="highlighter-rouge">CREATE_COMPLETE</code> <strong>Status</strong>, select the <strong>Outputs</strong> tab and copy all <code class="highlighter-rouge">key/value</code> pairs there somewhere convenient.  They’ll look something like the following:</li>
-</ol>
-
-<table>
-  <thead>
-    <tr>
-      <th>Key</th>
-      <th>Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>VpcId</td>
-      <td>vpc-0eff1ddd5f7b26ffc</td>
-    </tr>
-    <tr>
-      <td>ManagingAccountId</td>
-      <td>123456789012</td>
-    </tr>
-    <tr>
-      <td>AuthArn</td>
-      <td>arn:aws:iam::123456789012:role/SpinnakerAuthRole</td>
-    </tr>
-    <tr>
-      <td>SpinnakerInstanceProfileArn</td>
-      <td>arn:aws:iam::123456789012:instance-profile/spinnaker-managing-infrastructure-setup-SpinnakerInstanceProfile-1M72QQCCLNCZ9</td>
-    </tr>
-    <tr>
-      <td>SubnetIds</td>
-      <td>subnet-0c5fb1e7ab00f20a7,subnet-065af1a1830937f86</td>
-    </tr>
-  </tbody>
-</table>
-
-<ol>
-  <li>Add a new AWS account to halyard named <code class="highlighter-rouge">spinnaker-developer</code> with your AWS account id and your appropriate AWS region name:</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hal config provider aws account add spinnaker-developer <span class="se">\</span>
-  <span class="nt">--account-id</span> 123456789012 <span class="se">\</span>
-  <span class="nt">--assume-role</span> role/spinnakerManaged <span class="se">\</span>
-  <span class="nt">--regions</span> us-west-2
-+ Get current deployment
-  Success
-+ Add the spinnaker-developer account
-  Success
-Problems <span class="k">in </span>default.provider.aws.spinnaker-developer:
-- WARNING No validation <span class="k">for </span>the AWS provider has been
-  implemented.
-
-+ Successfully added account spinnaker-developer <span class="k">for </span>provider
-  aws.
-</code></pre></div></div>
-
-<ol>
-  <li>Enable AWS in halyard:</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hal config provider aws <span class="nb">enable</span>
-+ Get current deployment
-  Success
-+ Edit the aws provider
-  Success
-Problems <span class="k">in </span>default.provider.aws.spinnaker-developer:
-- WARNING No validation <span class="k">for </span>the AWS provider has been
-  implemented.
-
-+ Successfully enabled aws
-</code></pre></div></div>
-
-<h3 id="setup-persistent-storage-for-spinnaker-1">Setup Persistent Storage for Spinnaker</h3>
-
-<ol>
-  <li>For this example you’ll need access to an <code class="highlighter-rouge">AWS::IAM::Role</code> with full S3 access.
+  <li>Under <strong>Advanced Settings &gt; Key Name</strong> select the key pair name you used when <a href="#rapid-spinnaker-deployment-aws-quick-start">deploying</a> your Spinnaker CloudFormation stack.</li>
+  <li>In the <strong>Advanced Settings &gt; IAM Instance Profile</strong> field input the <strong>Instance Profile ARN</strong> value of the <code class="highlighter-rouge">BaseIAMRole</code> found in the <strong>AWS &gt; IAM &gt; Roles &gt; BaseIAMRole</strong> dialog (e.g. <code class="highlighter-rouge">arn:aws:iam::0123456789012:instance-profile/BaseIAMRole</code>).</li>
+  <li>We also need to ensure the <code class="highlighter-rouge">user/Spinnaker-SpinnakerUser</code> that was generated has permissions to perform to pass the <code class="highlighter-rouge">role/BasIAMRole</code> <strong>role</strong> during deployment.
     <ol>
-      <li>If necessary, navigate to <strong>AWS &gt; IAM &gt; Roles</strong> and click <strong>Create role</strong>.</li>
-      <li>Select <strong>AWS Service &gt; S3</strong> and click <strong>Next: Permissions</strong>.</li>
-      <li>Filter policies with <code class="highlighter-rouge">S3</code> and select the <code class="highlighter-rouge">AmazonS3FullAccess</code> policy then click <strong>Next: Review</strong>.</li>
-      <li>Input <code class="highlighter-rouge">s3-full-access</code> in the <strong>Role name</strong> field and click <strong>Create role</strong>.</li>
+      <li>Navigate to <strong>AWS &gt; IAM &gt; Users &gt; Spinnaker-SpinnakerUser-### &gt; Permissions</strong>.</li>
+      <li>Expand <code class="highlighter-rouge">Spinnakerpassrole</code> policy and click <strong>Edit Policy</strong>.</li>
+      <li>Select the <strong>JSON</strong> tab and you’ll see the auto-generated <code class="highlighter-rouge">Spinnaker-BaseIAMRole</code> listed in <code class="highlighter-rouge">Resources</code>.</li>
+      <li>
+        <p>Convert the <code class="highlighter-rouge">Resource</code> key value to an array so you can add a second value.  Insert the <strong>ARN</strong> for the <code class="highlighter-rouge">role/BaseIAMRole</code> of your account (the account number will match the number above).</p>
+
+        <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+             </span><span class="s2">"Sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VisualEditor0"</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"Action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iam:PassRole"</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                 </span><span class="s2">"arn:aws:iam::123456789012:role/Spinnaker-BaseIAMRole-6D9LJ9HS4PZ7"</span><span class="p">,</span><span class="w">
+                 </span><span class="s2">"arn:aws:iam::123456789012:role/BaseIAMRole"</span><span class="w">
+             </span><span class="p">]</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+     </span><span class="p">]</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span></code></pre></div>        </div>
+      </li>
+      <li>Click <strong>Review Policy</strong> and <strong>Save Changes</strong>.</li>
     </ol>
   </li>
-  <li>Add <code class="highlighter-rouge">s3</code> storage configuration to halyard (you’ll be prompted to paste your secret key after entry):</li>
+  <li>Click the <strong>Add</strong> button to create the deployment cluster configuration.</li>
+  <li>Finally, click <strong>Save Changes</strong> again at the bottom of the <strong>Pipelines</strong> interface to save the full <code class="highlighter-rouge">Configuration &gt; Bake &gt; Deploy</code> pipeline.</li>
+  <li>You should now have a <code class="highlighter-rouge">Bookstore Dev to Test</code> two-stage <strong>pipeline</strong> ready to go!</li>
 </ol>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hal config storage s3 edit     <span class="nt">--access-key-id</span> &lt;AWS-account-access-key-id&gt;     <span class="nt">--secret-access-key</span>     <span class="nt">--region</span> us-west-2
-Your AWS Secret Key.:
-+ Get current deployment
-  Success
-+ Get persistent store
-  Success
-Generated bucket name: spin-6d40b949-3e2d-4240-96f6-1b9467572b79
-+ Edit persistent store
-  Success
-Problems <span class="k">in </span>default.persistentStorage:
-- WARNING Your deployment will most likely fail <span class="k">until </span>you configure
-  and <span class="nb">enable </span>a persistent store.
+<p><img src="../images/developer-tutorial-add-pipeline-spinnaker.png" alt="developer-tutorial-add-pipeline-spinnaker" title="Bookstore Dev to Test Pipeline" /></p>
 
-+ Successfully edited persistent store <span class="s2">"s3"</span><span class="nb">.</span>
-</code></pre></div></div>
+<h3 id="executing-the-pipeline">Executing the Pipeline</h3>
 
 <ol>
-  <li>Lastly, tell halyard to use <code class="highlighter-rouge">--type s3</code> storage:</li>
+  <li>Navigate to the <code class="highlighter-rouge">bookstore</code> application, select <strong>Pipelines</strong>, and click <strong>Start Manual Execution</strong> next to the <code class="highlighter-rouge">Bookstore Dev to Test</code> pipeline.</li>
+  <li>Click <strong>Run</strong> to begin manual execution.</li>
+  <li>After waiting a few moments, assuming none of the potential setbacks below bite you, you’ll shortly see output indicating the <code class="highlighter-rouge">bookstore-dev-v000</code> <strong>Server Group</strong> has been successfully created.  Browse over to <strong>AWS &gt; EC2</strong> and you’ll see your three new instances launched!</li>
 </ol>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hal config storage edit <span class="nt">--type</span> s3
-+ Get current deployment
-  Success
-+ Get persistent storage settings
-  Success
-+ Edit persistent storage settings
-  Success
-+ Successfully edited persistent storage.
+<p><img src="../images/developer-tutorial-mr-burns-excellent.gif" alt="mr-burns-excellent" title="Mr. Burns - Excellent" /></p>
+
+<p>To resize this <strong>Server Group</strong> use the <strong>Resize Server Group</strong> dialog in Spinnaker.  Alternatively, you can find additional options under <strong>Server Group Actions</strong>, such as <strong>Disable</strong> or <strong>Destroy</strong> to stop or terminate instances, respectively.</p>
+
+<h4 id="troubleshooting-pipeline-executions">Troubleshooting Pipeline Executions</h4>
+
+<p>While a lot can go wrong, below are a few potential issues you may encounter running through this tutorial, depending on changes to software versions, default configurations, and the like between present and time of writing.</p>
+
+<div class="premonition error modified"><div class="fa fa-exclamation-triangle"></div><div class="content"><p class="header">Error: Unknown configuration key `ena_support`</p><p>If you get an <code class="highlighter-rouge">ena_support</code> error during deployment (see: <a href="https://github.com/spinnaker/spinnaker/issues/2237">#2237</a>) the solution is to <em>remove</em> the <code class="highlighter-rouge">ena_support</code> reference line  within the <code class="highlighter-rouge">builders</code> block in the <code class="highlighter-rouge">/opt/rosco/config/packer/aws-ebs.json</code> Rosco configuration file.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nano /opt/rosco/config/packer/aws-ebs.json
 </code></pre></div></div>
 
-<h3 id="deploy-spinnaker-1">Deploy Spinnaker</h3>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"builders"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"aws_ena_support"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{user `aws_ena_support`}}"</span><span class="p">,</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div></div></div>
 
-<ol>
-  <li>Use the <code class="highlighter-rouge">hal version list</code> command to view the current Spinnaker version list:</li>
-</ol>
+<div class="premonition error modified"><div class="fa fa-exclamation-triangle"></div><div class="content"><p class="header">Error: `0.000000` is an invalid spot instance price</p><p>If you get such an error during deployment (see: <a href="https://github.com/spinnaker/spinnaker/issues/2889">#2889</a>) the solution is to <em>remove</em> <code class="highlighter-rouge">spot_price</code> reference lines within the <code class="highlighter-rouge">builders</code> block in the <code class="highlighter-rouge">/opt/rosco/config/packer/aws-ebs.json</code> Rosco configuration file.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hal version list
-+ Get current deployment
-  Success
-+ Get Spinnaker version
-  Success
-+ Get released versions
-  Success
-+ You are on version <span class="s2">""</span>, and the following are available:
- - 1.7.8 <span class="o">(</span>Ozark<span class="o">)</span>:
-   Changelog: https://gist.github.com/spinnaker-release/75f98544672a4fc490d451c14688318e
-   Published: Wed Aug 29 19:09:57 UTC 2018
-   <span class="o">(</span>Requires Halyard <span class="o">&gt;=</span> 1.0.0<span class="o">)</span>
- - 1.8.6 <span class="o">(</span>Dark<span class="o">)</span>:
-   Changelog: https://gist.github.com/spinnaker-release/0844fadacaf2299d214a82e88217d97c
-   Published: Wed Aug 29 19:11:34 UTC 2018
-   <span class="o">(</span>Requires Halyard <span class="o">&gt;=</span> 1.0.0<span class="o">)</span>
- - 1.9.2 <span class="o">(</span>Bright<span class="o">)</span>:
-   Changelog: https://gist.github.com/spinnaker-release/9323c90ab2088d89e68ce2a7ef7e5809
-   Published: Wed Aug 29 20:08:18 UTC 2018
-   <span class="o">(</span>Requires Halyard <span class="o">&gt;=</span> 1.0.0<span class="o">)</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nano /opt/rosco/config/packer/aws-ebs.json
 </code></pre></div></div>
 
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"builders"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"spot_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{user `aws_spot_price`}}"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"spot_price_auto_product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{user `aws_spot_price_auto_product`}}"</span><span class="p">,</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div></div></div>
+
+<div class="premonition error modified"><div class="fa fa-exclamation-triangle"></div><div class="content"><p class="header">Error: Bake stage failure after provisioning `install_packages.sh` script</p><p>This error is typically due to an outdated <code class="highlighter-rouge">install_packages.sh</code> script.  To resolve this override with the latest downloaded version.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>curl https://raw.githubusercontent.com/spinnaker/rosco/master/rosco-web/config/packer/install_packages.sh <span class="nt">--output</span> /opt/rosco/config/packer/install_packages.sh
+</code></pre></div></div></div></div>
+
+<h2 id="how-to-install-chaos-monkey">How to Install Chaos Monkey</h2>
+
+<p>Before you can use Chaos Monkey you’ll need to have Spinnaker deployed and running.  We’ve created two step-by-step tutorials for deploying Spinnaker, depending on the environment and level of control you’re looking for.</p>
+
+<ul>
+  <li><strong>(TODO)</strong> <a href="#123">How to Quickly Deploy Spinnaker</a> will guide you through a rapid deployment of Spinnaker on AWS.</li>
+  <li><strong>(TODO)</strong> <a href="#123">How to Manually Deploy Spinnaker</a> provides a much more in-depth tutorial for installing Spinnaker as it was intended, with the help of the Halyard tool, on a local or virtual machine.</li>
+</ul>
+
+<h3 id="installing-mysql">Installing MySQL</h3>
+
+<p>Chaos Monkey requires MySQL, so make sure it’s installed on your local system.</p>
+
+<div class="premonition warning modified"><div class="fa fa-exclamation-circle"></div><div class="content"><p class="header">Warning</p><p>Chaos Monkey is currently <em>incompatible</em> with MySQL version 8.0 or higher, so 5.X is recommended.</p></div></div>
+
 <ol>
-  <li>Configure halyard to use version <code class="highlighter-rouge">1.9.2</code> of Spinnaker:</li>
+  <li>
+    <p>Download the latest <code class="highlighter-rouge">mysql-apt.deb</code> file from the <a href="https://dev.mysql.com/downloads/repo/apt/">official website</a>, which we’ll use to install MySQL</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-OL</span> https://dev.mysql.com/get/mysql-apt-config_0.8.10-1_all.deb
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Install <code class="highlighter-rouge">mysql-server</code> by using the <code class="highlighter-rouge">dpkg</code> command.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>dpkg <span class="nt">-i</span> mysql-apt-config_0.8.10-1_all.deb
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>In the UI that appears press enter to change the <strong>MySQL Server &amp; Cluster</strong> version to <code class="highlighter-rouge">mysql-5.7</code>.  Leave the other options as default and move down to <code class="highlighter-rouge">Ok</code> and press <code class="highlighter-rouge">Enter</code> to finalize your choice.</p>
+
+    <p><img src="/gremlin-chaos-monkey/images/advanced-tips-mysql-install.png" alt="advanced-tips-mysql-install" /></p>
+  </li>
+  <li>
+    <p>Now use <code class="highlighter-rouge">sudo apt-get update</code> to update the MySQL packages related to the version we selected (<code class="highlighter-rouge">mysql-5.7</code>, in this case).</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt-get update
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Install <code class="highlighter-rouge">mysql-server</code> from the packages we just retrieved.  You’ll be prompted to enter a <code class="highlighter-rouge">root</code> password.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt-get install mysql-server
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>You’re all set.  Check that MySQL server is running with <code class="highlighter-rouge">systemctl</code>.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> systemctl status mysql
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><em>(Optional)</em> You may also wish to issue the <code class="highlighter-rouge">mysql_secure_installation</code> command, which will walk you through a few security-related prompts.  Typically, the defaults are just fine.</p>
+  </li>
 </ol>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hal config version edit <span class="nt">--version</span> 1.9.2
-+ Get current deployment
-  Success
-+ Edit Spinnaker version
-  Success
-+ Spinnaker has been configured to update/install version <span class="s2">"1.9.2"</span><span class="nb">.</span>
-  Deploy this version of Spinnaker with <span class="sb">`</span>hal deploy apply<span class="sb">`</span><span class="nb">.</span>
+<h3 id="setup-mysql-for-chaos-monkey">Setup MySQL for Chaos Monkey</h3>
+
+<p>We now need to add a MySQL table for Chaos Monkey to use and create an associated user with appropriate permissions.</p>
+
+<ol>
+  <li>
+    <p>Launch the <code class="highlighter-rouge">mysql</code> CLI as the <code class="highlighter-rouge">root</code> user.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> mysql <span class="nt">-u</span> root <span class="nt">-p</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Create a <code class="highlighter-rouge">chaosmonkey</code> database for Chaos Monkey to use.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> CREATE DATABASE chaosmonkey<span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Add a <code class="highlighter-rouge">chaosmonkey</code> MySQL user.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> CREATE USER <span class="s1">'chaosmonkey'</span>@<span class="s1">'localhost'</span> IDENTIFIED BY <span class="s1">'password'</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Grant all privileges in the <code class="highlighter-rouge">chaosmonkey</code> database to the new <code class="highlighter-rouge">chaosmonkey</code> user.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> GRANT ALL PRIVILEGES ON chaosmonkey.<span class="k">*</span> TO <span class="s1">'chaosmonkey'</span>@<span class="s1">'localhost'</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Finally, save all changes made to the system.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> FLUSH PRIVILEGES<span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="installing-chaos-monkey">Installing Chaos Monkey</h3>
+
+<ol>
+  <li>
+    <p><em>(Optional)</em> Install <code class="highlighter-rouge">go</code> if you don’t have it on your local machine already.</p>
+
+    <ol>
+      <li>
+        <p>Go to <a href="https://golang.org/dl/">this</a> download page and download the latest binary appropriate to your environment.</p>
+
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-O</span> https://dl.google.com/go/go1.11.linux-amd64.tar.gz
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>Extract the archive to the <code class="highlighter-rouge">/usr/local</code> directory.</p>
+
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo tar</span> <span class="nt">-C</span> /usr/local <span class="nt">-xzf</span> go1.11.linux-amd64.tar.gz
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>Add <code class="highlighter-rouge">/usr/local/go/bin</code> to your <code class="highlighter-rouge">$PATH</code> environment variable.</p>
+
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/go/bin
+ <span class="nb">echo</span> <span class="s1">'export PATH=$PATH:/usr/local/go/bin'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+</code></pre></div>        </div>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p><em>(Optional)</em> Check if the <code class="highlighter-rouge">$GOPATH</code> and <code class="highlighter-rouge">$GOBIN</code> variables are set with <code class="highlighter-rouge">echo $GOPATH</code> and <code class="highlighter-rouge">echo $GOBIN</code>.  If not, <code class="highlighter-rouge">export</code> them and add them to your bash profile.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">export </span><span class="nv">GOPATH</span><span class="o">=</span><span class="nv">$HOME</span>/go
+ <span class="nb">echo</span> <span class="s1">'export GOPATH=$HOME/go'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+ <span class="nb">export </span><span class="nv">GOBIN</span><span class="o">=</span><span class="nv">$HOME</span>/go/bin
+ <span class="nb">echo</span> <span class="s1">'export GOBIN=$HOME/go/bin'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+ <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$GOBIN</span>
+ <span class="nb">echo</span> <span class="s1">'export PATH=$PATH:$GOBIN'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Install the latest Chaos Monkey binary.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> go get github.com/netflix/chaosmonkey/cmd/chaosmonkey
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="configure-spinnaker-for-chaos-monkey">Configure Spinnaker for Chaos Monkey</h3>
+
+<p>Spinnaker includes the Chaos Monkey feature as an option, but it is disabled by default.</p>
+
+<ol>
+  <li><em>(Optional)</em> If necessary, enable the Chaos Monkey feature in your Spinnaker deployment.
+    <ul>
+      <li>On a Halyard-based Spinnaker deployment you must enable the Chaos Monkey feature via the Halyard <code class="highlighter-rouge">--chaos</code> flag.
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  hal config features edit <span class="nt">--chaos</span> <span class="nb">true</span>
+</code></pre></div>        </div>
+      </li>
+      <li>On a quick start Spinnaker deployment you’ll need to manually enable the Chaos Monkey feature flag within the <code class="highlighter-rouge">/opt/deck/html/settings.js</code> file.  Make sure the <code class="highlighter-rouge">var chaosEnabled</code> is set to <code class="highlighter-rouge">true</code>, then save and reload Spinnaker.
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">sudo </span>nano /opt/deck/html/settings.js
+</code></pre></div>        </div>
+        <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// var chaosEnabled = ${services.chaos.enabled};</span>
+  <span class="kd">var</span> <span class="nx">chaosEnabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Navigate to <strong>Applications &gt; (APPLICATION_NAME) &gt; CONFIG</strong> and select <strong>CHAOS MONKEY</strong> in the side navigation.</p>
+
+    <p><img src="../images/advanced-tips-config-chaos-monkey.png" alt="advanced-tips-config-chaos-monkey" title="Chaos Monkey Spinnaker Dialog" /></p>
+  </li>
+  <li>Check the <strong>Enabled</strong> box to enable Chaos Monkey.</li>
+  <li>The UI provides useful information for what every option does, but the most important options are the <strong>mean</strong> and <strong>min</strong> times between instance termination.  If your setup includes multiple clusters or stacks, altering the <strong>grouping</strong> may also make sense.  Finally, you can add <strong>exceptions</strong> as necessary, which acts as a kind of <em>whitelist</em> of instances that will be ignored by Chaos Monkey, so you can keep the most critical services up and running.</li>
+  <li>Once your changes are made click the <strong>Save Changes</strong> button.</li>
+</ol>
+
+<h2 id="how-to-configure-chaos-monkey">How to Configure Chaos Monkey</h2>
+
+<ol>
+  <li>Start by creating the <code class="highlighter-rouge">chaosmonkey.toml</code>, which Chaos Monkey will try to find in all of the following locations, until a configuration file is found:
+    <ul>
+      <li><em>(current directory)</em></li>
+      <li><code class="highlighter-rouge">/apps/chaosmonkey</code></li>
+      <li><code class="highlighter-rouge">/etc</code></li>
+      <li><code class="highlighter-rouge">/etc/chaosmonkey</code></li>
+    </ul>
+  </li>
+</ol>
+
+<div class="premonition tip modified"><div class="fa fa-check-square"></div><div class="content"><p>Generally, if you’re configuring <em>multiple</em> Chaos Monkey installations on the same machine you should use application-specific configurations, so putting them in separate directories is ideal.  However, if you’re just using one installation on the machine then <code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey.toml</code> works well.</p></div></div>
+
+<ol>
+  <li>
+    <p>Add the following basic configuration structure to your <code class="highlighter-rouge">chaosmonkey.toml</code> file, replacing appropriate <code class="highlighter-rouge">&lt;DATABASE_&gt;</code> configuration values with your own settings.</p>
+
+    <div class="language-toml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nn">[chaosmonkey]</span>
+ <span class="py">enabled</span> <span class="p">=</span> <span class="kc">true</span>
+ <span class="py">schedule_enabled</span> <span class="p">=</span> <span class="kc">true</span>
+ <span class="py">leashed</span> <span class="p">=</span> <span class="kc">false</span>
+ <span class="py">accounts</span> <span class="p">=</span> <span class="nn">["aws-primary"]</span>
+
+ <span class="py">start_hour</span> <span class="p">=</span> <span class="mi">9</span>      <span class="c"># time during day when starts terminating</span>
+ <span class="py">end_hour</span> <span class="p">=</span> <span class="mi">15</span>       <span class="c"># time during day when stops terminating</span>
+
+ <span class="c"># location of command Chaos Monkey uses for doing terminations</span>
+ <span class="py">term_path</span> <span class="p">=</span> <span class="s">"/apps/chaosmonkey/chaosmonkey-terminate.sh"</span>
+
+ <span class="c"># cron file that Chaos Monkey writes to each day for scheduling kills</span>
+ <span class="py">cron_path</span> <span class="p">=</span> <span class="s">"/etc/cron.d/chaosmonkey-schedule"</span>
+
+ <span class="nn">[database]</span>
+ <span class="py">host</span> <span class="p">=</span> <span class="s">"localhost"</span>
+ <span class="py">name</span> <span class="p">=</span> <span class="s">"&lt;DATABASE_NAME&gt;"</span>
+ <span class="py">user</span> <span class="p">=</span> <span class="s">"&lt;DATABASE_USER&gt;"</span>
+ <span class="py">encrypted_password</span> <span class="p">=</span> <span class="s">"&lt;DATABASE_USER_PASSWORD&gt;"</span>
+
+ <span class="nn">[spinnaker]</span>
+ <span class="py">endpoint</span> <span class="p">=</span> <span class="s">"http://localhost:8084"</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>With Chaos Monkey configured it’s time to migrate it to the MySQL</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span>chaosmonkey migrate
+ <span class="o">[</span>16264] 2018/09/04 14:11:16 Successfully applied database migrations. Number of migrations applied:  1
+ <span class="o">[</span>16264] 2018/09/04 14:11:16 database migration applied successfully
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<div class="premonition error modified"><div class="fa fa-exclamation-triangle"></div><div class="content"><p class="header">Error: 1298: Unknown or incorrect time zone: 'UTC'</p><p>If you experience a timezone error this typically indicates a configuration problem with MySQL.  Just run the <code class="highlighter-rouge">mysql_tzinfo_to_sql</code> command to update your MySQL installation.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mysql_tzinfo_to_sql /usr/share/zoneinfo/ | mysql <span class="nt">-u</span> root mysql <span class="nt">-p</span>
+</code></pre></div></div></div></div>
+
+<h2 id="how-to-use-chaos-monkey">How to Use Chaos Monkey</h2>
+
+<p>Using the <code class="highlighter-rouge">chaosmonkey</code> command line tool is fairly simple.  Start by making sure it can connect to your <code class="highlighter-rouge">spinnaker</code> instance with <code class="highlighter-rouge">chaosmonkey config spinnaker</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chaosmonkey config spinnaker
 </code></pre></div></div>
 
-<ol>
-  <li>Add Chaos Monkey enabled flag to halyard config:</li>
-</ol>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hal config features edit <span class="nt">--chaos</span> <span class="nb">true</span>
-+ Get current deployment
-  Success
-+ Get features
-  Success
-+ Edit features
-  Success
-+ Successfully updated features.
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># OUTPUT</span>
+<span class="o">(</span><span class="k">*</span>chaosmonkey.AppConfig<span class="o">)(</span>0xc00006ca00<span class="o">)({</span>
+ Enabled: <span class="o">(</span>bool<span class="o">)</span> <span class="nb">true</span>,
+ RegionsAreIndependent: <span class="o">(</span>bool<span class="o">)</span> <span class="nb">true</span>,
+ MeanTimeBetweenKillsInWorkDays: <span class="o">(</span>int<span class="o">)</span> 2,
+ MinTimeBetweenKillsInWorkDays: <span class="o">(</span>int<span class="o">)</span> 1,
+ Grouping: <span class="o">(</span>chaosmonkey.Group<span class="o">)</span> cluster,
+ Exceptions: <span class="o">([]</span>chaosmonkey.Exception<span class="o">)</span> <span class="o">{</span>
+ <span class="o">}</span>,
+ Whitelist: <span class="o">(</span><span class="k">*</span><span class="o">[]</span>chaosmonkey.Exception<span class="o">)(</span>&lt;nil&gt;<span class="o">)</span>
+<span class="o">})</span>
 </code></pre></div></div>
 
-<ol>
-  <li>Now use <code class="highlighter-rouge">sudo hal deploy apply</code> to deploy Spinnaker to the local machine:</li>
-</ol>
+<div class="premonition tip modified"><div class="fa fa-check-square"></div><div class="content"><p>If you’re running Spinnaker on Kubernetes you can use the <code class="highlighter-rouge">kubectl get nodes --watch</code> command to keep track of your Kubernetes nodes while running Chaos Experiments.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl get nodes <span class="nt">--watch</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># OUTPUT</span>
+ip-10-100-11-239.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
+ip-10-100-10-178.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
+ip-10-100-10-210.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
+</code></pre></div></div></div></div>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>hal deploy apply
+<p>To manually terminate an instance with Chaos Monkey use the <code class="highlighter-rouge">chaosmonkey terminate</code> command.</p>
 
-+ Get current deployment
-  Success
-+ Prep deployment
-  Success
-Problems <span class="k">in </span>default.provider.aws.spinnaker-developer:
-- WARNING No validation <span class="k">for </span>the AWS provider has been
-  implemented.
-
-+ Preparation complete... deploying Spinnaker
-+ Get current deployment
-  Success
-+ Apply deployment
-  Success
-+ Run <span class="sb">`</span>hal deploy connect<span class="sb">`</span> to connect to Spinnaker.
-...
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chaosmonkey terminate &lt;app&gt; &lt;account&gt; <span class="o">[</span><span class="nt">--region</span><span class="o">=</span>&lt;region&gt;] <span class="o">[</span><span class="nt">--stack</span><span class="o">=</span>&lt;stack&gt;] <span class="o">[</span><span class="nt">--cluster</span><span class="o">=</span>&lt;cluster&gt;] <span class="o">[</span><span class="nt">--leashed</span><span class="o">]</span>
 </code></pre></div></div>
 
+<p>For this example our <strong>application</strong> is <code class="highlighter-rouge">spinnaker</code> and our <strong>account</strong> is <code class="highlighter-rouge">aws-primary</code>, so using just those two values and leaving the rest default should work.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chaosmonkey terminate spinnaker aws-primary
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># OUTPUT</span>
+<span class="o">[</span>11533] 2018/09/08 18:39:26 Picked: <span class="o">{</span>spinnaker aws-primary us-west-2 eks spinnaker-eks-nodes-NodeGroup-KLBYTZDP0F89 spinnaker-eks-nodes-NodeGroup-KLBYTZDP0F89 i-054152fc4ed41d7b7 aws<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Now look at the AWS EC2 console (or at the terminal window running <code class="highlighter-rouge">kubectl get nodes --watch</code>) and after a moment you’ll see one of the instances has been terminated.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ip-10-100-10-178.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
+ip-10-100-11-239.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
+ip-10-100-10-210.us-west-2.compute.internal   NotReady   &lt;none&gt;    3d        v1.10.3
+ip-10-100-10-178.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
+ip-10-100-11-239.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
+</code></pre></div></div>
+
+<p><img src="https://media.giphy.com/media/3ohzdIuqJoo8QdKlnW/giphy.gif" alt="awesome-gif" /></p>
+
+<p>If you quickly open up the Spinnaker Deck web interface you’ll see only two of the three instances in the cluster are active, as we see in <code class="highlighter-rouge">kubectl</code> above.  However, wait a few more moments and Spinnaker will notice the loss of an instance, recognize it has been stopped/terminated due to an EC2 health check, and will immediately propagate a new instance to replace it, thus ensuring the server group’s desired capacity remains at <code class="highlighter-rouge">3</code> instances.</p>
+
+<p>For Kubernetes Spinnaker deployments, a <code class="highlighter-rouge">kubectl get nodes --watch</code> output confirms these changes (in this case, the new local <code class="highlighter-rouge">ip-10-100-11-180.us-west-2.compute.internal</code> instance was added).</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ip-10-100-11-239.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
+ip-10-100-10-178.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
+ip-10-100-11-180.us-west-2.compute.internal   NotReady   &lt;none&gt;    10s       v1.10.3
+ip-10-100-11-239.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
+ip-10-100-10-178.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
+ip-10-100-11-180.us-west-2.compute.internal   Ready     &lt;none&gt;    20s       v1.10.3
+</code></pre></div></div>
+
+<p>Spinnaker also tracks this information.  Navigating to the your Spinnaker application <strong>INFRASTRUCTURE &gt; CLUSTERS &gt; <code class="highlighter-rouge">spinnaker-eks-nodes-NodeGroup</code> &gt; CAPACITY</strong> and click <strong>View Scaling Activities</strong> to see the Spinnaker scaling activities log for this node group.  In this case we see the successful activities that lead to the health check failure and new instance start.</p>
+
+<p><img src="/gremlin-chaos-monkey/images/advanced-tips-nodegroup-scaling-activities.png" alt="advanced-tips-nodegroup-scaling-activities" /></p>
+
+<h3 id="how-to-schedule-chaos-monkey-terminations">How to Schedule Chaos Monkey Terminations</h3>
+
+<p>Before we get to scheduling anything you’ll want to copy the <code class="highlighter-rouge">chaosmonkey</code> executable to the <code class="highlighter-rouge">/apps/chaosmonkey</code> directory.  While you can leave it in the default <code class="highlighter-rouge">$GOBIN</code> directory, it’ll be easier to use with cron jobs and other system commands if it’s in a global location.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>cp ~/go/bin/chaosmonkey /apps/chaosmonkey/
+</code></pre></div></div>
+
+<p>Now that we’ve confirmed we can manually terminate instances via Chaos Monkey you may want to setup an automated system for doing so.  The primary way to do this is to create a series of scripts that regenerate a unique <code class="highlighter-rouge">crontab</code> job that is scheduled to execute on a specific date and time.  This cron job is created every day (or however often you like), and the execution time is randomized based on the <code class="highlighter-rouge">start_hour</code>, <code class="highlighter-rouge">end_hour</code>, and <code class="highlighter-rouge">time_zone</code> settings in the <code class="highlighter-rouge">chaosmonkey.toml</code> configuration.  We’ll be using four files for this: Two crontab files and two bash scripts.</p>
+
 <ol>
-  <li>After deployment completes you should have a functioning Spinnaker installation!  Navigate to <a href="http://localhost:9000">localhost:9000</a> to see it in action.  If necessary, you may need to setup an SSH tunnel to the Halyard/Spinnaker EC2 instance.</li>
+  <li>
+    <p>Start by creating the four files we’ll be using for this.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>touch /apps/chaosmonkey/chaosmonkey-schedule.sh
+ <span class="nb">sudo </span>touch /apps/chaosmonkey/chaosmonkey-terminate.sh
+ <span class="nb">sudo </span>touch /etc/cron.d/chaosmonkey-schedule
+ <span class="nb">sudo </span>touch /etc/cron.d/chaosmonkey-daily-scheduler
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Now set executable permissions for the two bash scripts so the cron (root) user can execute them.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>chmod a+rx /apps/chaosmonkey/chaosmonkey-schedule.sh
+ <span class="nb">sudo </span>chmod a+rx /apps/chaosmonkey/chaosmonkey-terminate.sh
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Now we’ll add some commands to each script in the order they’re expected to call one another.  First, the <code class="highlighter-rouge">/etc/cron.d/chaosmonkey-daily-scheduler</code> is executed once a day at a time you specify.  This will call the <code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey-schedule.sh</code> script, which will perform the actual scheduling for termination.  Paste the following into <code class="highlighter-rouge">/etc/cron.d/chaosmonkey-daily-scheduler</code> (as with any cron job you can freely edit the schedule to determine when the cron job should be executed).</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># min  hour  dom  month  day  user  command</span>
+ 0      12    <span class="k">*</span>    <span class="k">*</span>      <span class="k">*</span>    root  /apps/chaosmonkey/chaosmonkey-schedule.sh
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>The <code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey-schedule.sh</code> script should perform the actual <code class="highlighter-rouge">chaosmonkey schedule</code> command, so paste the following into <code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey-schedule.sh</code>.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c">#!/bin/bash</span>
+ /apps/chaosmonkey/chaosmonkey schedule <span class="o">&gt;&gt;</span> /var/log/chaosmonkey-schedule.log 2&gt;&amp;1
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>When the <code class="highlighter-rouge">chaosmonkey schedule</code> command is called by the <code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey-schedule.sh</code> script it will automatically write to the <code class="highlighter-rouge">/etc/cron.d/chaosmonkey-schedule</code> file with a randomized timestamp for execution based on the Chaos Monkey configuration.  Here’s an example of what the generated <code class="highlighter-rouge">/etc/cron.d/chaosmonkey-schedule</code> looks like.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># /etc/cron.d/chaosmonkey-schedule</span>
+ 9 16 9 9 0 root /apps/chaosmonkey/chaosmonkey-terminate.sh spinnaker aws-primary <span class="nt">--cluster</span><span class="o">=</span>spinnaker-eks-nodes-NodeGroup-KLBYTZDP0F89 <span class="nt">--region</span><span class="o">=</span>us-west-2
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Lastly, the <code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey-terminate.sh</code> script that is called by the generated <code class="highlighter-rouge">/etc/cron.d/chaosmonkey-schedule</code> cron job should issue the <code class="highlighter-rouge">chaosmonkey terminate</code> command and output the result to the log.  Paste the following into ``/apps/chaosmonkey/chaosmonkey-terminate.sh`.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c">#!/bin/bash</span>
+ /apps/chaosmonkey/chaosmonkey terminate <span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /var/log/chaosmonkey-terminate.log 2&gt;&amp;1
+</code></pre></div>    </div>
+  </li>
 </ol>
 
-<h3 id="create-spinnaker-application">Create Spinnaker Application</h3>
+<h2 id="next-steps">Next Steps</h2>
+
+<p>You’re all set now!  If you followed along through the entire process you should have a functional Spinnaker deployment with Chaos Monkey enabled, which will perform a cron job once a day to terminate random instances based on your configuration!</p>
+
+<p>However, Chaos Monkey is just the tip of the Chaos Engineering iceberg.  While using Chaos Monkey can be beneficial in certain circumstances, it’s worth remembering that you’re still limited to the (basic) tasks that the tool can accomplish.  While good Chaos Engineering practices encourage resilient and thorough testing of every aspect of your system and architecture, Chaos Monkey’s ability to randomly terminate instances can be helpful, but those abilities quickly reach their limit.</p>
+
+<p>Don’t worry, though, we’ve got you covered in the remainder of this guide.  Have a look at some of <a href="/gremlin-chaos-monkey/simian-army">The Simian Army</a> chapter for info on a few other tools related to Chaos Monkey.  You can also take a look at our in-depth list of <a href="/gremlin-chaos-monkey/alternatives">Chaos Monkey Alternatives</a> to learn about the many other tools that can assist you and your organization with Engineering Chaos, regardless of the technology or stack you’re using!  And, don’t forget our <a href="/gremlin-chaos-monkey/downloads-resources">Resources, Guides, and Downloads</a> section, which contains dozens of curated resources to give you insight into every aspect of Chaos Engineering.</p>
 
 
         

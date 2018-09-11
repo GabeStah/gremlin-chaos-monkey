@@ -350,7 +350,7 @@
 
 
 
-  21 minute read
+  16 minute read
 </p>
           
         </header>
@@ -362,11 +362,17 @@
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> </h4></header>
               <ul class="toc__menu">
+  <li><a href="#how-to-manually-deploy-spinnaker">How to Manually Deploy Spinnaker</a>
+    <ul>
+      <li><a href="#install-aws-cli">Install AWS CLI</a></li>
+      <li><a href="#how-to-install-halyard">How to Install Halyard</a></li>
+      <li><a href="#deploying-a-cloudformation-spinnaker-stack">Deploying a CloudFormation Spinnaker Stack</a></li>
+    </ul>
+  </li>
   <li><a href="#how-to-deploy-spinnaker-on-aws-with-kubernetes">How to Deploy Spinnaker on AWS with Kubernetes</a>
     <ul>
-      <li><a href="#install-halyard">Install Halyard</a></li>
-      <li><a href="#install-aws-cli">Install AWS CLI</a></li>
-      <li><a href="#setup-the-cloudformation-spinnaker-stack">Setup the CloudFormation Spinnaker Stack</a></li>
+      <li><a href="#prerequisites">Prerequisites</a></li>
+      <li><a href="#deploying-a-cloudformation-spinnaker-stack-1">Deploying a CloudFormation Spinnaker Stack</a></li>
       <li><a href="#install-kubectl">Install Kubectl</a></li>
       <li><a href="#install-aws-iam-authenticator">Install AWS IAM Authenticator</a></li>
       <li><a href="#configure-kubectl">Configure Kubectl</a></li>
@@ -380,58 +386,64 @@
       <li><a href="#deploy-spinnaker">Deploy Spinnaker</a></li>
     </ul>
   </li>
-  <li><a href="#using-chaos-monkey-on-kubernetes">Using Chaos Monkey on Kubernetes</a>
-    <ul>
-      <li><a href="#install-mysql">Install MySQL</a></li>
-      <li><a href="#setup-mysql-for-chaos-monkey">Setup MySQL for Chaos Monkey</a></li>
-      <li><a href="#install-chaos-monkey">Install Chaos Monkey</a></li>
-      <li><a href="#configure-chaos-monkey-on-spinnaker">Configure Chaos Monkey on Spinnaker</a></li>
-    </ul>
-  </li>
-  <li><a href="#how-to-deploy-chaos-monkey">How to Deploy Chaos Monkey</a></li>
-  <li><a href="#using-chaos-monkey">Using Chaos Monkey</a>
-    <ul>
-      <li><a href="#scheduling-chaos-monkey-terminations">Scheduling Chaos Monkey Terminations</a></li>
-    </ul>
-  </li>
 </ul>
             </nav>
           </aside>
         
-        <p><strong>(TODO)</strong>: Add additional tips beyond large Kubernetes/Chaos Monkey/Spinnaker guide.</p>
+        <p><strong>(TODO)</strong>: Add additional tips beyond large Kubernetes/Chaos Monkey/Spinnaker guide.
+<strong>(TODO)</strong>: Add sections</p>
 
-<h2 id="how-to-deploy-spinnaker-on-aws-with-kubernetes">How to Deploy Spinnaker on AWS with Kubernetes</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Manual Spinnaker w/ AWS Console
+- Manual Spinnaker w/ AWS CLI
+- Spinnaker with Kubernetes/EKS (different from AWS CLI?)
+</code></pre></div></div>
 
-<h3 id="install-halyard">Install Halyard</h3>
+<h2 id="how-to-manually-deploy-spinnaker">How to Manually Deploy Spinnaker</h2>
+
+<p>Manually deploying Spinnaker with the help of Halyard is the best way to have the utmost control over your Spinnaker installation, and is ideal for advanced deployments to EC2 instances, EKS/Kubernetes clusters, and the like.</p>
+
+<h3 id="install-aws-cli">Install AWS CLI</h3>
+
+<p>Start by installing the <a href="https://docs.aws.amazon.com/cli/latest/userguide/installing.html">AWS CLI tool</a> on your machine, if necessary.</p>
+
+<div class="premonition info modified"><div class="fa fa-info-circle"></div><div class="content"><p class="header">Simplifying AWS Credentials</p><p>You can make future AWS CLI commands easier by creating AWS <code class="highlighter-rouge">profiles</code>, which will add configuration and credentials to the local <code class="highlighter-rouge">~/.aws/credentials</code> file.  In some cases you’ll be using two different accounts/profiles, so you can add the credentials for multiple accounts to <code class="highlighter-rouge">~/.aws/credentials</code> by using <code class="highlighter-rouge">aws configure --profile &lt;profile-name&gt;</code> commands.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws configure <span class="nt">--profile</span> spinnaker-developer
+AWS Access Key ID <span class="o">[</span>None]: &lt;AWS_ACCESS_KEY_ID&gt;
+AWS Secret Access Key <span class="o">[</span>None]: &lt;AWS_SECRET_ACCESS_KEY&gt;
+Default region name <span class="o">[</span>None]: us-west-2
+Default output format <span class="o">[</span>None]: text
+   
+aws configure <span class="nt">--profile</span> primary
+AWS Access Key ID <span class="o">[</span>None]: &lt;AWS_ACCESS_KEY_ID&gt;
+AWS Secret Access Key <span class="o">[</span>None]: &lt;AWS_SECRET_ACCESS_KEY&gt;
+Default region name <span class="o">[</span>None]: us-west-2
+Default output format <span class="o">[</span>None]: text
+</code></pre></div></div>
+
+<p>In the future, simply add the <code class="highlighter-rouge">--profile &lt;profile-name&gt;</code> flag to any AWS CLI command to force AWS CLI to use that account.</p></div></div>
+
+<h3 id="how-to-install-halyard">How to Install Halyard</h3>
+
+<p><a href="https://www.spinnaker.io/setup/install/halyard/">Halyard</a> is the CLI tool that manages Spinnaker deployments and is typically the first step to any manual Spinnaker setup.</p>
 
 <ol>
   <li>Download Halyard installation script.
     <ul>
-      <li>
-        <p>Debian/Ubuntu</p>
-
+      <li>For Debian/Ubuntu.
         <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  curl <span class="nt">-O</span> https://raw.githubusercontent.com/spinnaker/halyard/master/install/debian/InstallHalyard.sh
 </code></pre></div>        </div>
       </li>
-      <li>
-        <p>MacOS</p>
-
+      <li>For MacOS.
         <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  curl <span class="nt">-O</span> https://raw.githubusercontent.com/spinnaker/halyard/master/install/macos/InstallHalyard.sh
 </code></pre></div>        </div>
       </li>
     </ul>
   </li>
-  <li>Install Halyard.
-    <ul>
-      <li>If prompted, default values are typically OK.</li>
-    </ul>
-
+  <li>Install Halyard with the <code class="highlighter-rouge">InstallHalyard.sh</code> script.  If prompted, default options are usually just fine.
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>bash InstallHalyard.sh
 </code></pre></div>    </div>
   </li>
-  <li>
-    <p>Source your <code class="highlighter-rouge">.bashrc</code> file.</p>
-
+  <li>Source your recently-modified <code class="highlighter-rouge">.bashrc</code> file (or <code class="highlighter-rouge">~/.bash_profile</code>).
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">.</span> ~/.bashrc
 </code></pre></div>    </div>
   </li>
@@ -439,24 +451,113 @@
     <p>Verify Halyard was installed by checking the version.</p>
 
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> hal <span class="nt">-v</span>
+ <span class="c"># OUTPUT</span>
+ 1.9.1-20180830145737
+</code></pre></div>    </div>
+  </li>
+  <li>That’s the basics!  Halyard is now ready to be configured and used for <a href="#how-to-deploy-spinnaker">Spinnaker deployments</a>.</li>
+</ol>
+
+<h3 id="deploying-a-cloudformation-spinnaker-stack">Deploying a CloudFormation Spinnaker Stack</h3>
+
+<ol>
+  <li>
+    <p>Download <a href="https://d3079gxvs8ayeg.cloudfront.net/templates/managing.yaml">this</a> <code class="highlighter-rouge">managing.yaml</code> template.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-OL</span> https://d3079gxvs8ayeg.cloudfront.net/templates/managing.yaml
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Now we’ll use AWS CLI to create the <code class="highlighter-rouge">spinnaker-managing-infrastructure</code> stack via CloudFormation.  We want to use the <code class="highlighter-rouge">primary</code> or managing account for this, so we’ll specify the <code class="highlighter-rouge">--profile primary</code>, which will grab the appropriate credentials, region, and so forth.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> aws cloudformation deploy <span class="nt">--stack-name</span> spinnaker-managing-infrastructure <span class="nt">--template-file</span> managing.yaml <span class="nt">--parameter-overrides</span> <span class="nv">UseAccessKeyForAuthentication</span><span class="o">=</span><span class="nb">true</span> <span class="nt">--capabilities</span> CAPABILITY_NAMED_IAM <span class="nt">--profile</span> primary
 </code></pre></div>    </div>
   </li>
 </ol>
 
-<h3 id="install-aws-cli">Install AWS CLI</h3>
+<div class="premonition error modified"><div class="fa fa-exclamation-triangle"></div><div class="content"><p class="header">Error: Unresolved resource dependency for `SpinnakerInstanceProfile`.</p><p>If you receive the above error while creating the <code class="highlighter-rouge">spinnaker-managing-infrastructure</code> stack you may need to edit the <code class="highlighter-rouge">managing.yaml</code> file and comment out the two <code class="highlighter-rouge">SpinnakerInstanceProfileArn</code> related lines under the <code class="highlighter-rouge">Outputs</code> block.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># ...</span>
+Outputs:
+<span class="c"># ...</span>
+<span class="c">#  SpinnakerInstanceProfileArn:</span>
+<span class="c">#    Value: !GetAtt SpinnakerInstanceProfile.Arn</span>
+</code></pre></div></div></div></div>
 
-<p>Install the <a href="https://docs.aws.amazon.com/cli/latest/userguide/installing.html">AWS CLI tool</a> on your machine, if you haven’t done so already.</p>
+<ol>
+  <li>
+    <p>Once the <code class="highlighter-rouge">spinnaker-managing-infrastructure</code> stack has been created open the AWS console, navigate to the <code class="highlighter-rouge">CloudFormation</code> service, select the <strong>Outputs</strong> tab of the <code class="highlighter-rouge">spinnaker-managing-infrastructure</code> stack.  We’ll be using the <code class="highlighter-rouge">ManagingAccountId</code> and <code class="highlighter-rouge">AuthArn</code> values in the next step, which look something like the following.</p>
 
-<div class="premonition info modified"><div class="fa fa-info-circle"></div><div class="content"><p class="header">Simplifying AWS Credentials</p><p>You can make future AWS CLI commands easier by adding creating AWS <code class="highlighter-rouge">profiles</code>, which will add configuration and credentials to the local <code class="highlighter-rouge">~/.aws/credentials</code> file.  &gt; We’ll just be using a single (<code class="highlighter-rouge">default</code>) profile here, so we don’t need to specify an actual profile name, but we could do so with the <code class="highlighter-rouge">--profile &lt;profile-name&gt;</code> flag as part of the <code class="highlighter-rouge">aws configure</code> command.  Check out the <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html">official documentation</a> for more info.</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws configure
-AWS Access Key ID <span class="o">[</span>None]: &lt;AWS_ACCESS_KEY_ID&gt;
-AWS Secret Access Key <span class="o">[</span>None]: &lt;AWS_SECRET_ACCESS_KEY&gt;
-Default region name <span class="o">[</span>None]: us-west-2
-Default output format <span class="o">[</span>None]: text
-</code></pre></div></div>
-<p>In the future, simply add the <code class="highlighter-rouge">--profile &lt;profile-name&gt;</code> flag to any AWS CLI command to force AWS CLI to use a specific profile/account.</p></div></div>
+    <table>
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ManagingAccountId</td>
+          <td>123456789012</td>
+        </tr>
+        <tr>
+          <td>AuthArn</td>
+          <td>arn:aws:iam::123456789012:user/spinnaker-managing-infrastructure-SpinnakerUser-15UU17KIS3EK1</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p>Download <a href="https://d3079gxvs8ayeg.cloudfront.net/templates/managed.yaml">this</a> <code class="highlighter-rouge">managed.yaml</code> template.</p>
 
-<h3 id="setup-the-cloudformation-spinnaker-stack">Setup the CloudFormation Spinnaker Stack</h3>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-OL</span> https://d3079gxvs8ayeg.cloudfront.net/templates/managed.yaml
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Now enter the following command to create the companion <code class="highlighter-rouge">spinnaker-managed-infrastructure</code> stack in CloudFormation.  Be sure to specify the <strong>profile</strong> value and paste the appropriate <code class="highlighter-rouge">ManagingAccountId</code> and <code class="highlighter-rouge">AuthArn</code> values from above.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> aws cloudformation deploy <span class="nt">--stack-name</span> spinnaker-managed-infrastructure <span class="nt">--template-file</span> managed.yaml <span class="se">\</span>
+ <span class="nt">--capabilities</span> CAPABILITY_NAMED_IAM <span class="nt">--profile</span> spinnaker-developer <span class="nt">--parameter-overrides</span> <span class="se">\</span>
+ <span class="nv">AuthArn</span><span class="o">=</span>&lt;ManagingStack_AuthArnValue&gt; <span class="se">\</span>
+ <span class="nv">ManagingAccountId</span><span class="o">=</span>&lt;ManagingStack_ManagingAccountId&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Add your AWS Access Id and Secret Keys to Halyard.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> hal config provider aws edit <span class="nt">--access-key-id</span> &lt;AWS_ACCESS_KEY_ID&gt; <span class="nt">--secret-access-key</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Add your default managing account to Spinnaker.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> hal config provider aws account add default <span class="nt">--account-id</span> 123456789012 <span class="nt">--assume-role</span> role/spinnakerManaged <span class="nt">--regions</span> us-west-2
+</code></pre></div>    </div>
+
+    <div class="premonition info modified"><div class="fa fa-info-circle"></div><div class="content"><p>Spinnaker uses <code class="highlighter-rouge">accounts</code> added via the Halyard <code class="highlighter-rouge">hal config provider aws account</code> API to handle all actions performed within the specified provider (such as AWS, in this case).  For this example we’ll just be using our primary managing account, but you can freely add more accounts as needed.</p></div></div>
+  </li>
+  <li>
+    <p>Finally, enable the AWS provider:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> hal config provider aws <span class="nb">enable</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>That’s it.  You now have Halyard</p>
+  </li>
+</ol>
+
+<h2 id="how-to-deploy-spinnaker-on-aws-with-kubernetes">How to Deploy Spinnaker on AWS with Kubernetes</h2>
+
+<p>This guide will walk you through the entire process of setting up a Kubernetes cluster via AWS EKS, attaching some worker nodes (i.e. EC2 instances), and deploying Spinnaker to handle the cluster and nodes from then on!  If you’re looking for a simpler Spinnaker installation, you might be interested in our <a href="#how-to-manually-deploy-spinnaker">How to Manually Deploy Spinnaker</a> or <a href="http://www.gremlin.com/chaos-monkey/developer-tutorial#how-to-quickly-deploy-spinnaker">Spinnaker AWS Quick Start</a> guides.</p>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
+<ul>
+  <li><strong>Halyard</strong>: <em>(Optional)</em> If you haven’t done so already, start by <a href="#how-to-install-halyard">installing Halyard</a>.</li>
+  <li><strong>AWS CLI</strong>: <em>(Optional)</em> You’ll also need the AWS CLI, so also <a href="#install-aws-cli">grab that</a> if needed.</li>
+</ul>
+
+<h3 id="deploying-a-cloudformation-spinnaker-stack-1">Deploying a CloudFormation Spinnaker Stack</h3>
 
 <p>Now that the AWS CLI is on your machine you’re ready to start the heavy lifting by deploying the EKS cluster via AWS CloudFormation.  This process takes a while for everything to propagate, so get it started while you work on the next few steps.</p>
 
@@ -892,350 +993,7 @@ hal config storage edit <span class="nt">--type</span> s3
 
 <p><img src="/gremlin-chaos-monkey/images/advanced-tips-kubernetes-spinnaker.png" alt="advanced-tips-kubernetes-spinnaker" /></p>
 
-<h2 id="using-chaos-monkey-on-kubernetes">Using Chaos Monkey on Kubernetes</h2>
-
-<h3 id="install-mysql">Install MySQL</h3>
-
-<p>Chaos Monkey requires MySQL 5.6/5.7 to run, so make sure you install it on your local system if necessary.</p>
-
-<div class="premonition warning modified"><div class="fa fa-exclamation-circle"></div><div class="content"><p class="header">Warning</p><p>Chaos Monkey is currently <em>incompatible</em> with MySQL version 8.0 or higher due to the removal of a value that Chaos Monkey binary tries to reference.</p></div></div>
-
-<ol>
-  <li>
-    <p>Download the latest <code class="highlighter-rouge">mysql-apt.deb</code> file from the <a href="https://dev.mysql.com/downloads/repo/apt/">official website</a>, which we’ll use to install MySQL</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-OL</span> https://dev.mysql.com/get/mysql-apt-config_0.8.10-1_all.deb
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Install <code class="highlighter-rouge">mysql-server</code> by using the <code class="highlighter-rouge">dpkg</code> command.</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>dpkg <span class="nt">-i</span> mysql-apt-config_0.8.10-1_all.deb
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>In the UI that appears press enter to change the <strong>MySQL Server &amp; Cluster</strong> version to <code class="highlighter-rouge">mysql-5.7</code>.  Leave the other options as default and move down to <code class="highlighter-rouge">Ok</code> and press <code class="highlighter-rouge">Enter</code> to finalize your choice.</p>
-
-    <p><img src="/gremlin-chaos-monkey/images/advanced-tips-mysql-install.png" alt="advanced-tips-mysql-install" /></p>
-  </li>
-  <li>
-    <p>Now use <code class="highlighter-rouge">sudo apt-get update</code> to update the MySQL packages related to the version we selected (<code class="highlighter-rouge">mysql-5.7</code>, in this case).</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt-get update
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Install <code class="highlighter-rouge">mysql-server</code> from the packages we just retrieved.  You’ll be prompted to enter a <code class="highlighter-rouge">root</code> password.</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt-get install mysql-server
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>You’re all set.  Check that MySQL server is running with <code class="highlighter-rouge">systemctl</code>.</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> systemctl status mysql
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>(Optional) You may also wish to issue the <code class="highlighter-rouge">mysql_secure_installation</code> command, which will walk you through a few security-related prompts.  Typically, the defaults are just fine.</p>
-  </li>
-</ol>
-
-<h3 id="setup-mysql-for-chaos-monkey">Setup MySQL for Chaos Monkey</h3>
-
-<p>We now need to add a MySQL table for Chaos Monkey to use and create an associated user with appropriate permissions.</p>
-
-<ol>
-  <li>
-    <p>Launch the <code class="highlighter-rouge">mysql</code> CLI as the <code class="highlighter-rouge">root</code> user.</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> mysql <span class="nt">-u</span> root <span class="nt">-p</span>
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Create a <code class="highlighter-rouge">chaosmonkey</code> database for Chaos Monkey to use.</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> CREATE DATABASE chaosmonkey<span class="p">;</span>
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Add a <code class="highlighter-rouge">chaosmonkey</code> MySQL user.</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> CREATE USER <span class="s1">'chaosmonkey'</span>@<span class="s1">'localhost'</span> IDENTIFIED BY <span class="s1">'password'</span><span class="p">;</span>
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Grant all privileges in the <code class="highlighter-rouge">chaosmonkey</code> database to the new <code class="highlighter-rouge">chaosmonkey</code> user.</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> GRANT ALL PRIVILEGES ON chaosmonkey.<span class="k">*</span> TO <span class="s1">'chaosmonkey'</span>@<span class="s1">'localhost'</span><span class="p">;</span>
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Finally, save all changes made to the system.</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> FLUSH PRIVILEGES<span class="p">;</span>
-</code></pre></div>    </div>
-  </li>
-</ol>
-
-<h3 id="install-chaos-monkey">Install Chaos Monkey</h3>
-
-<ol>
-  <li>
-    <p>(Optional) Install <code class="highlighter-rouge">go</code> if you don’t have it on your local machine already.</p>
-
-    <ol>
-      <li>
-        <p>Go to <a href="https://golang.org/dl/">this</a> download page and download the latest binary appropriate to your environment.</p>
-
-        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-O</span> https://dl.google.com/go/go1.11.linux-amd64.tar.gz
-</code></pre></div>        </div>
-      </li>
-      <li>
-        <p>Extract the archive to the <code class="highlighter-rouge">/usr/local</code> directory.</p>
-
-        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo tar</span> <span class="nt">-C</span> /usr/local <span class="nt">-xzf</span> go1.11.linux-amd64.tar.gz
-</code></pre></div>        </div>
-      </li>
-      <li>
-        <p>Add <code class="highlighter-rouge">/usr/local/go/bin</code> to your <code class="highlighter-rouge">$PATH</code> environment variable.</p>
-
-        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/go/bin
- <span class="nb">echo</span> <span class="s1">'export PATH=$PATH:/usr/local/go/bin'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
-</code></pre></div>        </div>
-      </li>
-    </ol>
-  </li>
-  <li>
-    <p>(Optional) Check if your <code class="highlighter-rouge">$GOPATH</code> &amp; <code class="highlighter-rouge">$GOBIN</code> variables are set with <code class="highlighter-rouge">echo $GOPATH</code> and <code class="highlighter-rouge">echo $GOBIN</code>.  If not, <code class="highlighter-rouge">export</code> them and add to your bash profile.</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">export </span><span class="nv">GOPATH</span><span class="o">=</span><span class="nv">$HOME</span>/go
- <span class="nb">echo</span> <span class="s1">'export GOPATH=$HOME/go'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
- <span class="nb">export </span><span class="nv">GOBIN</span><span class="o">=</span><span class="nv">$HOME</span>/go/bin
- <span class="nb">echo</span> <span class="s1">'export GOBIN=$HOME/go/bin'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
- <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$GOBIN</span>
- <span class="nb">echo</span> <span class="s1">'export PATH=$PATH:$GOBIN'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Install the latest Chaos Monkey binary.</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> go get github.com/netflix/chaosmonkey/cmd/chaosmonkey
-</code></pre></div>    </div>
-  </li>
-</ol>
-
-<h3 id="configure-chaos-monkey-on-spinnaker">Configure Chaos Monkey on Spinnaker</h3>
-
-<p>Since we already enabled the <code class="highlighter-rouge">chaos</code> feature of Spinnaker prior to deployment, we can add Chaos Monkey support to our <code class="highlighter-rouge">spinnaker</code> application fairly easily.</p>
-
-<ol>
-  <li>
-    <p>Navigate to <strong>Applications &gt; spinnaker &gt; CONFIG</strong> and select <strong>CHAOS MONKEY</strong> in the side navigation.</p>
-
-    <p><img src="/gremlin-chaos-monkey/images/advanced-tips-config-chaos-monkey.png" alt="advanced-tips-config-chaos-monkey" /></p>
-  </li>
-  <li>Check the <strong>Enabled</strong> box to enable Chaos Monkey.</li>
-  <li>The UI provides useful information for what every option does, but the most important options are the <strong>mean</strong> and <strong>min</strong> times between instance termination.  If your setup includes multiple clusters or stacks, altering the <strong>grouping</strong> may also make sense.  Finally, you can add <strong>exceptions</strong> as necessary, which acts as a kind of <em>whitelist</em> of instances that will be ignored by Chaos Monkey, so you can keep the most critical services up and running.</li>
-  <li>Once your changes are made click the <strong>Save Changes</strong> button.</li>
-</ol>
-
-<h2 id="how-to-deploy-chaos-monkey">How to Deploy Chaos Monkey</h2>
-
-<ol>
-  <li>Start by creating the <code class="highlighter-rouge">chaosmonkey.toml</code> configuration file in the director of your choice.  Chaos Monkey looks for such a file in four different locations, until a configuration is found:
-    <ul>
-      <li><em>(current directory)</em></li>
-      <li><code class="highlighter-rouge">/apps/chaosmonkey</code></li>
-      <li><code class="highlighter-rouge">/etc</code></li>
-      <li><code class="highlighter-rouge">/etc/chaosmonkey</code></li>
-    </ul>
-  </li>
-</ol>
-
-<div class="premonition tip modified"><div class="fa fa-check-square"></div><div class="content"><p>Generally, if you’re configuring <em>multiple</em> Chaos Monkey installations on the same machine you should use application-specific configurations, so putting them in separate directories is ideal.  However, if you’re just using one installation on the machine then <code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey.toml</code> works well.</p></div></div>
-
-<ol>
-  <li>
-    <p>Add the following basic configuration structure to your <code class="highlighter-rouge">chaosmonkey.toml</code> file, replacing appropriate <code class="highlighter-rouge">&lt;DATABASE_&gt;</code> configuration values with your own settings.</p>
-
-    <div class="language-toml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nn">[chaosmonkey]</span>
- <span class="py">enabled</span> <span class="p">=</span> <span class="kc">true</span>
- <span class="py">schedule_enabled</span> <span class="p">=</span> <span class="kc">true</span>
- <span class="py">leashed</span> <span class="p">=</span> <span class="kc">false</span>
- <span class="py">accounts</span> <span class="p">=</span> <span class="nn">["aws-primary"]</span>
-
- <span class="py">start_hour</span> <span class="p">=</span> <span class="mi">9</span>      <span class="c"># time during day when starts terminating</span>
- <span class="py">end_hour</span> <span class="p">=</span> <span class="mi">15</span>       <span class="c"># time during day when stops terminating</span>
-
- <span class="c"># location of command Chaos Monkey uses for doing terminations</span>
- <span class="py">term_path</span> <span class="p">=</span> <span class="s">"/apps/chaosmonkey/chaosmonkey-terminate.sh"</span>
-
- <span class="c"># cron file that Chaos Monkey writes to each day for scheduling kills</span>
- <span class="py">cron_path</span> <span class="p">=</span> <span class="s">"/etc/cron.d/chaosmonkey-schedule"</span>
-
- <span class="nn">[database]</span>
- <span class="py">host</span> <span class="p">=</span> <span class="s">"localhost"</span>
- <span class="py">name</span> <span class="p">=</span> <span class="s">"&lt;DATABASE_NAME&gt;"</span>
- <span class="py">user</span> <span class="p">=</span> <span class="s">"&lt;DATABASE_USER&gt;"</span>
- <span class="py">encrypted_password</span> <span class="p">=</span> <span class="s">"&lt;DATABASE_USER_PASSWORD&gt;"</span>
-
- <span class="nn">[spinnaker]</span>
- <span class="py">endpoint</span> <span class="p">=</span> <span class="s">"http://localhost:8084"</span>
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>With Chaos Monkey configured it’s time to migrate it to the MySQL</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> chaosmonkey migrate
- <span class="o">[</span>16264] 2018/09/04 14:11:16 Successfully applied database migrations. Number of migrations applied:  1
- <span class="o">[</span>16264] 2018/09/04 14:11:16 database migration applied successfully
-</code></pre></div>    </div>
-  </li>
-</ol>
-
-<div class="premonition error modified"><div class="fa fa-exclamation-triangle"></div><div class="content"><p class="header">Error: 1298: Unknown or incorrect time zone: 'UTC'</p><p>If you experience a timezone error this typically indicates a configuration problem with MySQL.  Just run the <code class="highlighter-rouge">mysql_tzinfo_to_sql</code> command to update your MySQL installation.</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mysql_tzinfo_to_sql /usr/share/zoneinfo/|mysql <span class="nt">-u</span> root mysql <span class="nt">-p</span>
-</code></pre></div></div></div></div>
-
-<h2 id="using-chaos-monkey">Using Chaos Monkey</h2>
-
-<p>Using the <code class="highlighter-rouge">chaosmonkey</code> command line tool is fairly simple.  Start by making sure it can connect to your <code class="highlighter-rouge">spinnaker</code> instance with <code class="highlighter-rouge">chaosmonkey config spinnaker</code>.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chaosmonkey config spinnaker
-</code></pre></div></div>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># OUTPUT</span>
-<span class="o">(</span><span class="k">*</span>chaosmonkey.AppConfig<span class="o">)(</span>0xc00006ca00<span class="o">)({</span>
- Enabled: <span class="o">(</span>bool<span class="o">)</span> <span class="nb">true</span>,
- RegionsAreIndependent: <span class="o">(</span>bool<span class="o">)</span> <span class="nb">true</span>,
- MeanTimeBetweenKillsInWorkDays: <span class="o">(</span>int<span class="o">)</span> 2,
- MinTimeBetweenKillsInWorkDays: <span class="o">(</span>int<span class="o">)</span> 1,
- Grouping: <span class="o">(</span>chaosmonkey.Group<span class="o">)</span> cluster,
- Exceptions: <span class="o">([]</span>chaosmonkey.Exception<span class="o">)</span> <span class="o">{</span>
- <span class="o">}</span>,
- Whitelist: <span class="o">(</span><span class="k">*</span><span class="o">[]</span>chaosmonkey.Exception<span class="o">)(</span>&lt;nil&gt;<span class="o">)</span>
-<span class="o">})</span>
-</code></pre></div></div>
-
-<p>Now it’s time to test termination.  Remember that we can use the <code class="highlighter-rouge">kubectl get nodes --watch</code> command to keep watch of our Kubernetes nodes.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl get nodes <span class="nt">--watch</span>
-</code></pre></div></div>
-
-<p>You’ll see an output similar to the following.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># OUTPUT</span>
-ip-10-100-11-239.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
-ip-10-100-10-178.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
-ip-10-100-10-210.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
-</code></pre></div></div>
-
-<p>To manually terminate an instance with Chaos Monkey we use the <code class="highlighter-rouge">chaosmonkey terminate</code> command.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chaosmonkey terminate &lt;app&gt; &lt;account&gt; <span class="o">[</span><span class="nt">--region</span><span class="o">=</span>&lt;region&gt;] <span class="o">[</span><span class="nt">--stack</span><span class="o">=</span>&lt;stack&gt;] <span class="o">[</span><span class="nt">--cluster</span><span class="o">=</span>&lt;cluster&gt;] <span class="o">[</span><span class="nt">--leashed</span><span class="o">]</span>
-</code></pre></div></div>
-
-<p>For this guide our <strong>app</strong> is <code class="highlighter-rouge">spinnaker</code> and our <strong>account</strong> is <code class="highlighter-rouge">aws-primary</code>, so using just those two values and leaving the rest default should work.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chaosmonkey terminate spinnaker aws-primary
-</code></pre></div></div>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># OUTPUT</span>
-<span class="o">[</span>11533] 2018/09/08 18:39:26 Picked: <span class="o">{</span>spinnaker aws-primary us-west-2 eks spinnaker-eks-nodes-NodeGroup-KLBYTZDP0F89 spinnaker-eks-nodes-NodeGroup-KLBYTZDP0F89 i-054152fc4ed41d7b7 aws<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Now look back at the terminal window running <code class="highlighter-rouge">kubectl get nodes --watch</code> and after a moment you’ll see one of the nodes has been terminated.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ip-10-100-10-178.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
-ip-10-100-11-239.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
-ip-10-100-10-210.us-west-2.compute.internal   NotReady   &lt;none&gt;    3d        v1.10.3
-ip-10-100-10-178.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
-ip-10-100-11-239.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
-</code></pre></div></div>
-
-<p><img src="https://media.giphy.com/media/3ohzdIuqJoo8QdKlnW/giphy.gif" alt="awesome-gif" /></p>
-
-<p>If you quickly open up your Spinnaker Deck UI you’ll see only two of the three instances in the cluster are active, as we see in <code class="highlighter-rouge">kubectl</code> above.  However, wait a few more moments and Spinnaker will notice the loss of an instance, recognize it has been stopped/terminated due to an EC2 health check, and will immediately propagate a new instance to replace it, thus ensuring the server group’s desired capacity remains at <code class="highlighter-rouge">3</code> instances.</p>
-
-<p>The <code class="highlighter-rouge">kubectl get nodes --watch</code> output confirms this (in this case, the new local <code class="highlighter-rouge">ip-10-100-11-180.us-west-2.compute.internal</code> instance was added).</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ip-10-100-11-239.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
-ip-10-100-10-178.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
-ip-10-100-11-180.us-west-2.compute.internal   NotReady   &lt;none&gt;    10s       v1.10.3
-ip-10-100-11-239.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
-ip-10-100-10-178.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
-ip-10-100-11-180.us-west-2.compute.internal   Ready     &lt;none&gt;    20s       v1.10.3
-</code></pre></div></div>
-
-<p>Spinnaker also tracks this information.  Navigating to the <strong><code class="highlighter-rouge">spinnaker</code> app &gt; INFRASTRUCTURE &gt; CLUSTERS &gt; <code class="highlighter-rouge">spinnaker-eks-nodes-NodeGroup</code> &gt; CAPACITY</strong> and click <strong>View Scaling Activities</strong> to see the Spinnaker scaling activities log for this node group.  In this case we see the successful activities that lead to the health check failure and new instance start.</p>
-
-<p><img src="/gremlin-chaos-monkey/images/advanced-tips-nodegroup-scaling-activities.png" alt="advanced-tips-nodegroup-scaling-activities" /></p>
-
-<h3 id="scheduling-chaos-monkey-terminations">Scheduling Chaos Monkey Terminations</h3>
-
-<p>Before we get to scheduling anything you’ll want to copy the <code class="highlighter-rouge">chaosmonkey</code> executable to the <code class="highlighter-rouge">/apps/chaosmonkey</code> directory.  While you can leave it in the default <code class="highlighter-rouge">$GOBIN</code> directory, it’ll be easier to use with cron jobs and other system commands if it’s in a global location.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>cp ~/go/bin/chaosmonkey /apps/chaosmonkey/
-</code></pre></div></div>
-
-<p>Now that we’ve confirmed we can manually terminate instances via Chaos Monkey you may want to setup an automated system for doing so.  The primary way to do this is to create a series of scripts that regenerate a unique <code class="highlighter-rouge">crontab</code> job that is scheduled to execute on a specific date and time.  This cron job is created every day (or however often you like), and the execution time is randomized based on the <code class="highlighter-rouge">start_hour</code>, <code class="highlighter-rouge">end_hour</code>, and <code class="highlighter-rouge">time_zone</code> settings in the <code class="highlighter-rouge">chaosmonkey.toml</code> configuration.  We’ll be using four files for this: Two crontab files and two bash scripts.</p>
-
-<ul>
-  <li><code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey-schedule.sh</code>:</li>
-  <li><code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey-terminate.sh</code>:</li>
-  <li><code class="highlighter-rouge">/etc/cron.d/chaosmonkey-schedule</code>:</li>
-  <li><code class="highlighter-rouge">/etc/cron.d/chaosmonkey-daily-scheduler</code>:</li>
-</ul>
-
-<ol>
-  <li>
-    <p>Start by creating the four files we’ll be using for this.</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>touch /apps/chaosmonkey/chaosmonkey-schedule.sh
- <span class="nb">sudo </span>touch /apps/chaosmonkey/chaosmonkey-terminate.sh
- <span class="nb">sudo </span>touch /etc/cron.d/chaosmonkey-schedule
- <span class="nb">sudo </span>touch /etc/cron.d/chaosmonkey-daily-scheduler
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Now set executable permissions for the two bash scripts so the cron (root) user doesn’t have permissions problems.</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>chmod a+rx /apps/chaosmonkey/chaosmonkey-schedule.sh
- <span class="nb">sudo </span>chmod a+rx /apps/chaosmonkey/chaosmonkey-terminate.sh
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Now we’ll add some commands to each script in the order they’re expected to call one another.  First, the <code class="highlighter-rouge">/etc/cron.d/chaosmonkey-daily-scheduler</code> is executed once a day at a time you specify.  This will call the <code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey-schedule.sh</code> script, which will perform the actual scheduling for termination.  Paste the following into <code class="highlighter-rouge">/etc/cron.d/chaosmonkey-daily-scheduler</code> (as with any cron job you can freely edit the schedule to determine when the cron job should be executed).</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># min  hour  dom  month  day  user  command</span>
- 0      12    <span class="k">*</span>    <span class="k">*</span>      <span class="k">*</span>    root  /apps/chaosmonkey/chaosmonkey-schedule.sh
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>The <code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey-schedule.sh</code> should perform the actual <code class="highlighter-rouge">chaosmonkey schedule</code> command, so paste the following into <code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey-schedule.sh</code>.</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c">#!/bin/bash</span>
- /apps/chaosmonkey/chaosmonkey schedule <span class="o">&gt;&gt;</span> /var/log/chaosmonkey-schedule.log 2&gt;&amp;1
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>When the <code class="highlighter-rouge">chaosmonkey schedule</code> command is called by the <code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey-schedule.sh</code> script it will automatically write to the <code class="highlighter-rouge">/etc/cron.d/chaosmonkey-schedule</code> file with a randomized timestamp for execution based on the Chaos Monkey configuration.  Here’s an example of what the generated <code class="highlighter-rouge">/etc/cron.d/chaosmonkey-schedule</code> looks like.</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># /etc/cron.d/chaosmonkey-schedule</span>
- 9 16 9 9 0 root /apps/chaosmonkey/chaosmonkey-terminate.sh spinnaker aws-primary <span class="nt">--cluster</span><span class="o">=</span>spinnaker-eks-nodes-NodeGroup-KLBYTZDP0F89 <span class="nt">--region</span><span class="o">=</span>us-west-2
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Lastly, the <code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey-terminate.sh</code> script that is called by the generated <code class="highlighter-rouge">/etc/cron.d/chaosmonkey-schedule</code> cron job should issue the <code class="highlighter-rouge">chaosmonkey terminate</code> command and output the result to the log.  Paste the following into ``/apps/chaosmonkey/chaosmonkey-terminate.sh`.</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c">#!/bin/bash</span>
- /apps/chaosmonkey/chaosmonkey terminate <span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /var/log/chaosmonkey-terminate.log 2&gt;&amp;1
-</code></pre></div>    </div>
-  </li>
-</ol>
-
-<p>You’re all set now!  Chaos Monkey will perform a cron job once a day in which it generates the daily termination schedule by calling <code class="highlighter-rouge">chaosmonkey schedule</code>.  Once the cron job executes the <code class="highlighter-rouge">chaosmonkey terminate</code> command will be called, terminating the selected instance based on Chaos Monkey/Spinnaker/Kubernetes configuration!</p>
+<div class="premonition help modified"><div class="fa fa-check-square"></div><div class="content"><p>From here you can <strong>(TODO)</strong> <a href="#">install</a> and <a href="#">start using Chaos Monkey</a> to run Chaos Experiments directly on your Kubernetes cluster worker nodes!  Check out our <a href="#">How to Install Chaos Monkey</a> tutorial to get started.</p></div></div>
 
 
         

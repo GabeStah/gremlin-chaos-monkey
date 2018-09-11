@@ -273,4 +273,6 @@ defaults:
         nav: "docs"
       toc: true
       toc_sticky: true
+      toc_levels: 2
+      #toc_max_header: 2
       related: false
