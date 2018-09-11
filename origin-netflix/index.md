@@ -53,18 +53,4 @@ With a stable codebase and ample real-world testing in their pockets, Netflix's 
 - Explore [Netflix Failure Injection Testing (FIT)](https://medium.com/netflix-techblog/fit-failure-injection-testing-35d8e2a9bb2)
 - Discuss Netflix's (and others') use of [`Spinnaker`](https://www.spinnaker.io/) and the potential issues and limitations such tools may present (investment in setup and propagation, maintenance, forced `continuous delivery` solution, etc).
 
-[/]:                                    /gremlin-chaos-monkey/
-[/advanced-tips]:                       /gremlin-chaos-monkey/advanced-tips
-[/alternatives]:                        /gremlin-chaos-monkey/alternatives
-[/alternatives/azure]:                  /gremlin-chaos-monkey/alternatives/azure
-[/alternatives/docker]:                 /gremlin-chaos-monkey/alternatives/docker
-[/alternatives/google-cloud-platform]:  /gremlin-chaos-monkey/alternatives/google-cloud-platform
-[/alternatives/kubernetes]:             /gremlin-chaos-monkey/alternatives/kubernetes
-[/alternatives/openshift]:              /gremlin-chaos-monkey/alternatives/openshift
-[/alternatives/private-cloud]:          /gremlin-chaos-monkey/alternatives/private-cloud
-[/alternatives/spring-boot]:            /gremlin-chaos-monkey/alternatives/spring-boot
-[/alternatives/vmware]:                 /gremlin-chaos-monkey/alternatives/vmware
-[/developer-tutorial]:                  /gremlin-chaos-monkey/developer-tutorial
-[/downloads-resources]:                 /gremlin-chaos-monkey/downloads-resources
-[/origin-netflix]:                      /gremlin-chaos-monkey/origin-netflix
-[/simian-army]:                         /gremlin-chaos-monkey/simian-army
+{% include nav-internal.md %}

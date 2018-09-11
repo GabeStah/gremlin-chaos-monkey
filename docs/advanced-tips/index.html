@@ -350,7 +350,7 @@
 
 
 
-  16 minute read
+  18 minute read
 </p>
           
         </header>
@@ -362,17 +362,18 @@
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> </h4></header>
               <ul class="toc__menu">
-  <li><a href="#how-to-manually-deploy-spinnaker">How to Manually Deploy Spinnaker</a>
+  <li><a href="#how-to-install-aws-cli">How to Install AWS CLI</a></li>
+  <li><a href="#how-to-install-halyard">How to Install Halyard</a></li>
+  <li><a href="#how-to-manually-deploy-spinnaker-for-chaos-monkey">How to Manually Deploy Spinnaker for Chaos Monkey</a>
     <ul>
-      <li><a href="#install-aws-cli">Install AWS CLI</a></li>
-      <li><a href="#how-to-install-halyard">How to Install Halyard</a></li>
-      <li><a href="#deploying-a-cloudformation-spinnaker-stack">Deploying a CloudFormation Spinnaker Stack</a></li>
+      <li><a href="#deploying-a-spinnaker-stack-with-aws-console">Deploying a Spinnaker Stack with AWS Console</a></li>
+      <li><a href="#deploying-a-spinnaker-stack-with-aws-cli">Deploying a Spinnaker Stack with AWS CLI</a></li>
+      <li><a href="#deploying-a-spinnaker-stack-with-kubernetes">Deploying a Spinnaker Stack with Kubernetes</a></li>
     </ul>
   </li>
-  <li><a href="#how-to-deploy-spinnaker-on-aws-with-kubernetes">How to Deploy Spinnaker on AWS with Kubernetes</a>
+  <li><a href="#how-to-install-spinnaker">How to Install Spinnaker</a></li>
+  <li><a href="#how-to-deploy-spinnaker-on-kubernetes">How to Deploy Spinnaker on Kubernetes</a>
     <ul>
-      <li><a href="#prerequisites">Prerequisites</a></li>
-      <li><a href="#deploying-a-cloudformation-spinnaker-stack-1">Deploying a CloudFormation Spinnaker Stack</a></li>
       <li><a href="#install-kubectl">Install Kubectl</a></li>
       <li><a href="#install-aws-iam-authenticator">Install AWS IAM Authenticator</a></li>
       <li><a href="#configure-kubectl">Configure Kubectl</a></li>
@@ -390,19 +391,9 @@
             </nav>
           </aside>
         
-        <p><strong>(TODO)</strong>: Add additional tips beyond large Kubernetes/Chaos Monkey/Spinnaker guide.
-<strong>(TODO)</strong>: Add sections</p>
+        <p>This chapter provides advanced developer tips for Chaos Monkey and other Chaos Engineering tools, including <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-manually-deploy-spinnaker-for-chaos-monkey">deploying Spinnaker manually</a> or <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-deploy-spinnaker-on-kubernetes">with Kubernetes</a>, and then how to <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-install-spinnaker">install Spinnaker</a>.  Once Spinnaker is setup in the environment of your choice you can <a href="http://localhost:4000/gremlin-chaos-monkey/developer-tutorial#how-to-install-chaos-monkey">install and begin using Chaos Monkey</a>!</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Manual Spinnaker w/ AWS Console
-- Manual Spinnaker w/ AWS CLI
-- Spinnaker with Kubernetes/EKS (different from AWS CLI?)
-</code></pre></div></div>
-
-<h2 id="how-to-manually-deploy-spinnaker">How to Manually Deploy Spinnaker</h2>
-
-<p>Manually deploying Spinnaker with the help of Halyard is the best way to have the utmost control over your Spinnaker installation, and is ideal for advanced deployments to EC2 instances, EKS/Kubernetes clusters, and the like.</p>
-
-<h3 id="install-aws-cli">Install AWS CLI</h3>
+<h2 id="how-to-install-aws-cli">How to Install AWS CLI</h2>
 
 <p>Start by installing the <a href="https://docs.aws.amazon.com/cli/latest/userguide/installing.html">AWS CLI tool</a> on your machine, if necessary.</p>
 
@@ -422,7 +413,7 @@ Default output format <span class="o">[</span>None]: text
 
 <p>In the future, simply add the <code class="highlighter-rouge">--profile &lt;profile-name&gt;</code> flag to any AWS CLI command to force AWS CLI to use that account.</p></div></div>
 
-<h3 id="how-to-install-halyard">How to Install Halyard</h3>
+<h2 id="how-to-install-halyard">How to Install Halyard</h2>
 
 <p><a href="https://www.spinnaker.io/setup/install/halyard/">Halyard</a> is the CLI tool that manages Spinnaker deployments and is typically the first step to any manual Spinnaker setup.</p>
 
@@ -455,10 +446,93 @@ Default output format <span class="o">[</span>None]: text
  1.9.1-20180830145737
 </code></pre></div>    </div>
   </li>
-  <li>That’s the basics!  Halyard is now ready to be configured and used for <a href="#how-to-deploy-spinnaker">Spinnaker deployments</a>.</li>
+  <li>That’s the basics!  Halyard is now ready to be configured and used for <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-manually-deploy-spinnaker-for-chaos-monkey">manual</a> or <a href="http://localhost:4000/gremlin-chaos-monkey/developer-tutorial#how-to-quickly-deploy-spinnaker-for-chaos-monkey">quick start</a> Spinnaker deployments.</li>
 </ol>
 
-<h3 id="deploying-a-cloudformation-spinnaker-stack">Deploying a CloudFormation Spinnaker Stack</h3>
+<h2 id="how-to-manually-deploy-spinnaker-for-chaos-monkey">How to Manually Deploy Spinnaker for Chaos Monkey</h2>
+
+<p>Manually deploying Spinnaker with the help of Halyard is the best way to have the utmost control over your Spinnaker installation, and is ideal for advanced deployments to EC2 instances, EKS/Kubernetes clusters, and the like.  Choose one of the three options depending on your needs.</p>
+
+<ul>
+  <li><a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#deploying-a-spinnaker-stack-with-aws-console">Deploying a Spinnaker Stack with AWS Console</a></li>
+  <li><a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#deploying-a-spinnaker-stack-with-aws-cli">Deploying a Spinnaker Stack with AWS CLI</a></li>
+  <li><a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#deploying-a-spinnaker-stack-with-kubernetes">Deploying a Spinnaker Stack with Kubernetes</a></li>
+</ul>
+
+<p>After Spinnaker is running on your chosen platform proceed to our <a href="http://localhost:4000/gremlin-chaos-monkey/developer-tutorial#how-to-install-chaos-monkey">How to Install Chaos Monkey</a> guide to get started with Chaos Monkey!</p>
+
+<h3 id="deploying-a-spinnaker-stack-with-aws-console">Deploying a Spinnaker Stack with AWS Console</h3>
+
+<ol>
+  <li>In AWS navigate to <strong>CloudFormation</strong> and click <strong>Create Stack</strong>.</li>
+  <li>Download <a href="https://d3079gxvs8ayeg.cloudfront.net/templates/managing.yaml">this</a> <code class="highlighter-rouge">managing.yaml</code> file to your local machine.</li>
+  <li>Under <strong>Choose a template</strong> click the <strong>Choose File</strong> button under <strong>Upload a template to Amazon S3</strong> and select the downloaded <code class="highlighter-rouge">managing.yaml</code>.</li>
+  <li>Click <strong>Next</strong>.</li>
+  <li>Input <code class="highlighter-rouge">spinnaker-managing-infrastructure-setup</code> into the <strong>Stack name</strong> field.</li>
+  <li>Select <code class="highlighter-rouge">false</code> in the <strong>UseAccessKeyForAuthentication</strong> dropdown.</li>
+  <li>Click <strong>Next</strong>.</li>
+  <li>On the <strong>Options</strong> screen leave defaults and click <strong>Next</strong>.</li>
+  <li>
+    <p>Check the <strong>I acknowledge that AWS CloudFormation might create IAM resources with custom names.</strong> checkbox and click <strong>Create</strong> to generate the stack.</p>
+
+    <div class="premonition note modified"><div class="fa fa-check-square"></div><div class="content"><p class="header">Note</p><p>If your AWS account already contains the <code class="highlighter-rouge">BaseIAMRole</code> AWS::IAM::ROLE you may have to delete it before this template will succeed.</p></div></div>
+  </li>
+  <li>
+    <p>Once the <code class="highlighter-rouge">spinnaker-managing-infrastructure-setup</code> stack has a <code class="highlighter-rouge">CREATE_COMPLETE</code> <strong>Status</strong>, select the <strong>Outputs</strong> tab and copy all <code class="highlighter-rouge">key/value</code> pairs there somewhere convenient.  They’ll look something like the following.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>VpcId</td>
+          <td>vpc-0eff1ddd5f7b26ffc</td>
+        </tr>
+        <tr>
+          <td>ManagingAccountId</td>
+          <td>123456789012</td>
+        </tr>
+        <tr>
+          <td>AuthArn</td>
+          <td>arn:aws:iam::123456789012:role/SpinnakerAuthRole</td>
+        </tr>
+        <tr>
+          <td>SpinnakerInstanceProfileArn</td>
+          <td>arn:aws:iam::123456789012:instance-profile/spinnaker-managing-infrastructure-setup-SpinnakerInstanceProfile-1M72QQCCLNCZ9</td>
+        </tr>
+        <tr>
+          <td>SubnetIds</td>
+          <td>subnet-0c5fb1e7ab00f20a7,subnet-065af1a1830937f86</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p>Add a new AWS account to Halyard named <code class="highlighter-rouge">spinnaker-developer</code> with your AWS account id and your appropriate AWS region name.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hal config provider aws account add spinnaker-developer <span class="se">\</span>
+<span class="nt">--account-id</span> 123456789012 <span class="se">\</span>
+<span class="nt">--assume-role</span> role/spinnakerManaged <span class="se">\</span>
+<span class="nt">--regions</span> us-west-2
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Enable AWS in Halyard.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hal config provider aws <span class="nb">enable</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p><strong>Next Steps</strong></p>
+
+<p>You’re now ready to <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-install-spinnaker">install Spinnaker</a> and <a href="http://localhost:4000/gremlin-chaos-monkey/developer-tutorial#how-to-install-chaos-monkey">install Chaos Monkey</a> to begin Chaos Experimentation!</p>
+
+<h3 id="deploying-a-spinnaker-stack-with-aws-cli">Deploying a Spinnaker Stack with AWS CLI</h3>
 
 <ol>
   <li>
@@ -536,30 +610,20 @@ Outputs:
     <div class="premonition info modified"><div class="fa fa-info-circle"></div><div class="content"><p>Spinnaker uses <code class="highlighter-rouge">accounts</code> added via the Halyard <code class="highlighter-rouge">hal config provider aws account</code> API to handle all actions performed within the specified provider (such as AWS, in this case).  For this example we’ll just be using our primary managing account, but you can freely add more accounts as needed.</p></div></div>
   </li>
   <li>
-    <p>Finally, enable the AWS provider:</p>
+    <p>Enable the AWS provider.</p>
 
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> hal config provider aws <span class="nb">enable</span>
 </code></pre></div>    </div>
   </li>
-  <li>
-    <p>That’s it.  You now have Halyard</p>
-  </li>
 </ol>
 
-<h2 id="how-to-deploy-spinnaker-on-aws-with-kubernetes">How to Deploy Spinnaker on AWS with Kubernetes</h2>
+<p><strong>Next Steps</strong></p>
 
-<p>This guide will walk you through the entire process of setting up a Kubernetes cluster via AWS EKS, attaching some worker nodes (i.e. EC2 instances), and deploying Spinnaker to handle the cluster and nodes from then on!  If you’re looking for a simpler Spinnaker installation, you might be interested in our <a href="#how-to-manually-deploy-spinnaker">How to Manually Deploy Spinnaker</a> or <a href="http://www.gremlin.com/chaos-monkey/developer-tutorial#how-to-quickly-deploy-spinnaker">Spinnaker AWS Quick Start</a> guides.</p>
+<p>With Spinnaker configured it’s now time to <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-install-spinnaker">install Spinnaker</a> and then <a href="http://localhost:4000/gremlin-chaos-monkey/developer-tutorial#how-to-install-chaos-monkey">install Chaos Monkey</a>.</p>
 
-<h3 id="prerequisites">Prerequisites</h3>
+<h3 id="deploying-a-spinnaker-stack-with-kubernetes">Deploying a Spinnaker Stack with Kubernetes</h3>
 
-<ul>
-  <li><strong>Halyard</strong>: <em>(Optional)</em> If you haven’t done so already, start by <a href="#how-to-install-halyard">installing Halyard</a>.</li>
-  <li><strong>AWS CLI</strong>: <em>(Optional)</em> You’ll also need the AWS CLI, so also <a href="#install-aws-cli">grab that</a> if needed.</li>
-</ul>
-
-<h3 id="deploying-a-cloudformation-spinnaker-stack-1">Deploying a CloudFormation Spinnaker Stack</h3>
-
-<p>Now that the AWS CLI is on your machine you’re ready to start the heavy lifting by deploying the EKS cluster via AWS CloudFormation.  This process takes a while for everything to propagate, so get it started while you work on the next few steps.</p>
+<p>Follow these steps to setup a CloudFormation EKS/Kubernetes stack for Spinnaker and Chaos Monkey.</p>
 
 <ol>
   <li>
@@ -578,7 +642,7 @@ Outputs:
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>This process will take 10 - 15 minutes to complete issue the following commands, which will use the AWS CLI to assign some environment variables values from the <code class="highlighter-rouge">spinnaker-managing-infrastructure-setup</code> stack we just created.  We’ll be using these values throughout the remainder of this guide.</p>
+    <p>The step above takes 10 - 15 minutes to complete, but once complete issue the following commands, which will use the AWS CLI to assign some environment variables values from the <code class="highlighter-rouge">spinnaker-managing-infrastructure-setup</code> stack we just created.  We’ll be using these values throughout the remainder of this guide.</p>
 
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">VPC_ID</span><span class="o">=</span><span class="k">$(</span>aws cloudformation describe-stacks <span class="nt">--stack-name</span> spinnaker-managing-infrastructure-setup <span class="nt">--query</span> <span class="s1">'Stacks[0].Outputs[?OutputKey==`VpcId`].OutputValue'</span> <span class="nt">--output</span> text<span class="k">)</span>
  <span class="nv">CONTROL_PLANE_SG</span><span class="o">=</span><span class="k">$(</span>aws cloudformation describe-stacks <span class="nt">--stack-name</span> spinnaker-managing-infrastructure-setup <span class="nt">--query</span> <span class="s1">'Stacks[0].Outputs[?OutputKey==`SecurityGroups`].OutputValue'</span> <span class="nt">--output</span> text<span class="k">)</span>
@@ -609,6 +673,78 @@ Outputs:
     <div class="premonition info modified"><div class="fa fa-info-circle"></div><div class="content"><p>If the second step of deploying <code class="highlighter-rouge">spinnaker-managing-infrastructure-setup</code> hasn’t completed yet, feel free to skip this step for the time being and proceed with installing <code class="highlighter-rouge">kubectl</code> and <code class="highlighter-rouge">AWS IAM Authenticator</code> below.  Just return to this step before moving past that point.</p></div></div>
   </li>
 </ol>
+
+<p><strong>Next Steps</strong></p>
+
+<p>You’ll now have an EKS/Kubernetes CloudFormation stack ready for Spinnaker.  You can now proceed with the <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-deploy-spinnaker-on-kubernetes">deployment of Spinnaker on Kubernetes</a> and then <a href="http://localhost:4000/gremlin-chaos-monkey/developer-tutorial#how-to-install-chaos-monkey">installing and using Chaos Monkey</a>.</p>
+
+<h2 id="how-to-install-spinnaker">How to Install Spinnaker</h2>
+
+<p>This section walks you through the most basic Spinnaker installation process, suitable for simple Spinnaker deployments.</p>
+
+<ol>
+  <li>
+    <p>Use the <code class="highlighter-rouge">hal version list</code> command to view the current Spinnaker version list.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> hal version list
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Configure Halyard to use the latest version of Spinnaker.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> hal config version edit <span class="nt">--version</span> 1.9.2
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><em>(Optional)</em> Enable Chaos Monkey in the Halyard config.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> hal config features edit <span class="nt">--chaos</span> <span class="nb">true</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Tell Halyard what type of environment you’re deploying Spinnaker to.  Most production setups will want to use Kubernetes or another distributed solution, but the default deployment is a local installation.  The <code class="highlighter-rouge">hal config deploy edit --type</code> flag can be used to change the environment.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> hal config deploy edit <span class="nt">--type</span> localdebian
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Halyard requires some form of persistent storage, so we’ll use AWS S3 for simplicity.  Modify the Halyard config and be sure to pass an AWS <code class="highlighter-rouge">ACCESS_KEY_ID</code> and <code class="highlighter-rouge">SECRET_ACCESS_KEY</code> with privileges to create and use S3 buckets.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> hal config storage s3 edit <span class="nt">--access-key-id</span> &lt;AWS_ACCESS_KEY_ID&gt; <span class="nt">--secret-access-key</span> <span class="nt">--region</span> us-west-2
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Configure Halyard to use the <code class="highlighter-rouge">s3</code> storage type.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> hal config storage edit <span class="nt">--type</span> s3
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Now use <code class="highlighter-rouge">sudo hal deploy apply</code> to deploy Spinnaker to the local machine.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>hal deploy apply
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>After deployment finishes you should have a functioning Spinnaker installation!  If you’ve installed on your local machine you can navigate to the Spinnaker Deck UI at <a href="http://localhost:9000">localhost:9000</a> to see it in action.  If Spinnaker was deployed on a remote machine use the <code class="highlighter-rouge">hal deploy connect</code> command to quickly establish SSH tunnels and connect.</p>
+  </li>
+</ol>
+
+<p><strong>Next Steps</strong></p>
+
+<p>You’re now ready to <a href="http://localhost:4000/gremlin-chaos-monkey/developer-tutorial#how-to-install-chaos-monkey">install</a> and then start <a href="http://localhost:4000/gremlin-chaos-monkey/developer-tutorial#how-to-use-chaos-monkey">using Chaos Monkey</a> or other <a href="http://localhost:4000/gremlin-chaos-monkey/simian-army">Simian Army</a> tools.</p>
+
+<h2 id="how-to-deploy-spinnaker-on-kubernetes">How to Deploy Spinnaker on Kubernetes</h2>
+
+<p>This guide will walk you through the entire process of setting up a Kubernetes cluster via AWS EKS, attaching some worker nodes (i.e. EC2 instances), deploying Spinnaker to manage the Kubernetes cluster, and then using Chaos Monkey and other Simian Army tools on it!  If you’re looking for a simpler Spinnaker installation, you might be interested in our <a href="http://localhost:4000/gremlin-chaos-monkey/developer-tutorial#how-to-quickly-deploy-spinnaker-for-chaos-monkey">Spinnaker AWS Quick Start</a> guide.</p>
+
+<p><strong>Prerequisites</strong></p>
+
+<ul>
+  <li><strong><a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-install-halyard">Install Halyard</a></strong></li>
+  <li><strong><a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-install-aws-cli">Install AWS CLI</a></strong></li>
+  <li><strong><a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-deploy-spinnaker-on-kubernetes">Deploy a Spinnaker Stack for Kubernetes</a></strong></li>
+</ul>
 
 <h3 id="install-kubectl">Install Kubectl</h3>
 
@@ -686,7 +822,11 @@ Outputs:
 
 <h3 id="configure-kubectl">Configure Kubectl</h3>
 
-<p>The <a href="#setup-the-cloudformation-spinnaker-stack">CloudFormation Spinnaker Stack</a> setup step needs to be complete before proceeding.  With everything setup you can now edit the <code class="highlighter-rouge">kubectl</code> configuration files, which will inform <code class="highlighter-rouge">kubectl</code> how to connect to your Kubernetes/EKS cluster.</p>
+<ul>
+  <li><strong>Prerequisite</strong>: Make sure you’ve gone through the <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#deploying-a-spinnaker-stack-with-kubernetes">Deploying a Spinnaker Stack with Kubernetes</a> section.</li>
+</ul>
+
+<p>With everything setup you can now edit the <code class="highlighter-rouge">kubectl</code> configuration files, which will inform <code class="highlighter-rouge">kubectl</code> how to connect to your Kubernetes/EKS cluster.</p>
 
 <ol>
   <li>
@@ -945,25 +1085,6 @@ hal config storage edit <span class="nt">--type</span> s3
     <p>Start by listing the current Spinnaker versions with <code class="highlighter-rouge">hal version list</code>:</p>
 
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> hal version list
- + Get current deployment
-   Success
- + Get Spinnaker version
-   Success
- + Get released versions
-   Success
- + You are on version <span class="s2">""</span>, and the following are available:
- - 1.7.8 <span class="o">(</span>Ozark<span class="o">)</span>:
-   Changelog: https://gist.github.com/spinnaker-release/75f98544672a4fc490d451c14688318e
-   Published: Wed Aug 29 19:09:57 UTC 2018
-   <span class="o">(</span>Requires Halyard <span class="o">&gt;=</span> 1.0.0<span class="o">)</span>
- - 1.8.6 <span class="o">(</span>Dark<span class="o">)</span>:
-   Changelog: https://gist.github.com/spinnaker-release/0844fadacaf2299d214a82e88217d97c
-   Published: Wed Aug 29 19:11:34 UTC 2018
-   <span class="o">(</span>Requires Halyard <span class="o">&gt;=</span> 1.0.0<span class="o">)</span>
- - 1.9.2 <span class="o">(</span>Bright<span class="o">)</span>:
-   Changelog: https://gist.github.com/spinnaker-release/9323c90ab2088d89e68ce2a7ef7e5809
-   Published: Wed Aug 29 20:08:18 UTC 2018
-   <span class="o">(</span>Requires Halyard <span class="o">&gt;=</span> 1.0.0<span class="o">)</span>
 </code></pre></div>    </div>
   </li>
   <li>
@@ -993,7 +1114,7 @@ hal config storage edit <span class="nt">--type</span> s3
 
 <p><img src="/gremlin-chaos-monkey/images/advanced-tips-kubernetes-spinnaker.png" alt="advanced-tips-kubernetes-spinnaker" /></p>
 
-<div class="premonition help modified"><div class="fa fa-check-square"></div><div class="content"><p>From here you can <strong>(TODO)</strong> <a href="#">install</a> and <a href="#">start using Chaos Monkey</a> to run Chaos Experiments directly on your Kubernetes cluster worker nodes!  Check out our <a href="#">How to Install Chaos Monkey</a> tutorial to get started.</p></div></div>
+<div class="premonition help modified"><div class="fa fa-check-square"></div><div class="content"><p>From here you can [install][#chaos-monkey-install] and [start using Chaos Monkey][#chaos-monkey-use] to run Chaos Experiments directly on your Kubernetes cluster worker nodes!  Check out our [How to Install Chaos Monkey][#chaos-monkey-install] tutorial to get started.</p></div></div>
 
 
         

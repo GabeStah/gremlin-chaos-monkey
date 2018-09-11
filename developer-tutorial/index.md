@@ -7,9 +7,6 @@ sources: "See: _docs/resources.md"
 published: true
 ---
 
-- **(TODO)**: Break out into non-published sections to reorganize.
-- **(TODO)**: Continue cleanup/organize sections; move some (non-quick start?) content to `advanced tips`.
-
 - URL: `https://www.gremlin.com/chaos-monkey/developer-tutorial`
 - Parent: `Pillar Page: Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training`
 - Content:
@@ -19,24 +16,21 @@ published: true
     - When/Why: The entire page will expound on the _when_ and _why_, detailing scenarios (as listed below) in which using Chaos Monkey is appropriate, and providing the _how to_ technical steps to make it work.
   - `Basic Usage Guide`
     - Provide full walk through detailing propagation, configuration, setup, and execution of Chaos Monkey within an AWS instance.
-  - `Monitoring Health and Stability`
-  - `Detecting Service Latency`
-  - [`Discovering Security Vulnerabilities`](https://www.battery.com/powered/youve-heard-of-the-netflix-chaos-monkey-we-propose-for-cyber-security-an-infected-monkey/)
-  - [`Examining Exception Handling`](https://www.baeldung.com/spring-boot-chaos-monkey)
-  - [`On Demand Chaos`](https://medium.com/production-ready/using-chaos-monkey-whenever-you-feel-like-it-e5fe31257a07)
-  - [`Building Your Own Customized Monkey`](https://blog.serverdensity.com/building-chaos-monkey/)
+
   - `Additional Resources`: Section to include an abundance of additional links and resources, with careful consideration for _types_ of curated content.  Resources should include written tutorials, books, research papers, talks/conferences, podcasts, videos, and so forth.
 
-## How to Quickly Deploy Spinnaker
+This chapter will provide a step-by-step guide for setting up and using Chaos Monkey with AWS.  We also examine a handful of scenarios in which Chaos Monkey is not always the most relevant solution for Chaos Engineering implementation, due to its Spinnaker requirements and limited scope of only handling instance terminations.
+
+## How to Quickly Deploy Spinnaker for Chaos Monkey
 
 Love it or hate it, Chaos Monkey **requires** the use of [Spinnaker](https://www.spinnaker.io/), which is an open-source, multi-cloud continuous delivery platform developed by Netflix.  Spinnaker allows for automated deployments across multiple cloud platforms (such as AWS, Azure, Google Cloud Platform, and more).  Spinnaker can also be used to deploy across multiple accounts and regions, often using **pipelines** that define a series of events that should occur every time a new version is released.  Spinnaker is a powerful tool, but since both Spinnaker and Chaos Monkey were developed by and for Netflix's own network architecture, you may find that trying to use Chaos Monkey and related tools is more painful than you might expect, as Spinnaker isn't perfectly suited to all organizations or applications.
 
-That said, in this first section we'll explore the fastest and simplest way to get Spinnaker up and running, which will then allow you to move onto [installing](#installing-chaos-moneky) and then [using](#using-chaos-monkey).
+That said, in this first section we'll explore the fastest and simplest way to get Spinnaker up and running, which will then allow you to move onto [installing][#chaos-monkey-install] and then [using][#chaos-monkey-use].
 
 We'll be deploying Spinnaker on AWS, and the easiest method for doing so is to use the [CloudFormation Quick Start](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Spinnaker&templateURL=https:%2F%2Fs3.amazonaws.com%2Faws-quickstart%2Fquickstart-spinnaker%2Ftemplates%2Fquickstart-spinnakercf.template) template.
 
 > info "Looking to Deploy Spinnaker In Another Environment?"
-> If you're looking to have the utmost control over your Spinnaker deployment you should check out our **(TODO)** [How to Manually Deploy Spinnaker](#) guide, which provides a step-by-step tutorial for setting up Halyard and Spinnaker on a local or virtual machine of your choice.
+> If you're looking to have the utmost control over your Spinnaker deployment you should check out our [How to Manually Deploy Spinnaker for Chaos Monkey][#spinnaker-manual] guide, which provides a step-by-step tutorial for setting up Halyard and Spinnaker on a local or virtual machine of your choice.
 
 The *AWS Spinnaker Quick Start* will create a simple architecture for you containing two Virtual Private Cloud (VPC) subnets (one public and one private).  The public VPC contains a [Bastion host](https://en.wikipedia.org/wiki/Bastion_host) instance designed to be strictly accessible, with just port 22 open for SSH access.  The Bastion host will then allow a pass through connection to the private VPC that is running Spinnaker.
 
@@ -137,7 +131,7 @@ providers:
     # ...
 ```
 
-Standalone Spinnaker installations (such as the one created via the [AWS Quick Start](#rapid-spinnaker-deployment)) are configured directly through the `spinnaker.yml` and `spinnaker-local.yml` override configuration files.
+Standalone Spinnaker installations (such as the one created via the [AWS Spinnaker Quick Start][#spinnaker-quick-start]) are configured directly through the `spinnaker.yml` and `spinnaker-local.yml` override configuration files.
 
 ### Creating an Application
 
@@ -215,7 +209,7 @@ The final step is to add a **pipeline**, which is where we tell Spinnaker what i
 4. Under **Firewalls > Firewalls** select the `bookstore--dev` firewall we also created.
 5. Under **Instance Type** select the **Custom Type** of instance you think you'll need.  For this example we'll go with something small and cheap, such as `t2.large`.
 6. Input `3` in the **Capacity > Number of Instances** field.
-7. Under **Advanced Settings > Key Name** select the key pair name you used when [deploying](#rapid-spinnaker-deployment-aws-quick-start) your Spinnaker CloudFormation stack.
+7. Under **Advanced Settings > Key Name** select the key pair name you used when [deploying][#spinnaker-quick-start] your Spinnaker CloudFormation stack.
 8. In the **Advanced Settings > IAM Instance Profile** field input the **Instance Profile ARN** value of the `BaseIAMRole` found in the **AWS > IAM > Roles > BaseIAMRole** dialog (e.g. `arn:aws:iam::0123456789012:instance-profile/BaseIAMRole`).
 9. We also need to ensure the `user/Spinnaker-SpinnakerUser` that was generated has permissions to perform to pass the `role/BasIAMRole` **role** during deployment.
     1. Navigate to **AWS > IAM > Users > Spinnaker-SpinnakerUser-### > Permissions**.
@@ -302,10 +296,10 @@ While a lot can go wrong, below are a few potential issues you may encounter run
 
 ## How to Install Chaos Monkey
 
-Before you can use Chaos Monkey you'll need to have Spinnaker deployed and running.  We've created two step-by-step tutorials for deploying Spinnaker, depending on the environment and level of control you're looking for.
+Before you can use Chaos Monkey you'll need to have Spinnaker deployed and running.  We've created a handful of step-by-step tutorials for deploying Spinnaker, depending on the environment and level of control you're looking for.
 
-  - **(TODO)** [How to Quickly Deploy Spinnaker](#123) will guide you through a rapid deployment of Spinnaker on AWS.
-  - **(TODO)** [How to Manually Deploy Spinnaker](#123) provides a much more in-depth tutorial for installing Spinnaker as it was intended, with the help of the Halyard tool, on a local or virtual machine.
+  - [How to Quickly Deploy Spinnaker for Chaos Monkey][#spinnaker-quick-start] will guide you through a rapid deployment of Spinnaker on AWS.
+  - [How to Manually Deploy Spinnaker for Chaos Monkey][#spinnaker-manual] provides a much more in-depth tutorial for installing Spinnaker as it was intended, with the help of the Halyard tool, on a local or virtual machine.
 
 ### Installing MySQL
 
@@ -573,7 +567,7 @@ For Kubernetes Spinnaker deployments, a `kubectl get nodes --watch` output confi
 ```
 ip-10-100-11-239.us-west-2.compute.internal   Ready     <none>    3d        v1.10.3
 ip-10-100-10-178.us-west-2.compute.internal   Ready     <none>    3d        v1.10.3
-ip-10-100-11-180.us-west-2.compute.internal   NotReady   <none>    10s       v1.10.3
+ip-10-100-11-180.us-west-2.compute.internal   NotReady  <none>    10s       v1.10.3
 ip-10-100-11-239.us-west-2.compute.internal   Ready     <none>    3d        v1.10.3
 ip-10-100-10-178.us-west-2.compute.internal   Ready     <none>    3d        v1.10.3
 ip-10-100-11-180.us-west-2.compute.internal   Ready     <none>    20s       v1.10.3
@@ -637,7 +631,7 @@ Now that we've confirmed we can manually terminate instances via Chaos Monkey yo
     /apps/chaosmonkey/chaosmonkey terminate "$@" >> /var/log/chaosmonkey-terminate.log 2>&1
     ```
 
-## Next Steps
+**Next Steps**
 
 You're all set now!  If you followed along through the entire process you should have a functional Spinnaker deployment with Chaos Monkey enabled, which will perform a cron job once a day to terminate random instances based on your configuration!
 
@@ -645,18 +639,37 @@ However, Chaos Monkey is just the tip of the Chaos Engineering iceberg.  While u
 
 Don't worry, though, we've got you covered in the remainder of this guide.  Have a look at some of [The Simian Army][/simian-army] chapter for info on a few other tools related to Chaos Monkey.  You can also take a look at our in-depth list of [Chaos Monkey Alternatives][/alternatives] to learn about the many other tools that can assist you and your organization with Engineering Chaos, regardless of the technology or stack you're using!  And, don't forget our [Resources, Guides, and Downloads][/downloads-resources] section, which contains dozens of curated resources to give you insight into every aspect of Chaos Engineering.
 
-[/]:                                    /gremlin-chaos-monkey/
-[/advanced-tips]:                       /gremlin-chaos-monkey/advanced-tips
-[/alternatives]:                        /gremlin-chaos-monkey/alternatives
-[/alternatives/azure]:                  /gremlin-chaos-monkey/alternatives/azure
-[/alternatives/docker]:                 /gremlin-chaos-monkey/alternatives/docker
-[/alternatives/google-cloud-platform]:  /gremlin-chaos-monkey/alternatives/google-cloud-platform
-[/alternatives/kubernetes]:             /gremlin-chaos-monkey/alternatives/kubernetes
-[/alternatives/openshift]:              /gremlin-chaos-monkey/alternatives/openshift
-[/alternatives/private-cloud]:          /gremlin-chaos-monkey/alternatives/private-cloud
-[/alternatives/spring-boot]:            /gremlin-chaos-monkey/alternatives/spring-boot
-[/alternatives/vmware]:                 /gremlin-chaos-monkey/alternatives/vmware
-[/developer-tutorial]:                  /gremlin-chaos-monkey/developer-tutorial
-[/downloads-resources]:                 /gremlin-chaos-monkey/downloads-resources
-[/origin-netflix]:                      /gremlin-chaos-monkey/origin-netflix
-[/simian-army]:                         /gremlin-chaos-monkey/simian-army
+## Monitoring Health and Stability
+
+**(TODO)**
+
+Chaos Monkey does a reasonable job at monitoring system stability, but fails 
+
+## Detecting Service Latency
+
+**(TODO)**
+
+## Discovering Security Vulnerabilities
+
+**(TODO)**
+
+## Examining Exception Handling
+
+**(TODO)**
+
+## On Demand Chaos
+
+**(TODO)**
+
+## Building Your Own Customized Monkey
+
+**(TODO)**
+
+> `Monitoring Health and Stability`
+> `Detecting Service Latency`
+> [`Discovering Security Vulnerabilities`](https://www.battery.com/powered/youve-heard-of-the-netflix-chaos-monkey-we-propose-for-cyber-security-an-infected-monkey/)
+> [`Examining Exception Handling`](https://www.baeldung.com/spring-boot-chaos-monkey)
+> [`On Demand Chaos`](https://medium.com/production-ready/using-chaos-monkey-whenever-you-feel-like-it-e5fe31257a07)
+> [`Building Your Own Customized Monkey`](https://blog.serverdensity.com/building-chaos-monkey/)
+
+{% include nav-internal.md %}
