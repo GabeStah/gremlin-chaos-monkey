@@ -1,31 +1,31 @@
-[/]:                                    {{ site.url }}{{ site.baseurl }}/
-[/advanced-tips]:                       {{ site.url }}{{ site.baseurl }}/advanced-tips
-[/alternatives]:                        {{ site.url }}{{ site.baseurl }}/alternatives
-[/alternatives/azure]:                  {{ site.url }}{{ site.baseurl }}/alternatives/azure
-[/alternatives/docker]:                 {{ site.url }}{{ site.baseurl }}/alternatives/docker
-[/alternatives/google-cloud-platform]:  {{ site.url }}{{ site.baseurl }}/alternatives/google-cloud-platform
-[/alternatives/kubernetes]:             {{ site.url }}{{ site.baseurl }}/alternatives/kubernetes
-[/alternatives/openshift]:              {{ site.url }}{{ site.baseurl }}/alternatives/openshift
-[/alternatives/private-cloud]:          {{ site.url }}{{ site.baseurl }}/alternatives/private-cloud
-[/alternatives/spring-boot]:            {{ site.url }}{{ site.baseurl }}/alternatives/spring-boot
-[/alternatives/vmware]:                 {{ site.url }}{{ site.baseurl }}/alternatives/vmware
-[/developer-tutorial]:                  {{ site.url }}{{ site.baseurl }}/developer-tutorial
-[/downloads-resources]:                 {{ site.url }}{{ site.baseurl }}/downloads-resources
-[/origin-netflix]:                      {{ site.url }}{{ site.baseurl }}/origin-netflix
-[/simian-army]:                         {{ site.url }}{{ site.baseurl }}/simian-army
-[#aws-cli-install]:                     {{ site.url }}{{ site.baseurl }}/advanced-tips#how-to-install-aws-cli
-[#chaos-monkey-configure]:              {{ site.url }}{{ site.baseurl }}/developer-tutorial#how-to-configure-chaos-monkey
-[#chaos-monkey-cons]:                   {{ site.url }}{{ site.baseurl }}/#cons-of-chaos-monkey
-[#chaos-monkey-install]:                {{ site.url }}{{ site.baseurl }}/developer-tutorial#how-to-install-chaos-monkey
-[#chaos-monkey-pros]:                   {{ site.url }}{{ site.baseurl }}/#pros-of-chaos-monkey
-[#chaos-monkey-schedule-terminations]:  {{ site.url }}{{ site.baseurl }}/developer-tutorial#how-to-schedule-chaos-monkey-terminations
-[#chaos-monkey-use]:                    {{ site.url }}{{ site.baseurl }}/developer-tutorial#how-to-use-chaos-monkey
-[#halyard-install]:                     {{ site.url }}{{ site.baseurl }}/advanced-tips#how-to-install-halyard
-[#netflix-history]:                     {{ site.url }}{{ site.baseurl }}/origin-netflix#the-history-of-netflix-streaming
-[#spinnaker-install]:                   {{ site.url }}{{ site.baseurl }}/advanced-tips#how-to-install-spinnaker
-[#spinnaker-kubernetes]:                {{ site.url }}{{ site.baseurl }}/advanced-tips#how-to-deploy-spinnaker-on-kubernetes
-[#spinnaker-manual]:                    {{ site.url }}{{ site.baseurl }}/advanced-tips#how-to-manually-deploy-spinnaker-for-chaos-monkey
-[#spinnaker-quick-start]:               {{ site.url }}{{ site.baseurl }}/developer-tutorial#how-to-quickly-deploy-spinnaker-for-chaos-monkey
-[#spinnaker-stack-with-aws-console]:    {{ site.url }}{{ site.baseurl }}/advanced-tips#deploying-a-spinnaker-stack-with-aws-console
-[#spinnaker-stack-with-aws-cli]:        {{ site.url }}{{ site.baseurl }}/advanced-tips#deploying-a-spinnaker-stack-with-aws-cli
-[#spinnaker-stack-with-kubernetes]:     {{ site.url }}{{ site.baseurl }}/advanced-tips#deploying-a-spinnaker-stack-with-kubernetes
+[/]:                                    {{ "/" | relative_url}}
+[/advanced-tips]:                       {{ "/advanced-tips" | relative_url }}
+[/alternatives]:                        {{ "/alternatives" | relative_url }}
+[/alternatives/azure]:                  {{ "/alternatives/azure" | relative_url}}
+[/alternatives/docker]:                 {{ "/alternatives/docker" | relative_url}}
+[/alternatives/google-cloud-platform]:  {{ "/alternatives/google-cloud-platform" | relative_url}}
+[/alternatives/kubernetes]:             {{ "/alternatives/kubernetes" | relative_url}}
+[/alternatives/openshift]:              {{ "/alternatives/openshift" | relative_url}}
+[/alternatives/private-cloud]:          {{ "/alternatives/private-cloud" | relative_url}}
+[/alternatives/spring-boot]:            {{ "/alternatives/spring-boot" | relative_url}}
+[/alternatives/vmware]:                 {{ "/alternatives/vmware" | relative_url}}
+[/developer-tutorial]:                  {{ "/developer-tutorial" | relative_url}}
+[/downloads-resources]:                 {{ "/downloads-resources" | relative_url}}
+[/origin-netflix]:                      {{ "/origin-netflix" | relative_url}}
+[/simian-army]:                         {{ "/simian-army" | relative_url}}
+[#aws-cli-install]:                     {{ "/advanced-tips#how-to-install-aws-cli" | relative_url}}
+[#chaos-monkey-configure]:              {{ "/developer-tutorial#how-to-configure-chaos-monkey" | relative_url}}
+[#chaos-monkey-cons]:                   {{ "/#cons-of-chaos-monkey" | relative_url}}
+[#chaos-monkey-install]:                {{ "/developer-tutorial#how-to-install-chaos-monkey" | relative_url}}
+[#chaos-monkey-pros]:                   {{ "/#pros-of-chaos-monkey" | relative_url}}
+[#chaos-monkey-schedule-terminations]:  {{ "/developer-tutorial#how-to-schedule-chaos-monkey-terminations" | relative_url}}
+[#chaos-monkey-use]:                    {{ "/developer-tutorial#how-to-use-chaos-monkey" | relative_url}}
+[#halyard-install]:                     {{ "/advanced-tips#how-to-install-halyard" | relative_url}}
+[#netflix-history]:                     {{ "/origin-netflix#the-history-of-netflix-streaming" | relative_url}}
+[#spinnaker-install]:                   {{ "/advanced-tips#how-to-install-spinnaker" | relative_url}}
+[#spinnaker-kubernetes]:                {{ "/advanced-tips#how-to-deploy-spinnaker-on-kubernetes" | relative_url}}
+[#spinnaker-manual]:                    {{ "/advanced-tips#how-to-manually-deploy-spinnaker-for-chaos-monkey" | relative_url}}
+[#spinnaker-quick-start]:               {{ "/developer-tutorial#how-to-quickly-deploy-spinnaker-for-chaos-monkey" | relative_url}}
+[#spinnaker-stack-with-aws-console]:    {{ "/advanced-tips#deploying-a-spinnaker-stack-with-aws-console" | relative_url}}
+[#spinnaker-stack-with-aws-cli]:        {{ "/advanced-tips#deploying-a-spinnaker-stack-with-aws-cli" | relative_url}}
+[#spinnaker-stack-with-kubernetes]:     {{ "/advanced-tips#deploying-a-spinnaker-stack-with-kubernetes" | relative_url}}
