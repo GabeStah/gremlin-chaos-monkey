@@ -12,6 +12,7 @@
 [/developer-tutorial]:                  {{ "/developer-tutorial" | relative_url}}
 [/downloads-resources]:                 {{ "/downloads-resources" | relative_url}}
 [/origin-netflix]:                      {{ "/origin-netflix" | relative_url}}
+[/pdf-download]:                        {{ "/pdf-download" | relative_url}}
 [/simian-army]:                         {{ "/simian-army" | relative_url}}
 [#aws-cli-install]:                     {{ "/advanced-tips#how-to-install-aws-cli" | relative_url}}
 [#chaos-monkey-configure]:              {{ "/developer-tutorial#how-to-configure-chaos-monkey" | relative_url}}
@@ -19,9 +20,12 @@
 [#chaos-monkey-install]:                {{ "/developer-tutorial#how-to-install-chaos-monkey" | relative_url}}
 [#chaos-monkey-pros]:                   {{ "/#pros-of-chaos-monkey" | relative_url}}
 [#chaos-monkey-schedule-terminations]:  {{ "/developer-tutorial#how-to-schedule-chaos-monkey-terminations" | relative_url}}
+[#chaos-monkey-today]:                  {{ "/origin-netflix#chaos-monkey-today" | relative_url}}
 [#chaos-monkey-use]:                    {{ "/developer-tutorial#how-to-use-chaos-monkey" | relative_url}}
 [#halyard-install]:                     {{ "/advanced-tips#how-to-install-halyard" | relative_url}}
+[#netflix-fit]:                         {{ "/origin-netflix#failure-injection-testing" | relative_url}}
 [#netflix-history]:                     {{ "/origin-netflix#the-history-of-netflix-streaming" | relative_url}}
+[#netflix-simian-army]:                 {{ "/origin-netflix#the-simian-army" | relative_url}}
 [#spinnaker-install]:                   {{ "/advanced-tips#how-to-install-spinnaker" | relative_url}}
 [#spinnaker-kubernetes]:                {{ "/advanced-tips#how-to-deploy-spinnaker-on-kubernetes" | relative_url}}
 [#spinnaker-manual]:                    {{ "/advanced-tips#how-to-manually-deploy-spinnaker-for-chaos-monkey" | relative_url}}
@@ -29,3 +33,4 @@
 [#spinnaker-stack-with-aws-console]:    {{ "/advanced-tips#deploying-a-spinnaker-stack-with-aws-console" | relative_url}}
 [#spinnaker-stack-with-aws-cli]:        {{ "/advanced-tips#deploying-a-spinnaker-stack-with-aws-cli" | relative_url}}
 [#spinnaker-stack-with-kubernetes]:     {{ "/advanced-tips#deploying-a-spinnaker-stack-with-kubernetes" | relative_url}}
+[#spinnaker-strictly]:                  {{ "/origin-netflix#strictly-spinning-on-spinnaker" | relative_url}}

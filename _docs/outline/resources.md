@@ -58,6 +58,8 @@
     - https://medium.com/chaosiq/improve-your-cloud-native-devops-flow-with-chaos-engineering-dc32836c2d9a
     - https://github.com/target/pod-reaper
     - https://github.com/bloomberg/powerfulseal
+  - Lineage Driven Failure Injection
+    - https://medium.com/becloudy/chaos-engineering-review-lineage-driven-failure-injection-ldfi-a1c831abe504
   - OpenShift
     - https://github.com/Produban/monkey-ops
     - https://www.openshift.com/
@@ -108,6 +110,8 @@
 - Netflix
   - FIT
     - https://medium.com/netflix-techblog/fit-failure-injection-testing-35d8e2a9bb2
+    - https://medium.com/netflix-techblog/automated-failure-testing-86c1b8bc841f
+    - https://launchdarkly.com/blog/testing-in-production-the-netflix-way/
   - Microservices
     - https://www.nginx.com/blog/microservices-at-netflix-architectural-best-practices/
     - https://www.youtube.com/watch?v=5qJ_BibbMLw
