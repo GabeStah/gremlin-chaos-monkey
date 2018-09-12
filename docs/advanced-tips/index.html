@@ -350,7 +350,7 @@
 
 
 
-  18 minute read
+  19 minute read
 </p>
           
         </header>
@@ -391,7 +391,7 @@
             </nav>
           </aside>
         
-        <p>This chapter provides advanced developer tips for Chaos Monkey and other Chaos Engineering tools, including <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-manually-deploy-spinnaker-for-chaos-monkey">deploying Spinnaker manually</a> or <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-deploy-spinnaker-on-kubernetes">with Kubernetes</a>, and then how to <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-install-spinnaker">install Spinnaker</a>.  Once Spinnaker is setup in the environment of your choice you can <a href="http://localhost:4000/gremlin-chaos-monkey/developer-tutorial#how-to-install-chaos-monkey">install and begin using Chaos Monkey</a>!</p>
+        <p>This chapter provides advanced developer tips for Chaos Monkey and other Chaos Engineering tools, including tutorials for manually deploying Spinnaker stacks on a <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-manually-deploy-spinnaker-for-chaos-monkey">local machine</a>, <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-manually-deploy-spinnaker-for-chaos-monkey">virtual machine</a>, or <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#deploying-a-spinnaker-stack-with-kubernetes">with Kubernetes</a>.  From there you can configure and <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-install-spinnaker">deploy Spinnaker</a> itself, along with <a href="http://localhost:4000/gremlin-chaos-monkey/developer-tutorial#how-to-install-chaos-monkey">Chaos Monkey</a> and <a href="http://localhost:4000/gremlin-chaos-monkey/alternatives">other Chaos Engineering tools</a>!</p>
 
 <h2 id="how-to-install-aws-cli">How to Install AWS CLI</h2>
 
@@ -463,6 +463,14 @@ Default output format <span class="o">[</span>None]: text
 
 <h3 id="deploying-a-spinnaker-stack-with-aws-console">Deploying a Spinnaker Stack with AWS Console</h3>
 
+<p>This section will guide you through deploying a Spinnaker stack with the AWS web console.</p>
+
+<p><strong>Prerequisites</strong></p>
+
+<ul>
+  <li><strong><a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-install-halyard">Install Halyard</a></strong></li>
+</ul>
+
 <ol>
   <li>In AWS navigate to <strong>CloudFormation</strong> and click <strong>Create Stack</strong>.</li>
   <li>Download <a href="https://d3079gxvs8ayeg.cloudfront.net/templates/managing.yaml">this</a> <code class="highlighter-rouge">managing.yaml</code> file to your local machine.</li>
@@ -533,6 +541,15 @@ Default output format <span class="o">[</span>None]: text
 <p>You’re now ready to <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-install-spinnaker">install Spinnaker</a> and <a href="http://localhost:4000/gremlin-chaos-monkey/developer-tutorial#how-to-install-chaos-monkey">install Chaos Monkey</a> to begin Chaos Experimentation!</p>
 
 <h3 id="deploying-a-spinnaker-stack-with-aws-cli">Deploying a Spinnaker Stack with AWS CLI</h3>
+
+<p>This section will guide you through deploying a Spinnaker stack with the AWS CLI tool.</p>
+
+<p><strong>Prerequisites</strong></p>
+
+<ul>
+  <li><strong><a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-install-halyard">Install Halyard</a></strong></li>
+  <li><strong><a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-install-aws-cli">Install AWS CLI</a></strong></li>
+</ul>
 
 <ol>
   <li>
@@ -625,6 +642,13 @@ Outputs:
 
 <p>Follow these steps to setup a CloudFormation EKS/Kubernetes stack for Spinnaker and Chaos Monkey.</p>
 
+<p><strong>Prerequisites</strong></p>
+
+<ul>
+  <li><strong><a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-install-halyard">Install Halyard</a></strong></li>
+  <li><strong><a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-install-aws-cli">Install AWS CLI</a></strong></li>
+</ul>
+
 <ol>
   <li>
     <p>Download <a href="https://d3079gxvs8ayeg.cloudfront.net/templates/managing.yaml">this</a> <code class="highlighter-rouge">managing.yaml</code> template.</p>
@@ -676,7 +700,7 @@ Outputs:
 
 <p><strong>Next Steps</strong></p>
 
-<p>You’ll now have an EKS/Kubernetes CloudFormation stack ready for Spinnaker.  You can now proceed with the <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-deploy-spinnaker-on-kubernetes">deployment of Spinnaker on Kubernetes</a> and then <a href="http://localhost:4000/gremlin-chaos-monkey/developer-tutorial#how-to-install-chaos-monkey">installing and using Chaos Monkey</a>.</p>
+<p>You now have an EKS/Kubernetes CloudFormation stack ready for Spinnaker.  You can now proceed with the <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-deploy-spinnaker-on-kubernetes">deployment of Spinnaker on Kubernetes</a>, and then move on to <a href="http://localhost:4000/gremlin-chaos-monkey/developer-tutorial#how-to-install-chaos-monkey">installing and using Chaos Monkey</a>.  If Chaos Monkey doesn’t suit all your Chaos Engineering needs check out our <a href="http://localhost:4000/gremlin-chaos-monkey/alternatives">Chaos Monkey Alternatives</a> chapter.</p>
 
 <h2 id="how-to-install-spinnaker">How to Install Spinnaker</h2>
 
@@ -743,7 +767,7 @@ Outputs:
 <ul>
   <li><strong><a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-install-halyard">Install Halyard</a></strong></li>
   <li><strong><a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-install-aws-cli">Install AWS CLI</a></strong></li>
-  <li><strong><a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-deploy-spinnaker-on-kubernetes">Deploy a Spinnaker Stack for Kubernetes</a></strong></li>
+  <li><strong><a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#deploying-a-spinnaker-stack-with-kubernetes">Deploy a Spinnaker Stack for Kubernetes</a></strong></li>
 </ul>
 
 <h3 id="install-kubectl">Install Kubectl</h3>

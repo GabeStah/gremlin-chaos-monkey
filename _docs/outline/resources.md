@@ -147,3 +147,6 @@
   - https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
   - https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands
   - https://github.com/spinnaker/spinnaker.github.io/pull/886/commits/968e5d7577dec1028d579c8b6a3afd7f4b43f768
+- Alternatives
+  - Chaos Monkey
+    - https://github.com/BBVA/chaos-monkey-engine

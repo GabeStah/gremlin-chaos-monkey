@@ -15,9 +15,13 @@
 [/simian-army]:                         {{ site.url }}{{ site.baseurl }}/simian-army
 [#aws-cli-install]:                     {{ site.url }}{{ site.baseurl }}/advanced-tips#how-to-install-aws-cli
 [#chaos-monkey-configure]:              {{ site.url }}{{ site.baseurl }}/developer-tutorial#how-to-configure-chaos-monkey
+[#chaos-monkey-cons]:                   {{ site.url }}{{ site.baseurl }}/#cons-of-chaos-monkey
 [#chaos-monkey-install]:                {{ site.url }}{{ site.baseurl }}/developer-tutorial#how-to-install-chaos-monkey
+[#chaos-monkey-pros]:                   {{ site.url }}{{ site.baseurl }}/#pros-of-chaos-monkey
+[#chaos-monkey-schedule-terminations]:  {{ site.url }}{{ site.baseurl }}/developer-tutorial#how-to-schedule-chaos-monkey-terminations
 [#chaos-monkey-use]:                    {{ site.url }}{{ site.baseurl }}/developer-tutorial#how-to-use-chaos-monkey
 [#halyard-install]:                     {{ site.url }}{{ site.baseurl }}/advanced-tips#how-to-install-halyard
+[#netflix-history]:                     {{ site.url }}{{ site.baseurl }}/origin-netflix#the-history-of-netflix-streaming
 [#spinnaker-install]:                   {{ site.url }}{{ site.baseurl }}/advanced-tips#how-to-install-spinnaker
 [#spinnaker-kubernetes]:                {{ site.url }}{{ site.baseurl }}/advanced-tips#how-to-deploy-spinnaker-on-kubernetes
 [#spinnaker-manual]:                    {{ site.url }}{{ site.baseurl }}/advanced-tips#how-to-manually-deploy-spinnaker-for-chaos-monkey

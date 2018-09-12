@@ -7,7 +7,7 @@ sources: "See: _docs/resources.md"
 published: true
 ---
 
-This chapter provides advanced developer tips for Chaos Monkey and other Chaos Engineering tools, including [deploying Spinnaker manually][#spinnaker-manual] or [with Kubernetes][#spinnaker-kubernetes], and then how to [install Spinnaker][#spinnaker-install].  Once Spinnaker is setup in the environment of your choice you can [install and begin using Chaos Monkey][#chaos-monkey-install]!
+This chapter provides advanced developer tips for Chaos Monkey and other Chaos Engineering tools, including tutorials for manually deploying Spinnaker stacks on a [local machine][#spinnaker-manual], [virtual machine][#spinnaker-manual], or [with Kubernetes][#spinnaker-stack-with-kubernetes].  From there you can configure and [deploy Spinnaker][#spinnaker-install] itself, along with [Chaos Monkey][#chaos-monkey-install] and [other Chaos Engineering tools][/alternatives]!
 
 ## How to Install AWS CLI
 
@@ -77,6 +77,12 @@ After Spinnaker is running on your chosen platform proceed to our [How to Instal
 
 ### Deploying a Spinnaker Stack with AWS Console
 
+This section will guide you through deploying a Spinnaker stack with the AWS web console.
+
+**Prerequisites**
+
+- **[Install Halyard][#halyard-install]**
+
 1. In AWS navigate to **CloudFormation** and click **Create Stack**.
 2. Download [this](https://d3079gxvs8ayeg.cloudfront.net/templates/managing.yaml) `managing.yaml` file to your local machine.
 3. Under **Choose a template** click the **Choose File** button under **Upload a template to Amazon S3** and select the downloaded `managing.yaml`.
@@ -120,6 +126,13 @@ After Spinnaker is running on your chosen platform proceed to our [How to Instal
 You're now ready to [install Spinnaker][#spinnaker-install] and [install Chaos Monkey][#chaos-monkey-install] to begin Chaos Experimentation!
 
 ### Deploying a Spinnaker Stack with AWS CLI
+
+This section will guide you through deploying a Spinnaker stack with the AWS CLI tool.
+
+**Prerequisites**
+
+- **[Install Halyard][#halyard-install]**
+- **[Install AWS CLI][#aws-cli-install]**
 
 1. Download [this](https://d3079gxvs8ayeg.cloudfront.net/templates/managing.yaml) `managing.yaml` template.
 
@@ -194,6 +207,11 @@ With Spinnaker configured it's now time to [install Spinnaker][#spinnaker-instal
 
 Follow these steps to setup a CloudFormation EKS/Kubernetes stack for Spinnaker and Chaos Monkey.
 
+**Prerequisites**
+
+- **[Install Halyard][#halyard-install]**
+- **[Install AWS CLI][#aws-cli-install]**
+
 1. Download [this](https://d3079gxvs8ayeg.cloudfront.net/templates/managing.yaml) `managing.yaml` template.
 
     ```bash
@@ -245,7 +263,7 @@ Follow these steps to setup a CloudFormation EKS/Kubernetes stack for Spinnaker 
 
 **Next Steps**
 
-You'll now have an EKS/Kubernetes CloudFormation stack ready for Spinnaker.  You can now proceed with the [deployment of Spinnaker on Kubernetes][#spinnaker-kubernetes] and then [installing and using Chaos Monkey][#chaos-monkey-install].
+You now have an EKS/Kubernetes CloudFormation stack ready for Spinnaker.  You can now proceed with the [deployment of Spinnaker on Kubernetes][#spinnaker-kubernetes], and then move on to [installing and using Chaos Monkey][#chaos-monkey-install].  If Chaos Monkey doesn't suit all your Chaos Engineering needs check out our [Chaos Monkey Alternatives][/alternatives] chapter.
 
 ## How to Install Spinnaker
 
@@ -307,7 +325,7 @@ This guide will walk you through the entire process of setting up a Kubernetes c
 
 - **[Install Halyard][#halyard-install]**
 - **[Install AWS CLI][#aws-cli-install]**
-- **[Deploy a Spinnaker Stack for Kubernetes][#spinnaker-kubernetes]**
+- **[Deploy a Spinnaker Stack for Kubernetes][#spinnaker-stack-with-kubernetes]**
 
 ### Install Kubectl
 
