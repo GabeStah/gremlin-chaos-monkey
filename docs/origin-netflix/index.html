@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Gremlin: Chaos Monkey">
 <meta property="og:title" content="The Origin of Chaos Monkey - Why Netflix Needed to Create Failure">
-<meta property="og:url" content="http://localhost:4000/gremlin-chaos-monkey/origin-netflix/">
+<meta property="og:url" content="/gremlin-chaos-monkey/origin-netflix/">
 
 
 
@@ -38,7 +38,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/gremlin-chaos-monkey/origin-netflix/">
+<link rel="canonical" href="/gremlin-chaos-monkey/origin-netflix/">
 
 
 
@@ -51,7 +51,7 @@
       "@context": "http://schema.org",
       "@type": "Person",
       "name": "Gabe Wyatt",
-      "url": "http://localhost:4000/gremlin-chaos-monkey",
+      "url": "/gremlin-chaos-monkey",
       "sameAs": null
     }
   </script>
@@ -148,7 +148,7 @@
     
       
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-          <a href="http://localhost:4000/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
+          <a href="/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
           <meta itemprop="position" content="1" />
         </li>
         <span class="sep">/</span>
@@ -401,22 +401,22 @@
 
 <h2 id="the-simian-army">The Simian Army</h2>
 
-<p><strong>(TODO)</strong>: Briefly explore Simian Army, as introduction and lead into <a href="http://localhost:4000/gremlin-chaos-monkey/simian-army">The Simian Army - Overview and Resources</a> chapter.</p>
+<p><strong>(TODO)</strong>: Briefly explore Simian Army, as introduction and lead into <a href="/gremlin-chaos-monkey/simian-army">The Simian Army - Overview and Resources</a> chapter.</p>
 
 <h2 id="chaos-monkey-today">Chaos Monkey Today</h2>
 
 <p>Chaos Monkey 2.0 was <a href="https://medium.com/netflix-techblog/netflix-chaos-monkey-upgraded-1d679429be5d">announced</a> and <a href="https://github.com/netflix/chaosmonkey">publicly released on GitHub</a> in late 2016.  The new version includes a handful of major feature changes and additions.</p>
 
 <ul>
-  <li><strong>Spinnaker Integration</strong>: The biggest change introduced with this current version is the full integration (and, thus, reliance upon) <a href="https://www.spinnaker.io/">Spinnaker</a>.  Spinnaker is an open-source, multi-cloud continuous delivery platform developed by Netflix, which allows for automated deployments across multiple cloud providers like AWS, Azure, Kubernetes, and <a href="https://www.spinnaker.io/reference/providers/">a few more</a>.  While this may work for some, the major drawback to modern Chaos Monkey is that it <em>forces</em> you and your organization to build atop Spinnaker’s CD architecture.  Our <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-manually-deploy-spinnaker-for-chaos-monkey">How to Manually Deploy Spinnaker for Chaos Monkey</a> tutorials can help you setup and deploy Spinnaker.</li>
-  <li><strong>Improved Scheduling</strong>: Instance termination schedules are no longer determined by probabilistic algorithms, but are instead  based on the <em>mean time</em> between terminations.  Check out <a href="http://localhost:4000/gremlin-chaos-monkey/developer-tutorial#how-to-schedule-chaos-monkey-terminations">How to Schedule Chaos Monkey Terminations</a> for more details.</li>
+  <li><strong>Spinnaker Integration</strong>: The biggest change introduced with this current version is the full integration (and, thus, reliance upon) <a href="https://www.spinnaker.io/">Spinnaker</a>.  Spinnaker is an open-source, multi-cloud continuous delivery platform developed by Netflix, which allows for automated deployments across multiple cloud providers like AWS, Azure, Kubernetes, and <a href="https://www.spinnaker.io/reference/providers/">a few more</a>.  While this may work for some, the major drawback to modern Chaos Monkey is that it <em>forces</em> you and your organization to build atop Spinnaker’s CD architecture.  Our <a href="/gremlin-chaos-monkey/advanced-tips#how-to-manually-deploy-spinnaker-for-chaos-monkey">How to Manually Deploy Spinnaker for Chaos Monkey</a> tutorials can help you setup and deploy Spinnaker.</li>
+  <li><strong>Improved Scheduling</strong>: Instance termination schedules are no longer determined by probabilistic algorithms, but are instead  based on the <em>mean time</em> between terminations.  Check out <a href="/gremlin-chaos-monkey/developer-tutorial#how-to-schedule-chaos-monkey-terminations">How to Schedule Chaos Monkey Terminations</a> for more details.</li>
   <li><strong>Trackers</strong>: <a href="https://netflix.github.io/chaosmonkey/Tracker/">Trackers</a> are Go language objects that record instance terminations to external services.</li>
-  <li><strong>Loss of Additional Capabilities</strong>: Prior to 2.0, Chaos Monkey was capable of performing additional actions <em>beyond</em> just terminating instances.  With version 2.0, those capabilities have been removed from Chaos Monkey itself and moved to other <a href="http://localhost:4000/gremlin-chaos-monkey/simian-army">Simian Army</a> tools.</li>
+  <li><strong>Loss of Additional Capabilities</strong>: Prior to 2.0, Chaos Monkey was capable of performing additional actions <em>beyond</em> just terminating instances.  With version 2.0, those capabilities have been removed from Chaos Monkey itself and moved to other <a href="/gremlin-chaos-monkey/simian-army">Simian Army</a> tools.</li>
 </ul>
 
 <h2 id="failure-injection-testing">Failure Injection Testing</h2>
 
-<p>In October 2014, dissatisfied with the lack of control introduced by some of the <a href="http://localhost:4000/gremlin-chaos-monkey/simian-army">Simian Army</a> tools out in the wild, Netflix introduced their solution, which they called <em>Failure Injection Testing</em> (<em>FIT</em>).  Built by a small team of Netflix engineers – including Gremlin Co-Founder and CEO <a href="https://www.gremlin.com/team/">Kolton Andrus</a> – FIT simplified the failure injection process, allowing Netflix to more precisely determine what fails and who that failure will impact.</p>
+<p>In October 2014, dissatisfied with the lack of control introduced by some of the <a href="/gremlin-chaos-monkey/simian-army">Simian Army</a> tools out in the wild, Netflix introduced their solution, which they called <em>Failure Injection Testing</em> (<em>FIT</em>).  Built by a small team of Netflix engineers – including Gremlin Co-Founder and CEO <a href="https://www.gremlin.com/team/">Kolton Andrus</a> – FIT simplified the failure injection process, allowing Netflix to more precisely determine what fails and who that failure will impact.</p>
 
 <p>FIT</p>
 

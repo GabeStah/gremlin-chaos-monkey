@@ -1,1 +1,1 @@
-Sitemap: http://localhost:4000/gremlin-chaos-monkey/sitemap.xml
+Sitemap: /gremlin-chaos-monkey/sitemap.xml

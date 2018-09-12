@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Gremlin: Chaos Monkey">
 <meta property="og:title" content="Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training">
-<meta property="og:url" content="http://localhost:4000/gremlin-chaos-monkey/">
+<meta property="og:url" content="/gremlin-chaos-monkey/">
 
 
 
@@ -38,7 +38,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/gremlin-chaos-monkey/">
+<link rel="canonical" href="/gremlin-chaos-monkey/">
 
 
 
@@ -51,7 +51,7 @@
       "@context": "http://schema.org",
       "@type": "Person",
       "name": "Gabe Wyatt",
-      "url": "http://localhost:4000/gremlin-chaos-monkey",
+      "url": "/gremlin-chaos-monkey",
       "sameAs": null
     }
   </script>
@@ -346,12 +346,16 @@
       <li><a href="#cons-of-chaos-monkey">Cons of Chaos Monkey</a></li>
     </ul>
   </li>
-  <li><a href="#the-origin-of-chaos-monkey---why-netflix-needed-to-create-failure">The Origin of Chaos Monkey - Why Netflix Needed to Create Failure</a></li>
-  <li><a href="#chaos-monkey-tutorial---a-step-by-step-guide-to-creating-failure-on-aws">Chaos Monkey Tutorial - A Step-by-Step Guide to Creating Failure on AWS</a></li>
-  <li><a href="#taking-chaos-monkey-to-the-next-level---advanced-developer-guide">Taking Chaos Monkey to the Next Level - Advanced Developer Guide</a></li>
-  <li><a href="#the-simian-army---overview-and-resources">The Simian Army - Overview and Resources</a></li>
-  <li><a href="#chaos-monkey-resources-guides-and-downloads-for-engineers">Chaos Monkey Resources, Guides, and Downloads for Engineers</a></li>
-  <li><a href="#chaos-monkey-alternatives---tools-for-creating-chaos-outside-of-aws">Chaos Monkey Alternatives - Tools for Creating Chaos Outside of AWS</a></li>
+  <li><a href="#guide-chapters">Guide Chapters</a>
+    <ul>
+      <li><a href="#the-origin-of-chaos-monkey---why-netflix-needed-to-create-failure">The Origin of Chaos Monkey - Why Netflix Needed to Create Failure</a></li>
+      <li><a href="#chaos-monkey-tutorial---a-step-by-step-guide-to-creating-failure-on-aws">Chaos Monkey Tutorial - A Step-by-Step Guide to Creating Failure on AWS</a></li>
+      <li><a href="#taking-chaos-monkey-to-the-next-level---advanced-developer-guide">Taking Chaos Monkey to the Next Level - Advanced Developer Guide</a></li>
+      <li><a href="#the-simian-army---overview-and-resources">The Simian Army - Overview and Resources</a></li>
+      <li><a href="#chaos-monkey-resources-guides-and-downloads-for-engineers">Chaos Monkey Resources, Guides, and Downloads for Engineers</a></li>
+      <li><a href="#chaos-monkey-alternatives---tools-for-creating-chaos-outside-of-aws">Chaos Monkey Alternatives - Tools for Creating Chaos Outside of AWS</a></li>
+    </ul>
+  </li>
 </ul>
             </nav>
           </aside>
@@ -362,13 +366,13 @@
 
 <p>Chaos Monkey also jump-started the <a href="https://www.gremlin.com/community/tutorials/chaos-engineering-the-history-principles-and-practice/"><em>Chaos Engineering</em> revolution</a>.  <a href="https://principlesofchaos.org/">Chaos Engineering</a> is “the discipline of experimenting on a distributed system in order to build confidence in the system’s capability to withstand turbulent conditions in production.”  By proactively testing how a system responds under stress, you can identify and fix failures before they become disastrous.  Chaos Engineering lets you compare what you <em>think</em> will happen with what is <em>actually</em> happening in your systems.  By performing the smallest possible experiments you can test, you’re able to “break things on purpose” in order to learn how to build more resilient systems.</p>
 
-<p>The following year, in 2011, <a href="https://medium.com/netflix-techblog/the-netflix-simian-army-16e57fbab116">Netflix announced</a> the evolution of Chaos Monkey with a series of additional tools known as <a href="http://localhost:4000/gremlin-chaos-monkey/simian-army"><em>The Simian Army</em></a>.  Inspired by the success of their original Chaos Monkey tool aimed at randomly disabling production instances and services, the engineering team developed additional “simians” built to cause other types of failure and induce abnormal system conditions.  For example, the <code class="highlighter-rouge">Latency Monkey</code> tool introduces artificial delays in RESTful client-server communication, allowing the team at Netflix to simulate service unavailability without actually taking down said service.  We’ll dive into all the details of The Simian Army – including a close look at every member of that fearsome, technological fighting squad – <a href="http://localhost:4000/gremlin-chaos-monkey/simian-army">The Simian Army - Overview and Resources</a> section of this guide.</p>
+<p>The following year, in 2011, <a href="https://medium.com/netflix-techblog/the-netflix-simian-army-16e57fbab116">Netflix announced</a> the evolution of Chaos Monkey with a series of additional tools known as <a href="/gremlin-chaos-monkey/simian-army"><em>The Simian Army</em></a>.  Inspired by the success of their original Chaos Monkey tool aimed at randomly disabling production instances and services, the engineering team developed additional “simians” built to cause other types of failure and induce abnormal system conditions.  For example, the <code class="highlighter-rouge">Latency Monkey</code> tool introduces artificial delays in RESTful client-server communication, allowing the team at Netflix to simulate service unavailability without actually taking down said service.  We’ll dive into all the details of The Simian Army – including a close look at every member of that fearsome, technological fighting squad – <a href="/gremlin-chaos-monkey/simian-army">The Simian Army - Overview and Resources</a> section of this guide.</p>
 
 <p>With a stable codebase and ample real-world testing in their pockets, Netflix’s engineers publicly released the Chaos Monkey <a href="https://github.com/Netflix/chaosmonkey">source code on GitHub</a> a few months later in 2012, and the world of Chaos Engineering was unleashed upon the world!</p>
 
 <h2 id="what-is-this-guide">What Is This Guide?</h2>
 
-<p>The <a href="http://localhost:4000/gremlin-chaos-monkey/"><em>Chaos Monkey Guide for Engineers</em></a> provides a curated and exhaustive examination of Chaos Monkey, including what it is, its <a href="http://localhost:4000/gremlin-chaos-monkey/origin-netflix">origin story</a>, its <a href="#pros-of-chaos-monkey">pros</a> and <a href="#cons-of-chaos-monkey">cons</a>, its relation to the broader topic of Chaos Engineering, and much more.  We’ve also included <a href="http://localhost:4000/gremlin-chaos-monkey/developer-tutorial">step-by-step technical tutorials</a> for getting started with Chaos Monkey, along with <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips">advanced engineering tips and guides</a> for those looking to go beyond the basics.  Speaking of advanced topics, our chapter on <a href="http://localhost:4000/gremlin-chaos-monkey/simian-army">The Simian Army</a> explores all the additional tools that aim to round out the original Chaos Monkey software.  This guide also provides a plethora of useful <a href="http://localhost:4000/gremlin-chaos-monkey/downloads-resources">resources, guides, and downloads</a> for engineers seeking to improve their own Chaos Engineering techniques and implementations.  In fact, our <a href="http://localhost:4000/gremlin-chaos-monkey/alternatives">alternative technologies</a> chapter goes above and beyond by examining a curated list of the best alternative tools and techniques to Chaos Monkey – we dig into everything from <a href="http://localhost:4000/gremlin-chaos-monkey/alternatives/azure">Azure</a> and <a href="http://localhost:4000/gremlin-chaos-monkey/alternatives/docker">Docker</a> to <a href="http://localhost:4000/gremlin-chaos-monkey/alternatives/kubernetes">Kubernetes</a> and <a href="http://localhost:4000/gremlin-chaos-monkey/alternatives/vmware">VMWare</a>!</p>
+<p>The <a href="/gremlin-chaos-monkey/"><em>Chaos Monkey Guide for Engineers</em></a> provides a curated and exhaustive examination of Chaos Monkey, including what it is, its <a href="/gremlin-chaos-monkey/origin-netflix">origin story</a>, its <a href="#pros-of-chaos-monkey">pros</a> and <a href="#cons-of-chaos-monkey">cons</a>, its relation to the broader topic of Chaos Engineering, and much more.  We’ve also included <a href="/gremlin-chaos-monkey/developer-tutorial">step-by-step technical tutorials</a> for getting started with Chaos Monkey, along with <a href="/gremlin-chaos-monkey/advanced-tips">advanced engineering tips and guides</a> for those looking to go beyond the basics.  Speaking of advanced topics, our chapter on <a href="/gremlin-chaos-monkey/simian-army">The Simian Army</a> explores all the additional tools that aim to round out the original Chaos Monkey software.  This guide also provides a plethora of useful <a href="/gremlin-chaos-monkey/downloads-resources">resources, guides, and downloads</a> for engineers seeking to improve their own Chaos Engineering techniques and implementations.  In fact, our <a href="/gremlin-chaos-monkey/alternatives">alternative technologies</a> chapter goes above and beyond by examining a curated list of the best alternative tools and techniques to Chaos Monkey – we dig into everything from <a href="/gremlin-chaos-monkey/alternatives/azure">Azure</a> and <a href="/gremlin-chaos-monkey/alternatives/docker">Docker</a> to <a href="/gremlin-chaos-monkey/alternatives/kubernetes">Kubernetes</a> and <a href="/gremlin-chaos-monkey/alternatives/vmware">VMWare</a>!</p>
 
 <h2 id="who-is-this-guide-for">Who Is This Guide For?</h2>
 
@@ -386,7 +390,7 @@
 
 <h2 id="the-pros-and-cons-of-chaos-monkey">The Pros and Cons of Chaos Monkey</h2>
 
-<p>Considering Chaos Monkey was publicly released in 2012, it’s still a relatively new technology compared to many other technologies regularly used today (Unix, anyone?).  This means that <a href="http://localhost:4000/gremlin-chaos-monkey/origin-netflix">Chaos Monkey</a>, the <a href="http://localhost:4000/gremlin-chaos-monkey/simian-army">Simian Army</a>, and many related <a href="http://localhost:4000/gremlin-chaos-monkey/alternatives">technologies</a> have <strong>all</strong> begun burgeoning quite recently.  As such, there is still quite a lot of misinformation, or merely lacks of understanding, surrounding Chaos Monkey’s capabilities.</p>
+<p>Considering Chaos Monkey was publicly released in 2012, it’s still a relatively new technology compared to many other technologies regularly used today (Unix, anyone?).  This means that <a href="/gremlin-chaos-monkey/origin-netflix">Chaos Monkey</a>, the <a href="/gremlin-chaos-monkey/simian-army">Simian Army</a>, and many related <a href="/gremlin-chaos-monkey/alternatives">technologies</a> have <strong>all</strong> begun burgeoning quite recently.  As such, there is still quite a lot of misinformation, or merely lacks of understanding, surrounding Chaos Monkey’s capabilities.</p>
 
 <h3 id="pros-of-chaos-monkey">Pros of Chaos Monkey</h3>
 
@@ -421,27 +425,29 @@
   <li>Limited auditing tools.</li>
 </ul>
 
-<h2 id="the-origin-of-chaos-monkey---why-netflix-needed-to-create-failure">The Origin of Chaos Monkey - Why Netflix Needed to Create Failure</h2>
+<h2 id="guide-chapters">Guide Chapters</h2>
 
-<p>In our <a href="http://localhost:4000/gremlin-chaos-monkey/origin-netflix">The Origin of Chaos Monkey</a> chapter we examine why Chaos Monkey became the most prolific and well-known technology in Chaos Engineering.  We also dive further into why Netflix created Chaos Monkey after their dramatic database failure in mid-2008 forced them to devise a solution for random service failure.  We also explore the future of Chaos Monkey with version 2.0, Chaos Monkey’s reliance on Spinnaker, and the introduction of <a href="https://medium.com/netflix-techblog/fit-failure-injection-testing-35d8e2a9bb2">Netflix’s Failure Injection Testing</a>.</p>
+<h3 id="the-origin-of-chaos-monkey---why-netflix-needed-to-create-failure">The Origin of Chaos Monkey - Why Netflix Needed to Create Failure</h3>
 
-<h2 id="chaos-monkey-tutorial---a-step-by-step-guide-to-creating-failure-on-aws">Chaos Monkey Tutorial - A Step-by-Step Guide to Creating Failure on AWS</h2>
+<p>In our <a href="/gremlin-chaos-monkey/origin-netflix">The Origin of Chaos Monkey</a> chapter we examine why Chaos Monkey became the most prolific and well-known technology in Chaos Engineering.  We also dive further into why Netflix created Chaos Monkey after their dramatic database failure in mid-2008 forced them to devise a solution for random service failure.  We also explore the future of Chaos Monkey with version 2.0, Chaos Monkey’s reliance on Spinnaker, and the introduction of <a href="https://medium.com/netflix-techblog/fit-failure-injection-testing-35d8e2a9bb2">Netflix’s Failure Injection Testing</a>.</p>
 
-<p>In the <a href="http://localhost:4000/gremlin-chaos-monkey/developer-tutorial">Chaos Monkey Developer Tutorial</a> we provide in-depth, step-by-step technical guides for getting Chaos Monkey up and running on AWS.  We also explore a handful of scenarios in which Chaos Monkey may, or may not, be the most relevant solution to provide confidence in handling long tail failure in the way that general Chaos Engineering practices will.</p>
+<h3 id="chaos-monkey-tutorial---a-step-by-step-guide-to-creating-failure-on-aws">Chaos Monkey Tutorial - A Step-by-Step Guide to Creating Failure on AWS</h3>
 
-<h2 id="taking-chaos-monkey-to-the-next-level---advanced-developer-guide">Taking Chaos Monkey to the Next Level - Advanced Developer Guide</h2>
+<p>In the <a href="/gremlin-chaos-monkey/developer-tutorial">Chaos Monkey Developer Tutorial</a> we provide in-depth, step-by-step technical guides for getting Chaos Monkey up and running on AWS.  We also explore a handful of scenarios in which Chaos Monkey may, or may not, be the most relevant solution to provide confidence in handling long tail failure in the way that general Chaos Engineering practices will.</p>
 
-<p>Our <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips">Advanced Developer Guide</a> gets into the nitty-gritty of using Chaos Monkey with walkthroughs for manually deploying Spinnaker stacks on a <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-manually-deploy-spinnaker-for-chaos-monkey">local machine</a>, <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-manually-deploy-spinnaker-for-chaos-monkey">virtual machine</a>, or <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#deploying-a-spinnaker-stack-with-kubernetes">with Kubernetes</a>.  We’ve also included instructions for <a href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips#how-to-install-spinnaker">deploying Spinnaker</a> itself, along with <a href="http://localhost:4000/gremlin-chaos-monkey/developer-tutorial#how-to-install-chaos-monkey">installing Chaos Monkey</a> or <a href="http://localhost:4000/gremlin-chaos-monkey/alternatives">alternative Chaos Engineering tools</a>!</p>
+<h3 id="taking-chaos-monkey-to-the-next-level---advanced-developer-guide">Taking Chaos Monkey to the Next Level - Advanced Developer Guide</h3>
 
-<h2 id="the-simian-army---overview-and-resources">The Simian Army - Overview and Resources</h2>
+<p>Our <a href="/gremlin-chaos-monkey/advanced-tips">Advanced Developer Guide</a> gets into the nitty-gritty of using Chaos Monkey with walkthroughs for manually deploying Spinnaker stacks on a <a href="/gremlin-chaos-monkey/advanced-tips#how-to-manually-deploy-spinnaker-for-chaos-monkey">local machine</a>, <a href="/gremlin-chaos-monkey/advanced-tips#how-to-manually-deploy-spinnaker-for-chaos-monkey">virtual machine</a>, or <a href="/gremlin-chaos-monkey/advanced-tips#deploying-a-spinnaker-stack-with-kubernetes">with Kubernetes</a>.  We’ve also included instructions for <a href="/gremlin-chaos-monkey/advanced-tips#how-to-install-spinnaker">deploying Spinnaker</a> itself, along with <a href="/gremlin-chaos-monkey/developer-tutorial#how-to-install-chaos-monkey">installing Chaos Monkey</a> or <a href="/gremlin-chaos-monkey/alternatives">alternative Chaos Engineering tools</a>!</p>
 
-<p><strong>(TODO)</strong></p>
-
-<h2 id="chaos-monkey-resources-guides-and-downloads-for-engineers">Chaos Monkey Resources, Guides, and Downloads for Engineers</h2>
+<h3 id="the-simian-army---overview-and-resources">The Simian Army - Overview and Resources</h3>
 
 <p><strong>(TODO)</strong></p>
 
-<h2 id="chaos-monkey-alternatives---tools-for-creating-chaos-outside-of-aws">Chaos Monkey Alternatives - Tools for Creating Chaos Outside of AWS</h2>
+<h3 id="chaos-monkey-resources-guides-and-downloads-for-engineers">Chaos Monkey Resources, Guides, and Downloads for Engineers</h3>
+
+<p><strong>(TODO)</strong></p>
+
+<h3 id="chaos-monkey-alternatives---tools-for-creating-chaos-outside-of-aws">Chaos Monkey Alternatives - Tools for Creating Chaos Outside of AWS</h3>
 
 <p><strong>(TODO)</strong></p>
 
