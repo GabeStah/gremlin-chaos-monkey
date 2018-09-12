@@ -64,27 +64,29 @@ Considering Chaos Monkey was publicly released in 2012, it's still a relatively 
 - No user interface.
 - Limited auditing tools.
 
-## The Origin of Chaos Monkey - Why Netflix Needed to Create Failure
+## Guide Chapters
+
+### The Origin of Chaos Monkey - Why Netflix Needed to Create Failure
 
 In our [The Origin of Chaos Monkey][/origin-netflix] chapter we examine why Chaos Monkey became the most prolific and well-known technology in Chaos Engineering.  We also dive further into why Netflix created Chaos Monkey after their dramatic database failure in mid-2008 forced them to devise a solution for random service failure.  We also explore the future of Chaos Monkey with version 2.0, Chaos Monkey's reliance on Spinnaker, and the introduction of [Netflix's Failure Injection Testing](https://medium.com/netflix-techblog/fit-failure-injection-testing-35d8e2a9bb2).
 
-## Chaos Monkey Tutorial - A Step-by-Step Guide to Creating Failure on AWS
+### Chaos Monkey Tutorial - A Step-by-Step Guide to Creating Failure on AWS
 
 In the [Chaos Monkey Developer Tutorial][/developer-tutorial] we provide in-depth, step-by-step technical guides for getting Chaos Monkey up and running on AWS.  We also explore a handful of scenarios in which Chaos Monkey may, or may not, be the most relevant solution to provide confidence in handling long tail failure in the way that general Chaos Engineering practices will.
 
-## Taking Chaos Monkey to the Next Level - Advanced Developer Guide
+### Taking Chaos Monkey to the Next Level - Advanced Developer Guide
 
 Our [Advanced Developer Guide][/advanced-tips] gets into the nitty-gritty of using Chaos Monkey with walkthroughs for manually deploying Spinnaker stacks on a [local machine][#spinnaker-manual], [virtual machine][#spinnaker-manual], or [with Kubernetes][#spinnaker-stack-with-kubernetes].  We've also included instructions for [deploying Spinnaker][#spinnaker-install] itself, along with [installing Chaos Monkey][#chaos-monkey-install] or [alternative Chaos Engineering tools][/alternatives]!
 
-## The Simian Army - Overview and Resources
+### The Simian Army - Overview and Resources
 
 **(TODO)**
 
-## Chaos Monkey Resources, Guides, and Downloads for Engineers
+### Chaos Monkey Resources, Guides, and Downloads for Engineers
 
 **(TODO)**
 
-## Chaos Monkey Alternatives - Tools for Creating Chaos Outside of AWS
+### Chaos Monkey Alternatives - Tools for Creating Chaos Outside of AWS
 
 **(TODO)**
 
