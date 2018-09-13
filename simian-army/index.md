@@ -297,8 +297,8 @@ Drops a fraction of all network packets by using a traffic shaping API.
 
     ```bash
     # OUTPUT
-    123456789012	r-0ade24933c15617ba
-    INSTANCES	0	x86_64		False	xen	ami-51537029	i-062b161f4a1cddbb7	t2.micro	id_rsa	2018-09-13T03:50:07.000Z	ip-172-31-30-145.us-west-2.compute.internal	172.31.30.145		/dev/sda1	ebs	True		subnet-27c73d43	hvmvpc-0967976d
+    123456789012 r-0ade24933c15617ba
+    INSTANCES 0   x86_64   False	xen	ami-51537029	i-062b161f4a1cddbb7	t2.micro	id_rsa	2018-09-13T03:50:07.000Z	ip-172-31-30-145.us-west-2.compute.internal	172.31.30.145		/dev/sda1	ebs	True		subnet-27c73d43	hvmvpc-0967976d
     ```
 
 5. *(Optional)* Attach any manually-created EC2 instances to the `monkey-target` auto-scaling group.
