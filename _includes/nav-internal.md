@@ -41,4 +41,4 @@
 [#spinnaker-stack-with-aws-console]:    {{ "/advanced-tips#deploying-a-spinnaker-stack-with-aws-console" | relative_url}}
 [#spinnaker-stack-with-aws-cli]:        {{ "/advanced-tips#deploying-a-spinnaker-stack-with-aws-cli" | relative_url}}
 [#spinnaker-stack-with-kubernetes]:     {{ "/advanced-tips#deploying-a-spinnaker-stack-with-kubernetes" | relative_url}}
-[#spinnaker-strictly]:                  {{ "/origin-netflix#strictly-spinning-on-spinnaker" | relative_url}}
+[#spinnaker-strictly]:                  {{ "/origin-netflix#chaos-monkey-and-spinnaker" | relative_url}}

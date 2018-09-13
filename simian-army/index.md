@@ -27,7 +27,7 @@ outline:
     - Simian Army Strategies: 'List and examine each of the dozen or so toggleable `strategies` defined [here](https://github.com/Netflix/SimianArmy/wiki/The-Chaos-Monkey-Army).'
 ---
 
-The **Simian Army** is a suite of failure-inducing tools designed to shore up the limitations of the Simian Army's very first soldier on the battlefield, the [Chaos Monkey][/origin-netflix].  Like Chaos Monkey, the Simian Army was developed by Netflix and [announced in 2011](https://medium.com/netflix-techblog/the-netflix-simian-army-16e57fbab116), though it wasn't [open-sourced](https://github.com/Netflix/SimianArmy) for a few more months.  While Chaos Monkey solely handles termination of random instances, Netflix engineers needed additional tools able to induce *other* types of failure.  While many of the Simian Army tools have fallen out of favor in recent years, each of the members served a specific purpose aimed at bolstering a system's failure resilience.
+The **Simian Army** is a suite of failure-inducing tools designed to add more capabilities beyond [Chaos Monkey][/origin-netflix].  While Chaos Monkey solely handles termination of random instances, Netflix engineers needed additional tools able to induce *other* types of failure.  Some of the Simian Army tools have fallen out of favor in recent years, but each of the members serves a specific purpose aimed at bolstering a system's failure resilience.
 
 In this chapter we'll jump into [each member][#simian-members] of the Simian Army and examine how these tools helped shaped modern Chaos Engineering best practices.  We'll also explore each of the Simian [Chaos Strategies][#simian-chaos-strategies] used to define which Chaos Experiments the system should undergo.  Lastly, we'll plunge into a short [tutorial][#simian-use] walking through the basics of installing and using the Simian Army toolset.
 
@@ -41,7 +41,7 @@ In addition to [Chaos Monkey][/origin-netflix], the following simian trio are th
 
 #### Janitor Monkey
 
-Aside from being the coolest adult at your old high school, **Janitor Monkey** also seeks out and disposes of unused resources within the cloud.  It accomplishes this by checking any given resource against a set of configurable rules to determine if its an eligible candidate for cleanup.  Janitor Monkey features a number of [configurable options](https://github.com/Netflix/SimianArmy/wiki/Janitor-Settings), but the default behavior looks for resources like orphaned (non-auto-scaled) instances, volumes that are not attached to an instance, unused auto-scaling groups, and more.
+**Janitor Monkey** also seeks out and disposes of unused resources within the cloud.  It checks any given resource against a set of configurable rules to determine if its an eligible candidate for cleanup.  Janitor Monkey features a number of [configurable options](https://github.com/Netflix/SimianArmy/wiki/Janitor-Settings), but the default behavior looks for resources like orphaned (non-auto-scaled) instances, volumes that are not attached to an instance, unused auto-scaling groups, and more.
 
 Have a look at [Using Simian Army Tools][#simian-use] for a basic guide configuring and executing Janitor Monkey experiments.
 

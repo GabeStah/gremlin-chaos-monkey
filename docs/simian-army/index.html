@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Gremlin: Chaos Monkey">
 <meta property="og:title" content="The Simian Army - Overview and Resources">
-<meta property="og:url" content="http://localhost:4000/gremlin-chaos-monkey/simian-army/">
+<meta property="og:url" content="/gremlin-chaos-monkey/simian-army/">
 
 
 
@@ -38,7 +38,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/gremlin-chaos-monkey/simian-army/">
+<link rel="canonical" href="/gremlin-chaos-monkey/simian-army/">
 
 
 
@@ -51,7 +51,7 @@
       "@context": "http://schema.org",
       "@type": "Person",
       "name": "Gabe Wyatt",
-      "url": "http://localhost:4000/gremlin-chaos-monkey",
+      "url": "/gremlin-chaos-monkey",
       "sameAs": null
     }
   </script>
@@ -148,7 +148,7 @@
     
       
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-          <a href="http://localhost:4000/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
+          <a href="/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
           <meta itemprop="position" content="1" />
         </li>
         <span class="sep">/</span>
@@ -350,7 +350,7 @@
 
 
 
-  14 minute read
+  13 minute read
 </p>
           
         </header>
@@ -482,7 +482,7 @@
             </nav>
           </aside>
         
-        <p>The <strong>Simian Army</strong> is a suite of failure-inducing tools designed to shore up the limitations of the Simian Army’s very first soldier on the battlefield, the <a href="/gremlin-chaos-monkey/origin-netflix">Chaos Monkey</a>.  Like Chaos Monkey, the Simian Army was developed by Netflix and <a href="https://medium.com/netflix-techblog/the-netflix-simian-army-16e57fbab116">announced in 2011</a>, though it wasn’t <a href="https://github.com/Netflix/SimianArmy">open-sourced</a> for a few more months.  While Chaos Monkey solely handles termination of random instances, Netflix engineers needed additional tools able to induce <em>other</em> types of failure.  While many of the Simian Army tools have fallen out of favor in recent years, each of the members served a specific purpose aimed at bolstering a system’s failure resilience.</p>
+        <p>The <strong>Simian Army</strong> is a suite of failure-inducing tools designed to add more capabilities beyond <a href="/gremlin-chaos-monkey/origin-netflix">Chaos Monkey</a>.  While Chaos Monkey solely handles termination of random instances, Netflix engineers needed additional tools able to induce <em>other</em> types of failure.  Some of the Simian Army tools have fallen out of favor in recent years, but each of the members serves a specific purpose aimed at bolstering a system’s failure resilience.</p>
 
 <p>In this chapter we’ll jump into <a href="/gremlin-chaos-monkey/simian-army#simian-army-members">each member</a> of the Simian Army and examine how these tools helped shaped modern Chaos Engineering best practices.  We’ll also explore each of the Simian <a href="/gremlin-chaos-monkey/simian-army#simian-chaos-strategies">Chaos Strategies</a> used to define which Chaos Experiments the system should undergo.  Lastly, we’ll plunge into a short <a href="/gremlin-chaos-monkey/simian-army#using-simian-army-tools">tutorial</a> walking through the basics of installing and using the Simian Army toolset.</p>
 
@@ -496,7 +496,7 @@
 
 <h4 id="janitor-monkey">Janitor Monkey</h4>
 
-<p>Aside from being the coolest adult at your old high school, <strong>Janitor Monkey</strong> also seeks out and disposes of unused resources within the cloud.  It accomplishes this by checking any given resource against a set of configurable rules to determine if its an eligible candidate for cleanup.  Janitor Monkey features a number of <a href="https://github.com/Netflix/SimianArmy/wiki/Janitor-Settings">configurable options</a>, but the default behavior looks for resources like orphaned (non-auto-scaled) instances, volumes that are not attached to an instance, unused auto-scaling groups, and more.</p>
+<p><strong>Janitor Monkey</strong> also seeks out and disposes of unused resources within the cloud.  It checks any given resource against a set of configurable rules to determine if its an eligible candidate for cleanup.  Janitor Monkey features a number of <a href="https://github.com/Netflix/SimianArmy/wiki/Janitor-Settings">configurable options</a>, but the default behavior looks for resources like orphaned (non-auto-scaled) instances, volumes that are not attached to an instance, unused auto-scaling groups, and more.</p>
 
 <p>Have a look at <a href="/gremlin-chaos-monkey/simian-army#using-simian-army-tools">Using Simian Army Tools</a> for a basic guide configuring and executing Janitor Monkey experiments.</p>
 
