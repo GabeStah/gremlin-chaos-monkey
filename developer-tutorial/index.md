@@ -34,7 +34,7 @@ The *AWS Spinnaker Quick Start* will create a simple architecture for you contai
 
 ![developer-tutorial-aws-spinnaker-quick-start-architecture](../images/developer-tutorial-aws-spinnaker-quick-start-architecture.png 'AWS Spinnaker Quick Start Architecture')
 
-*Figure 1: AWS Spinnaker Quick Start Architecture - **Courtesy of AWS***
+*AWS Spinnaker Quick Start Architecture - **Courtesy of AWS***
 
 This quick start process will take about 10 - 15 minutes and is mostly automated.
 
@@ -48,7 +48,7 @@ This quick start process will take about 10 - 15 minutes and is mostly automated
     4. Save this key to an appropriate location (typically your local user `~/.ssh` directory).
 3. After you've signed into the AWS console visit [this page](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Spinnaker&templateURL=https:%2F%2Fs3.amazonaws.com%2Faws-quickstart%2Fquickstart-spinnaker%2Ftemplates%2Fquickstart-spinnakercf.template), which should load the [`quickstart-spinnakercf.template`](https://s3.amazonaws.com/aws-quickstart/quickstart-spinnaker/templates/quickstart-spinnakercf.template).
 4. Click **Next**.
-5. (Optional) If you haven't already done so, you'll need to create at least one AWS Access Key, which is a 
+5. (Optional) If you haven't already done so, you'll need to create at least one AWS Access Key.
 6. Select the **KeyName** of the key pair you previously created.
 7. Input a secure password in the **Password** field.
 8. *(Optional)* Modify the IP address range in the **SSHLocation** field to indicate what IP range is allowed to SSH into the Bastion host.  For example, if your public IP address is `1.2.3.4` you might enter `1.2.3.4/32` into this field.  If you aren't sure, you can enter `0.0.0.0/0` to allow any IP address to connect, though this is obviously less secure.
@@ -256,11 +256,11 @@ While a lot can go wrong, below are a few potential issues you may encounter run
 
 > error "Error: Unknown configuration key `ena_support`"
 > If you get an `ena_support` error during deployment (see: [#2237](https://github.com/spinnaker/spinnaker/issues/2237)) the solution is to *remove* the `ena_support` reference line  within the `builders` block in the `/opt/rosco/config/packer/aws-ebs.json` Rosco configuration file.
-> 
+>
 > ```bash
 > sudo nano /opt/rosco/config/packer/aws-ebs.json
 > ```
-> 
+>
 > ```json
 > {
 >   "builders": {
@@ -271,11 +271,11 @@ While a lot can go wrong, below are a few potential issues you may encounter run
 
 > error "Error: `0.000000` is an invalid spot instance price"
 > If you get such an error during deployment (see: [#2889](https://github.com/spinnaker/spinnaker/issues/2889)) the solution is to *remove* `spot_price` reference lines within the `builders` block in the `/opt/rosco/config/packer/aws-ebs.json` Rosco configuration file.
-> 
+>
 > ```bash
 > sudo nano /opt/rosco/config/packer/aws-ebs.json
 > ```
-> 
+>
 > ```json
 > {
 >   "builders": {
@@ -287,7 +287,7 @@ While a lot can go wrong, below are a few potential issues you may encounter run
 
 > error "Error: Bake stage failure after provisioning `install_packages.sh` script"
 > This error is typically due to an outdated `install_packages.sh` script.  To resolve this override with the latest downloaded version.
-> 
+>
 > ```bash
 > sudo curl https://raw.githubusercontent.com/spinnaker/rosco/master/rosco-web/config/packer/install_packages.sh --output /opt/rosco/config/packer/install_packages.sh
 > ```
@@ -296,8 +296,8 @@ While a lot can go wrong, below are a few potential issues you may encounter run
 
 Before you can use Chaos Monkey you'll need to have Spinnaker deployed and running.  We've created a handful of step-by-step tutorials for deploying Spinnaker, depending on the environment and level of control you're looking for.
 
-  - [How to Quickly Deploy Spinnaker for Chaos Monkey][#spinnaker-quick-start] will guide you through a rapid deployment of Spinnaker on AWS.
-  - [How to Manually Deploy Spinnaker for Chaos Monkey][#spinnaker-manual] provides a much more in-depth tutorial for installing Spinnaker as it was intended, with the help of the Halyard tool, on a local or virtual machine.
+- [How to Quickly Deploy Spinnaker for Chaos Monkey][#spinnaker-quick-start] will guide you through a rapid deployment of Spinnaker on AWS.
+- [How to Manually Deploy Spinnaker for Chaos Monkey][#spinnaker-manual] provides a much more in-depth tutorial for installing Spinnaker as it was intended, with the help of the Halyard tool, on a local or virtual machine.
 
 ### Installing MySQL
 
@@ -562,7 +562,7 @@ If you quickly open up the Spinnaker Deck web interface you'll see only two of t
 
 For Kubernetes Spinnaker deployments, a `kubectl get nodes --watch` output confirms these changes (in this case, the new local `ip-10-100-11-180.us-west-2.compute.internal` instance was added).
 
-```
+```bash
 ip-10-100-11-239.us-west-2.compute.internal   Ready     <none>    3d        v1.10.3
 ip-10-100-10-178.us-west-2.compute.internal   Ready     <none>    3d        v1.10.3
 ip-10-100-11-180.us-west-2.compute.internal   NotReady  <none>    10s       v1.10.3
@@ -629,7 +629,7 @@ Now that we've confirmed we can manually terminate instances via Chaos Monkey yo
     /apps/chaosmonkey/chaosmonkey terminate "$@" >> /var/log/chaosmonkey-terminate.log 2>&1
     ```
 
-**Next Steps**
+#### Next Steps
 
 You're all set now!  If you followed along through the entire process you should have a functional Spinnaker deployment with Chaos Monkey enabled, which will perform a cron job once a day to terminate random instances based on your configuration!
 
@@ -641,7 +641,7 @@ Don't worry, though, we've got you covered in the remainder of this guide.  Have
 
 **(TODO)**
 
-Chaos Monkey does a reasonable job at monitoring system stability, but fails 
+Chaos Monkey does a reasonable job at monitoring system stability, but fails **(TODO)**
 
 ## Detecting Service Latency
 

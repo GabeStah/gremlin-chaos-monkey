@@ -366,17 +366,41 @@
   <li><a href="#how-to-install-halyard">How to Install Halyard</a></li>
   <li><a href="#how-to-manually-deploy-spinnaker-for-chaos-monkey">How to Manually Deploy Spinnaker for Chaos Monkey</a>
     <ul>
-      <li><a href="#deploying-a-spinnaker-stack-with-aws-console">Deploying a Spinnaker Stack with AWS Console</a></li>
-      <li><a href="#deploying-a-spinnaker-stack-with-aws-cli">Deploying a Spinnaker Stack with AWS CLI</a></li>
-      <li><a href="#deploying-a-spinnaker-stack-with-kubernetes">Deploying a Spinnaker Stack with Kubernetes</a></li>
+      <li><a href="#deploying-a-spinnaker-stack-with-aws-console">Deploying a Spinnaker Stack with AWS Console</a>
+        <ul>
+          <li><a href="#prerequisites">Prerequisites</a></li>
+          <li><a href="#next-steps">Next Steps</a></li>
+        </ul>
+      </li>
+      <li><a href="#deploying-a-spinnaker-stack-with-aws-cli">Deploying a Spinnaker Stack with AWS CLI</a>
+        <ul>
+          <li><a href="#prerequisites-1">Prerequisites</a></li>
+          <li><a href="#next-steps-1">Next Steps</a></li>
+        </ul>
+      </li>
+      <li><a href="#deploying-a-spinnaker-stack-with-kubernetes">Deploying a Spinnaker Stack with Kubernetes</a>
+        <ul>
+          <li><a href="#prerequisites-2">Prerequisites</a></li>
+          <li><a href="#next-steps-2">Next Steps</a></li>
+        </ul>
+      </li>
     </ul>
   </li>
-  <li><a href="#how-to-install-spinnaker">How to Install Spinnaker</a></li>
+  <li><a href="#how-to-install-spinnaker">How to Install Spinnaker</a>
+    <ul>
+      <li><a href="#next-steps-3">Next Steps</a></li>
+    </ul>
+  </li>
   <li><a href="#how-to-deploy-spinnaker-on-kubernetes">How to Deploy Spinnaker on Kubernetes</a>
     <ul>
+      <li><a href="#prerequisites-3">Prerequisites</a></li>
       <li><a href="#install-kubectl">Install Kubectl</a></li>
       <li><a href="#install-aws-iam-authenticator">Install AWS IAM Authenticator</a></li>
-      <li><a href="#configure-kubectl">Configure Kubectl</a></li>
+      <li><a href="#configure-kubectl">Configure Kubectl</a>
+        <ul>
+          <li><a href="#prerequisites-4">Prerequisites</a></li>
+        </ul>
+      </li>
       <li><a href="#create-aws-accounts-and-roles">Create AWS Accounts and Roles</a></li>
       <li><a href="#add-kubernetes-provider-to-halyard">Add Kubernetes Provider to Halyard</a></li>
       <li><a href="#add-aws-provider-to-halyard">Add AWS Provider to Halyard</a></li>
@@ -465,7 +489,7 @@ Default output format <span class="o">[</span>None]: text
 
 <p>This section will guide you through deploying a Spinnaker stack with the AWS web console.</p>
 
-<p><strong>Prerequisites</strong></p>
+<h4 id="prerequisites">Prerequisites</h4>
 
 <ul>
   <li><strong><a href="/gremlin-chaos-monkey/advanced-tips#how-to-install-halyard">Install Halyard</a></strong></li>
@@ -536,7 +560,7 @@ Default output format <span class="o">[</span>None]: text
   </li>
 </ol>
 
-<p><strong>Next Steps</strong></p>
+<h4 id="next-steps">Next Steps</h4>
 
 <p>You’re now ready to <a href="/gremlin-chaos-monkey/advanced-tips#how-to-install-spinnaker">install Spinnaker</a> and <a href="/gremlin-chaos-monkey/developer-tutorial#how-to-install-chaos-monkey">install Chaos Monkey</a> to begin Chaos Experimentation!</p>
 
@@ -544,7 +568,7 @@ Default output format <span class="o">[</span>None]: text
 
 <p>This section will guide you through deploying a Spinnaker stack with the AWS CLI tool.</p>
 
-<p><strong>Prerequisites</strong></p>
+<h4 id="prerequisites-1">Prerequisites</h4>
 
 <ul>
   <li><strong><a href="/gremlin-chaos-monkey/advanced-tips#how-to-install-halyard">Install Halyard</a></strong></li>
@@ -634,7 +658,7 @@ Outputs:
   </li>
 </ol>
 
-<p><strong>Next Steps</strong></p>
+<h4 id="next-steps-1">Next Steps</h4>
 
 <p>With Spinnaker configured it’s now time to <a href="/gremlin-chaos-monkey/advanced-tips#how-to-install-spinnaker">install Spinnaker</a> and then <a href="/gremlin-chaos-monkey/developer-tutorial#how-to-install-chaos-monkey">install Chaos Monkey</a>.</p>
 
@@ -642,7 +666,7 @@ Outputs:
 
 <p>Follow these steps to setup a CloudFormation EKS/Kubernetes stack for Spinnaker and Chaos Monkey.</p>
 
-<p><strong>Prerequisites</strong></p>
+<h4 id="prerequisites-2">Prerequisites</h4>
 
 <ul>
   <li><strong><a href="/gremlin-chaos-monkey/advanced-tips#how-to-install-halyard">Install Halyard</a></strong></li>
@@ -698,7 +722,7 @@ Outputs:
   </li>
 </ol>
 
-<p><strong>Next Steps</strong></p>
+<h4 id="next-steps-2">Next Steps</h4>
 
 <p>You now have an EKS/Kubernetes CloudFormation stack ready for Spinnaker.  You can now proceed with the <a href="/gremlin-chaos-monkey/advanced-tips#how-to-deploy-spinnaker-on-kubernetes">deployment of Spinnaker on Kubernetes</a>, and then move on to <a href="/gremlin-chaos-monkey/developer-tutorial#how-to-install-chaos-monkey">installing and using Chaos Monkey</a>.  If Chaos Monkey doesn’t suit all your Chaos Engineering needs check out our <a href="/gremlin-chaos-monkey/alternatives">Chaos Monkey Alternatives</a> chapter.</p>
 
@@ -754,7 +778,7 @@ Outputs:
   </li>
 </ol>
 
-<p><strong>Next Steps</strong></p>
+<h3 id="next-steps-3">Next Steps</h3>
 
 <p>You’re now ready to <a href="/gremlin-chaos-monkey/developer-tutorial#how-to-install-chaos-monkey">install</a> and then start <a href="/gremlin-chaos-monkey/developer-tutorial#how-to-use-chaos-monkey">using Chaos Monkey</a> or other <a href="/gremlin-chaos-monkey/simian-army">Simian Army</a> tools.</p>
 
@@ -762,7 +786,7 @@ Outputs:
 
 <p>This guide will walk you through the entire process of setting up a Kubernetes cluster via AWS EKS, attaching some worker nodes (i.e. EC2 instances), deploying Spinnaker to manage the Kubernetes cluster, and then using Chaos Monkey and other Simian Army tools on it!  If you’re looking for a simpler Spinnaker installation, you might be interested in our <a href="/gremlin-chaos-monkey/developer-tutorial#how-to-quickly-deploy-spinnaker-for-chaos-monkey">Spinnaker AWS Quick Start</a> guide.</p>
 
-<p><strong>Prerequisites</strong></p>
+<h3 id="prerequisites-3">Prerequisites</h3>
 
 <ul>
   <li><strong><a href="/gremlin-chaos-monkey/advanced-tips#how-to-install-halyard">Install Halyard</a></strong></li>
@@ -846,8 +870,10 @@ Outputs:
 
 <h3 id="configure-kubectl">Configure Kubectl</h3>
 
+<h4 id="prerequisites-4">Prerequisites</h4>
+
 <ul>
-  <li><strong>Prerequisite</strong>: Make sure you’ve gone through the <a href="/gremlin-chaos-monkey/advanced-tips#deploying-a-spinnaker-stack-with-kubernetes">Deploying a Spinnaker Stack with Kubernetes</a> section.</li>
+  <li>Make sure you’ve gone through the <a href="/gremlin-chaos-monkey/advanced-tips#deploying-a-spinnaker-stack-with-kubernetes">Deploying a Spinnaker Stack with Kubernetes</a> section.</li>
 </ul>
 
 <p>With everything setup you can now edit the <code class="highlighter-rouge">kubectl</code> configuration files, which will inform <code class="highlighter-rouge">kubectl</code> how to connect to your Kubernetes/EKS cluster.</p>

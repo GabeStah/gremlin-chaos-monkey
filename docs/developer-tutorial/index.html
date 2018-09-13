@@ -396,7 +396,11 @@
   <li><a href="#how-to-configure-chaos-monkey">How to Configure Chaos Monkey</a></li>
   <li><a href="#how-to-use-chaos-monkey">How to Use Chaos Monkey</a>
     <ul>
-      <li><a href="#how-to-schedule-chaos-monkey-terminations">How to Schedule Chaos Monkey Terminations</a></li>
+      <li><a href="#how-to-schedule-chaos-monkey-terminations">How to Schedule Chaos Monkey Terminations</a>
+        <ul>
+          <li><a href="#next-steps">Next Steps</a></li>
+        </ul>
+      </li>
     </ul>
   </li>
   <li><a href="#monitoring-health-and-stability">Monitoring Health and Stability</a></li>
@@ -425,7 +429,7 @@
 
 <p><img src="../images/developer-tutorial-aws-spinnaker-quick-start-architecture.png" alt="developer-tutorial-aws-spinnaker-quick-start-architecture" title="AWS Spinnaker Quick Start Architecture" /></p>
 
-<p><em>Figure 1: AWS Spinnaker Quick Start Architecture - <strong>Courtesy of AWS</strong></em></p>
+<p><em>AWS Spinnaker Quick Start Architecture - <strong>Courtesy of AWS</strong></em></p>
 
 <p>This quick start process will take about 10 - 15 minutes and is mostly automated.</p>
 
@@ -443,7 +447,7 @@
   </li>
   <li>After you’ve signed into the AWS console visit <a href="https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Spinnaker&amp;templateURL=https:%2F%2Fs3.amazonaws.com%2Faws-quickstart%2Fquickstart-spinnaker%2Ftemplates%2Fquickstart-spinnakercf.template">this page</a>, which should load the <a href="https://s3.amazonaws.com/aws-quickstart/quickstart-spinnaker/templates/quickstart-spinnakercf.template"><code class="highlighter-rouge">quickstart-spinnakercf.template</code></a>.</li>
   <li>Click <strong>Next</strong>.</li>
-  <li>(Optional) If you haven’t already done so, you’ll need to create at least one AWS Access Key, which is a</li>
+  <li>(Optional) If you haven’t already done so, you’ll need to create at least one AWS Access Key.</li>
   <li>Select the <strong>KeyName</strong> of the key pair you previously created.</li>
   <li>Input a secure password in the <strong>Password</strong> field.</li>
   <li><em>(Optional)</em> Modify the IP address range in the <strong>SSHLocation</strong> field to indicate what IP range is allowed to SSH into the Bastion host.  For example, if your public IP address is <code class="highlighter-rouge">1.2.3.4</code> you might enter <code class="highlighter-rouge">1.2.3.4/32</code> into this field.  If you aren’t sure, you can enter <code class="highlighter-rouge">0.0.0.0/0</code> to allow any IP address to connect, though this is obviously less secure.</li>
@@ -994,7 +998,7 @@ ip-10-100-11-239.us-west-2.compute.internal   Ready     &lt;none&gt;    3d      
 
 <p>For Kubernetes Spinnaker deployments, a <code class="highlighter-rouge">kubectl get nodes --watch</code> output confirms these changes (in this case, the new local <code class="highlighter-rouge">ip-10-100-11-180.us-west-2.compute.internal</code> instance was added).</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ip-10-100-11-239.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ip-10-100-11-239.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
 ip-10-100-10-178.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
 ip-10-100-11-180.us-west-2.compute.internal   NotReady  &lt;none&gt;    10s       v1.10.3
 ip-10-100-11-239.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
@@ -1062,7 +1066,7 @@ ip-10-100-11-180.us-west-2.compute.internal   Ready     &lt;none&gt;    20s     
   </li>
 </ol>
 
-<p><strong>Next Steps</strong></p>
+<h4 id="next-steps">Next Steps</h4>
 
 <p>You’re all set now!  If you followed along through the entire process you should have a functional Spinnaker deployment with Chaos Monkey enabled, which will perform a cron job once a day to terminate random instances based on your configuration!</p>
 
@@ -1074,7 +1078,7 @@ ip-10-100-11-180.us-west-2.compute.internal   Ready     &lt;none&gt;    20s     
 
 <p><strong>(TODO)</strong></p>
 
-<p>Chaos Monkey does a reasonable job at monitoring system stability, but fails</p>
+<p>Chaos Monkey does a reasonable job at monitoring system stability, but fails <strong>(TODO)</strong></p>
 
 <h2 id="detecting-service-latency">Detecting Service Latency</h2>
 

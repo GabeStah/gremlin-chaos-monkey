@@ -79,7 +79,7 @@ After Spinnaker is running on your chosen platform proceed to our [How to Instal
 
 This section will guide you through deploying a Spinnaker stack with the AWS web console.
 
-**Prerequisites**
+#### Prerequisites
 
 - **[Install Halyard][#halyard-install]**
 
@@ -121,7 +121,7 @@ This section will guide you through deploying a Spinnaker stack with the AWS web
     hal config provider aws enable
     ```
 
-**Next Steps**
+#### Next Steps
 
 You're now ready to [install Spinnaker][#spinnaker-install] and [install Chaos Monkey][#chaos-monkey-install] to begin Chaos Experimentation!
 
@@ -129,7 +129,7 @@ You're now ready to [install Spinnaker][#spinnaker-install] and [install Chaos M
 
 This section will guide you through deploying a Spinnaker stack with the AWS CLI tool.
 
-**Prerequisites**
+#### Prerequisites
 
 - **[Install Halyard][#halyard-install]**
 - **[Install AWS CLI][#aws-cli-install]**
@@ -199,7 +199,7 @@ This section will guide you through deploying a Spinnaker stack with the AWS CLI
     hal config provider aws enable
     ```
 
-**Next Steps**
+#### Next Steps
 
 With Spinnaker configured it's now time to [install Spinnaker][#spinnaker-install] and then [install Chaos Monkey][#chaos-monkey-install].
 
@@ -207,7 +207,7 @@ With Spinnaker configured it's now time to [install Spinnaker][#spinnaker-instal
 
 Follow these steps to setup a CloudFormation EKS/Kubernetes stack for Spinnaker and Chaos Monkey.
 
-**Prerequisites**
+#### Prerequisites
 
 - **[Install Halyard][#halyard-install]**
 - **[Install AWS CLI][#aws-cli-install]**
@@ -261,7 +261,7 @@ Follow these steps to setup a CloudFormation EKS/Kubernetes stack for Spinnaker 
     > info ""
     > If the second step of deploying `spinnaker-managing-infrastructure-setup` hasn't completed yet, feel free to skip this step for the time being and proceed with installing `kubectl` and `AWS IAM Authenticator` below.  Just return to this step before moving past that point.
 
-**Next Steps**
+#### Next Steps
 
 You now have an EKS/Kubernetes CloudFormation stack ready for Spinnaker.  You can now proceed with the [deployment of Spinnaker on Kubernetes][#spinnaker-kubernetes], and then move on to [installing and using Chaos Monkey][#chaos-monkey-install].  If Chaos Monkey doesn't suit all your Chaos Engineering needs check out our [Chaos Monkey Alternatives][/alternatives] chapter.
 
@@ -313,7 +313,7 @@ This section walks you through the most basic Spinnaker installation process, su
 
 8. After deployment finishes you should have a functioning Spinnaker installation!  If you've installed on your local machine you can navigate to the Spinnaker Deck UI at [localhost:9000](http://localhost:9000) to see it in action.  If Spinnaker was deployed on a remote machine use the `hal deploy connect` command to quickly establish SSH tunnels and connect.
 
-**Next Steps**
+### Next Steps
 
 You're now ready to [install][#chaos-monkey-install] and then start [using Chaos Monkey][#chaos-monkey-use] or other [Simian Army][/simian-army] tools.
 
@@ -321,7 +321,7 @@ You're now ready to [install][#chaos-monkey-install] and then start [using Chaos
 
 This guide will walk you through the entire process of setting up a Kubernetes cluster via AWS EKS, attaching some worker nodes (i.e. EC2 instances), deploying Spinnaker to manage the Kubernetes cluster, and then using Chaos Monkey and other Simian Army tools on it!  If you're looking for a simpler Spinnaker installation, you might be interested in our [Spinnaker AWS Quick Start][#spinnaker-quick-start] guide.
 
-**Prerequisites**
+### Prerequisites
 
 - **[Install Halyard][#halyard-install]**
 - **[Install AWS CLI][#aws-cli-install]**
@@ -393,7 +393,9 @@ We'll follow the same basic steps as above to install the AWS IAM Authenticator 
 
 ### Configure Kubectl
 
-- **Prerequisite**: Make sure you've gone through the [Deploying a Spinnaker Stack with Kubernetes][#spinnaker-stack-with-kubernetes] section.
+#### Prerequisites
+
+- Make sure you've gone through the [Deploying a Spinnaker Stack with Kubernetes][#spinnaker-stack-with-kubernetes] section.
 
 With everything setup you can now edit the `kubectl` configuration files, which will inform `kubectl` how to connect to your Kubernetes/EKS cluster.
 

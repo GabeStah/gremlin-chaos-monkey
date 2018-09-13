@@ -133,6 +133,9 @@
     - https://github.com/Netflix/SimianArmy/wiki/
     - https://medium.com/netflix-techblog/the-netflix-simian-army-16e57fbab116
     - https://medium.com/netflix-techblog/post-mortem-of-october-22-2012-aws-degradation-efcee3ab40d5
+    - https://www.wired.com/insights/2012/04/cloud-monkeys/
+    - https://medium.com/netflix-techblog/chaos-engineering-upgraded-878d341f15fa
+    - https://github.com/Netflix/security_monkey
   - Failure/Tooling
     - http://blog.hut8labs.com/gorillas-before-monkeys.html
     - https://www.slideshare.net/InfoQ/resiliency-through-failure-netflixs-approach-to-extreme-availability-in-the-cloud

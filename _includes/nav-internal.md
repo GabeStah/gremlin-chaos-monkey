@@ -26,6 +26,14 @@
 [#netflix-fit]:                         {{ "/origin-netflix#failure-injection-testing" | relative_url}}
 [#netflix-history]:                     {{ "/origin-netflix#the-history-of-netflix-streaming" | relative_url}}
 [#netflix-simian-army]:                 {{ "/origin-netflix#the-simian-army" | relative_url}}
+[#simian-chaos-gorilla]:                {{ "/simian-army#chaos-gorilla" | relative_url}}
+[#simian-chaos-kong]:                   {{ "/simian-army#chaos-kong" | relative_url}}
+[#simian-chaos-strategies]:             {{ "/simian-army#simian-chaos-strategies" | relative_url}}
+[#simian-conformity-monkey]:            {{ "/simian-army#conformity-monkey" | relative_url}}
+[#simian-janitor-monkey]:               {{ "/simian-army#janitor-monkey" | relative_url}}
+[#simian-latency-monkey]:               {{ "/simian-army#latency-monkey" | relative_url}}
+[#simian-members]:                      {{ "/simian-army#simian-army-members" | relative_url}}
+[#simian-use]:                          {{ "/simian-army#using-simian-army-tools" | relative_url}}
 [#spinnaker-install]:                   {{ "/advanced-tips#how-to-install-spinnaker" | relative_url}}
 [#spinnaker-kubernetes]:                {{ "/advanced-tips#how-to-deploy-spinnaker-on-kubernetes" | relative_url}}
 [#spinnaker-manual]:                    {{ "/advanced-tips#how-to-manually-deploy-spinnaker-for-chaos-monkey" | relative_url}}
