@@ -19,6 +19,7 @@
 [#chaos-monkey-cons]:                   {{ "/#cons-of-chaos-monkey" | relative_url}}
 [#chaos-monkey-install]:                {{ "/developer-tutorial#how-to-install-chaos-monkey" | relative_url}}
 [#chaos-monkey-pros]:                   {{ "/#pros-of-chaos-monkey" | relative_url}}
+[#chaos-monkey-pros-cons]:              {{ "/#the-pros-and-cons-of-chaos-monkey" | relative_url}}
 [#chaos-monkey-schedule-terminations]:  {{ "/developer-tutorial#how-to-schedule-chaos-monkey-terminations" | relative_url}}
 [#chaos-monkey-today]:                  {{ "/origin-netflix#chaos-monkey-today" | relative_url}}
 [#chaos-monkey-use]:                    {{ "/developer-tutorial#how-to-use-chaos-monkey" | relative_url}}

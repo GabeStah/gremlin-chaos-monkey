@@ -32,6 +32,7 @@
   - Docker
     - https://codefresh.io/docker-tutorial/chaos_testing_docker/
     - https://github.com/alexei-led/pumba
+    - https://hackernoon.com/pumba-chaos-testing-for-docker-1b8815c6b61e
     - https://leanpub.com/12fa-docker-golang
     - https://github.com/mlafeldt/docker-simianarmy
     - https://github.com/titpetric/docker-chaos-monkey

@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Gremlin: Chaos Monkey">
 <meta property="og:title" content="Chaos Monkey Alternatives - Tools for Creating Chaos Outside of AWS">
-<meta property="og:url" content="/gremlin-chaos-monkey/alternatives/">
+<meta property="og:url" content="http://localhost:4000/gremlin-chaos-monkey/alternatives/">
 
 
 
@@ -38,7 +38,7 @@
   
 
 
-<link rel="canonical" href="/gremlin-chaos-monkey/alternatives/">
+<link rel="canonical" href="http://localhost:4000/gremlin-chaos-monkey/alternatives/">
 
 
 
@@ -51,7 +51,7 @@
       "@context": "http://schema.org",
       "@type": "Person",
       "name": "Gabe Wyatt",
-      "url": "/gremlin-chaos-monkey",
+      "url": "http://localhost:4000/gremlin-chaos-monkey",
       "sameAs": null
     }
   </script>
@@ -148,7 +148,7 @@
     
       
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-          <a href="/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
+          <a href="http://localhost:4000/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
           <meta itemprop="position" content="1" />
         </li>
         <span class="sep">/</span>
@@ -350,7 +350,7 @@
 
 
 
-  1 minute read
+  4 minute read
 </p>
           
         </header>
@@ -362,33 +362,129 @@
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> </h4></header>
               <ul class="toc__menu">
-  <li><a href="#alternatives">Alternatives</a></li>
+  <li><a href="#apache">Apache</a>
+    <ul>
+      <li><a href="#hadoop">Hadoop</a></li>
+      <li><a href="#kafka">Kafka</a></li>
+      <li><a href="#spark">Spark</a></li>
+    </ul>
+  </li>
+  <li><a href="#containers">Containers</a>
+    <ul>
+      <li><a href="#docker">Docker</a></li>
+      <li><a href="#gremlin">Gremlin</a></li>
+      <li><a href="#openshift">OpenShift</a></li>
+    </ul>
+  </li>
+  <li><a href="#erlang-vm">Erlang VM</a>
+    <ul>
+      <li><a href="#elixir">Elixir</a></li>
+    </ul>
+  </li>
+  <li><a href="#infrastructure">Infrastructure</a>
+    <ul>
+      <li><a href="#azure">Azure</a></li>
+      <li><a href="#google-cloud-platform">Google Cloud Platform</a></li>
+      <li><a href="#kubernetes">Kubernetes</a></li>
+      <li><a href="#on-premise">On Premise</a></li>
+      <li><a href="#openstack">OpenStack</a></li>
+      <li><a href="#private-cloud">Private Cloud</a></li>
+      <li><a href="#vmware">VMWare</a></li>
+    </ul>
+  </li>
+  <li><a href="#java">Java</a>
+    <ul>
+      <li><a href="#maven">Maven</a></li>
+      <li><a href="#spring-boot">Spring Boot</a></li>
+    </ul>
+  </li>
+  <li><a href="#os">OS</a>
+    <ul>
+      <li><a href="#linux">Linux</a></li>
+      <li><a href="#windows">Windows</a></li>
+    </ul>
+  </li>
 </ul>
             </nav>
           </aside>
         
-        <h2 id="alternatives">Alternatives</h2>
+        <p>Chaos Monkey serves a singular purpose – to randomly terminate instances.  As discussed in <a href="/gremlin-chaos-monkey/origin-netflix#chaos-monkey-and-spinnaker">Chaos Monkey and Spinnaker</a> and <a href="/gremlin-chaos-monkey/#the-pros-and-cons-of-chaos-monkey">The Pros and Cons of Chaos Monkey</a>, Chaos Monkey is incapable of covering the broad spectrum of experimentation and failure injection required for proper Chaos Engineering.</p>
 
-<p><strong>(TODO)</strong>: Add introductory snippets for each alternative technology.</p>
+<p>In this chapter we’ll explore a wide range of tools and techniques – regardless of the underlying technologies – that you and your team can use to intelligently induce failures while confidently building toward a more resilient system.</p>
 
-<ul>
-  <li>URL: <code class="highlighter-rouge">https://www.gremlin.com/chaos-monkey/alternatives</code></li>
-  <li>Parent: <code class="highlighter-rouge">Pillar Page: Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training</code></li>
-  <li>Layout: Model based on <a href="https://instapage.com/blog/landing-page-examples">this landing page list</a>.  A top-level <code class="highlighter-rouge">table of contents</code> should be anchored to <code class="highlighter-rouge">categories</code> and <code class="highlighter-rouge">sections</code> within the content.</li>
-  <li>Content:
-    <ul>
-      <li><code class="highlighter-rouge">Intro</code>
-        <ul>
-          <li>What: Describe the purpose of this page as a one-stop resource for a multitude of alternatives to Chaos Monkey, curated and sorted based on the primary technology on which they are based.</li>
-          <li>Who: Explain that the intended audience is engineers looking for alternative solutions to Chaos Monkey that can be used outside of AWS.  Whether the reader knows the specific technology they wish to use, or not, these resources will help.</li>
-          <li>Why: To provide a list of Chaos Monkey alternatives for readers looking to learn, or who may be disappointed in Chaos Monkey’s limitations.</li>
-        </ul>
-      </li>
-      <li><code class="highlighter-rouge">Categories</code>: As listed below, each relevant category (as defined in this spreadsheet) will be given its own <code class="highlighter-rouge">section</code> with a brief description and overview.  Within each <code class="highlighter-rouge">category section</code> is all relevant sub-technology <code class="highlighter-rouge">sections</code>, which will each be detailed as necessary.  When relevant, a given <code class="highlighter-rouge">section</code> should contain a link to the explicit <code class="highlighter-rouge">/alternatives/&lt;technology&gt;</code> page, which will provide additional details about the actual implementation of a Chaos Monkey alternatives within said technology.</li>
-      <li><code class="highlighter-rouge">Additional Chaos Monkey Resources</code>: In addition to outside resources, <em>all</em> unique pages/URLs found within this guide should be included in this section.  It can later be determined how best to format this, but one possibility is a separate section containing a <code class="highlighter-rouge">site map</code> link collection.</li>
-    </ul>
-  </li>
-</ul>
+<h2 id="apache">Apache</h2>
+
+<h3 id="hadoop">Hadoop</h3>
+
+<h3 id="kafka">Kafka</h3>
+
+<h3 id="spark">Spark</h3>
+
+<h2 id="containers">Containers</h2>
+
+<h3 id="docker">Docker</h3>
+
+<h3 id="gremlin">Gremlin</h3>
+
+<p><strong>(TODO)</strong>: Decide if enough content to warrant this section, or should just mention Gremlin in footer of other relevant sections?  See discussion between John-Henry and Gabe below.</p>
+
+<blockquote>
+  <p><strong>JH</strong>: There’s an alternatives/gremlin page that’s in the plan - let’s talk about this in a video meeting when you have a few minutes to chat. There’s some search for “chaos monkey vs gremlin” so it makes sense for this page to exist - but I also think it makes sense to put info on how to use Gremlin + [technology the page is about] on every subpage in the alternatives section. What do you think about this? My theory is that’s how we can make this thing produce some free trails.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Gabe</strong>: I originally added the /chaos-monkey/alternatives/gremlin page on a whim because the brief mentions that the Alternatives page “should also feature Gremlin as an alternative to chaos monkey, and provide a CTA that explains that Gremlin is platform/technology agnostic.”  I’m open to your suggestion here since I see the merits in both approaches, but you’re the SEO expert and creator of the original brief.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Gabe</strong>: From my perspective, I still need to spend more time playing around with the actual Gremlin platform to see what it’s capable of and where it is applicable before I can write all those bits, but for the sake of argument, let’s assume for a moment that Gremlin is a “viable alternative” in, say, 75%+ of the cases in which we discuss an alternative technology.  In that scenario, I’d be a little concerned that an explicit mention of Gremlin within 3 out of every 4 alternative technology sections would stand out and come across as a little heavy-handed from the reader’s perspective.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Gabe</strong>: That said, I’m all for CTAs and there’s multiple mentions of good places to add them to the guide throughout the brief, so I’m open to further thoughts from you and/or Austin.  Additionally, even if Gremlin could reasonably be listed in 3 out of 4 alternative sections, that doesn’t mean we have to do so at every opportunity.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Gabe</strong>: As you suggest, maybe just doing so on every actual sub-page (i.e. those with a unique URL) is sufficient enough without being too overbearing (that’d be on about half of all alternative technology sections).  As mentioned, I won’t be writing those sections for a while yet so we can always change stuff up, but for now I’ll move forward with your suggestion of mentioning Gremlin only in sub-pages, and I’ll also think about whether there’s enough content to warrant the extra /chaos-monkey/alternatives/gremlin page on top of that.  Sound good?</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>JH</strong>: I think when Gremlin is a solution, linking to the specific Gremlin docs could be a good option that wont seem heavy handed, we don’t need to suggest people sign up for a free trail or anything like that. I’m not sure the /alternatives/gremlin page is needed, that content could just go on the main /alternatives page. However, you will have much more expertise on the product and how to write about it after using it some more. If when exploring the product you come up with a better way to communicate this info, please don’t hesitate to suggest and alternative way to communicate this.</p>
+</blockquote>
+
+<h3 id="openshift">OpenShift</h3>
+
+<h2 id="erlang-vm">Erlang VM</h2>
+
+<h3 id="elixir">Elixir</h3>
+
+<h2 id="infrastructure">Infrastructure</h2>
+
+<h3 id="azure">Azure</h3>
+
+<h3 id="google-cloud-platform">Google Cloud Platform</h3>
+
+<h3 id="kubernetes">Kubernetes</h3>
+
+<h3 id="on-premise">On Premise</h3>
+
+<h3 id="openstack">OpenStack</h3>
+
+<h3 id="private-cloud">Private Cloud</h3>
+
+<h3 id="vmware">VMWare</h3>
+
+<h2 id="java">Java</h2>
+
+<h3 id="maven">Maven</h3>
+
+<h3 id="spring-boot">Spring Boot</h3>
+
+<h2 id="os">OS</h2>
+
+<h3 id="linux">Linux</h3>
+
+<h3 id="windows">Windows</h3>
 
 
         

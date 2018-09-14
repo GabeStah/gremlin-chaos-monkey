@@ -37,7 +37,7 @@ When and where should this guide be used?  Frankly, we leave that up to you!  We
 
 ## The Pros and Cons of Chaos Monkey
 
-Chaos Monkey is designed to induce one specific type of failure.  It randomly shuts down AWS instances in order to simulate random infrastructure failure.
+Chaos Monkey is designed to induce one specific type of failure.  It randomly shuts down instances in order to simulate random infrastructure failure.
 
 ### Pros of Chaos Monkey
 

@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Gremlin: Chaos Monkey">
 <meta property="og:title" content="Chaos Monkey Alternatives - Docker">
-<meta property="og:url" content="/gremlin-chaos-monkey/alternatives/docker/">
+<meta property="og:url" content="http://localhost:4000/gremlin-chaos-monkey/alternatives/docker/">
 
 
 
@@ -38,7 +38,7 @@
   
 
 
-<link rel="canonical" href="/gremlin-chaos-monkey/alternatives/docker/">
+<link rel="canonical" href="http://localhost:4000/gremlin-chaos-monkey/alternatives/docker/">
 
 
 
@@ -51,7 +51,7 @@
       "@context": "http://schema.org",
       "@type": "Person",
       "name": "Gabe Wyatt",
-      "url": "/gremlin-chaos-monkey",
+      "url": "http://localhost:4000/gremlin-chaos-monkey",
       "sameAs": null
     }
   </script>
@@ -148,7 +148,7 @@
     
       
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-          <a href="/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
+          <a href="http://localhost:4000/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
           <meta itemprop="position" content="1" />
         </li>
         <span class="sep">/</span>
@@ -360,7 +360,7 @@
 
 
 
-  less than 1 minute read
+  2 minute read
 </p>
           
         </header>
@@ -371,22 +371,90 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> </h4></header>
-              
+              <ul class="toc__menu">
+  <li><a href="#docker-chaos-monkey">Docker Chaos Monkey</a></li>
+  <li><a href="#docker-simian-army">Docker Simian Army</a></li>
+  <li><a href="#pumba">Pumba</a></li>
+</ul>
             </nav>
           </aside>
         
-        <ul>
-  <li>URL: <code class="highlighter-rouge">https://www.gremlin.com/chaos-monkey/alternatives/docker</code></li>
-  <li>Parent: <code class="highlighter-rouge">Category Section: Containers</code></li>
-  <li>Content:
-    <ul>
-      <li><code class="highlighter-rouge">Overview</code>: <em>See above.</em></li>
-      <li><a href="https://github.com/titpetric/docker-chaos-monkey"><code class="highlighter-rouge">docker-chaos-monkey</code></a>: Overview of the <code class="highlighter-rouge">docker-chaos-monkey</code> tool for implementing Chaos Monkey systems within a <code class="highlighter-rouge">Docker Swarm</code>.</li>
-      <li><a href="https://github.com/mlafeldt/docker-simianarmy"><code class="highlighter-rouge">docker-simianarmy</code></a>: A simple <code class="highlighter-rouge">Docker</code> image of the Simian Army toolset.</li>
-      <li><a href="https://github.com/alexei-led/pumba"><code class="highlighter-rouge">pumba</code></a>: A CLI chaos testing and network emulation tool for <code class="highlighter-rouge">Docker</code> that uses Linux kernel traffic controls to handle underlying network commands.</li>
-    </ul>
-  </li>
+        <h2 id="docker-chaos-monkey">Docker Chaos Monkey</h2>
+
+<p><a href="https://github.com/titpetric/docker-chaos-monkey">Docker Chaos Monkey</a> is a simple shell script that terminates <a href="https://docs.docker.com/engine/swarm/">Docker Swarm</a> <a href="https://docs.docker.com/engine/swarm/swarm-tutorial/deploy-service/">services</a>.  Targetable services are specified by applying the <code class="highlighter-rouge">role=disposable</code> label.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker service create <span class="nt">-l</span> <span class="nv">role</span><span class="o">=</span>disposable <span class="nt">--name</span> gremlin gremlin/gremlin
+</code></pre></div></div>
+
+<p>The script kills off the first Docker image with the <code class="highlighter-rouge">role=disposable</code> label that also meets the following criteria:</p>
+
+<ul>
+  <li>Must have more than <code class="highlighter-rouge">1</code> replica.</li>
+  <li><em>Actual</em> and <em>desired</em> replica counts must be equal.</li>
 </ul>
+
+<p>Here it is in action.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./chaos.sh
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># OUTPUT</span>
+<span class="nt">----------------------------------------------------------------------------</span>
+| Running this script will <span class="nb">kill </span>off 1 docker image with label: <span class="nv">role</span><span class="o">=</span>disposable
+| You have 5 seconds to change your mind and CTRL+C out of this.
+<span class="nt">----------------------------------------------------------------------------</span>
+hsn3ezlkqow7  gremlin   replicated  2/2             gremlin/gremlin:latest
+jam29chanegg  gremlin2  replicated  1/1             gremlin/gremlin:latest
+<span class="nt">----------------------------------------------------------------------------</span>
+
+hsn3ezlkqow7 gremlin: swarm1
+removing a container
+<span class="o">&gt;</span> gremlin.2.zecjcxha6zbr0bpfqb017v8vb
+
+jam29chanegg gremlin2: service has only one running container - skipping
+</code></pre></div></div>
+
+<h2 id="docker-simian-army">Docker Simian Army</h2>
+
+<p>The <a href="https://github.com/mlafeldt/docker-simianarmy">Docker Simian Army</a> is a Docker image of the <a href="/gremlin-chaos-monkey/simian-army">Simian Army</a> Java toolset.  It doesn’t provide any additional features on its own, but it’s a useful alternative to installing the Simian Army locally.  You can test it out in <strong>dry</strong> mode with the following command.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="se">\</span>
+    <span class="nt">-e</span> <span class="nv">SIMIANARMY_CLIENT_AWS_ACCOUNTKEY</span><span class="o">=</span><span class="nv">$AWS_ACCESS_KEY_ID</span> <span class="se">\</span>
+    <span class="nt">-e</span> <span class="nv">SIMIANARMY_CLIENT_AWS_SECRETKEY</span><span class="o">=</span><span class="nv">$AWS_SECRET_ACCESS_KEY</span> <span class="se">\</span>
+    <span class="nt">-e</span> <span class="nv">SIMIANARMY_CLIENT_AWS_REGION</span><span class="o">=</span><span class="nv">$AWS_REGION</span> <span class="se">\</span>
+    <span class="nt">-e</span> <span class="nv">SIMIANARMY_CALENDAR_ISMONKEYTIME</span><span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
+    <span class="nt">-e</span> <span class="nv">SIMIANARMY_CHAOS_ASG_ENABLED</span><span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
+    mlafeldt/simianarmy
+</code></pre></div></div>
+
+<p>Add the <code class="highlighter-rouge">-d -p 8080:8080</code> flag to forward port <code class="highlighter-rouge">8080</code> and connect to the SimianArmy REST API.</p>
+
+<h2 id="pumba">Pumba</h2>
+
+<p><a href="https://github.com/alexei-led/pumba">Pumba</a> is a powerful Chaos testing tool for injecting Chaos in Docker.  It can kill, pause, stop, and remove Docker containers with highly-configurable selection rules.  It can also perform network emulation through delays, packet loss, rate limiting, and more.</p>
+
+<p>Get started by downloading the <a href="https://github.com/alexei-led/pumba/releases">latest binary release</a> and making it executable.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>curl <span class="nt">-L</span> https://github.com/alexei-led/pumba/releases/download/0.5.2/pumba_linux_amd64 <span class="nt">-o</span> /usr/bin/pumba <span class="o">&amp;&amp;</span>
+<span class="nb">sudo </span>chmod +x /usr/bin/pumba
+</code></pre></div></div>
+
+<p><em>(Optional)</em> Create a Docker container.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-l</span> <span class="nv">service</span><span class="o">=</span>nginx <span class="nt">--name</span> nginx <span class="nt">-p</span> 80:80 <span class="nt">-d</span> nginx
+docker container <span class="nb">ls</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># OUTPUT</span>
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                NAMES
+b9df13525a13        nginx               <span class="s2">"nginx -g 'daemon of…"</span>   4 minutes ago       Up 4 minutes        0.0.0.0:80-&gt;80/tcp   nginx
+</code></pre></div></div>
+
+<p>Execute Pumba commands to start experimenting.  Here we’re killing a random container every 30 seconds (<code class="highlighter-rouge">--dry-run</code> only simulates the process; remove it to actually kill).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pumba <span class="nt">-l</span> info <span class="nt">--random</span> <span class="nt">--dry-run</span> <span class="nt">--interval</span> 30s <span class="nb">kill
+</span>INFO[0000] killing container  <span class="nv">app</span><span class="o">=</span>pumba <span class="nv">dryrun</span><span class="o">=</span><span class="nb">true </span><span class="k">function</span><span class="o">=</span>github.com/alexei-led/pumba/pkg/container.dockerClient.KillContainer <span class="nv">id</span><span class="o">=</span>b9df13525a139d9a4a55a249b9cff37ba4656b72b4971fbc1f85d93058f2770d <span class="nv">name</span><span class="o">=</span>/nginx <span class="nv">signal</span><span class="o">=</span>SIGKILL <span class="nb">source</span><span class="o">=</span>container/client.go:115
+</code></pre></div></div>
 
 
         

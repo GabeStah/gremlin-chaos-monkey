@@ -6,14 +6,63 @@ path: "/chaos-monkey/alternatives/azure"
 url: "https://www.gremlin.com/chaos-monkey/alternatives/azure"
 sources: "See: _docs/resources.md"
 published: true
+outline: "
+  - URL: `https://www.gremlin.com/chaos-monkey/alternatives/azure`
+  - Parent: `Category Section: Infrastructure`
+  - Content:
+    - `Overview`: _See above._
+    - [`Azure Search`](https://azure.microsoft.com/en-gb/blog/inside-azure-search-chaos-engineering/): Detail how Microsoft utilizes multiple `Chaos levels` (low, medium, high) to categorize and inform severity and actionability of failures within the [Azure Search](https://azure.microsoft.com/en-us/services/search/) systems.
+    - [`WazMonkey`](https://github.com/smarx/WazMonkey): Provide details on `WazMonkey`, an alternative to Chaos Monkey specifically designed for testing resiliency within Azure cloud services.
+    - [`Fault Analysis Service`](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-testability-overview): Provide an overview of Azure's `Fault Analysis Service`, which is designed for testing services built atop [`Azure Service Fabric`](https://azure.microsoft.com/en-us/services/service-fabric/).
+      - https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-controlled-chaos
+"
 ---
 
-- URL: `https://www.gremlin.com/chaos-monkey/alternatives/azure`
-- Parent: `Category Section: Infrastructure`
-- Content:
-  - `Overview`: _See above._
-  - [`Azure Search`](https://azure.microsoft.com/en-gb/blog/inside-azure-search-chaos-engineering/): Detail how Microsoft utilizes multiple `Chaos levels` (low, medium, high) to categorize and inform severity and actionability of failures within the [Azure Search](https://azure.microsoft.com/en-us/services/search/) systems.
-  - [`WazMonkey`](https://github.com/smarx/WazMonkey): Provide details on `WazMonkey`, an alternative to Chaos Monkey specifically designed for testing resiliency within Azure cloud services.
-  - [`Fault Analysis Service`](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-testability-overview): Provide an overview of Azure's `Fault Analysis Service`, which is designed for testing services built atop [`Azure Service Fabric`](https://azure.microsoft.com/en-us/services/service-fabric/).
+## Search Chaos Monkey
+
+Inspired by Chaos Monkey, the [Azure Search](https://azure.microsoft.com/en-us/services/search/) team [developed](https://azure.microsoft.com/en-gb/blog/inside-azure-search-chaos-engineering/) an alternative tool they call **Search Chaos Monkey**.  Search Chaos Monkey is initially used to attack a test environment that contains a randomly and continuously changing search service.  Test environment experiments allow the team to catch bugs before they reach production.
+
+Once it's in production, Search Chaos Monkey's destructive power is managed through its configurable *chaos level*.
+
+- **Low chaos** failures are recovered from gracefully with little to no interruption in service.  Alerts raised in **low** mode are considered bugs.
+- **Medium chaos** failures are also gracefully recovered from, but they may degrade service performance or stability.  Low-priority alerts are sent along to engineers on call.
+- **High chaos** failures are those that definitively interrupt service and trigger high-priority alerts for on-call engineers.
+
+The Azure Search team also designates an **extreme chaos** level to any failure that incurs data loss, causes ungraceful degradation, or fails silently.  To maintain experimental control, Search Chaos Monkey is not permitted to induce **extreme** failures on a continuous basis.
+
+## WazMonkey
+
+[WazMonkey](https://github.com/smarx/WazMonkey) is an open-source tool that selects a random Azure role instance and reboots it.  Written in C# and executed on the command-line, WazMonkey is simple and straight-forward to use.
+
+```bash
+Usage: WazMonkey -p foo.publishSettings -n myservice -s production
+
+  -p, --publishSettings    .publishSettings file - specify either this or a .pfx file
+
+  --pfx                    .pfx certificate file - specify either this or a .publishSettings file
+
+  --subscriptionId         subscriptionId to use, defaults to first subscription found in the .publishSettings file
+
+  -n, --serviceName        Required. Name of the cloud service
+
+  -s, --slot               Required. The slot ("production" or "staging")
+
+  --reimage                Reimage the instance (instead of reboot, the default)
+
+  --help                   Display this help screen.
+```
+
+## Fault Analysis Service
+
+Azure's [Fault Analysis Service](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-testability-overview) is a system service that injects failure and runs test scenarios against applications built on [Microsoft Azure Service Fabric](https://azure.microsoft.com/en-us/services/service-fabric/).  The Fault Analysis Service performs **actions**, which are individual faults that target a system.  Developers can combine multiple actions to perform complex tasks and Chaos Experiments, such as:
+
+- Restarting nodes
+- Simulating load balancing or application upgrades
+- Inducing data or memory loss
+- Removing or restarting a replica
+
+Developers can [induce](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-controlled-chaos) controlled Chaos to simulate both graceful and ungraceful faults within Service Fabric clusters.  An ungraceful fault is anything that terminates a process, such as restarting a node or application.
+
+During execution, Fault Analysis Service frequently snapshots the current "run state" and adds them to named `Event` types.  Event types like `ExecutingFaultsEvent` and `ValidationFailedEvent` can then be retrieved via the [API](https://docs.microsoft.com/en-us/rest/api/servicefabric/).
 
 {% include nav-internal.md %}

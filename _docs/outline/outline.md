@@ -33,6 +33,7 @@ Unless otherwise discussed or later modified, generally each `page` within this 
     - Category Section: Containers
       - Section + Page: Docker (`https://www.gremlin.com/chaos-monkey/alternatives/docker`)
       - Section + Page: Gremlin (`https://www.gremlin.com/chaos-monkey/alternatives/gremlin`)
+      - Section + Page: OpenShift (`https://www.gremlin.com/chaos-monkey/alternatives/openshift`) 
     - Category Section: Erlang VM
       - Section: Elixir
     - Category Section: Infrastructure
@@ -40,7 +41,6 @@ Unless otherwise discussed or later modified, generally each `page` within this 
       - Section + Page: Google Cloud Platform (`https://www.gremlin.com/chaos-monkey/alternatives/google-cloud-platform`)
       - Section + Page: Kubernetes (`https://www.gremlin.com/chaos-monkey/alternatives/kubernetes`)
       - Section: On Premise
-      - Section + Page: OpenShift (`https://www.gremlin.com/chaos-monkey/alternatives/openshift`)
       - Section: OpenStack
       - Section + Page: Private Cloud (`https://www.gremlin.com/chaos-monkey/alternatives/private-cloud`)
       - Section + Page: VMWare (`https://www.gremlin.com/chaos-monkey/alternatives/vmware`)

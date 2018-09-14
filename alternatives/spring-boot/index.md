@@ -13,5 +13,6 @@ published: true
 - Content:
   - `Overview`: _See above._
   - [`Spring Boot Chaos Monkey`](https://codecentric.github.io/chaos-monkey-spring-boot/): A small library which implements a Chaos Monkey for testing and attacking a [`Spring Boot`](http://spring.io/projects/spring-boot) application.
+  - https://jaxenter.com/chaos-monkey-spring-boot-143435.html
 
 {% include nav-internal.md %}
