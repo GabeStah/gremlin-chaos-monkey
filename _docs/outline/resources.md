@@ -44,6 +44,9 @@
     - http://www.lambdadays.org/static/upload/media/1519982459833986szymonmentelsharableorchestratingmyhem.pdf
   - Google Cloud Platform
     - https://blog.spinnaker.io/running-chaos-monkey-on-spinnaker-google-compute-engine-gce-155dc52f20ef
+    - https://github.com/dkholod/GoogleCloudChaosMonkey
+    - https://github.com/chaostoolkit-incubator/chaostoolkit-google-cloud
+    - https://medium.com/chaosiq/observing-the-impact-of-swapping-nodes-in-gke-with-chaos-engineering-ce5cf9b5fbc6
   - Hadoop
     - https://medium.com/@tanmay.avinash.deshpande/business-continuity-plan-disaster-recovery-is-too-old-make-a-way-for-chaos-engineering-bc9b3e9f5ebd
   - Java
@@ -104,6 +107,7 @@
     - https://blog.serverdensity.com/building-chaos-monkey/
 - Miscellaneous
   - http://ipullrank.com/machine-learning-guide/
+  - https://github.com/tsenart/vegeta
   - Monkeys
     - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4687595/
     - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2936169/

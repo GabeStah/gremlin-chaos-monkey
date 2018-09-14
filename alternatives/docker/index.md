@@ -1,7 +1,6 @@
 ---
 title: "Chaos Monkey Alternatives - Docker"
 description: "Explores Chaos Monkey alternative technologies using Docker."
-date: 2018-08-30
 path: "/chaos-monkey/alternatives/docker"
 url: "https://www.gremlin.com/chaos-monkey/alternatives/docker"
 sources: "See: _docs/resources.md"
@@ -28,7 +27,7 @@ docker service create -l role=disposable --name gremlin gremlin/gremlin
 The script kills off the first Docker image with the `role=disposable` label that also meets the following criteria:
 
 - Must have more than `1` replica.
-- *Actual* and *desired* replica counts must be equal.
+- *Actual* and *desired* replica counts must be equivalent.
 
 Here it is in action.
 
@@ -67,13 +66,13 @@ docker run -d \
     mlafeldt/simianarmy
 ```
 
-Add the `-d -p 8080:8080` flag to forward port `8080` and connect to the SimianArmy REST API.
+Add the `-d -p 8080:8080` flag to forward port `8080` and connect to the Simian Army [REST API](https://github.com/Netflix/SimianArmy/wiki/REST).
 
 ## Pumba
 
 [Pumba](https://github.com/alexei-led/pumba) is a powerful Chaos testing tool for injecting Chaos in Docker.  It can kill, pause, stop, and remove Docker containers with highly-configurable selection rules.  It can also perform network emulation through delays, packet loss, rate limiting, and more.
 
-Get started by downloading the [latest binary release](https://github.com/alexei-led/pumba/releases) and making it executable.
+Get started by downloading the [latest binary release](https://github.com/alexei-led/pumba/releases) and setting its permissions.
 
 ```bash
 sudo curl -L https://github.com/alexei-led/pumba/releases/download/0.5.2/pumba_linux_amd64 -o /usr/bin/pumba &&
@@ -93,7 +92,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 b9df13525a13        nginx               "nginx -g 'daemon of…"   4 minutes ago       Up 4 minutes        0.0.0.0:80->80/tcp   nginx
 ```
 
-Execute Pumba commands to start experimenting.  Here we're killing a random container every 30 seconds (`--dry-run` only simulates the process; remove it to actually kill).
+Execute Pumba commands to start experimenting.  Here we're killing a random container every 30 seconds.  The `--dry-run` flag *simulates* the result, but removing it will actually kill the container.
 
 ```bash
 pumba -l info --random --dry-run --interval 30s kill

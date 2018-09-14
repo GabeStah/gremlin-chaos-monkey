@@ -27,7 +27,7 @@
 
 
 
-  <meta property="article:published_time" content="2018-08-30T00:00:00-07:00">
+  <meta property="article:published_time" content="2018-09-12T00:00:00-07:00">
 
 
 
@@ -346,7 +346,7 @@
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     <meta itemprop="headline" content="Chaos Monkey Alternatives - Docker">
     
-    <meta itemprop="datePublished" content="August 30, 2018">
+    <meta itemprop="datePublished" content="September 12, 2018">
     
 
     <div class="page__inner-wrap">
@@ -390,7 +390,7 @@
 
 <ul>
   <li>Must have more than <code class="highlighter-rouge">1</code> replica.</li>
-  <li><em>Actual</em> and <em>desired</em> replica counts must be equal.</li>
+  <li><em>Actual</em> and <em>desired</em> replica counts must be equivalent.</li>
 </ul>
 
 <p>Here it is in action.</p>
@@ -427,13 +427,13 @@ jam29chanegg gremlin2: service has only one running container - skipping
     mlafeldt/simianarmy
 </code></pre></div></div>
 
-<p>Add the <code class="highlighter-rouge">-d -p 8080:8080</code> flag to forward port <code class="highlighter-rouge">8080</code> and connect to the SimianArmy REST API.</p>
+<p>Add the <code class="highlighter-rouge">-d -p 8080:8080</code> flag to forward port <code class="highlighter-rouge">8080</code> and connect to the Simian Army <a href="https://github.com/Netflix/SimianArmy/wiki/REST">REST API</a>.</p>
 
 <h2 id="pumba">Pumba</h2>
 
 <p><a href="https://github.com/alexei-led/pumba">Pumba</a> is a powerful Chaos testing tool for injecting Chaos in Docker.  It can kill, pause, stop, and remove Docker containers with highly-configurable selection rules.  It can also perform network emulation through delays, packet loss, rate limiting, and more.</p>
 
-<p>Get started by downloading the <a href="https://github.com/alexei-led/pumba/releases">latest binary release</a> and making it executable.</p>
+<p>Get started by downloading the <a href="https://github.com/alexei-led/pumba/releases">latest binary release</a> and setting its permissions.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>curl <span class="nt">-L</span> https://github.com/alexei-led/pumba/releases/download/0.5.2/pumba_linux_amd64 <span class="nt">-o</span> /usr/bin/pumba <span class="o">&amp;&amp;</span>
 <span class="nb">sudo </span>chmod +x /usr/bin/pumba
@@ -450,7 +450,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 b9df13525a13        nginx               <span class="s2">"nginx -g 'daemon of…"</span>   4 minutes ago       Up 4 minutes        0.0.0.0:80-&gt;80/tcp   nginx
 </code></pre></div></div>
 
-<p>Execute Pumba commands to start experimenting.  Here we’re killing a random container every 30 seconds (<code class="highlighter-rouge">--dry-run</code> only simulates the process; remove it to actually kill).</p>
+<p>Execute Pumba commands to start experimenting.  Here we’re killing a random container every 30 seconds.  The <code class="highlighter-rouge">--dry-run</code> flag <em>simulates</em> the result, but removing it will actually kill the container.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pumba <span class="nt">-l</span> info <span class="nt">--random</span> <span class="nt">--dry-run</span> <span class="nt">--interval</span> 30s <span class="nb">kill
 </span>INFO[0000] killing container  <span class="nv">app</span><span class="o">=</span>pumba <span class="nv">dryrun</span><span class="o">=</span><span class="nb">true </span><span class="k">function</span><span class="o">=</span>github.com/alexei-led/pumba/pkg/container.dockerClient.KillContainer <span class="nv">id</span><span class="o">=</span>b9df13525a139d9a4a55a249b9cff37ba4656b72b4971fbc1f85d93058f2770d <span class="nv">name</span><span class="o">=</span>/nginx <span class="nv">signal</span><span class="o">=</span>SIGKILL <span class="nb">source</span><span class="o">=</span>container/client.go:115
@@ -466,7 +466,7 @@ b9df13525a13        nginx               <span class="s2">"nginx -g 'daemon of…
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-08-30T00:00:00-07:00">August 30, 2018</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-09-12T00:00:00-07:00">September 12, 2018</time></p>
         
       </footer>
 

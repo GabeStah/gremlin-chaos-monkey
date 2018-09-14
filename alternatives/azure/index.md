@@ -1,7 +1,6 @@
 ---
 title: "Chaos Monkey Alternatives - Azure"
 description: "Explores Chaos Monkey alternative technologies using Azure."
-date: 2018-08-30
 path: "/chaos-monkey/alternatives/azure"
 url: "https://www.gremlin.com/chaos-monkey/alternatives/azure"
 sources: "See: _docs/resources.md"
@@ -32,7 +31,7 @@ The Azure Search team also designates an **extreme chaos** level to any failure 
 
 ## WazMonkey
 
-[WazMonkey](https://github.com/smarx/WazMonkey) is an open-source tool that selects a random Azure role instance and reboots it.  Written in C# and executed on the command-line, WazMonkey is simple and straight-forward to use.
+[WazMonkey](https://github.com/smarx/WazMonkey) is an open-source tool that selects a random Azure role instance and reboots it.  Written in C# and executed on the command-line, WazMonkey is simple and straightforward to use.
 
 ```bash
 Usage: WazMonkey -p foo.publishSettings -n myservice -s production
@@ -54,7 +53,7 @@ Usage: WazMonkey -p foo.publishSettings -n myservice -s production
 
 ## Fault Analysis Service
 
-Azure's [Fault Analysis Service](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-testability-overview) is a system service that injects failure and runs test scenarios against applications built on [Microsoft Azure Service Fabric](https://azure.microsoft.com/en-us/services/service-fabric/).  The Fault Analysis Service performs **actions**, which are individual faults that target a system.  Developers can combine multiple actions to perform complex tasks and Chaos Experiments, such as:
+Azure's [Fault Analysis Service](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-testability-overview) is a service that injects failure and runs test scenarios against applications built on [Microsoft Azure Service Fabric](https://azure.microsoft.com/en-us/services/service-fabric/).  The Fault Analysis Service executes **actions**, which are individual faults that target a system.  Developers can combine multiple actions to perform complex tasks and Chaos Experiments, such as:
 
 - Restarting nodes
 - Simulating load balancing or application upgrades

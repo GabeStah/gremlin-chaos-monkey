@@ -27,7 +27,7 @@
 
 
 
-  <meta property="article:published_time" content="2018-08-30T00:00:00-07:00">
+  <meta property="article:published_time" content="2018-09-12T00:00:00-07:00">
 
 
 
@@ -346,7 +346,7 @@
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     <meta itemprop="headline" content="Chaos Monkey Alternatives - Google Cloud Platform">
     
-    <meta itemprop="datePublished" content="August 30, 2018">
+    <meta itemprop="datePublished" content="September 12, 2018">
     
 
     <div class="page__inner-wrap">
@@ -360,7 +360,7 @@
 
 
 
-  less than 1 minute read
+  1 minute read
 </p>
           
         </header>
@@ -371,21 +371,34 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> </h4></header>
-              
+              <ul class="toc__menu">
+  <li><a href="#google-cloud-chaos-monkey">Google Cloud Chaos Monkey</a></li>
+  <li><a href="#swapping-kubernetes-nodes-in-gke">Swapping Kubernetes Nodes in GKE</a></li>
+  <li><a href="#engineering-chaos-experiments-with-tensorflow">Engineering Chaos Experiments with TensorFlow</a></li>
+</ul>
             </nav>
           </aside>
         
-        <ul>
-  <li>URL: <code class="highlighter-rouge">https://www.gremlin.com/chaos-monkey/alternatives/google-cloud-platform</code></li>
-  <li>Parent: <code class="highlighter-rouge">Category Section: Infrastructure</code></li>
-  <li>Content:
-    <ul>
-      <li><code class="highlighter-rouge">Overview</code>: <em>See above.</em></li>
-      <li><a href="https://www.gremlin.com/community/tutorials/how-to-install-distributed-tensorflow-on-gcp-and-perform-chaos-engineering-experiments/"><code class="highlighter-rouge">Engineering Chaos Experiments with TensorFlow</code></a>: Overview of using Gremlin and distributed TensorFlow cluster on <code class="highlighter-rouge">Google Cloud Platform</code> to perform Chaos experiments.</li>
-      <li><a href="https://blog.spinnaker.io/running-chaos-monkey-on-spinnaker-google-compute-engine-gce-155dc52f20ef"><code class="highlighter-rouge">Deploying Chaos Monkey on Google Compute Engine</code></a>: Tutorial for integrating Chaos Monkey within <code class="highlighter-rouge">Google Compute Engine</code> using <code class="highlighter-rouge">Spinnaker</code> and <code class="highlighter-rouge">Golang</code>.</li>
-    </ul>
-  </li>
+        <h2 id="google-cloud-chaos-monkey">Google Cloud Chaos Monkey</h2>
+
+<p><a href="https://github.com/dkholod/GoogleCloudChaosMonkey">Google Cloud Chaos Monkey</a> is an open-source tool written in F# that performs a few basic Chaos Experiments on Google Cloud instances.  Instance target selection is pseudo-randomized and based on probabilities.</p>
+
+<ul>
+  <li><a href="https://github.com/dkholod/GoogleCloudChaosMonkey/blob/master/GoogleCloudChaosMonkey/GoogleCloud.fs#L27-L32">Reset</a>: Resets the targeted instance.</li>
+  <li><a href="https://github.com/dkholod/GoogleCloudChaosMonkey/blob/master/GoogleCloudChaosMonkey/GoogleCloud.fs#L34-L44">Stop and Start</a>: Stops the instance and then restarts it after <code class="highlighter-rouge">3</code> seconds.</li>
 </ul>
+
+<h2 id="swapping-kubernetes-nodes-in-gke">Swapping Kubernetes Nodes in GKE</h2>
+
+<p>If you’re looking to get into Chaos Engineering with Kubernetes check out our <a href="/gremlin-chaos-monkey/advanced-tips#how-to-deploy-spinnaker-on-kubernetes">How to Deploy Spinnaker on Kubernetes</a> tutorial to get started with Amazon EKS.  On the other hand, to induce Chaos on Google Cloud Kubernetes Engine clusters you can use the <a href="https://github.com/chaostoolkit-incubator/chaostoolkit-google-cloud">Chaos Toolkit Google Cloud driver</a>.  A relatively simple failure injection involves attacking a node pool with an HTTP load balancing library like <a href="https://github.com/tsenart/vegeta">Vegeta</a>, calling the <a href="https://docs.chaostoolkit.org/drivers/gce/#swap_nodepool"><code class="highlighter-rouge">swap_nodepool</code></a> function to create a new node pool and drain the old pool.  This forces pods to be moved to the new pool.</p>
+
+<p>Check out <a href="https://medium.com/chaosiq/observing-the-impact-of-swapping-nodes-in-gke-with-chaos-engineering-ce5cf9b5fbc6">this tutorial</a> for more information.</p>
+
+<h2 id="engineering-chaos-experiments-with-tensorflow">Engineering Chaos Experiments with TensorFlow</h2>
+
+<p>It’s safe and easy to perform Chaos Experiments on Google Cloud Platform services like TensorFlow with Gremlin’s <a href="https://www.gremlin.com/">Failure as a Service</a>.  As a clustered configuration TensorFlow is ideal for running Chaos Experiments to test the fault tolerance and stability of each clustered node.  Gremlin can execute a wide range of attacks on your TensorFlow cluster, including overloading CPU, memory, disk, and IO; killing processes; altering system time; modifying network traffic; and more.</p>
+
+<p>Check out the <a href="https://www.gremlin.com/community/tutorials/how-to-install-distributed-tensorflow-on-gcp-and-perform-chaos-engineering-experiments/#introduction-d4bc1640-1f87-4750-8cda-ed5448a6a120">full tutorial</a> over on our <a href="https://www.gremlin.com/community/">community site</a>.</p>
 
 
         
@@ -397,7 +410,7 @@
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-08-30T00:00:00-07:00">August 30, 2018</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-09-12T00:00:00-07:00">September 12, 2018</time></p>
         
       </footer>
 

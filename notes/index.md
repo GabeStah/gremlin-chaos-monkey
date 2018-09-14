@@ -26,4 +26,9 @@ The following items are assorted things for Austin and/or other editors to take 
 
     ![simian-army-janitor-monkey](../images/simian-army-janitor-monkey.png 'A magnificent Janitor Monkey')
 
+## Links
+
+1. **(TODO)**: Verify all links are valid.
+2. **(TODO)**: Find out where Gremlin service mention links should point to and update accordingly.
+
 {% include nav-internal.md %}

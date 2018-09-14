@@ -50,17 +50,27 @@ In this chapter we'll explore a wide range of tools and techniques -- regardless
 
 ## Apache
 
+**(TODO)**
+
 ### Hadoop
 
-
+**(TODO)**
 
 ### Kafka
 
+**(TODO)**
+
 ### Spark
+
+**(TODO)**
 
 ## Containers
 
+**(TODO)**
+
 ### Docker
+
+**(TODO)**
 
 ### Gremlin
 
@@ -80,36 +90,70 @@ In this chapter we'll explore a wide range of tools and techniques -- regardless
 
 ### OpenShift
 
+**(TODO)**
+
 ## Erlang VM
+
+**(TODO)**
 
 ### Elixir
 
+**(TODO)**
+
 ## Infrastructure
+
+**(TODO)**
 
 ### Azure
 
+**(TODO)**
+
 ### Google Cloud Platform
+
+**(TODO)**
 
 ### Kubernetes
 
+**(TODO)**
+
 ### On Premise
+
+**(TODO)**
 
 ### OpenStack
 
+**(TODO)**
+
 ### Private Cloud
+
+**(TODO)**
 
 ### VMWare
 
+**(TODO)**
+
 ## Java
+
+**(TODO)**
 
 ### Maven
 
+**(TODO)**
+
 ### Spring Boot
+
+**(TODO)**
 
 ## OS
 
+**(TODO)**
+
 ### Linux
 
+**(TODO)**
+
 ### Windows
+
+**(TODO)**
 
 {% include nav-internal.md %}
