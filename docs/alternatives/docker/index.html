@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.12.2 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.13.0 by Michael Rose
   Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
@@ -115,11 +115,14 @@
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
         <a class="site-title" href="/gremlin-chaos-monkey/">Gremlin: Chaos Monkey</a>
-        <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/gremlin-chaos-monkey/notes" >Notes to Editor</a>
-            </li><li class="masthead__menu-item">
-              <a href="https://drive.google.com/drive/folders/16PhHEJGZtF428eyko_6-2BxpDGAU9JhW?usp=sharing" >Google Drive Exports</a>
-            </li></ul>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/gremlin-chaos-monkey/notes">Notes to Editor</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="https://drive.google.com/drive/folders/16PhHEJGZtF428eyko_6-2BxpDGAU9JhW?usp=sharing" target="_blank" rel="noopener noreferrer">Google Drive Exports</a>
+            </li>
+</ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Toggle Menu</span>
@@ -149,7 +152,7 @@
       
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
           <a href="http://localhost:4000/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
-          <meta itemprop="position" content="1" />
+          <meta itemprop="position" content="1">
         </li>
         <span class="sep">/</span>
       
@@ -157,7 +160,7 @@
         
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
           <a href="/gremlin-chaos-monkey/alternatives" itemprop="item"><span itemprop="name">Alternatives</span></a>
-          <meta itemprop="position" content="2" />
+          <meta itemprop="position" content="2">
         </li>
         <span class="sep">/</span>
       
@@ -188,7 +191,7 @@
 
 <nav class="nav__list">
   
-  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <input id="ac-toc" name="accordion-toc" type="checkbox">
   <label for="ac-toc">Toggle Menu</label>
   <ul class="nav__items">
     
@@ -360,7 +363,7 @@
 
 
 
-  2 minute read
+  7 minute read
 </p>
           
         </header>
@@ -370,18 +373,186 @@
         
           <aside class="sidebar__right sticky">
             <nav class="toc">
-              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> </h4></header>
+              <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> </h4></header>
               <ul class="toc__menu">
+  <li>
+<a href="#pumba">Pumba</a>
+    <ul>
+      <li><a href="#killing-a-random-container">Killing a Random Container</a></li>
+      <li>
+<a href="#network-emulation">Network Emulation</a>
+        <ul>
+          <li><a href="#causing-delays">Causing Delays</a></li>
+          <li><a href="#dropping-packets">Dropping Packets</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#injecting-failure-into-docker">Injecting Failure Into Docker</a></li>
   <li><a href="#docker-chaos-monkey">Docker Chaos Monkey</a></li>
   <li><a href="#docker-simian-army">Docker Simian Army</a></li>
-  <li><a href="#pumba">Pumba</a></li>
 </ul>
             </nav>
           </aside>
         
-        <h2 id="docker-chaos-monkey">Docker Chaos Monkey</h2>
+        <h2 id="pumba">Pumba</h2>
 
-<p><a href="https://github.com/titpetric/docker-chaos-monkey">Docker Chaos Monkey</a> is a simple shell script that terminates <a href="https://docs.docker.com/engine/swarm/">Docker Swarm</a> <a href="https://docs.docker.com/engine/swarm/swarm-tutorial/deploy-service/">services</a>.  Targetable services are specified by applying the <code class="highlighter-rouge">role=disposable</code> label.</p>
+<p><a href="https://github.com/alexei-led/pumba" target="_blank" rel="noopener noreferrer">Pumba</a> is a powerful Chaos testing tool for injecting Chaos in Docker.  It can kill, pause, stop, and remove Docker containers with highly-configurable selection rules.  It can also perform network emulation through delays, packet loss, rate limiting, and more.</p>
+
+<p>Get started by downloading the <a href="https://github.com/alexei-led/pumba/releases" target="_blank" rel="noopener noreferrer">latest binary release</a> and setting its permissions.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>curl <span class="nt">-L</span> https://github.com/alexei-led/pumba/releases/download/0.5.2/pumba_linux_amd64 <span class="nt">-o</span> /usr/bin/pumba <span class="o">&amp;&amp;</span>
+<span class="nb">sudo </span>chmod +x /usr/bin/pumba
+</code></pre></div></div>
+
+<div class="premonition note modified">
+<div class="fa fa-check-square"></div>
+<div class="content">
+<p class="header">Execute Pumba Within a Container</p>
+<p>If you’d prefer to run Pumba from within a Docker container, you can preface your Pumba command with the following.  This creates a temporary container using the <a href="https://hub.docker.com/r/gaiaadm/pumba/" target="_blank" rel="noopener noreferrer"><code class="highlighter-rouge">gaiaadm/pumba</code></a> image.  The <code class="highlighter-rouge">-v</code> flag bind-mounts the local <code class="highlighter-rouge">docker.sock</code> file to the same path in the container, so Pumba can connect to the Docker daemon.  The <code class="highlighter-rouge">--rm</code> flag makes the container temporary and <code class="highlighter-rouge">-it</code> creates an interactive shell so we can pass <code class="highlighter-rouge">pumba</code> command that follows.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-it</span> <span class="nt">--rm</span> <span class="nt">-v</span> /var/run/docker.sock:/var/run/docker.sock gaiaadm/pumba <span class="se">\</span>
+&lt;PUMBA_COMMAND&gt;
+</code></pre></div></div>
+</div>
+</div>
+
+<h3 id="killing-a-random-container">Killing a Random Container</h3>
+
+<ol>
+  <li>
+    <p>Create a Docker container.</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> docker run <span class="nt">-l</span> <span class="nv">service</span><span class="o">=</span>nginx <span class="nt">--name</span> nginx <span class="nt">-p</span> 80:80 <span class="nt">-d</span> nginx
+ docker container <span class="nb">ls</span>
+</code></pre></div>    </div>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="c"># OUTPUT</span>
+ CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                NAMES
+ b9df13525a13        nginx               <span class="s2">"nginx -g 'daemon of…"</span>   4 minutes ago       Up 4 minutes        0.0.0.0:80-&gt;80/tcp   nginx
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>This command attempts to kill a random container every 30 seconds.  The <code class="highlighter-rouge">--dry-run</code> flag <em>simulates</em> the result, so remove it to perform actual killings.</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> pumba <span class="nt">-l</span> info <span class="nt">--random</span> <span class="nt">--dry-run</span> <span class="nt">--interval</span> 30s <span class="nb">kill
+ </span>INFO[0000] killing container  <span class="nv">app</span><span class="o">=</span>pumba <span class="nv">dryrun</span><span class="o">=</span><span class="nb">true </span><span class="k">function</span><span class="o">=</span>github.com/alexei-led/pumba/pkg/container.dockerClient.KillContainer <span class="nv">id</span><span class="o">=</span>b9df13525a139d9a4a55a249b9cff37ba4656b72b4971fbc1f85d93058f2770d <span class="nv">name</span><span class="o">=</span>/nginx <span class="nv">signal</span><span class="o">=</span>SIGKILL <span class="nb">source</span><span class="o">=</span>container/client.go:115
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="network-emulation">Network Emulation</h3>
+
+<p>Pumba uses the <code class="highlighter-rouge">tc</code> utility for performing network emulation, which is typically installed with the <a href="https://wiki.linuxfoundation.org/networking/iproute2" target="_blank" rel="noopener noreferrer"><code class="highlighter-rouge">iproute2</code></a> tool set.  We’ll be creating containers using <a href="https://alpinelinux.org/" target="_blank" rel="noopener noreferrer">AlpineLinux</a> distributions in these samples, but make sure your own container images contain a copy of the <code class="highlighter-rouge">tc</code> utility when performing network emulations.</p>
+
+<h4 id="causing-delays">Causing Delays</h4>
+
+<ol>
+  <li>
+    <p>Issue the following command to create a container named <code class="highlighter-rouge">networker</code>.  This ensures <code class="highlighter-rouge">iproute2</code> is up to date and performs a ping on <code class="highlighter-rouge">google.com</code> for testing.</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> docker run <span class="nt">--rm</span> <span class="nt">--name</span> networker <span class="nt">-it</span> alpine sh <span class="nt">-c</span> <span class="s2">"apk add --update iproute2 &amp;&amp; ping google.com"</span>
+</code></pre></div>    </div>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="c"># OUTPUT</span>
+ fetch http://dl-cdn.alpinelinux.org/alpine/v3.8/main/x86_64/APKINDEX.tar.gz
+ fetch http://dl-cdn.alpinelinux.org/alpine/v3.8/community/x86_64/APKINDEX.tar.gz
+ <span class="o">(</span>1/6<span class="o">)</span> Installing libelf <span class="o">(</span>0.8.13-r3<span class="o">)</span>
+ <span class="o">(</span>2/6<span class="o">)</span> Installing libmnl <span class="o">(</span>1.0.4-r0<span class="o">)</span>
+ <span class="o">(</span>3/6<span class="o">)</span> Installing jansson <span class="o">(</span>2.11-r0<span class="o">)</span>
+ <span class="o">(</span>4/6<span class="o">)</span> Installing libnftnl-libs <span class="o">(</span>1.1.1-r0<span class="o">)</span>
+ <span class="o">(</span>5/6<span class="o">)</span> Installing iptables <span class="o">(</span>1.6.2-r0<span class="o">)</span>
+ <span class="o">(</span>6/6<span class="o">)</span> Installing iproute2 <span class="o">(</span>4.13.0-r0<span class="o">)</span>
+ Executing iproute2-4.13.0-r0.post-install
+ Executing busybox-1.28.4-r1.trigger
+ OK: 8 MiB <span class="k">in </span>19 packages
+ PING google.com <span class="o">(</span>172.217.3.174<span class="o">)</span>: 56 data bytes
+ 64 bytes from 172.217.3.174: <span class="nv">seq</span><span class="o">=</span>0 <span class="nv">ttl</span><span class="o">=</span>127 <span class="nb">time</span><span class="o">=</span>8.992 ms
+ 64 bytes from 172.217.3.174: <span class="nv">seq</span><span class="o">=</span>1 <span class="nv">ttl</span><span class="o">=</span>127 <span class="nb">time</span><span class="o">=</span>9.965 ms
+ 64 bytes from 172.217.3.174: <span class="nv">seq</span><span class="o">=</span>2 <span class="nv">ttl</span><span class="o">=</span>127 <span class="nb">time</span><span class="o">=</span>10.332 ms
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Open a second terminal and issue the following command to cause a <code class="highlighter-rouge">5000</code> millisecond <code class="highlighter-rouge">delay</code> over a total of <code class="highlighter-rouge">15</code> seconds.</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> pumba <span class="nt">-l</span> info netem <span class="nt">--duration</span> 15s delay <span class="nt">--time</span> 5000 networker
+</code></pre></div>    </div>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="c"># TERMINAL 2: OUTPUT</span>
+ INFO[0000] Running netem <span class="nb">command</span> <span class="s1">'[delay 5000ms 10ms 20.00]'</span> on container 2a4066e2865ed24464fa458982374795d62df11b0368e0886f77fc62cdc47664 <span class="k">for </span>15s  <span class="nv">app</span><span class="o">=</span>pumba <span class="k">function</span><span class="o">=</span>github.com/alexei-led/pumba/pkg/container.dockerClient.NetemContainer <span class="nb">source</span><span class="o">=</span>container/client.go:220
+ INFO[0000] start netem <span class="k">for </span>container                     <span class="nv">app</span><span class="o">=</span>pumba <span class="nv">dryrun</span><span class="o">=</span><span class="nb">false </span><span class="k">function</span><span class="o">=</span>github.com/alexei-led/pumba/pkg/container.dockerClient.startNetemContainer <span class="nv">id</span><span class="o">=</span>2a4066e2865ed24464fa458982374795d62df11b0368e0886f77fc62cdc47664 <span class="nv">iface</span><span class="o">=</span>eth0 <span class="nv">name</span><span class="o">=</span>/networker <span class="nv">netem</span><span class="o">=</span>delay 5000ms 10ms 20.00 <span class="nb">source</span><span class="o">=</span>container/client.go:276 <span class="nv">tcimage</span><span class="o">=</span>
+ INFO[0015] stopping netem on container                   <span class="nv">IPs</span><span class="o">=[]</span> <span class="nv">app</span><span class="o">=</span>pumba <span class="nv">dryrun</span><span class="o">=</span><span class="nb">false </span><span class="k">function</span><span class="o">=</span>github.com/alexei-led/pumba/pkg/container.dockerClient.StopNetemContainer <span class="nv">id</span><span class="o">=</span>2a4066e2865ed24464fa458982374795d62df11b0368e0886f77fc62cdc47664 <span class="nv">iface</span><span class="o">=</span>eth0 <span class="nv">name</span><span class="o">=</span>/networker <span class="nb">source</span><span class="o">=</span>container/client.go:240 tc-image<span class="o">=</span>
+ INFO[0015] stop netem <span class="k">for </span>container                      <span class="nv">IPs</span><span class="o">=[]</span> <span class="nv">app</span><span class="o">=</span>pumba <span class="nv">dryrun</span><span class="o">=</span><span class="nb">false </span><span class="k">function</span><span class="o">=</span>github.com/alexei-led/pumba/pkg/container.dockerClient.stopNetemContainer <span class="nv">id</span><span class="o">=</span>2a4066e2865ed24464fa458982374795d62df11b0368e0886f77fc62cdc47664 <span class="nv">iface</span><span class="o">=</span>eth0 <span class="nv">name</span><span class="o">=</span>/networker <span class="nb">source</span><span class="o">=</span>container/client.go:298 <span class="nv">tcimage</span><span class="o">=</span>
+</code></pre></div>    </div>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="c"># TERMINAL 1: OUTPUT</span>
+ 64 bytes from 172.217.3.174: <span class="nv">seq</span><span class="o">=</span>509 <span class="nv">ttl</span><span class="o">=</span>127 <span class="nb">time</span><span class="o">=</span>9.638 ms
+ 64 bytes from 172.217.3.174: <span class="nv">seq</span><span class="o">=</span>512 <span class="nv">ttl</span><span class="o">=</span>127 <span class="nb">time</span><span class="o">=</span>5013.608 ms
+ 64 bytes from 172.217.3.174: <span class="nv">seq</span><span class="o">=</span>514 <span class="nv">ttl</span><span class="o">=</span>127 <span class="nb">time</span><span class="o">=</span>5011.516 ms
+ 64 bytes from 172.217.3.174: <span class="nv">seq</span><span class="o">=</span>510 <span class="nv">ttl</span><span class="o">=</span>127 <span class="nb">time</span><span class="o">=</span>9299.192 ms
+ 64 bytes from 172.217.3.174: <span class="nv">seq</span><span class="o">=</span>511 <span class="nv">ttl</span><span class="o">=</span>127 <span class="nb">time</span><span class="o">=</span>9297.367 ms
+ 64 bytes from 172.217.3.174: <span class="nv">seq</span><span class="o">=</span>516 <span class="nv">ttl</span><span class="o">=</span>127 <span class="nb">time</span><span class="o">=</span>5011.184 ms
+ 64 bytes from 172.217.3.174: <span class="nv">seq</span><span class="o">=</span>513 <span class="nv">ttl</span><span class="o">=</span>127 <span class="nb">time</span><span class="o">=</span>9301.741 ms
+ 64 bytes from 172.217.3.174: <span class="nv">seq</span><span class="o">=</span>518 <span class="nv">ttl</span><span class="o">=</span>127 <span class="nb">time</span><span class="o">=</span>5016.096 ms
+ 64 bytes from 172.217.3.174: <span class="nv">seq</span><span class="o">=</span>519 <span class="nv">ttl</span><span class="o">=</span>127 <span class="nb">time</span><span class="o">=</span>5014.941 ms
+ 64 bytes from 172.217.3.174: <span class="nv">seq</span><span class="o">=</span>515 <span class="nv">ttl</span><span class="o">=</span>127 <span class="nb">time</span><span class="o">=</span>9304.069 ms
+ 64 bytes from 172.217.3.174: <span class="nv">seq</span><span class="o">=</span>527 <span class="nv">ttl</span><span class="o">=</span>127 <span class="nb">time</span><span class="o">=</span>10.468 ms
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h4 id="dropping-packets">Dropping Packets</h4>
+
+<ol>
+  <li>
+    <p>Issue the following command to create a container named <code class="highlighter-rouge">networker</code> and have it start downloading a fairly large file via <code class="highlighter-rouge">curl</code>.</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> docker run <span class="nt">--rm</span> <span class="nt">--name</span> networker <span class="nt">-it</span> alpine sh <span class="nt">-c</span> <span class="s2">"apk add --update iproute2 &amp;&amp; apk add --update curl &amp;&amp; curl -O http://ubuntu-releases.eecs.wsu.edu/18.04.1/ubuntu-18.04.1-desktop-amd64.iso"</span>
+</code></pre></div>    </div>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="c"># TERMINAL 1: OUTPUT</span>
+ % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+ 8 1862M    8  155M    0     0  9698k      0  0:03:16  0:00:16  0:03:00 11.4M
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Open a second terminal and issue the <code class="highlighter-rouge">loss</code> command, which will drop <code class="highlighter-rouge">25%</code> of all packets for the next <code class="highlighter-rouge">2</code> minutes.</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> pumba netem <span class="nt">--duration</span> 2m loss <span class="nt">--percent</span> 10 networker
+</code></pre></div>    </div>
+
+    <p>You should notice the packet loss affecting the <code class="highlighter-rouge">curl</code> download – in this case, roughly halving download speeds.</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="c"># TERMINAL 1: OUTPUT</span>
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+ 13 1862M   13  259M    0     0  7403k      0  0:04:17  0:00:35  0:03:42 5807k
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="injecting-failure-into-docker">Injecting Failure Into Docker</h2>
+
+<p>Gremlin’s <a href="https://www.gremlin.com" target="_blank" rel="noopener noreferrer">Failure as a Service</a> platform makes it easy to run Chaos Experiments on Docker containers.  You can start running experiments in just a few minutes after installing Docker and signing up for a <a href="https://www.gremlin.com/demo" target="_blank" rel="noopener noreferrer">Gremlin account</a>.  Once installed, Gremlin is intelligent enough to recognize each of your unique Docker containers and will accurately apply smart identifier tags, so you can target exactly the right services and systems.  Gremlin can perform a variety of attacks against Docker containers including killing containers, manipulating network traffic, overloading CPU/memory/disk/IO, and much more.</p>
+
+<p>Check out <a href="https://help.gremlin.com/install-gremlin-docker-ubuntu-1604/" target="_blank" rel="noopener noreferrer">this tutorial</a> to learn how to install Gremlin on Ubuntu and attack Docker containers.  Alternatively, <a href="https://help.gremlin.com/install-gremlin-docker-container-ubuntu-1604/" target="_blank" rel="noopener noreferrer">this guide</a> shows how to install Gremlin within a Docker container to use against other containers.</p>
+
+<h2 id="docker-chaos-monkey">Docker Chaos Monkey</h2>
+
+<p><a href="https://github.com/titpetric/docker-chaos-monkey" target="_blank" rel="noopener noreferrer">Docker Chaos Monkey</a> is a simple shell script that terminates <a href="https://docs.docker.com/engine/swarm/" target="_blank" rel="noopener noreferrer">Docker Swarm</a> <a href="https://docs.docker.com/engine/swarm/swarm-tutorial/deploy-service/" target="_blank" rel="noopener noreferrer">services</a>.  Targetable services are specified by applying the <code class="highlighter-rouge">role=disposable</code> label.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker service create <span class="nt">-l</span> <span class="nv">role</span><span class="o">=</span>disposable <span class="nt">--name</span> gremlin gremlin/gremlin
 </code></pre></div></div>
@@ -390,7 +561,8 @@
 
 <ul>
   <li>Must have more than <code class="highlighter-rouge">1</code> replica.</li>
-  <li><em>Actual</em> and <em>desired</em> replica counts must be equivalent.</li>
+  <li>
+<em>Actual</em> and <em>desired</em> replica counts must be equivalent.</li>
 </ul>
 
 <p>Here it is in action.</p>
@@ -416,7 +588,7 @@ jam29chanegg gremlin2: service has only one running container - skipping
 
 <h2 id="docker-simian-army">Docker Simian Army</h2>
 
-<p>The <a href="https://github.com/mlafeldt/docker-simianarmy">Docker Simian Army</a> is a Docker image of the <a href="/gremlin-chaos-monkey/simian-army">Simian Army</a> Java toolset.  It doesn’t provide any additional features on its own, but it’s a useful alternative to installing the Simian Army locally.  You can test it out in <strong>dry</strong> mode with the following command.</p>
+<p>The <a href="https://github.com/mlafeldt/docker-simianarmy" target="_blank" rel="noopener noreferrer">Docker Simian Army</a> is a Docker image of the <a href="/gremlin-chaos-monkey/simian-army">Simian Army</a> Java toolset.  It doesn’t provide any additional features on its own, but it’s a useful alternative to installing the Simian Army locally.  You can test it out in <strong>dry</strong> mode with the following command.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="se">\</span>
     <span class="nt">-e</span> <span class="nv">SIMIANARMY_CLIENT_AWS_ACCOUNTKEY</span><span class="o">=</span><span class="nv">$AWS_ACCESS_KEY_ID</span> <span class="se">\</span>
@@ -427,34 +599,7 @@ jam29chanegg gremlin2: service has only one running container - skipping
     mlafeldt/simianarmy
 </code></pre></div></div>
 
-<p>Add the <code class="highlighter-rouge">-d -p 8080:8080</code> flag to forward port <code class="highlighter-rouge">8080</code> and connect to the Simian Army <a href="https://github.com/Netflix/SimianArmy/wiki/REST">REST API</a>.</p>
-
-<h2 id="pumba">Pumba</h2>
-
-<p><a href="https://github.com/alexei-led/pumba">Pumba</a> is a powerful Chaos testing tool for injecting Chaos in Docker.  It can kill, pause, stop, and remove Docker containers with highly-configurable selection rules.  It can also perform network emulation through delays, packet loss, rate limiting, and more.</p>
-
-<p>Get started by downloading the <a href="https://github.com/alexei-led/pumba/releases">latest binary release</a> and setting its permissions.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>curl <span class="nt">-L</span> https://github.com/alexei-led/pumba/releases/download/0.5.2/pumba_linux_amd64 <span class="nt">-o</span> /usr/bin/pumba <span class="o">&amp;&amp;</span>
-<span class="nb">sudo </span>chmod +x /usr/bin/pumba
-</code></pre></div></div>
-
-<p><em>(Optional)</em> Create a Docker container.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-l</span> <span class="nv">service</span><span class="o">=</span>nginx <span class="nt">--name</span> nginx <span class="nt">-p</span> 80:80 <span class="nt">-d</span> nginx
-docker container <span class="nb">ls</span>
-</code></pre></div></div>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># OUTPUT</span>
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                NAMES
-b9df13525a13        nginx               <span class="s2">"nginx -g 'daemon of…"</span>   4 minutes ago       Up 4 minutes        0.0.0.0:80-&gt;80/tcp   nginx
-</code></pre></div></div>
-
-<p>Execute Pumba commands to start experimenting.  Here we’re killing a random container every 30 seconds.  The <code class="highlighter-rouge">--dry-run</code> flag <em>simulates</em> the result, but removing it will actually kill the container.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pumba <span class="nt">-l</span> info <span class="nt">--random</span> <span class="nt">--dry-run</span> <span class="nt">--interval</span> 30s <span class="nb">kill
-</span>INFO[0000] killing container  <span class="nv">app</span><span class="o">=</span>pumba <span class="nv">dryrun</span><span class="o">=</span><span class="nb">true </span><span class="k">function</span><span class="o">=</span>github.com/alexei-led/pumba/pkg/container.dockerClient.KillContainer <span class="nv">id</span><span class="o">=</span>b9df13525a139d9a4a55a249b9cff37ba4656b72b4971fbc1f85d93058f2770d <span class="nv">name</span><span class="o">=</span>/nginx <span class="nv">signal</span><span class="o">=</span>SIGKILL <span class="nb">source</span><span class="o">=</span>container/client.go:115
-</code></pre></div></div>
+<p>Add the <code class="highlighter-rouge">-d -p 8080:8080</code> flag to forward port <code class="highlighter-rouge">8080</code> and connect to the Simian Army <a href="https://github.com/Netflix/SimianArmy/wiki/REST" target="_blank" rel="noopener noreferrer">REST API</a>.</p>
 
 
         
@@ -502,7 +647,7 @@ b9df13525a13        nginx               <span class="s2">"nginx -g 'daemon of…
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2018 Gabe Wyatt</div>
+<div class="page__footer-copyright">© 2018 Gabe Wyatt</div>
 
       </footer>
     </div>

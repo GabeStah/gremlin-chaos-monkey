@@ -6,12 +6,15 @@ path: "/chaos-monkey/alternatives/openshift"
 url: "https://www.gremlin.com/chaos-monkey/alternatives/openshift"
 sources: "See: _docs/resources.md"
 published: true
----
-
+outline: "
 - URL: `https://www.gremlin.com/chaos-monkey/alternatives/openshift`
 - Parent: `Category Section: Infrastructure`
 - Content:
   - `Overview`: _See above._
   - [`monkey-ops`](https://github.com/Produban/monkey-ops): Describe how the `monkey-ops` service can be used to perform Chaos Engineering tasks inside an [`OpenShift`](https://www.openshift.com/) container application.
+- Competition:
+  - https://github.com/Produban/monkey-ops
+"
+---
 
 {% include nav-internal.md %}

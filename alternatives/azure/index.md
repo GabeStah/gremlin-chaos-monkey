@@ -14,6 +14,9 @@ outline: "
     - [`WazMonkey`](https://github.com/smarx/WazMonkey): Provide details on `WazMonkey`, an alternative to Chaos Monkey specifically designed for testing resiliency within Azure cloud services.
     - [`Fault Analysis Service`](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-testability-overview): Provide an overview of Azure's `Fault Analysis Service`, which is designed for testing services built atop [`Azure Service Fabric`](https://azure.microsoft.com/en-us/services/service-fabric/).
       - https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-controlled-chaos
+    - Competition
+      - https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-testability-scenarios
+      - https://www.infoq.com/news/2012/09/azure-chaos-monkey
 "
 ---
 
@@ -27,7 +30,13 @@ Once it's in production, Search Chaos Monkey's destructive power is managed thro
 - **Medium chaos** failures are also gracefully recovered from, but they may degrade service performance or stability.  Low-priority alerts are sent along to engineers on call.
 - **High chaos** failures are those that definitively interrupt service and trigger high-priority alerts for on-call engineers.
 
-The Azure Search team also designates an **extreme chaos** level to any failure that incurs data loss, causes ungraceful degradation, or fails silently.  To maintain experimental control, Search Chaos Monkey is not permitted to induce **extreme** failures on a continuous basis.
+These levels offer a modicum of control over experiments, but not much in the way of granularity.  The Azure Search team also designates an **extreme chaos** level to any failure that incurs data loss, causes ungraceful degradation, or fails silently.  To maintain experimental control, Search Chaos Monkey is not permitted to induce **extreme** failures on a continuous basis.
+
+## Causing Chaos on Azure with Gremlin
+
+Performing Chaos Experiments on your Azure applications is simple, safe, and secure using Gremlin's [Failure as a Service][#gremlin-failure-as-a-service].  Azure's distributed computing architecture all but requires proper failure injection testing with tools like Gremlin, which can execute a variety of attacks including straining CPU, memory, disk, and IO; terminating instances; altering instance system time; manipulating network traffic; and more.
+
+Check out the [official documentation](https://help.gremlin.com/install-gremlin-azure/) or look through our in-depth [community site](https://www.gremlin.com/community/tutorials/how-to-install-and-use-gremlin-on-microsoft-azure/) for more information.
 
 ## WazMonkey
 

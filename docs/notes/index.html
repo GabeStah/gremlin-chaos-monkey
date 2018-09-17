@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.12.2 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.13.0 by Michael Rose
   Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
@@ -115,11 +115,14 @@
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
         <a class="site-title" href="/gremlin-chaos-monkey/">Gremlin: Chaos Monkey</a>
-        <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/gremlin-chaos-monkey/notes" >Notes to Editor</a>
-            </li><li class="masthead__menu-item">
-              <a href="https://drive.google.com/drive/folders/16PhHEJGZtF428eyko_6-2BxpDGAU9JhW?usp=sharing" >Google Drive Exports</a>
-            </li></ul>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/gremlin-chaos-monkey/notes">Notes to Editor</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="https://drive.google.com/drive/folders/16PhHEJGZtF428eyko_6-2BxpDGAU9JhW?usp=sharing" target="_blank" rel="noopener noreferrer">Google Drive Exports</a>
+            </li>
+</ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Toggle Menu</span>
@@ -149,7 +152,7 @@
       
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
           <a href="http://localhost:4000/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
-          <meta itemprop="position" content="1" />
+          <meta itemprop="position" content="1">
         </li>
         <span class="sep">/</span>
       
@@ -178,7 +181,7 @@
 
 <nav class="nav__list">
   
-  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <input id="ac-toc" name="accordion-toc" type="checkbox">
   <label for="ac-toc">Toggle Menu</label>
   <ul class="nav__items">
     
@@ -350,7 +353,7 @@
 
 
 
-  1 minute read
+  3 minute read
 </p>
           
         </header>
@@ -360,10 +363,18 @@
         
           <aside class="sidebar__right sticky">
             <nav class="toc">
-              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> </h4></header>
+              <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> </h4></header>
               <ul class="toc__menu">
   <li><a href="#images">Images</a></li>
-  <li><a href="#links">Links</a></li>
+  <li>
+<a href="#links">Links</a>
+    <ul>
+      <li><a href="#testing-url-validity-and-functionality">Testing URL Validity and Functionality</a></li>
+      <li><a href="#gremlin-links">Gremlin Links</a></li>
+      <li><a href="#external-links">External Links</a></li>
+    </ul>
+  </li>
 </ul>
             </nav>
           </aside>
@@ -376,29 +387,87 @@
   <li>
     <p>The following <code class="highlighter-rouge">AWS Spinnaker Quick Start Architecture</code> image, as used in the <a href="/gremlin-chaos-monkey/developer-tutorial">Developer Tutorial</a>, is <strong>copyright of AWS</strong>.  If desired, please recreate image for Gremlin.</p>
 
-    <p><img src="../images/developer-tutorial-aws-spinnaker-quick-start-architecture.png" alt="developer-tutorial-aws-spinnaker-quick-start-architecture" title="AWS Spinnaker Quick Start Architecture" /></p>
+    <p><img src="../images/developer-tutorial-aws-spinnaker-quick-start-architecture.png" alt="developer-tutorial-aws-spinnaker-quick-start-architecture" title="AWS Spinnaker Quick Start Architecture"></p>
   </li>
-  <li><a href="/gremlin-chaos-monkey/origin-netflix#the-history-of-netflix-streaming">The History of Netflix Streaming</a> section ends with the line “Thus, the Netflix team began their journey into Chaos.”  This might be a good place for a “Journey into Chaos”-style image.</li>
+  <li>
+<a href="/gremlin-chaos-monkey/origin-netflix#the-history-of-netflix-streaming">The History of Netflix Streaming</a> section ends with the line “Thus, the Netflix team began their journey into Chaos.”  This might be a good place for a “Journey into Chaos”-style image.</li>
   <li>Currently, the URL <code class="highlighter-rouge">/pdf-download</code> is being used to reference the future downloadable PDF version of this guide.  Please change all instances of this URL throughout the guide if the target URL changes as well.</li>
   <li>
     <p>The following chart is currently used in the <a href="/gremlin-chaos-monkey/simian-army#chaos-kong">Simian Army - Chaos Kong</a> section and is <strong>copyright of Netflix</strong>.  Please determine if use, with attribution, should remain or if image should be removed.
- <img src="../images/simian-army-netflix-chaos-kong-experiment.png" alt="simian-army-netflix-chaos-kong-experiment" title="Netflix Chaos Kong Experiment Chart -- Courtesy Netflix" /></p>
+ <img src="../images/simian-army-netflix-chaos-kong-experiment.png" alt="simian-army-netflix-chaos-kong-experiment" title="Netflix Chaos Kong Experiment Chart -- Courtesy Netflix"></p>
 
     <p><em>Netflix Chaos Kong Experiment - <strong>Courtesy of Netflix</strong></em></p>
   </li>
   <li>
-    <p><code class="highlighter-rouge">Janitor Monkey</code> paint image seen below and used in <a href="/gremlin-chaos-monkey/simian-army#janitor-monkey">Simian Army - Janitor Monkey</a> is <a href="https://drawception.com/panel/drawing/hJvv6336/janitor-monkey-laughs-at-spilled-mop-bucket/">copyright of Drawception</a> user <a href="https://drawception.com/player/477070/xiii/">XII</a>.  But, it made me laugh so I had to include it.  Perhaps something similar can be used here for the guide.</p>
+    <p><code class="highlighter-rouge">Janitor Monkey</code> paint image seen below and used in <a href="/gremlin-chaos-monkey/simian-army#janitor-monkey">Simian Army - Janitor Monkey</a> is <a href="https://drawception.com/panel/drawing/hJvv6336/janitor-monkey-laughs-at-spilled-mop-bucket/" target="_blank" rel="noopener noreferrer">copyright of Drawception</a> user <a href="https://drawception.com/player/477070/xiii/" target="_blank" rel="noopener noreferrer">XII</a>.  But, it made me laugh so I had to include it.  Perhaps something similar can be used here for the guide.</p>
 
-    <p><img src="../images/simian-army-janitor-monkey.png" alt="simian-army-janitor-monkey" title="A magnificent Janitor Monkey" /></p>
+    <p><img src="../images/simian-army-janitor-monkey.png" alt="simian-army-janitor-monkey" title="A magnificent Janitor Monkey"></p>
   </li>
 </ol>
 
 <h2 id="links">Links</h2>
 
+<p>All internal and frequently-used URLs are located in the <code class="highlighter-rouge">_internal/nav-internal.md</code> template, which is then included via <code class="highlighter-rouge">{% include nav-internal.md %}</code> at the end of every Markdown file.  Therefore, to change a link throughout the full guide simply requires changing it in <code class="highlighter-rouge">nav-internal.md</code> and rebuilding.</p>
+
+<h3 id="testing-url-validity-and-functionality">Testing URL Validity and Functionality</h3>
+
 <ol>
-  <li><strong>(TODO)</strong>: Verify all links are valid.</li>
-  <li><strong>(TODO)</strong>: Find out where Gremlin service mention links should point to and update accordingly.</li>
+  <li>
+    <p>The <code class="highlighter-rouge">html-proofer</code> gem is used to help verify link validity.  It can be run manually, but the <code class="highlighter-rouge">Rakefile</code> is configured to perform a Jekyll build and then execute <code class="highlighter-rouge">html-proofer</code>.</p>
+
+    <div class="language-ruby highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="c1"># RAKEFILE</span>
+ <span class="nb">require</span> <span class="s1">'html-proofer'</span>
+
+ <span class="n">task</span> <span class="ss">:test</span> <span class="k">do</span>
+     <span class="c1"># Temporarily replace baseurl for shared mount directories to hash correctly.</span>
+     <span class="n">sh</span> <span class="s2">"bundle exec jekyll build --baseurl ''"</span>
+     <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
+         <span class="ss">assume_extension: </span><span class="kp">true</span><span class="p">,</span>
+         <span class="ss">url_ignore: </span><span class="p">[</span>
+         <span class="c1"># Documentation link.</span>
+         <span class="s2">"http://localhost:9000"</span><span class="p">,</span>
+         <span class="c1"># PDF Download not implemented</span>
+         <span class="s2">"/pdf-download"</span><span class="p">,</span>
+         <span class="p">]</span>
+     <span class="p">}</span>
+     <span class="no">HTMLProofer</span><span class="p">.</span><span class="nf">check_directory</span><span class="p">(</span><span class="s2">"./docs"</span><span class="p">,</span> <span class="n">options</span><span class="p">).</span><span class="nf">run</span>
+ <span class="k">end</span>
+</code></pre></div>    </div>
+
+    <p>Execute with standard <code class="highlighter-rouge">rake test</code> command.</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> rake <span class="nb">test</span>
+</code></pre></div>    </div>
+
+    <p>Errors indicate the specific problem, while a successful output confirms all links are valid and functional.</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> Running <span class="o">[</span><span class="s2">"LinkCheck"</span>, <span class="s2">"ScriptCheck"</span>, <span class="s2">"ImageCheck"</span><span class="o">]</span> on <span class="o">[</span><span class="s2">"./docs"</span><span class="o">]</span> on <span class="k">*</span>.html...
+
+ Checking 105 external links...
+ Ran on 16 files!
+
+ HTML-Proofer finished successfully.
+</code></pre></div>    </div>
+  </li>
 </ol>
+
+<h3 id="gremlin-links">Gremlin Links</h3>
+
+<ul>
+  <li>
+<strong>(TODO)</strong>: Find out where Gremlin service mention links should point to and update accordingly.
+    <ul>
+      <li>For example, where should references to signup for/acquire a Gremlin account point to?  At present, they use the <code class="highlighter-rouge">#gremlin-account-signup</code> navigation link key, which resolves to <a href="https://www.gremlin.com/demo" target="_blank" rel="noopener noreferrer">this URL</a>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="external-links">External Links</h3>
+
+<p>By default, all external links are processes with <code class="highlighter-rouge">target="_blank" rel="noreferrer noopener"</code> tags, opening them in a new window.  To disable this behavior disable the <code class="highlighter-rouge">jekyll-target-blank</code> gem and rebuild.</p>
 
 
         
@@ -446,7 +515,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2018 Gabe Wyatt</div>
+<div class="page__footer-copyright">© 2018 Gabe Wyatt</div>
 
       </footer>
     </div>

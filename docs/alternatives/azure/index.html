@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.12.2 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.13.0 by Michael Rose
   Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
@@ -115,11 +115,14 @@
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
         <a class="site-title" href="/gremlin-chaos-monkey/">Gremlin: Chaos Monkey</a>
-        <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/gremlin-chaos-monkey/notes" >Notes to Editor</a>
-            </li><li class="masthead__menu-item">
-              <a href="https://drive.google.com/drive/folders/16PhHEJGZtF428eyko_6-2BxpDGAU9JhW?usp=sharing" >Google Drive Exports</a>
-            </li></ul>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/gremlin-chaos-monkey/notes">Notes to Editor</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="https://drive.google.com/drive/folders/16PhHEJGZtF428eyko_6-2BxpDGAU9JhW?usp=sharing" target="_blank" rel="noopener noreferrer">Google Drive Exports</a>
+            </li>
+</ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Toggle Menu</span>
@@ -149,7 +152,7 @@
       
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
           <a href="http://localhost:4000/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
-          <meta itemprop="position" content="1" />
+          <meta itemprop="position" content="1">
         </li>
         <span class="sep">/</span>
       
@@ -157,7 +160,7 @@
         
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
           <a href="/gremlin-chaos-monkey/alternatives" itemprop="item"><span itemprop="name">Alternatives</span></a>
-          <meta itemprop="position" content="2" />
+          <meta itemprop="position" content="2">
         </li>
         <span class="sep">/</span>
       
@@ -188,7 +191,7 @@
 
 <nav class="nav__list">
   
-  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <input id="ac-toc" name="accordion-toc" type="checkbox">
   <label for="ac-toc">Toggle Menu</label>
   <ul class="nav__items">
     
@@ -360,7 +363,7 @@
 
 
 
-  2 minute read
+  3 minute read
 </p>
           
         </header>
@@ -370,9 +373,11 @@
         
           <aside class="sidebar__right sticky">
             <nav class="toc">
-              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> </h4></header>
+              <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> </h4></header>
               <ul class="toc__menu">
   <li><a href="#search-chaos-monkey">Search Chaos Monkey</a></li>
+  <li><a href="#causing-chaos-on-azure-with-gremlin">Causing Chaos on Azure with Gremlin</a></li>
   <li><a href="#wazmonkey">WazMonkey</a></li>
   <li><a href="#fault-analysis-service">Fault Analysis Service</a></li>
 </ul>
@@ -381,21 +386,30 @@
         
         <h2 id="search-chaos-monkey">Search Chaos Monkey</h2>
 
-<p>Inspired by Chaos Monkey, the <a href="https://azure.microsoft.com/en-us/services/search/">Azure Search</a> team <a href="https://azure.microsoft.com/en-gb/blog/inside-azure-search-chaos-engineering/">developed</a> an alternative tool they call <strong>Search Chaos Monkey</strong>.  Search Chaos Monkey is initially used to attack a test environment that contains a randomly and continuously changing search service.  Test environment experiments allow the team to catch bugs before they reach production.</p>
+<p>Inspired by Chaos Monkey, the <a href="https://azure.microsoft.com/en-us/services/search/" target="_blank" rel="noopener noreferrer">Azure Search</a> team <a href="https://azure.microsoft.com/en-gb/blog/inside-azure-search-chaos-engineering/" target="_blank" rel="noopener noreferrer">developed</a> an alternative tool they call <strong>Search Chaos Monkey</strong>.  Search Chaos Monkey is initially used to attack a test environment that contains a randomly and continuously changing search service.  Test environment experiments allow the team to catch bugs before they reach production.</p>
 
 <p>Once it’s in production, Search Chaos Monkey’s destructive power is managed through its configurable <em>chaos level</em>.</p>
 
 <ul>
-  <li><strong>Low chaos</strong> failures are recovered from gracefully with little to no interruption in service.  Alerts raised in <strong>low</strong> mode are considered bugs.</li>
-  <li><strong>Medium chaos</strong> failures are also gracefully recovered from, but they may degrade service performance or stability.  Low-priority alerts are sent along to engineers on call.</li>
-  <li><strong>High chaos</strong> failures are those that definitively interrupt service and trigger high-priority alerts for on-call engineers.</li>
+  <li>
+<strong>Low chaos</strong> failures are recovered from gracefully with little to no interruption in service.  Alerts raised in <strong>low</strong> mode are considered bugs.</li>
+  <li>
+<strong>Medium chaos</strong> failures are also gracefully recovered from, but they may degrade service performance or stability.  Low-priority alerts are sent along to engineers on call.</li>
+  <li>
+<strong>High chaos</strong> failures are those that definitively interrupt service and trigger high-priority alerts for on-call engineers.</li>
 </ul>
 
-<p>The Azure Search team also designates an <strong>extreme chaos</strong> level to any failure that incurs data loss, causes ungraceful degradation, or fails silently.  To maintain experimental control, Search Chaos Monkey is not permitted to induce <strong>extreme</strong> failures on a continuous basis.</p>
+<p>These levels offer a modicum of control over experiments, but not much in the way of granularity.  The Azure Search team also designates an <strong>extreme chaos</strong> level to any failure that incurs data loss, causes ungraceful degradation, or fails silently.  To maintain experimental control, Search Chaos Monkey is not permitted to induce <strong>extreme</strong> failures on a continuous basis.</p>
+
+<h2 id="causing-chaos-on-azure-with-gremlin">Causing Chaos on Azure with Gremlin</h2>
+
+<p>Performing Chaos Experiments on your Azure applications is simple, safe, and secure using Gremlin’s <a href="https://www.gremlin.com" target="_blank" rel="noopener noreferrer">Failure as a Service</a>.  Azure’s distributed computing architecture all but requires proper failure injection testing with tools like Gremlin, which can execute a variety of attacks including straining CPU, memory, disk, and IO; terminating instances; altering instance system time; manipulating network traffic; and more.</p>
+
+<p>Check out the <a href="https://help.gremlin.com/install-gremlin-azure/" target="_blank" rel="noopener noreferrer">official documentation</a> or look through our in-depth <a href="https://www.gremlin.com/community/tutorials/how-to-install-and-use-gremlin-on-microsoft-azure/" target="_blank" rel="noopener noreferrer">community site</a> for more information.</p>
 
 <h2 id="wazmonkey">WazMonkey</h2>
 
-<p><a href="https://github.com/smarx/WazMonkey">WazMonkey</a> is an open-source tool that selects a random Azure role instance and reboots it.  Written in C# and executed on the command-line, WazMonkey is simple and straightforward to use.</p>
+<p><a href="https://github.com/smarx/WazMonkey" target="_blank" rel="noopener noreferrer">WazMonkey</a> is an open-source tool that selects a random Azure role instance and reboots it.  Written in C# and executed on the command-line, WazMonkey is simple and straightforward to use.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Usage: WazMonkey <span class="nt">-p</span> foo.publishSettings <span class="nt">-n</span> myservice <span class="nt">-s</span> production
 
@@ -416,7 +430,7 @@
 
 <h2 id="fault-analysis-service">Fault Analysis Service</h2>
 
-<p>Azure’s <a href="https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-testability-overview">Fault Analysis Service</a> is a service that injects failure and runs test scenarios against applications built on <a href="https://azure.microsoft.com/en-us/services/service-fabric/">Microsoft Azure Service Fabric</a>.  The Fault Analysis Service executes <strong>actions</strong>, which are individual faults that target a system.  Developers can combine multiple actions to perform complex tasks and Chaos Experiments, such as:</p>
+<p>Azure’s <a href="https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-testability-overview" target="_blank" rel="noopener noreferrer">Fault Analysis Service</a> is a service that injects failure and runs test scenarios against applications built on <a href="https://azure.microsoft.com/en-us/services/service-fabric/" target="_blank" rel="noopener noreferrer">Microsoft Azure Service Fabric</a>.  The Fault Analysis Service executes <strong>actions</strong>, which are individual faults that target a system.  Developers can combine multiple actions to perform complex tasks and Chaos Experiments, such as:</p>
 
 <ul>
   <li>Restarting nodes</li>
@@ -425,9 +439,9 @@
   <li>Removing or restarting a replica</li>
 </ul>
 
-<p>Developers can <a href="https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-controlled-chaos">induce</a> controlled Chaos to simulate both graceful and ungraceful faults within Service Fabric clusters.  An ungraceful fault is anything that terminates a process, such as restarting a node or application.</p>
+<p>Developers can <a href="https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-controlled-chaos" target="_blank" rel="noopener noreferrer">induce</a> controlled Chaos to simulate both graceful and ungraceful faults within Service Fabric clusters.  An ungraceful fault is anything that terminates a process, such as restarting a node or application.</p>
 
-<p>During execution, Fault Analysis Service frequently snapshots the current “run state” and adds them to named <code class="highlighter-rouge">Event</code> types.  Event types like <code class="highlighter-rouge">ExecutingFaultsEvent</code> and <code class="highlighter-rouge">ValidationFailedEvent</code> can then be retrieved via the <a href="https://docs.microsoft.com/en-us/rest/api/servicefabric/">API</a>.</p>
+<p>During execution, Fault Analysis Service frequently snapshots the current “run state” and adds them to named <code class="highlighter-rouge">Event</code> types.  Event types like <code class="highlighter-rouge">ExecutingFaultsEvent</code> and <code class="highlighter-rouge">ValidationFailedEvent</code> can then be retrieved via the <a href="https://docs.microsoft.com/en-us/rest/api/servicefabric/" target="_blank" rel="noopener noreferrer">API</a>.</p>
 
 
         
@@ -475,7 +489,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2018 Gabe Wyatt</div>
+<div class="page__footer-copyright">© 2018 Gabe Wyatt</div>
 
       </footer>
     </div>

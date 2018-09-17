@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.12.2 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.13.0 by Michael Rose
   Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
@@ -115,11 +115,14 @@
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
         <a class="site-title" href="/gremlin-chaos-monkey/">Gremlin: Chaos Monkey</a>
-        <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/gremlin-chaos-monkey/notes" >Notes to Editor</a>
-            </li><li class="masthead__menu-item">
-              <a href="https://drive.google.com/drive/folders/16PhHEJGZtF428eyko_6-2BxpDGAU9JhW?usp=sharing" >Google Drive Exports</a>
-            </li></ul>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/gremlin-chaos-monkey/notes">Notes to Editor</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="https://drive.google.com/drive/folders/16PhHEJGZtF428eyko_6-2BxpDGAU9JhW?usp=sharing" target="_blank" rel="noopener noreferrer">Google Drive Exports</a>
+            </li>
+</ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Toggle Menu</span>
@@ -149,7 +152,7 @@
       
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
           <a href="http://localhost:4000/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
-          <meta itemprop="position" content="1" />
+          <meta itemprop="position" content="1">
         </li>
         <span class="sep">/</span>
       
@@ -178,7 +181,7 @@
 
 <nav class="nav__list">
   
-  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <input id="ac-toc" name="accordion-toc" type="checkbox">
   <label for="ac-toc">Toggle Menu</label>
   <ul class="nav__items">
     
@@ -360,7 +363,8 @@
         
           <aside class="sidebar__right sticky">
             <nav class="toc">
-              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> </h4></header>
+              <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> </h4></header>
               <ul class="toc__menu">
   <li><a href="#the-history-of-netflix-streaming">The History of Netflix Streaming</a></li>
   <li><a href="#the-simian-army">The Simian Army</a></li>
@@ -375,13 +379,13 @@
 
 <h2 id="the-history-of-netflix-streaming">The History of Netflix Streaming</h2>
 
-<p>Netflix launched their streaming service in early 2007, as a free addon for their existing DVD-by-mail subscribers.  While their initial streaming library contained only <a href="https://profkenhoma.wordpress.com/2009/06/23/netflix-managing-a-still-hot-business-as-its-time-runs-out/">around 1,000 titles</a> at launch, the popularity and demand continued to rise, and Netflix kept adding to their streaming library, reaching over 12,000 titles by June 2009.</p>
+<p>Netflix launched their streaming service in early 2007, as a free addon for their existing DVD-by-mail subscribers.  While their initial streaming library contained only <a href="https://profkenhoma.wordpress.com/2009/06/23/netflix-managing-a-still-hot-business-as-its-time-runs-out/" target="_blank" rel="noopener noreferrer">around 1,000 titles</a> at launch, the popularity and demand continued to rise, and Netflix kept adding to their streaming library, reaching over 12,000 titles by June 2009.</p>
 
-<p>Netflix’s streaming service was <a href="https://www.nytimes.com/2007/01/16/technology/16netflix.html">initially built</a> by Netflix engineers on top of Microsoft software and housed within vertically scaled server racks. However, this single point of failure came back to bite them in August 2008, when a <a href="https://media.netflix.com/en/company-blog/completing-the-netflix-cloud-migration">major database corruption</a> resulted in a three-day downtime during which DVDs couldn’t be shipped to customers. Following this event, Netflix engineers began migrating the entire Netflix stack away from a monolithic architecture, and into a distributed cloud architecture, deployed on <a href="https://aws.amazon.com/">Amazon Web Services</a>.</p>
+<p>Netflix’s streaming service was <a href="https://www.nytimes.com/2007/01/16/technology/16netflix.html" target="_blank" rel="noopener noreferrer">initially built</a> by Netflix engineers on top of Microsoft software and housed within vertically scaled server racks. However, this single point of failure came back to bite them in August 2008, when a <a href="https://media.netflix.com/en/company-blog/completing-the-netflix-cloud-migration" target="_blank" rel="noopener noreferrer">major database corruption</a> resulted in a three-day downtime during which DVDs couldn’t be shipped to customers. Following this event, Netflix engineers began migrating the entire Netflix stack away from a monolithic architecture, and into a distributed cloud architecture, deployed on <a href="https://aws.amazon.com/" target="_blank" rel="noopener noreferrer">Amazon Web Services</a>.</p>
 
-<p>This major shift toward a distributed architecture of hundreds of microservices presented a great deal of additional complexity. This level of intricacy and interconnectedness in a distributed system created something that was intractable and required a new approach to prevent seemingly random outages.  But by using proper Chaos Engineering techniques, starting first with Chaos Monkey, and evolving into <a href="https://medium.com/netflix-techblog/fit-failure-injection-testing-35d8e2a9bb2">more sophisticated tools like FIT</a>, Netflix was able to engineer a resilient architecture.</p>
+<p>This major shift toward a distributed architecture of hundreds of microservices presented a great deal of additional complexity. This level of intricacy and interconnectedness in a distributed system created something that was intractable and required a new approach to prevent seemingly random outages.  But by using proper Chaos Engineering techniques, starting first with Chaos Monkey, and evolving into <a href="https://medium.com/netflix-techblog/fit-failure-injection-testing-35d8e2a9bb2" target="_blank" rel="noopener noreferrer">more sophisticated tools like FIT</a>, Netflix was able to engineer a resilient architecture.</p>
 
-<p>Netflix’s move toward a horizontally scaled software stack required systems that were much more reliable and fault tolerant.  One of the most critical lessons – as made particularly evident by the major database corruption incident back in 2008 – was that <a href="https://medium.com/netflix-techblog/5-lessons-weve-learned-using-aws-1f2a28588e4c">“the best way to avoid failure is to fail constantly.”</a>.  The engineering team needed a tool that could <em>proactively</em> inject failure into the system.  This would show the team how the system behaved under abnormal conditions, and would teach them how to alter the system so other services could easily tolerate future, <em>unplanned</em> failures.  Thus, the Netflix team began their journey into Chaos.</p>
+<p>Netflix’s move toward a horizontally scaled software stack required systems that were much more reliable and fault tolerant.  One of the most critical lessons – as made particularly evident by the major database corruption incident back in 2008 – was that <a href="https://medium.com/netflix-techblog/5-lessons-weve-learned-using-aws-1f2a28588e4c" target="_blank" rel="noopener noreferrer">“the best way to avoid failure is to fail constantly.”</a>.  The engineering team needed a tool that could <em>proactively</em> inject failure into the system.  This would show the team how the system behaved under abnormal conditions, and would teach them how to alter the system so other services could easily tolerate future, <em>unplanned</em> failures.  Thus, the Netflix team began their journey into Chaos.</p>
 
 <h2 id="the-simian-army">The Simian Army</h2>
 
@@ -389,20 +393,24 @@
 
 <h2 id="chaos-monkey-today">Chaos Monkey Today</h2>
 
-<p>Chaos Monkey 2.0 was <a href="https://medium.com/netflix-techblog/netflix-chaos-monkey-upgraded-1d679429be5d">announced</a> and <a href="https://github.com/netflix/chaosmonkey">publicly released on GitHub</a> in late 2016.  The new version includes a handful of major feature changes and additions.</p>
+<p>Chaos Monkey 2.0 was <a href="https://medium.com/netflix-techblog/netflix-chaos-monkey-upgraded-1d679429be5d" target="_blank" rel="noopener noreferrer">announced</a> and <a href="https://github.com/netflix/chaosmonkey" target="_blank" rel="noopener noreferrer">publicly released on GitHub</a> in late 2016.  The new version includes a handful of major feature changes and additions.</p>
 
 <ul>
-  <li><strong>Spinnaker Requirement</strong>: <a href="https://www.spinnaker.io/">Spinnaker</a> is an open-source, multi-cloud continuous delivery platform developed by Netflix, which allows for automated deployments across multiple cloud providers like AWS, Azure, Kubernetes, and <a href="https://www.spinnaker.io/reference/providers/">a few more</a>.  One major drawback of using Chaos Monkey is that it <em>forces</em> you and your organization to build atop Spinnaker’s CD architecture.  If you need some guidance on that, check out our <a href="/gremlin-chaos-monkey/advanced-tips#how-to-manually-deploy-spinnaker-for-chaos-monkey">Spinnaker deployment tutorials</a>.</li>
-  <li><strong>Improved Scheduling</strong>: Instance termination schedules are no longer determined by probabilistic algorithms, but are instead  based on the <em>mean time</em> between terminations.  Check out <a href="/gremlin-chaos-monkey/developer-tutorial#how-to-schedule-chaos-monkey-terminations">How to Schedule Chaos Monkey Terminations</a> for technical instructions.</li>
-  <li><strong>Trackers</strong>: <a href="https://netflix.github.io/chaosmonkey/Tracker/">Trackers</a> are Go language objects that report instance terminations to external services.</li>
-  <li><strong>Loss of Additional Capabilities</strong>: Prior to 2.0, Chaos Monkey was capable of performing additional actions <em>beyond</em> just terminating instances.  With version 2.0, those capabilities have been removed and moved to other <a href="/gremlin-chaos-monkey/simian-army">Simian Army</a> tools.</li>
+  <li>
+<strong>Spinnaker Requirement</strong>: <a href="https://www.spinnaker.io/" target="_blank" rel="noopener noreferrer">Spinnaker</a> is an open-source, multi-cloud continuous delivery platform developed by Netflix, which allows for automated deployments across multiple cloud providers like AWS, Azure, Kubernetes, and <a href="https://www.spinnaker.io/reference/providers/" target="_blank" rel="noopener noreferrer">a few more</a>.  One major drawback of using Chaos Monkey is that it <em>forces</em> you and your organization to build atop Spinnaker’s CD architecture.  If you need some guidance on that, check out our <a href="/gremlin-chaos-monkey/advanced-tips#how-to-manually-deploy-spinnaker-for-chaos-monkey">Spinnaker deployment tutorials</a>.</li>
+  <li>
+<strong>Improved Scheduling</strong>: Instance termination schedules are no longer determined by probabilistic algorithms, but are instead  based on the <em>mean time</em> between terminations.  Check out <a href="/gremlin-chaos-monkey/developer-tutorial#how-to-schedule-chaos-monkey-terminations">How to Schedule Chaos Monkey Terminations</a> for technical instructions.</li>
+  <li>
+<strong>Trackers</strong>: <a href="https://netflix.github.io/chaosmonkey/Tracker/" target="_blank" rel="noopener noreferrer">Trackers</a> are Go language objects that report instance terminations to external services.</li>
+  <li>
+<strong>Loss of Additional Capabilities</strong>: Prior to 2.0, Chaos Monkey was capable of performing additional actions <em>beyond</em> just terminating instances.  With version 2.0, those capabilities have been removed and moved to other <a href="/gremlin-chaos-monkey/simian-army">Simian Army</a> tools.</li>
 </ul>
 
 <h2 id="failure-injection-testing">Failure Injection Testing</h2>
 
-<p>In October 2014, dissatisfied with the lack of control introduced when unleashing some of the <a href="/gremlin-chaos-monkey/simian-army">Simian Army</a> tools, <a href="https://medium.com/netflix-techblog/fit-failure-injection-testing-35d8e2a9bb2">Netflix introduced</a> a solution they called <em>Failure Injection Testing</em> (<em>FIT</em>).  Built by a small team of Netflix engineers – including Gremlin Co-Founder and CEO <a href="https://twitter.com/koltonandrus">Kolton Andrus</a> – FIT added dimensions to the failure injection process, allowing Netflix to more precisely determine what was failing and which components that failure impacted.</p>
+<p>In October 2014, dissatisfied with the lack of control introduced when unleashing some of the <a href="/gremlin-chaos-monkey/simian-army">Simian Army</a> tools, <a href="https://medium.com/netflix-techblog/fit-failure-injection-testing-35d8e2a9bb2" target="_blank" rel="noopener noreferrer">Netflix introduced</a> a solution they called <em>Failure Injection Testing</em> (<em>FIT</em>).  Built by a small team of Netflix engineers – including Gremlin Co-Founder and CEO <a href="https://twitter.com/koltonandrus" target="_blank" rel="noopener noreferrer">Kolton Andrus</a> – FIT added dimensions to the failure injection process, allowing Netflix to more precisely determine what was failing and which components that failure impacted.</p>
 
-<p>FIT works by first pushing failure simulation metadata to <a href="https://github.com/Netflix/zuul/wiki">Zuul</a>, which is an edge service developed by Netflix.  Zuul handles all requests from devices and applications that utilize the back end of Netflix’s streaming service.  As of version 2.0, <a href="https://github.com/Netflix/zuul/wiki/Core-Features">Zuul can handle</a> dynamic routing, monitoring, security, resiliency, load balancing, connection pooling, and more.  The core functionality of Zuul’s business logic comes from <a href="https://github.com/Netflix/zuul/wiki/Filters"><em>Filters</em></a>, which behave like simple <strong>pass/fail</strong> tests applied to each request and determine if a given action should be performed for that request.  A filter can handle actions such as <a href="https://github.com/Netflix/zuul/blob/2.1/zuul-sample/src/main/groovy/com/netflix/zuul/sample/filters/inbound/DebugRequest.groovy">adding debug logging</a>, determining if a <a href="https://github.com/Netflix/zuul/blob/2.1/zuul-core/src/main/java/com/netflix/zuul/filters/common/GZipResponseFilter.java">response should be GZipped</a>, or <a href="https://medium.com/netflix-techblog/fit-failure-injection-testing-35d8e2a9bb2#f07e">attaching injected failure</a>, as in the case of FIT.</p>
+<p>FIT works by first pushing failure simulation metadata to <a href="https://github.com/Netflix/zuul/wiki" target="_blank" rel="noopener noreferrer">Zuul</a>, which is an edge service developed by Netflix.  Zuul handles all requests from devices and applications that utilize the back end of Netflix’s streaming service.  As of version 2.0, <a href="https://github.com/Netflix/zuul/wiki/Core-Features" target="_blank" rel="noopener noreferrer">Zuul can handle</a> dynamic routing, monitoring, security, resiliency, load balancing, connection pooling, and more.  The core functionality of Zuul’s business logic comes from <a href="https://github.com/Netflix/zuul/wiki/Filters" target="_blank" rel="noopener noreferrer"><em>Filters</em></a>, which behave like simple <strong>pass/fail</strong> tests applied to each request and determine if a given action should be performed for that request.  A filter can handle actions such as <a href="https://github.com/Netflix/zuul/blob/2.1/zuul-sample/src/main/groovy/com/netflix/zuul/sample/filters/inbound/DebugRequest.groovy" target="_blank" rel="noopener noreferrer">adding debug logging</a>, determining if a <a href="https://github.com/Netflix/zuul/blob/2.1/zuul-core/src/main/java/com/netflix/zuul/filters/common/GZipResponseFilter.java" target="_blank" rel="noopener noreferrer">response should be GZipped</a>, or <a href="https://medium.com/netflix-techblog/fit-failure-injection-testing-35d8e2a9bb2#f07e" target="_blank" rel="noopener noreferrer">attaching injected failure</a>, as in the case of FIT.</p>
 
 <p>The introduction of FIT into Netflix’s failure injection strategy was a monumental move toward better, modern-day Chaos Engineering practices.  Since FIT is a service unto itself, it allowed failure to be injected by a variety of teams, who could then perform proactive Chaos Experiments with greater precision.  This allowed Netflix to truly emphasize a core discipline of Chaos Engineering, knowing they were testing for failure in every nook and cranny, proving confidence that their systems were resilient to truly <em>unexpected</em> failures.</p>
 
@@ -414,16 +422,19 @@
 
 <h2 id="chaos-monkey-and-spinnaker">Chaos Monkey and Spinnaker</h2>
 
-<p>As discussed <a href="/gremlin-chaos-monkey/origin-netflix#chaos-monkey-today">above</a> and later in our <a href="/gremlin-chaos-monkey/developer-tutorial#how-to-quickly-deploy-spinnaker-for-chaos-monkey">Spinnaker Quick Start</a> guide, Chaos Monkey can <strong>only</strong> be used to terminate instances within an application managed by <a href="https://spinnaker.io">Spinnaker</a>.</p>
+<p>As discussed <a href="/gremlin-chaos-monkey/origin-netflix#chaos-monkey-today">above</a> and later in our <a href="/gremlin-chaos-monkey/developer-tutorial#how-to-quickly-deploy-spinnaker-for-chaos-monkey">Spinnaker Quick Start</a> guide, Chaos Monkey can <strong>only</strong> be used to terminate instances within an application managed by <a href="https://spinnaker.io" target="_blank" rel="noopener noreferrer">Spinnaker</a>.</p>
 
-<p><img src="../images/origin-netflix-bummer.gif" alt="bummer" title="Bill Murray Bummer" /></p>
+<p><img src="../images/origin-netflix-bummer.gif" alt="bummer" title="Bill Murray Bummer"></p>
 
-<p>This requirement is not a problem for Netflix or those other companies (such as <a href="https://cloudplatform.googleblog.com/2017/02/guest-post-multi-cloud-continuous-delivery-using-Spinnaker-at-Waze.html">Waze</a>) that using Spinnaker to great success.  However, limiting your Chaos Engineering tools and practices to just Chaos Monkey also means limiting yourself to only Spinnaker as your continuous delivery and deployment solution.  This may present a number of potential issues:</p>
+<p>This requirement is not a problem for Netflix or those other companies (such as <a href="https://cloudplatform.googleblog.com/2017/02/guest-post-multi-cloud-continuous-delivery-using-Spinnaker-at-Waze.html" target="_blank" rel="noopener noreferrer">Waze</a>) that using Spinnaker to great success.  However, limiting your Chaos Engineering tools and practices to just Chaos Monkey also means limiting yourself to only Spinnaker as your continuous delivery and deployment solution.  This may present a number of potential issues:</p>
 
 <ul>
-  <li><strong>Setup and Propagation</strong>: Spinnaker requires quite a bit of investment in server setup and propagation.  As you may notice in even the streamlined, provider-specific tutorials found <a href="/gremlin-chaos-monkey/advanced-tips">later in this guide</a>, getting Spinnaker up and running on a production environment takes a lot of time (and a hefty number of CPU cycles).</li>
-  <li><strong>Limited Documentation</strong>: Spinnaker’s <a href="https://www.spinnaker.io/setup/install/">official documentation</a> is rather limited and somewhat outdated in certain areas.</li>
-  <li><strong>Provider Support</strong>: Spinnaker currently supports most of the <a href="https://www.spinnaker.io/concepts/providers/">big name cloud providers</a>, but if your use case requires a provider outside of this list you’re out of luck (or will need to develop your own <a href="https://github.com/spinnaker/clouddriver">CloudDriver</a>).</li>
+  <li>
+<strong>Setup and Propagation</strong>: Spinnaker requires quite a bit of investment in server setup and propagation.  As you may notice in even the streamlined, provider-specific tutorials found <a href="/gremlin-chaos-monkey/advanced-tips">later in this guide</a>, getting Spinnaker up and running on a production environment takes a lot of time (and a hefty number of CPU cycles).</li>
+  <li>
+<strong>Limited Documentation</strong>: Spinnaker’s <a href="https://www.spinnaker.io/setup/install/" target="_blank" rel="noopener noreferrer">official documentation</a> is rather limited and somewhat outdated in certain areas.</li>
+  <li>
+<strong>Provider Support</strong>: Spinnaker currently supports most of the <a href="https://www.spinnaker.io/concepts/providers/" target="_blank" rel="noopener noreferrer">big name cloud providers</a>, but if your use case requires a provider outside of this list you’re out of luck (or will need to develop your own <a href="https://github.com/spinnaker/clouddriver" target="_blank" rel="noopener noreferrer">CloudDriver</a>).</li>
 </ul>
 
 
@@ -472,7 +483,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2018 Gabe Wyatt</div>
+<div class="page__footer-copyright">© 2018 Gabe Wyatt</div>
 
       </footer>
     </div>

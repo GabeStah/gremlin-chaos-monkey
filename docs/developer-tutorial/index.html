@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.12.2 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.13.0 by Michael Rose
   Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
@@ -115,11 +115,14 @@
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
         <a class="site-title" href="/gremlin-chaos-monkey/">Gremlin: Chaos Monkey</a>
-        <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/gremlin-chaos-monkey/notes" >Notes to Editor</a>
-            </li><li class="masthead__menu-item">
-              <a href="https://drive.google.com/drive/folders/16PhHEJGZtF428eyko_6-2BxpDGAU9JhW?usp=sharing" >Google Drive Exports</a>
-            </li></ul>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/gremlin-chaos-monkey/notes">Notes to Editor</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="https://drive.google.com/drive/folders/16PhHEJGZtF428eyko_6-2BxpDGAU9JhW?usp=sharing" target="_blank" rel="noopener noreferrer">Google Drive Exports</a>
+            </li>
+</ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Toggle Menu</span>
@@ -149,7 +152,7 @@
       
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
           <a href="http://localhost:4000/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
-          <meta itemprop="position" content="1" />
+          <meta itemprop="position" content="1">
         </li>
         <span class="sep">/</span>
       
@@ -178,7 +181,7 @@
 
 <nav class="nav__list">
   
-  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <input id="ac-toc" name="accordion-toc" type="checkbox">
   <label for="ac-toc">Toggle Menu</label>
   <ul class="nav__items">
     
@@ -360,9 +363,11 @@
         
           <aside class="sidebar__right sticky">
             <nav class="toc">
-              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> </h4></header>
+              <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> </h4></header>
               <ul class="toc__menu">
-  <li><a href="#how-to-quickly-deploy-spinnaker-for-chaos-monkey">How to Quickly Deploy Spinnaker for Chaos Monkey</a>
+  <li>
+<a href="#how-to-quickly-deploy-spinnaker-for-chaos-monkey">How to Quickly Deploy Spinnaker for Chaos Monkey</a>
     <ul>
       <li><a href="#creating-the-spinnaker-stack">Creating the Spinnaker Stack</a></li>
       <li><a href="#connecting-to-the-bastion-host">Connecting to the Bastion Host</a></li>
@@ -371,21 +376,24 @@
       <li><a href="#creating-an-application">Creating an Application</a></li>
       <li><a href="#adding-a-firewall">Adding a Firewall</a></li>
       <li><a href="#adding-a-load-balancer">Adding a Load Balancer</a></li>
-      <li><a href="#creating-a-pipeline-in-spinnaker">Creating a Pipeline in Spinnaker</a>
+      <li>
+<a href="#creating-a-pipeline-in-spinnaker">Creating a Pipeline in Spinnaker</a>
         <ul>
           <li><a href="#adding-a-bake-stage">Adding a Bake Stage</a></li>
           <li><a href="#adding-a-deploy-stage">Adding a Deploy Stage</a></li>
           <li><a href="#adding-a-server-group">Adding a Server Group</a></li>
         </ul>
       </li>
-      <li><a href="#executing-the-pipeline">Executing the Pipeline</a>
+      <li>
+<a href="#executing-the-pipeline">Executing the Pipeline</a>
         <ul>
           <li><a href="#troubleshooting-pipeline-executions">Troubleshooting Pipeline Executions</a></li>
         </ul>
       </li>
     </ul>
   </li>
-  <li><a href="#how-to-install-chaos-monkey">How to Install Chaos Monkey</a>
+  <li>
+<a href="#how-to-install-chaos-monkey">How to Install Chaos Monkey</a>
     <ul>
       <li><a href="#installing-mysql">Installing MySQL</a></li>
       <li><a href="#setup-mysql-for-chaos-monkey">Setup MySQL for Chaos Monkey</a></li>
@@ -394,9 +402,11 @@
     </ul>
   </li>
   <li><a href="#how-to-configure-chaos-monkey">How to Configure Chaos Monkey</a></li>
-  <li><a href="#how-to-use-chaos-monkey">How to Use Chaos Monkey</a>
+  <li>
+<a href="#how-to-use-chaos-monkey">How to Use Chaos Monkey</a>
     <ul>
-      <li><a href="#how-to-schedule-chaos-monkey-terminations">How to Schedule Chaos Monkey Terminations</a>
+      <li>
+<a href="#how-to-schedule-chaos-monkey-terminations">How to Schedule Chaos Monkey Terminations</a>
         <ul>
           <li><a href="#next-steps">Next Steps</a></li>
         </ul>
@@ -417,17 +427,23 @@
 
 <h2 id="how-to-quickly-deploy-spinnaker-for-chaos-monkey">How to Quickly Deploy Spinnaker for Chaos Monkey</h2>
 
-<p>Modern Chaos Monkey <strong>requires</strong> the use of <a href="https://www.spinnaker.io/">Spinnaker</a>, which is an open-source, multi-cloud continuous delivery platform developed by Netflix.  Spinnaker allows for automated deployments across multiple cloud platforms (such as AWS, Azure, Google Cloud Platform, and more).  Spinnaker can also be used to deploy across multiple accounts and regions, often using <strong>pipelines</strong> that define a series of events that should occur every time a new version is released.  Spinnaker is a powerful tool, but since both Spinnaker and Chaos Monkey were developed by and for Netflix’s own network architecture, you’ll need to do the extra legwork to configure Spinnaker to work within your application and infrastructure.</p>
+<p>Modern Chaos Monkey <strong>requires</strong> the use of <a href="https://www.spinnaker.io/" target="_blank" rel="noopener noreferrer">Spinnaker</a>, which is an open-source, multi-cloud continuous delivery platform developed by Netflix.  Spinnaker allows for automated deployments across multiple cloud platforms (such as AWS, Azure, Google Cloud Platform, and more).  Spinnaker can also be used to deploy across multiple accounts and regions, often using <strong>pipelines</strong> that define a series of events that should occur every time a new version is released.  Spinnaker is a powerful tool, but since both Spinnaker and Chaos Monkey were developed by and for Netflix’s own network architecture, you’ll need to do the extra legwork to configure Spinnaker to work within your application and infrastructure.</p>
 
 <p>That said, in this first section we’ll explore the fastest and simplest way to get Spinnaker up and running, which will then allow you to move onto <a href="/gremlin-chaos-monkey/developer-tutorial#how-to-install-chaos-monkey">installing</a> and then <a href="/gremlin-chaos-monkey/developer-tutorial#how-to-use-chaos-monkey">using</a>.</p>
 
-<p>We’ll be deploying Spinnaker on AWS, and the easiest method for doing so is to use the <a href="https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Spinnaker&amp;templateURL=https:%2F%2Fs3.amazonaws.com%2Faws-quickstart%2Fquickstart-spinnaker%2Ftemplates%2Fquickstart-spinnakercf.template">CloudFormation Quick Start</a> template.</p>
+<p>We’ll be deploying Spinnaker on AWS, and the easiest method for doing so is to use the <a href="https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Spinnaker&amp;templateURL=https:%2F%2Fs3.amazonaws.com%2Faws-quickstart%2Fquickstart-spinnaker%2Ftemplates%2Fquickstart-spinnakercf.template" target="_blank" rel="noopener noreferrer">CloudFormation Quick Start</a> template.</p>
 
-<div class="premonition info modified"><div class="fa fa-info-circle"></div><div class="content"><p class="header">Looking to Deploy Spinnaker In Another Environment?</p><p>If you’re looking to have the utmost control over your Spinnaker deployment you should check out our [How to Manually Deploy Spinnaker for Chaos Monkey][#spinnaker-manual] guide, which provides a step-by-step tutorial for setting up Halyard and Spinnaker on a local or virtual machine of your choice.</p></div></div>
+<div class="premonition info modified">
+<div class="fa fa-info-circle"></div>
+<div class="content">
+<p class="header">Looking to Deploy Spinnaker In Another Environment?</p>
+<p>If you’re looking to have the utmost control over your Spinnaker deployment you should check out our [How to Manually Deploy Spinnaker for Chaos Monkey][#spinnaker-manual] guide, which provides a step-by-step tutorial for setting up Halyard and Spinnaker on a local or virtual machine of your choice.</p>
+</div>
+</div>
 
-<p>The <em>AWS Spinnaker Quick Start</em> will create a simple architecture for you containing two Virtual Private Cloud (VPC) subnets (one public and one private).  The public VPC contains a <a href="https://en.wikipedia.org/wiki/Bastion_host">Bastion host</a> instance designed to be strictly accessible, with just port 22 open for SSH access.  The Bastion host will then allow a pass through connection to the private VPC that is running Spinnaker.</p>
+<p>The <em>AWS Spinnaker Quick Start</em> will create a simple architecture for you containing two Virtual Private Cloud (VPC) subnets (one public and one private).  The public VPC contains a <a href="https://en.wikipedia.org/wiki/Bastion_host" target="_blank" rel="noopener noreferrer">Bastion host</a> instance designed to be strictly accessible, with just port 22 open for SSH access.  The Bastion host will then allow a pass through connection to the private VPC that is running Spinnaker.</p>
 
-<p><img src="../images/developer-tutorial-aws-spinnaker-quick-start-architecture.png" alt="developer-tutorial-aws-spinnaker-quick-start-architecture" title="AWS Spinnaker Quick Start Architecture" /></p>
+<p><img src="../images/developer-tutorial-aws-spinnaker-quick-start-architecture.png" alt="developer-tutorial-aws-spinnaker-quick-start-architecture" title="AWS Spinnaker Quick Start Architecture"></p>
 
 <p><em>AWS Spinnaker Quick Start Architecture - <strong>Courtesy of AWS</strong></em></p>
 
@@ -436,8 +452,10 @@
 <h3 id="creating-the-spinnaker-stack">Creating the Spinnaker Stack</h3>
 
 <ol>
-  <li><em>(Optional)</em> If necessary, visit <a href="https://aws.amazon.com/">https://aws.amazon.com/</a> to sign up for or login to your AWS account.</li>
-  <li><em>(Optional)</em> You’ll need at least one AWS EC2 Key Pair for securely connecting via SSH.
+  <li>
+<em>(Optional)</em> If necessary, visit <a href="https://aws.amazon.com/" target="_blank" rel="noopener noreferrer">https://aws.amazon.com/</a> to sign up for or login to your AWS account.</li>
+  <li>
+<em>(Optional)</em> You’ll need at least one AWS EC2 Key Pair for securely connecting via SSH.
     <ol>
       <li>If you don’t have a KeyPair already start by opening the AWS Console and navigate to <strong>EC2 &gt; NETWORK &amp; SECURITY &gt; Key Pairs</strong>.</li>
       <li>Click <strong>Create Key Pair</strong> and enter an identifying name in the <strong>Key pair name</strong> field.</li>
@@ -445,19 +463,24 @@
       <li>Save this key to an appropriate location (typically your local user <code class="highlighter-rouge">~/.ssh</code> directory).</li>
     </ol>
   </li>
-  <li>After you’ve signed into the AWS console visit <a href="https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Spinnaker&amp;templateURL=https:%2F%2Fs3.amazonaws.com%2Faws-quickstart%2Fquickstart-spinnaker%2Ftemplates%2Fquickstart-spinnakercf.template">this page</a>, which should load the <a href="https://s3.amazonaws.com/aws-quickstart/quickstart-spinnaker/templates/quickstart-spinnakercf.template"><code class="highlighter-rouge">quickstart-spinnakercf.template</code></a>.</li>
+  <li>After you’ve signed into the AWS console visit <a href="https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Spinnaker&amp;templateURL=https:%2F%2Fs3.amazonaws.com%2Faws-quickstart%2Fquickstart-spinnaker%2Ftemplates%2Fquickstart-spinnakercf.template" target="_blank" rel="noopener noreferrer">this page</a>, which should load the <a href="https://s3.amazonaws.com/aws-quickstart/quickstart-spinnaker/templates/quickstart-spinnakercf.template" target="_blank" rel="noopener noreferrer"><code class="highlighter-rouge">quickstart-spinnakercf.template</code></a>.</li>
   <li>Click <strong>Next</strong>.</li>
   <li>(Optional) If you haven’t already done so, you’ll need to create at least one AWS Access Key.</li>
   <li>Select the <strong>KeyName</strong> of the key pair you previously created.</li>
   <li>Input a secure password in the <strong>Password</strong> field.</li>
-  <li><em>(Optional)</em> Modify the IP address range in the <strong>SSHLocation</strong> field to indicate what IP range is allowed to SSH into the Bastion host.  For example, if your public IP address is <code class="highlighter-rouge">1.2.3.4</code> you might enter <code class="highlighter-rouge">1.2.3.4/32</code> into this field.  If you aren’t sure, you can enter <code class="highlighter-rouge">0.0.0.0/0</code> to allow any IP address to connect, though this is obviously less secure.</li>
+  <li>
+<em>(Optional)</em> Modify the IP address range in the <strong>SSHLocation</strong> field to indicate what IP range is allowed to SSH into the Bastion host.  For example, if your public IP address is <code class="highlighter-rouge">1.2.3.4</code> you might enter <code class="highlighter-rouge">1.2.3.4/32</code> into this field.  If you aren’t sure, you can enter <code class="highlighter-rouge">0.0.0.0/0</code> to allow any IP address to connect, though this is obviously less secure.</li>
   <li>Click <strong>Next</strong>.</li>
-  <li><em>(Optional)</em> Select an <strong>IAM Role</strong> with proper CloudFormation permissions necessary to deploy a stack.  If you aren’t sure, leave this blank and deployment will use your account’s permissions.</li>
+  <li>
+<em>(Optional)</em> Select an <strong>IAM Role</strong> with proper CloudFormation permissions necessary to deploy a stack.  If you aren’t sure, leave this blank and deployment will use your account’s permissions.</li>
   <li>Modify any other fields on this screen you wish, then click <strong>Next</strong> to continue.</li>
   <li>
     <p>Check the <strong>I acknowledge that AWS CloudFormation might create IAM resources with custom names.</strong> checkbox and click <strong>Create</strong> to generate the stack.</p>
 
-    <div class="premonition warning modified"><div class="fa fa-exclamation-circle"></div><div class="content"><p>If your AWS account already contains the <code class="highlighter-rouge">BaseIAMRole</code> AWS::IAM::Role you may have to delete it before this template will succeed.</p></div></div>
+    <div class="premonition warning modified">
+<div class="fa fa-exclamation-circle"></div>
+<div class="content"><p>If your AWS account already contains the <code class="highlighter-rouge">BaseIAMRole</code> AWS::IAM::Role you may have to delete it before this template will succeed.</p></div>
+</div>
   </li>
   <li>Once the <code class="highlighter-rouge">Spinnaker</code> stack has a <code class="highlighter-rouge">CREATE_COMPLETE</code> <strong>Status</strong>, select the <strong>Outputs</strong> tab, which has some auto-generated strings you’ll need to paste in your terminal in the next section.</li>
 </ol>
@@ -469,10 +492,17 @@
   <li>
     <p>Execute the <strong>SSHString1</strong> value in your terminal and enter <code class="highlighter-rouge">yes</code> when prompted to continue connecting to this host.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ssh <span class="nt">-A</span> <span class="nt">-L</span> 9000:localhost:9000 <span class="nt">-L</span> 8084:localhost:8084 <span class="nt">-L</span> 8087:localhost:8087 ec2-user@54.244.189.78
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> ssh <span class="nt">-A</span> <span class="nt">-L</span> 9000:localhost:9000 <span class="nt">-L</span> 8084:localhost:8084 <span class="nt">-L</span> 8087:localhost:8087 ec2-user@54.244.189.78
 </code></pre></div>    </div>
 
-    <div class="premonition error modified"><div class="fa fa-exclamation-triangle"></div><div class="content"><p class="header">Permission denied (publickey).</p><p>If you received a permission denied SSH error you may have forgotten to place your <code class="highlighter-rouge">.pem</code> private key file that you downloaded from the AWS EC2 Key Pair creation page.  Make sure it is located in your <code class="highlighter-rouge">~/.ssh</code> user directory.  Otherwise you can specify the key by adding an optional <code class="highlighter-rouge">-i &lt;identify_file_path&gt;</code> flag, indicating the path to the <code class="highlighter-rouge">.pem</code> file.</p></div></div>
+    <div class="premonition error modified">
+<div class="fa fa-exclamation-triangle"></div>
+<div class="content">
+<p class="header">Permission denied (publickey).</p>
+<p>If you received a permission denied SSH error you may have forgotten to place your <code class="highlighter-rouge">.pem</code> private key file that you downloaded from the AWS EC2 Key Pair creation page.  Make sure it is located in your <code class="highlighter-rouge">~/.ssh</code> user directory.  Otherwise you can specify the key by adding an optional <code class="highlighter-rouge">-i &lt;identify_file_path&gt;</code> flag, indicating the path to the <code class="highlighter-rouge">.pem</code> file.</p>
+</div>
+</div>
   </li>
   <li>
     <p>You should now be connected as the <code class="highlighter-rouge">ec2-user</code> to the Bastion instance.  Before you can connect to the Spinnaker instance you’ll probably need to copy your <code class="highlighter-rouge">.pem</code> file to the Spinnaker instance’s <code class="highlighter-rouge">~/.ssh</code> directory.</p>
@@ -481,7 +511,8 @@
       <li>
         <p>Once the key is copied, make sure you set proper permissions otherwise SSH will complain.</p>
 
-        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  chmod 400 ~/.ssh/my_key.pem
+        <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>  chmod 400 ~/.ssh/my_key.pem
 </code></pre></div>        </div>
       </li>
     </ul>
@@ -494,19 +525,26 @@
   <li>
     <p>To connect to the Spinnaker instance copy and paste the <strong>SSHString2</strong> <strong>Value</strong> into the terminal.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ssh –L 9000:localhost:9000 <span class="nt">-L</span> 8084:localhost:8084 <span class="nt">-L</span> 8087:localhost:8087 ubuntu@10.100.10.167 <span class="nt">-i</span> ~/.ssh/my_key.pem
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> ssh –L 9000:localhost:9000 <span class="nt">-L</span> 8084:localhost:8084 <span class="nt">-L</span> 8087:localhost:8087 ubuntu@10.100.10.167 <span class="nt">-i</span> ~/.ssh/my_key.pem
 </code></pre></div>    </div>
   </li>
   <li>
     <p>You should now be connected to the <code class="highlighter-rouge">SpinnakerWebServer</code>!</p>
 
-    <div class="premonition warning modified"><div class="fa fa-exclamation-circle"></div><div class="content"><p class="header">System restart required</p><p>Upon connecting to the Spinnaker instance you may see a message indicating the system needs to be restarted.  You can do this through the AWS EC2 console, or just enter the <code class="highlighter-rouge">sudo reboot</code> command in the terminal, then reconnect after a few moments.</p></div></div>
+    <div class="premonition warning modified">
+<div class="fa fa-exclamation-circle"></div>
+<div class="content">
+<p class="header">System restart required</p>
+<p>Upon connecting to the Spinnaker instance you may see a message indicating the system needs to be restarted.  You can do this through the AWS EC2 console, or just enter the <code class="highlighter-rouge">sudo reboot</code> command in the terminal, then reconnect after a few moments.</p>
+</div>
+</div>
   </li>
 </ol>
 
 <h3 id="configuring-spinnaker">Configuring Spinnaker</h3>
 
-<p>The <a href="https://www.spinnaker.io/reference/architecture/">Spinnaker architecture</a> is composed of a collection of microservices that each handle various aspects of the entire service.  For example, <a href="https://github.com/spinnaker/deck">Deck</a> is the web interface you’ll spend most time interacting with, <a href="https://github.com/spinnaker/gate">Gate</a> is the API gateway that handles most communication between microservices, and <a href="https://github.com/spinnaker/clouddriver">CloudDriver</a> is the service that communicates and configures all cloud providers Spinnaker is working with.</p>
+<p>The <a href="https://www.spinnaker.io/reference/architecture/" target="_blank" rel="noopener noreferrer">Spinnaker architecture</a> is composed of a collection of microservices that each handle various aspects of the entire service.  For example, <a href="https://github.com/spinnaker/deck" target="_blank" rel="noopener noreferrer">Deck</a> is the web interface you’ll spend most time interacting with, <a href="https://github.com/spinnaker/gate" target="_blank" rel="noopener noreferrer">Gate</a> is the API gateway that handles most communication between microservices, and <a href="https://github.com/spinnaker/clouddriver" target="_blank" rel="noopener noreferrer">CloudDriver</a> is the service that communicates and configures all cloud providers Spinnaker is working with.</p>
 
 <p>Since so much of Spinnaker is blown out into smaller microservices, configuring Spinnaker can require messing with a few different files.  If there’s an issue you’ll likely have to look through individual logs for each different service, depending on the problem.</p>
 
@@ -553,7 +591,7 @@
   <li>Click <strong>Create</strong> to add your new application.</li>
 </ol>
 
-<p><img src="../images/developer-tutorial-add-spinnaker-application.png" alt="developer-tutorial-add-spinnaker-application" title="New Application Spinnaker Dialog" /></p>
+<p><img src="../images/developer-tutorial-add-spinnaker-application.png" alt="developer-tutorial-add-spinnaker-application" title="New Application Spinnaker Dialog"></p>
 
 <h3 id="adding-a-firewall">Adding a Firewall</h3>
 
@@ -564,16 +602,24 @@
   <li>Within the <strong>VPC</strong> dropdown select <code class="highlighter-rouge">SpinnakerVPC</code>.</li>
   <li>Under the <strong>Ingress</strong> header click <strong>Add new Firewall Rule</strong>. Set the following <strong>Firewall Rule</strong> settings.
     <ul>
-      <li><strong>Firewall</strong>: <code class="highlighter-rouge">default</code></li>
-      <li><strong>Protocol</strong>: <code class="highlighter-rouge">TCP</code></li>
-      <li><strong>Start Port</strong>: <code class="highlighter-rouge">80</code></li>
-      <li><strong>End Port</strong>: <code class="highlighter-rouge">80</code></li>
+      <li>
+<strong>Firewall</strong>: <code class="highlighter-rouge">default</code>
+</li>
+      <li>
+<strong>Protocol</strong>: <code class="highlighter-rouge">TCP</code>
+</li>
+      <li>
+<strong>Start Port</strong>: <code class="highlighter-rouge">80</code>
+</li>
+      <li>
+<strong>End Port</strong>: <code class="highlighter-rouge">80</code>
+</li>
     </ul>
   </li>
   <li>Click the <strong>Create</strong> button to finalize the firewall settings.</li>
 </ol>
 
-<p><img src="../images/developer-tutorial-add-firewall-spinnaker.png" alt="developer-tutorial-add-firewall-spinnaker" title="Add Firewall Spinnaker Dialog" /></p>
+<p><img src="../images/developer-tutorial-add-firewall-spinnaker.png" alt="developer-tutorial-add-firewall-spinnaker" title="Add Firewall Spinnaker Dialog"></p>
 
 <h3 id="adding-a-load-balancer">Adding a Load Balancer</h3>
 
@@ -586,11 +632,11 @@
   <li>Click <strong>Create</strong> to generate the load balancer.</li>
 </ol>
 
-<p><img src="../images/developer-tutorial-add-load-balancer-spinnaker.png" alt="developer-tutorial-add-load-balancer-spinnaker" title="Add Load Balancer Spinnaker Dialog" /></p>
+<p><img src="../images/developer-tutorial-add-load-balancer-spinnaker.png" alt="developer-tutorial-add-load-balancer-spinnaker" title="Add Load Balancer Spinnaker Dialog"></p>
 
 <h3 id="creating-a-pipeline-in-spinnaker">Creating a Pipeline in Spinnaker</h3>
 
-<p>The final step is to add a <strong>pipeline</strong>, which is where we tell Spinnaker what it should actually “do”!  In this case we’ll tell it to <strong>bake</strong> a virtual machine image containing <a href="https://redis.io/">Redis</a>, then to <strong>deploy</strong> that image to our waiting EC2 instance.</p>
+<p>The final step is to add a <strong>pipeline</strong>, which is where we tell Spinnaker what it should actually “do”!  In this case we’ll tell it to <strong>bake</strong> a virtual machine image containing <a href="https://redis.io/" target="_blank" rel="noopener noreferrer">Redis</a>, then to <strong>deploy</strong> that image to our waiting EC2 instance.</p>
 
 <ol>
   <li>Navigate to the <code class="highlighter-rouge">bookstore</code> application, <strong>PIPELINES</strong> and click <strong>Create Pipeline</strong>.</li>
@@ -609,9 +655,15 @@
   <li>Click <strong>Save Changes</strong> to finalize the stage.</li>
 </ol>
 
-<p><img src="../images/developer-tutorial-bake-stage-spinnaker.png" alt="developer-tutorial-bake-stage-spinnaker" title="Add Bake Deployment Stage Spinnaker Dialog" /></p>
+<p><img src="../images/developer-tutorial-bake-stage-spinnaker.png" alt="developer-tutorial-bake-stage-spinnaker" title="Add Bake Deployment Stage Spinnaker Dialog"></p>
 
-<div class="premonition note modified"><div class="fa fa-check-square"></div><div class="content"><p class="header">Ignoring Jenkins/Travis</p><p>In production environments you’ll likely also want to incorporate Travis, Jenkins, or another CI solution as a preceding stage to the <strong>bake</strong> stage.  Otherwise, Spinnaker will default to baking and deploying the most recently built package.  For our purposes here we don’t care, since we’re using an unchanging image.</p></div></div>
+<div class="premonition note modified">
+<div class="fa fa-check-square"></div>
+<div class="content">
+<p class="header">Ignoring Jenkins/Travis</p>
+<p>In production environments you’ll likely also want to incorporate Travis, Jenkins, or another CI solution as a preceding stage to the <strong>bake</strong> stage.  Otherwise, Spinnaker will default to baking and deploying the most recently built package.  For our purposes here we don’t care, since we’re using an unchanging image.</p>
+</div>
+</div>
 
 <h4 id="adding-a-deploy-stage">Adding a Deploy Stage</h4>
 
@@ -640,7 +692,8 @@
       <li>
         <p>Convert the <code class="highlighter-rouge">Resource</code> key value to an array so you can add a second value.  Insert the <strong>ARN</strong> for the <code class="highlighter-rouge">role/BaseIAMRole</code> of your account (the account number will match the number above).</p>
 
-        <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="p">{</span><span class="w">
+        <div class="language-json highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="p">{</span><span class="w">
      </span><span class="s2">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span><span class="w">
      </span><span class="s2">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
          </span><span class="p">{</span><span class="w">
@@ -664,7 +717,7 @@
   <li>You should now have a <code class="highlighter-rouge">Bookstore Dev to Test</code> two-stage <strong>pipeline</strong> ready to go!</li>
 </ol>
 
-<p><img src="../images/developer-tutorial-add-pipeline-spinnaker.png" alt="developer-tutorial-add-pipeline-spinnaker" title="Bookstore Dev to Test Pipeline" /></p>
+<p><img src="../images/developer-tutorial-add-pipeline-spinnaker.png" alt="developer-tutorial-add-pipeline-spinnaker" title="Bookstore Dev to Test Pipeline"></p>
 
 <h3 id="executing-the-pipeline">Executing the Pipeline</h3>
 
@@ -674,7 +727,7 @@
   <li>After waiting a few moments, assuming none of the potential setbacks below bite you, you’ll shortly see output indicating the <code class="highlighter-rouge">bookstore-dev-v000</code> <strong>Server Group</strong> has been successfully created.  Browse over to <strong>AWS &gt; EC2</strong> and you’ll see your three new instances launched!</li>
 </ol>
 
-<p><img src="../images/developer-tutorial-mr-burns-excellent.gif" alt="mr-burns-excellent" title="Mr. Burns - Excellent" /></p>
+<p><img src="../images/developer-tutorial-mr-burns-excellent.gif" alt="mr-burns-excellent" title="Mr. Burns - Excellent"></p>
 
 <p>To resize this <strong>Server Group</strong> use the <strong>Resize Server Group</strong> dialog in Spinnaker.  Alternatively, you can find additional options under <strong>Server Group Actions</strong>, such as <strong>Disable</strong> or <strong>Destroy</strong> to stop or terminate instances, respectively.</p>
 
@@ -682,7 +735,11 @@
 
 <p>While a lot can go wrong, below are a few potential issues you may encounter running through this tutorial, depending on changes to software versions, default configurations, and the like between present and time of writing.</p>
 
-<div class="premonition error modified"><div class="fa fa-exclamation-triangle"></div><div class="content"><p class="header">Error: Unknown configuration key `ena_support`</p><p>If you get an <code class="highlighter-rouge">ena_support</code> error during deployment (see: <a href="https://github.com/spinnaker/spinnaker/issues/2237">#2237</a>) the solution is to <em>remove</em> the <code class="highlighter-rouge">ena_support</code> reference line  within the <code class="highlighter-rouge">builders</code> block in the <code class="highlighter-rouge">/opt/rosco/config/packer/aws-ebs.json</code> Rosco configuration file.</p>
+<div class="premonition error modified">
+<div class="fa fa-exclamation-triangle"></div>
+<div class="content">
+<p class="header">Error: Unknown configuration key `ena_support`</p>
+<p>If you get an <code class="highlighter-rouge">ena_support</code> error during deployment (see: <a href="https://github.com/spinnaker/spinnaker/issues/2237" target="_blank" rel="noopener noreferrer">#2237</a>) the solution is to <em>remove</em> the <code class="highlighter-rouge">ena_support</code> reference line  within the <code class="highlighter-rouge">builders</code> block in the <code class="highlighter-rouge">/opt/rosco/config/packer/aws-ebs.json</code> Rosco configuration file.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nano /opt/rosco/config/packer/aws-ebs.json
 </code></pre></div></div>
@@ -692,9 +749,15 @@
     </span><span class="s2">"aws_ena_support"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{user `aws_ena_support`}}"</span><span class="p">,</span><span class="w">
   </span><span class="p">},</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div></div></div></div>
+</span></code></pre></div></div>
+</div>
+</div>
 
-<div class="premonition error modified"><div class="fa fa-exclamation-triangle"></div><div class="content"><p class="header">Error: `0.000000` is an invalid spot instance price</p><p>If you get such an error during deployment (see: <a href="https://github.com/spinnaker/spinnaker/issues/2889">#2889</a>) the solution is to <em>remove</em> <code class="highlighter-rouge">spot_price</code> reference lines within the <code class="highlighter-rouge">builders</code> block in the <code class="highlighter-rouge">/opt/rosco/config/packer/aws-ebs.json</code> Rosco configuration file.</p>
+<div class="premonition error modified">
+<div class="fa fa-exclamation-triangle"></div>
+<div class="content">
+<p class="header">Error: `0.000000` is an invalid spot instance price</p>
+<p>If you get such an error during deployment (see: <a href="https://github.com/spinnaker/spinnaker/issues/2889" target="_blank" rel="noopener noreferrer">#2889</a>) the solution is to <em>remove</em> <code class="highlighter-rouge">spot_price</code> reference lines within the <code class="highlighter-rouge">builders</code> block in the <code class="highlighter-rouge">/opt/rosco/config/packer/aws-ebs.json</code> Rosco configuration file.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nano /opt/rosco/config/packer/aws-ebs.json
 </code></pre></div></div>
@@ -705,62 +768,83 @@
     </span><span class="s2">"spot_price_auto_product"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{user `aws_spot_price_auto_product`}}"</span><span class="p">,</span><span class="w">
   </span><span class="p">},</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div></div></div></div>
+</span></code></pre></div></div>
+</div>
+</div>
 
-<div class="premonition error modified"><div class="fa fa-exclamation-triangle"></div><div class="content"><p class="header">Error: Bake stage failure after provisioning `install_packages.sh` script</p><p>This error is typically due to an outdated <code class="highlighter-rouge">install_packages.sh</code> script.  To resolve this override with the latest downloaded version.</p>
+<div class="premonition error modified">
+<div class="fa fa-exclamation-triangle"></div>
+<div class="content">
+<p class="header">Error: Bake stage failure after provisioning `install_packages.sh` script</p>
+<p>This error is typically due to an outdated <code class="highlighter-rouge">install_packages.sh</code> script.  To resolve this override with the latest downloaded version.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>curl https://raw.githubusercontent.com/spinnaker/rosco/master/rosco-web/config/packer/install_packages.sh <span class="nt">--output</span> /opt/rosco/config/packer/install_packages.sh
-</code></pre></div></div></div></div>
+</code></pre></div></div>
+</div>
+</div>
 
 <h2 id="how-to-install-chaos-monkey">How to Install Chaos Monkey</h2>
 
 <p>Before you can use Chaos Monkey you’ll need to have Spinnaker deployed and running.  We’ve created a handful of step-by-step tutorials for deploying Spinnaker, depending on the environment and level of control you’re looking for.</p>
 
 <ul>
-  <li><a href="/gremlin-chaos-monkey/developer-tutorial#how-to-quickly-deploy-spinnaker-for-chaos-monkey">How to Quickly Deploy Spinnaker for Chaos Monkey</a> will guide you through a rapid deployment of Spinnaker on AWS.</li>
-  <li><a href="/gremlin-chaos-monkey/advanced-tips#how-to-manually-deploy-spinnaker-for-chaos-monkey">How to Manually Deploy Spinnaker for Chaos Monkey</a> provides a much more in-depth tutorial for installing Spinnaker as it was intended, with the help of the Halyard tool, on a local or virtual machine.</li>
+  <li>
+<a href="/gremlin-chaos-monkey/developer-tutorial#how-to-quickly-deploy-spinnaker-for-chaos-monkey">How to Quickly Deploy Spinnaker for Chaos Monkey</a> will guide you through a rapid deployment of Spinnaker on AWS.</li>
+  <li>
+<a href="/gremlin-chaos-monkey/advanced-tips#how-to-manually-deploy-spinnaker-for-chaos-monkey">How to Manually Deploy Spinnaker for Chaos Monkey</a> provides a much more in-depth tutorial for installing Spinnaker as it was intended, with the help of the Halyard tool, on a local or virtual machine.</li>
 </ul>
 
 <h3 id="installing-mysql">Installing MySQL</h3>
 
 <p>Chaos Monkey requires MySQL, so make sure it’s installed on your local system.</p>
 
-<div class="premonition warning modified"><div class="fa fa-exclamation-circle"></div><div class="content"><p class="header">Warning</p><p>Chaos Monkey is currently <em>incompatible</em> with MySQL version 8.0 or higher, so 5.X is recommended.</p></div></div>
+<div class="premonition warning modified">
+<div class="fa fa-exclamation-circle"></div>
+<div class="content">
+<p class="header">Warning</p>
+<p>Chaos Monkey is currently <em>incompatible</em> with MySQL version 8.0 or higher, so 5.X is recommended.</p>
+</div>
+</div>
 
 <ol>
   <li>
-    <p>Download the latest <code class="highlighter-rouge">mysql-apt.deb</code> file from the <a href="https://dev.mysql.com/downloads/repo/apt/">official website</a>, which we’ll use to install MySQL</p>
+    <p>Download the latest <code class="highlighter-rouge">mysql-apt.deb</code> file from the <a href="https://dev.mysql.com/downloads/repo/apt/" target="_blank" rel="noopener noreferrer">official website</a>, which we’ll use to install MySQL</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-OL</span> https://dev.mysql.com/get/mysql-apt-config_0.8.10-1_all.deb
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> curl <span class="nt">-OL</span> https://dev.mysql.com/get/mysql-apt-config_0.8.10-1_all.deb
 </code></pre></div>    </div>
   </li>
   <li>
     <p>Install <code class="highlighter-rouge">mysql-server</code> by using the <code class="highlighter-rouge">dpkg</code> command.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>dpkg <span class="nt">-i</span> mysql-apt-config_0.8.10-1_all.deb
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>dpkg <span class="nt">-i</span> mysql-apt-config_0.8.10-1_all.deb
 </code></pre></div>    </div>
   </li>
   <li>
     <p>In the UI that appears press enter to change the <strong>MySQL Server &amp; Cluster</strong> version to <code class="highlighter-rouge">mysql-5.7</code>.  Leave the other options as default and move down to <code class="highlighter-rouge">Ok</code> and press <code class="highlighter-rouge">Enter</code> to finalize your choice.</p>
 
-    <p><img src="/gremlin-chaos-monkey/images/advanced-tips-mysql-install.png" alt="advanced-tips-mysql-install" /></p>
+    <p><img src="/gremlin-chaos-monkey/images/advanced-tips-mysql-install.png" alt="advanced-tips-mysql-install"></p>
   </li>
   <li>
     <p>Now use <code class="highlighter-rouge">sudo apt-get update</code> to update the MySQL packages related to the version we selected (<code class="highlighter-rouge">mysql-5.7</code>, in this case).</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt-get update
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt-get update
 </code></pre></div>    </div>
   </li>
   <li>
     <p>Install <code class="highlighter-rouge">mysql-server</code> from the packages we just retrieved.  You’ll be prompted to enter a <code class="highlighter-rouge">root</code> password.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt-get install mysql-server
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt-get install mysql-server
 </code></pre></div>    </div>
   </li>
   <li>
     <p>You’re all set.  Check that MySQL server is running with <code class="highlighter-rouge">systemctl</code>.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> systemctl status mysql
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> systemctl status mysql
 </code></pre></div>    </div>
   </li>
   <li>
@@ -776,31 +860,36 @@
   <li>
     <p>Launch the <code class="highlighter-rouge">mysql</code> CLI as the <code class="highlighter-rouge">root</code> user.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> mysql <span class="nt">-u</span> root <span class="nt">-p</span>
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> mysql <span class="nt">-u</span> root <span class="nt">-p</span>
 </code></pre></div>    </div>
   </li>
   <li>
     <p>Create a <code class="highlighter-rouge">chaosmonkey</code> database for Chaos Monkey to use.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> CREATE DATABASE chaosmonkey<span class="p">;</span>
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> CREATE DATABASE chaosmonkey<span class="p">;</span>
 </code></pre></div>    </div>
   </li>
   <li>
     <p>Add a <code class="highlighter-rouge">chaosmonkey</code> MySQL user.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> CREATE USER <span class="s1">'chaosmonkey'</span>@<span class="s1">'localhost'</span> IDENTIFIED BY <span class="s1">'password'</span><span class="p">;</span>
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> CREATE USER <span class="s1">'chaosmonkey'</span>@<span class="s1">'localhost'</span> IDENTIFIED BY <span class="s1">'password'</span><span class="p">;</span>
 </code></pre></div>    </div>
   </li>
   <li>
     <p>Grant all privileges in the <code class="highlighter-rouge">chaosmonkey</code> database to the new <code class="highlighter-rouge">chaosmonkey</code> user.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> GRANT ALL PRIVILEGES ON chaosmonkey.<span class="k">*</span> TO <span class="s1">'chaosmonkey'</span>@<span class="s1">'localhost'</span><span class="p">;</span>
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> GRANT ALL PRIVILEGES ON chaosmonkey.<span class="k">*</span> TO <span class="s1">'chaosmonkey'</span>@<span class="s1">'localhost'</span><span class="p">;</span>
 </code></pre></div>    </div>
   </li>
   <li>
     <p>Finally, save all changes made to the system.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> FLUSH PRIVILEGES<span class="p">;</span>
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> FLUSH PRIVILEGES<span class="p">;</span>
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -813,21 +902,24 @@
 
     <ol>
       <li>
-        <p>Go to <a href="https://golang.org/dl/">this</a> download page and download the latest binary appropriate to your environment.</p>
+        <p>Go to <a href="https://golang.org/dl/" target="_blank" rel="noopener noreferrer">this</a> download page and download the latest binary appropriate to your environment.</p>
 
-        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl <span class="nt">-O</span> https://dl.google.com/go/go1.11.linux-amd64.tar.gz
+        <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> curl <span class="nt">-O</span> https://dl.google.com/go/go1.11.linux-amd64.tar.gz
 </code></pre></div>        </div>
       </li>
       <li>
         <p>Extract the archive to the <code class="highlighter-rouge">/usr/local</code> directory.</p>
 
-        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo tar</span> <span class="nt">-C</span> /usr/local <span class="nt">-xzf</span> go1.11.linux-amd64.tar.gz
+        <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="nb">sudo tar</span> <span class="nt">-C</span> /usr/local <span class="nt">-xzf</span> go1.11.linux-amd64.tar.gz
 </code></pre></div>        </div>
       </li>
       <li>
         <p>Add <code class="highlighter-rouge">/usr/local/go/bin</code> to your <code class="highlighter-rouge">$PATH</code> environment variable.</p>
 
-        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/go/bin
+        <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/go/bin
  <span class="nb">echo</span> <span class="s1">'export PATH=$PATH:/usr/local/go/bin'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
 </code></pre></div>        </div>
       </li>
@@ -836,7 +928,8 @@
   <li>
     <p><em>(Optional)</em> Check if the <code class="highlighter-rouge">$GOPATH</code> and <code class="highlighter-rouge">$GOBIN</code> variables are set with <code class="highlighter-rouge">echo $GOPATH</code> and <code class="highlighter-rouge">echo $GOBIN</code>.  If not, <code class="highlighter-rouge">export</code> them and add them to your bash profile.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">export </span><span class="nv">GOPATH</span><span class="o">=</span><span class="nv">$HOME</span>/go
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="nb">export </span><span class="nv">GOPATH</span><span class="o">=</span><span class="nv">$HOME</span>/go
  <span class="nb">echo</span> <span class="s1">'export GOPATH=$HOME/go'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
  <span class="nb">export </span><span class="nv">GOBIN</span><span class="o">=</span><span class="nv">$HOME</span>/go/bin
  <span class="nb">echo</span> <span class="s1">'export GOBIN=$HOME/go/bin'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
@@ -847,7 +940,8 @@
   <li>
     <p>Install the latest Chaos Monkey binary.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> go get github.com/netflix/chaosmonkey/cmd/chaosmonkey
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> go get github.com/netflix/chaosmonkey/cmd/chaosmonkey
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -857,16 +951,20 @@
 <p>Spinnaker includes the Chaos Monkey feature as an option, but it is disabled by default.</p>
 
 <ol>
-  <li><em>(Optional)</em> If necessary, enable the Chaos Monkey feature in your Spinnaker deployment.
+  <li>
+<em>(Optional)</em> If necessary, enable the Chaos Monkey feature in your Spinnaker deployment.
     <ul>
       <li>On a Halyard-based Spinnaker deployment you must enable the Chaos Monkey feature via the Halyard <code class="highlighter-rouge">--chaos</code> flag.
-        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  hal config features edit <span class="nt">--chaos</span> <span class="nb">true</span>
+        <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>  hal config features edit <span class="nt">--chaos</span> <span class="nb">true</span>
 </code></pre></div>        </div>
       </li>
       <li>On a quick start Spinnaker deployment you’ll need to manually enable the Chaos Monkey feature flag within the <code class="highlighter-rouge">/opt/deck/html/settings.js</code> file.  Make sure the <code class="highlighter-rouge">var chaosEnabled</code> is set to <code class="highlighter-rouge">true</code>, then save and reload Spinnaker.
-        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">sudo </span>nano /opt/deck/html/settings.js
+        <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>  <span class="nb">sudo </span>nano /opt/deck/html/settings.js
 </code></pre></div>        </div>
-        <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// var chaosEnabled = ${services.chaos.enabled};</span>
+        <div class="language-js highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>  <span class="c1">// var chaosEnabled = ${services.chaos.enabled};</span>
   <span class="kd">var</span> <span class="nx">chaosEnabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 </code></pre></div>        </div>
       </li>
@@ -875,7 +973,7 @@
   <li>
     <p>Navigate to <strong>Applications &gt; (APPLICATION_NAME) &gt; CONFIG</strong> and select <strong>CHAOS MONKEY</strong> in the side navigation.</p>
 
-    <p><img src="../images/advanced-tips-config-chaos-monkey.png" alt="advanced-tips-config-chaos-monkey" title="Chaos Monkey Spinnaker Dialog" /></p>
+    <p><img src="../images/advanced-tips-config-chaos-monkey.png" alt="advanced-tips-config-chaos-monkey" title="Chaos Monkey Spinnaker Dialog"></p>
   </li>
   <li>Check the <strong>Enabled</strong> box to enable Chaos Monkey.</li>
   <li>The UI provides useful information for what every option does, but the most important options are the <strong>mean</strong> and <strong>min</strong> times between instance termination.  If your setup includes multiple clusters or stacks, altering the <strong>grouping</strong> may also make sense.  Finally, you can add <strong>exceptions</strong> as necessary, which acts as a kind of <em>whitelist</em> of instances that will be ignored by Chaos Monkey, so you can keep the most critical services up and running.</li>
@@ -895,13 +993,17 @@
   </li>
 </ol>
 
-<div class="premonition tip modified"><div class="fa fa-check-square"></div><div class="content"><p>Generally, if you’re configuring <em>multiple</em> Chaos Monkey installations on the same machine you should use application-specific configurations, so putting them in separate directories is ideal.  However, if you’re just using one installation on the machine then <code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey.toml</code> works well.</p></div></div>
+<div class="premonition tip modified">
+<div class="fa fa-check-square"></div>
+<div class="content"><p>Generally, if you’re configuring <em>multiple</em> Chaos Monkey installations on the same machine you should use application-specific configurations, so putting them in separate directories is ideal.  However, if you’re just using one installation on the machine then <code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey.toml</code> works well.</p></div>
+</div>
 
 <ol>
   <li>
     <p>Add the following basic configuration structure to your <code class="highlighter-rouge">chaosmonkey.toml</code> file, replacing appropriate <code class="highlighter-rouge">&lt;DATABASE_&gt;</code> configuration values with your own settings.</p>
 
-    <div class="language-toml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nn">[chaosmonkey]</span>
+    <div class="language-toml highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="nn">[chaosmonkey]</span>
  <span class="py">enabled</span> <span class="p">=</span> <span class="kc">true</span>
  <span class="py">schedule_enabled</span> <span class="p">=</span> <span class="kc">true</span>
  <span class="py">leashed</span> <span class="p">=</span> <span class="kc">false</span>
@@ -929,16 +1031,23 @@
   <li>
     <p>With Chaos Monkey configured it’s time to migrate it to the MySQL</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span>chaosmonkey migrate
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span>chaosmonkey migrate
  <span class="o">[</span>16264] 2018/09/04 14:11:16 Successfully applied database migrations. Number of migrations applied:  1
  <span class="o">[</span>16264] 2018/09/04 14:11:16 database migration applied successfully
 </code></pre></div>    </div>
   </li>
 </ol>
 
-<div class="premonition error modified"><div class="fa fa-exclamation-triangle"></div><div class="content"><p class="header">Error: 1298: Unknown or incorrect time zone: 'UTC'</p><p>If you experience a timezone error this typically indicates a configuration problem with MySQL.  Just run the <code class="highlighter-rouge">mysql_tzinfo_to_sql</code> command to update your MySQL installation.</p>
+<div class="premonition error modified">
+<div class="fa fa-exclamation-triangle"></div>
+<div class="content">
+<p class="header">Error: 1298: Unknown or incorrect time zone: 'UTC'</p>
+<p>If you experience a timezone error this typically indicates a configuration problem with MySQL.  Just run the <code class="highlighter-rouge">mysql_tzinfo_to_sql</code> command to update your MySQL installation.</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mysql_tzinfo_to_sql /usr/share/zoneinfo/ | mysql <span class="nt">-u</span> root mysql <span class="nt">-p</span>
-</code></pre></div></div></div></div>
+</code></pre></div></div>
+</div>
+</div>
 
 <h2 id="how-to-use-chaos-monkey">How to Use Chaos Monkey</h2>
 
@@ -960,14 +1069,19 @@
 <span class="o">})</span>
 </code></pre></div></div>
 
-<div class="premonition tip modified"><div class="fa fa-check-square"></div><div class="content"><p>If you’re running Spinnaker on Kubernetes you can use the <code class="highlighter-rouge">kubectl get nodes --watch</code> command to keep track of your Kubernetes nodes while running Chaos Experiments.</p>
+<div class="premonition tip modified">
+<div class="fa fa-check-square"></div>
+<div class="content">
+<p>If you’re running Spinnaker on Kubernetes you can use the <code class="highlighter-rouge">kubectl get nodes --watch</code> command to keep track of your Kubernetes nodes while running Chaos Experiments.</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl get nodes <span class="nt">--watch</span>
 </code></pre></div></div>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># OUTPUT</span>
 ip-10-100-11-239.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
 ip-10-100-10-178.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
 ip-10-100-10-210.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
-</code></pre></div></div></div></div>
+</code></pre></div></div>
+</div>
+</div>
 
 <p>To manually terminate an instance with Chaos Monkey use the <code class="highlighter-rouge">chaosmonkey terminate</code> command.</p>
 
@@ -992,7 +1106,7 @@ ip-10-100-10-178.us-west-2.compute.internal   Ready     &lt;none&gt;    3d      
 ip-10-100-11-239.us-west-2.compute.internal   Ready     &lt;none&gt;    3d        v1.10.3
 </code></pre></div></div>
 
-<p><img src="https://media.giphy.com/media/3ohzdIuqJoo8QdKlnW/giphy.gif" alt="awesome-gif" /></p>
+<p><img src="https://media.giphy.com/media/3ohzdIuqJoo8QdKlnW/giphy.gif" alt="awesome-gif"></p>
 
 <p>If you quickly open up the Spinnaker Deck web interface you’ll see only two of the three instances in the cluster are active, as we see in <code class="highlighter-rouge">kubectl</code> above.  However, wait a few more moments and Spinnaker will notice the loss of an instance, recognize it has been stopped/terminated due to an EC2 health check, and will immediately propagate a new instance to replace it, thus ensuring the server group’s desired capacity remains at <code class="highlighter-rouge">3</code> instances.</p>
 
@@ -1008,7 +1122,7 @@ ip-10-100-11-180.us-west-2.compute.internal   Ready     &lt;none&gt;    20s     
 
 <p>Spinnaker also tracks this information.  Navigating to the your Spinnaker application <strong>INFRASTRUCTURE &gt; CLUSTERS &gt; <code class="highlighter-rouge">spinnaker-eks-nodes-NodeGroup</code> &gt; CAPACITY</strong> and click <strong>View Scaling Activities</strong> to see the Spinnaker scaling activities log for this node group.  In this case we see the successful activities that lead to the health check failure and new instance start.</p>
 
-<p><img src="/gremlin-chaos-monkey/images/advanced-tips-nodegroup-scaling-activities.png" alt="advanced-tips-nodegroup-scaling-activities" /></p>
+<p><img src="/gremlin-chaos-monkey/images/advanced-tips-nodegroup-scaling-activities.png" alt="advanced-tips-nodegroup-scaling-activities"></p>
 
 <h3 id="how-to-schedule-chaos-monkey-terminations">How to Schedule Chaos Monkey Terminations</h3>
 
@@ -1023,7 +1137,8 @@ ip-10-100-11-180.us-west-2.compute.internal   Ready     &lt;none&gt;    20s     
   <li>
     <p>Start by creating the four files we’ll be using for this.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>touch /apps/chaosmonkey/chaosmonkey-schedule.sh
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>touch /apps/chaosmonkey/chaosmonkey-schedule.sh
  <span class="nb">sudo </span>touch /apps/chaosmonkey/chaosmonkey-terminate.sh
  <span class="nb">sudo </span>touch /etc/cron.d/chaosmonkey-schedule
  <span class="nb">sudo </span>touch /etc/cron.d/chaosmonkey-daily-scheduler
@@ -1032,35 +1147,40 @@ ip-10-100-11-180.us-west-2.compute.internal   Ready     &lt;none&gt;    20s     
   <li>
     <p>Now set executable permissions for the two bash scripts so the cron (root) user can execute them.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>chmod a+rx /apps/chaosmonkey/chaosmonkey-schedule.sh
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>chmod a+rx /apps/chaosmonkey/chaosmonkey-schedule.sh
  <span class="nb">sudo </span>chmod a+rx /apps/chaosmonkey/chaosmonkey-terminate.sh
 </code></pre></div>    </div>
   </li>
   <li>
     <p>Now we’ll add some commands to each script in the order they’re expected to call one another.  First, the <code class="highlighter-rouge">/etc/cron.d/chaosmonkey-daily-scheduler</code> is executed once a day at a time you specify.  This will call the <code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey-schedule.sh</code> script, which will perform the actual scheduling for termination.  Paste the following into <code class="highlighter-rouge">/etc/cron.d/chaosmonkey-daily-scheduler</code> (as with any cron job you can freely edit the schedule to determine when the cron job should be executed).</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># min  hour  dom  month  day  user  command</span>
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="c"># min  hour  dom  month  day  user  command</span>
  0      12    <span class="k">*</span>    <span class="k">*</span>      <span class="k">*</span>    root  /apps/chaosmonkey/chaosmonkey-schedule.sh
 </code></pre></div>    </div>
   </li>
   <li>
     <p>The <code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey-schedule.sh</code> script should perform the actual <code class="highlighter-rouge">chaosmonkey schedule</code> command, so paste the following into <code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey-schedule.sh</code>.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c">#!/bin/bash</span>
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="c">#!/bin/bash</span>
  /apps/chaosmonkey/chaosmonkey schedule <span class="o">&gt;&gt;</span> /var/log/chaosmonkey-schedule.log 2&gt;&amp;1
 </code></pre></div>    </div>
   </li>
   <li>
     <p>When the <code class="highlighter-rouge">chaosmonkey schedule</code> command is called by the <code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey-schedule.sh</code> script it will automatically write to the <code class="highlighter-rouge">/etc/cron.d/chaosmonkey-schedule</code> file with a randomized timestamp for execution based on the Chaos Monkey configuration.  Here’s an example of what the generated <code class="highlighter-rouge">/etc/cron.d/chaosmonkey-schedule</code> looks like.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># /etc/cron.d/chaosmonkey-schedule</span>
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="c"># /etc/cron.d/chaosmonkey-schedule</span>
  9 16 9 9 0 root /apps/chaosmonkey/chaosmonkey-terminate.sh spinnaker aws-primary <span class="nt">--cluster</span><span class="o">=</span>spinnaker-eks-nodes-NodeGroup-KLBYTZDP0F89 <span class="nt">--region</span><span class="o">=</span>us-west-2
 </code></pre></div>    </div>
   </li>
   <li>
     <p>Lastly, the <code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey-terminate.sh</code> script that is called by the generated <code class="highlighter-rouge">/etc/cron.d/chaosmonkey-schedule</code> cron job should issue the <code class="highlighter-rouge">chaosmonkey terminate</code> command and output the result to the log.  Paste the following into ``/apps/chaosmonkey/chaosmonkey-terminate.sh`.</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c">#!/bin/bash</span>
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="c">#!/bin/bash</span>
  /apps/chaosmonkey/chaosmonkey terminate <span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /var/log/chaosmonkey-terminate.log 2&gt;&amp;1
 </code></pre></div>    </div>
   </li>
@@ -1103,10 +1223,10 @@ ip-10-100-11-180.us-west-2.compute.internal   Ready     &lt;none&gt;    20s     
 <blockquote>
   <p><code class="highlighter-rouge">Monitoring Health and Stability</code>
 <code class="highlighter-rouge">Detecting Service Latency</code>
-<a href="https://www.battery.com/powered/youve-heard-of-the-netflix-chaos-monkey-we-propose-for-cyber-security-an-infected-monkey/"><code class="highlighter-rouge">Discovering Security Vulnerabilities</code></a>
-<a href="https://www.baeldung.com/spring-boot-chaos-monkey"><code class="highlighter-rouge">Examining Exception Handling</code></a>
-<a href="https://medium.com/production-ready/using-chaos-monkey-whenever-you-feel-like-it-e5fe31257a07"><code class="highlighter-rouge">On Demand Chaos</code></a>
-<a href="https://blog.serverdensity.com/building-chaos-monkey/"><code class="highlighter-rouge">Building Your Own Customized Monkey</code></a></p>
+<a href="https://www.battery.com/powered/youve-heard-of-the-netflix-chaos-monkey-we-propose-for-cyber-security-an-infected-monkey/" target="_blank" rel="noopener noreferrer"><code class="highlighter-rouge">Discovering Security Vulnerabilities</code></a>
+<a href="https://www.baeldung.com/spring-boot-chaos-monkey" target="_blank" rel="noopener noreferrer"><code class="highlighter-rouge">Examining Exception Handling</code></a>
+<a href="https://medium.com/production-ready/using-chaos-monkey-whenever-you-feel-like-it-e5fe31257a07" target="_blank" rel="noopener noreferrer"><code class="highlighter-rouge">On Demand Chaos</code></a>
+<a href="https://blog.serverdensity.com/building-chaos-monkey/" target="_blank" rel="noopener noreferrer"><code class="highlighter-rouge">Building Your Own Customized Monkey</code></a></p>
 </blockquote>
 
 
@@ -1155,7 +1275,7 @@ ip-10-100-11-180.us-west-2.compute.internal   Ready     &lt;none&gt;    20s     
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2018 Gabe Wyatt</div>
+<div class="page__footer-copyright">© 2018 Gabe Wyatt</div>
 
       </footer>
     </div>

@@ -28,7 +28,56 @@ The following items are assorted things for Austin and/or other editors to take 
 
 ## Links
 
-1. **(TODO)**: Verify all links are valid.
-2. **(TODO)**: Find out where Gremlin service mention links should point to and update accordingly.
+All internal and frequently-used URLs are located in the `_internal/nav-internal.md` template, which is then included via `{% raw %}{% include nav-internal.md %}{% endraw %}` at the end of every Markdown file.  Therefore, to change a link throughout the full guide simply requires changing it in `nav-internal.md` and rebuilding.
+
+### Testing URL Validity and Functionality
+
+1. The `html-proofer` gem is used to help verify link validity.  It can be run manually, but the `Rakefile` is configured to perform a Jekyll build and then execute `html-proofer`.
+
+    ```ruby
+    # RAKEFILE
+    require 'html-proofer'
+
+    task :test do
+        # Temporarily replace baseurl for shared mount directories to hash correctly.
+        sh "bundle exec jekyll build --baseurl ''"
+        options = {
+            assume_extension: true,
+            url_ignore: [
+            # Documentation link.
+            "http://localhost:9000",
+            # PDF Download not implemented
+            "/pdf-download",
+            ]
+        }
+        HTMLProofer.check_directory("./docs", options).run
+    end
+    ```
+
+    Execute with standard `rake test` command.
+
+    ```bash
+    rake test
+    ```
+
+    Errors indicate the specific problem, while a successful output confirms all links are valid and functional.
+
+    ```bash
+    Running ["LinkCheck", "ScriptCheck", "ImageCheck"] on ["./docs"] on *.html...
+
+    Checking 105 external links...
+    Ran on 16 files!
+
+    HTML-Proofer finished successfully.
+    ```
+
+### Gremlin Links
+
+- **(TODO)**: Find out where Gremlin service mention links should point to and update accordingly.
+    - For example, where should references to signup for/acquire a Gremlin account point to?  At present, they use the `#gremlin-account-signup` navigation link key, which resolves to [this URL][#gremlin-account-signup].
+
+### External Links
+
+By default, all external links are processes with `target="_blank" rel="noreferrer noopener"` tags, opening them in a new window.  To disable this behavior disable the `jekyll-target-blank` gem and rebuild.
 
 {% include nav-internal.md %}

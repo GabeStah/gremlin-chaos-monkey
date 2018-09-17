@@ -6,8 +6,7 @@ path: "/chaos-monkey/alternatives/kubernetes"
 url: "https://www.gremlin.com/chaos-monkey/alternatives/kubernetes"
 sources: "See: _docs/resources.md"
 published: true
----
-
+outline: "
 - URL: `https://www.gremlin.com/chaos-monkey/alternatives/kubernetes`
 - Parent: `Category Section: Infrastructure`
 - Content:
@@ -17,5 +16,12 @@ published: true
   - [`Database Termination Experiment with Kubernetes and PostgreSQL`](https://medium.com/chaosiq/improve-your-cloud-native-devops-flow-with-chaos-engineering-dc32836c2d9a): Tutorial for how to test the loss of the master database and its impact on the overall application.
   - [`pod-reaper`](https://github.com/target/pod-reaper): A rule-based pod killing container for Kubernetes.
   - [`powerfulseal`](https://github.com/bloomberg/powerfulseal): Adds Chaos experiments to Kubernetes via targeted pod killing and starting/stopping VMs.
+- Competition 
+  - https://github.com/asobti/kube-monkey
+  - https://stackoverflow.com/questions/45020970/chaos-monkey-operability-with-kubernetes
+  - https://github.com/bloomberg/powerfulseal
+  - https://medium.com/@andrewsrobertamary/chaos-testing-date-with-kube-monkey-dbffd86a6202
+"
+---
 
 {% include nav-internal.md %}

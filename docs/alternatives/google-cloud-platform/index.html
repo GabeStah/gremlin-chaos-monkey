@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.12.2 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.13.0 by Michael Rose
   Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
@@ -115,11 +115,14 @@
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
         <a class="site-title" href="/gremlin-chaos-monkey/">Gremlin: Chaos Monkey</a>
-        <ul class="visible-links"><li class="masthead__menu-item">
-              <a href="/gremlin-chaos-monkey/notes" >Notes to Editor</a>
-            </li><li class="masthead__menu-item">
-              <a href="https://drive.google.com/drive/folders/16PhHEJGZtF428eyko_6-2BxpDGAU9JhW?usp=sharing" >Google Drive Exports</a>
-            </li></ul>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/gremlin-chaos-monkey/notes">Notes to Editor</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="https://drive.google.com/drive/folders/16PhHEJGZtF428eyko_6-2BxpDGAU9JhW?usp=sharing" target="_blank" rel="noopener noreferrer">Google Drive Exports</a>
+            </li>
+</ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Toggle Menu</span>
@@ -149,7 +152,7 @@
       
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
           <a href="http://localhost:4000/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
-          <meta itemprop="position" content="1" />
+          <meta itemprop="position" content="1">
         </li>
         <span class="sep">/</span>
       
@@ -157,7 +160,7 @@
         
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
           <a href="/gremlin-chaos-monkey/alternatives" itemprop="item"><span itemprop="name">Alternatives</span></a>
-          <meta itemprop="position" content="2" />
+          <meta itemprop="position" content="2">
         </li>
         <span class="sep">/</span>
       
@@ -188,7 +191,7 @@
 
 <nav class="nav__list">
   
-  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <input id="ac-toc" name="accordion-toc" type="checkbox">
   <label for="ac-toc">Toggle Menu</label>
   <ul class="nav__items">
     
@@ -370,35 +373,38 @@
         
           <aside class="sidebar__right sticky">
             <nav class="toc">
-              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> </h4></header>
+              <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> </h4></header>
               <ul class="toc__menu">
   <li><a href="#google-cloud-chaos-monkey">Google Cloud Chaos Monkey</a></li>
-  <li><a href="#swapping-kubernetes-nodes-in-gke">Swapping Kubernetes Nodes in GKE</a></li>
   <li><a href="#engineering-chaos-experiments-with-tensorflow">Engineering Chaos Experiments with TensorFlow</a></li>
+  <li><a href="#swapping-kubernetes-nodes-in-gke">Swapping Kubernetes Nodes in GKE</a></li>
 </ul>
             </nav>
           </aside>
         
         <h2 id="google-cloud-chaos-monkey">Google Cloud Chaos Monkey</h2>
 
-<p><a href="https://github.com/dkholod/GoogleCloudChaosMonkey">Google Cloud Chaos Monkey</a> is an open-source tool written in F# that performs a few basic Chaos Experiments on Google Cloud instances.  Instance target selection is pseudo-randomized and based on probabilities.</p>
+<p><a href="https://github.com/dkholod/GoogleCloudChaosMonkey" target="_blank" rel="noopener noreferrer">Google Cloud Chaos Monkey</a> is an open-source tool written in F# that performs a few basic Chaos Experiments on Google Cloud instances.  Instance target selection is pseudo-randomized and based on probabilities.</p>
 
 <ul>
-  <li><a href="https://github.com/dkholod/GoogleCloudChaosMonkey/blob/master/GoogleCloudChaosMonkey/GoogleCloud.fs#L27-L32">Reset</a>: Resets the targeted instance.</li>
-  <li><a href="https://github.com/dkholod/GoogleCloudChaosMonkey/blob/master/GoogleCloudChaosMonkey/GoogleCloud.fs#L34-L44">Stop and Start</a>: Stops the instance and then restarts it after <code class="highlighter-rouge">3</code> seconds.</li>
+  <li>
+<a href="https://github.com/dkholod/GoogleCloudChaosMonkey/blob/master/GoogleCloudChaosMonkey/GoogleCloud.fs#L27-L32" target="_blank" rel="noopener noreferrer">Reset</a>: Resets the targeted instance.</li>
+  <li>
+<a href="https://github.com/dkholod/GoogleCloudChaosMonkey/blob/master/GoogleCloudChaosMonkey/GoogleCloud.fs#L34-L44" target="_blank" rel="noopener noreferrer">Stop and Start</a>: Stops the instance and then restarts it after <code class="highlighter-rouge">3</code> seconds.</li>
 </ul>
-
-<h2 id="swapping-kubernetes-nodes-in-gke">Swapping Kubernetes Nodes in GKE</h2>
-
-<p>If you’re looking to get into Chaos Engineering with Kubernetes check out our <a href="/gremlin-chaos-monkey/advanced-tips#how-to-deploy-spinnaker-on-kubernetes">How to Deploy Spinnaker on Kubernetes</a> tutorial to get started with Amazon EKS.  On the other hand, to induce Chaos on Google Cloud Kubernetes Engine clusters you can use the <a href="https://github.com/chaostoolkit-incubator/chaostoolkit-google-cloud">Chaos Toolkit Google Cloud driver</a>.  A relatively simple failure injection involves attacking a node pool with an HTTP load balancing library like <a href="https://github.com/tsenart/vegeta">Vegeta</a>, calling the <a href="https://docs.chaostoolkit.org/drivers/gce/#swap_nodepool"><code class="highlighter-rouge">swap_nodepool</code></a> function to create a new node pool and drain the old pool.  This forces pods to be moved to the new pool.</p>
-
-<p>Check out <a href="https://medium.com/chaosiq/observing-the-impact-of-swapping-nodes-in-gke-with-chaos-engineering-ce5cf9b5fbc6">this tutorial</a> for more information.</p>
 
 <h2 id="engineering-chaos-experiments-with-tensorflow">Engineering Chaos Experiments with TensorFlow</h2>
 
-<p>It’s safe and easy to perform Chaos Experiments on Google Cloud Platform services like TensorFlow with Gremlin’s <a href="https://www.gremlin.com/">Failure as a Service</a>.  As a clustered configuration TensorFlow is ideal for running Chaos Experiments to test the fault tolerance and stability of each clustered node.  Gremlin can execute a wide range of attacks on your TensorFlow cluster, including overloading CPU, memory, disk, and IO; killing processes; altering system time; modifying network traffic; and more.</p>
+<p>It’s safe and easy to perform Chaos Experiments on Google Cloud Platform services like TensorFlow with Gremlin’s <a href="https://www.gremlin.com" target="_blank" rel="noopener noreferrer">Failure as a Service</a>.  As a clustered configuration TensorFlow is ideal for running Chaos Experiments to test the fault tolerance and stability of each clustered node.  Gremlin can execute a wide range of attacks on your TensorFlow cluster, including overloading CPU, memory, disk, and IO; killing processes; altering system time; modifying network traffic; and more.</p>
 
-<p>Check out the <a href="https://www.gremlin.com/community/tutorials/how-to-install-distributed-tensorflow-on-gcp-and-perform-chaos-engineering-experiments/#introduction-d4bc1640-1f87-4750-8cda-ed5448a6a120">full tutorial</a> over on our <a href="https://www.gremlin.com/community/">community site</a>.</p>
+<p>Check out the <a href="https://www.gremlin.com/community/tutorials/how-to-install-distributed-tensorflow-on-gcp-and-perform-chaos-engineering-experiments/#introduction-d4bc1640-1f87-4750-8cda-ed5448a6a120" target="_blank" rel="noopener noreferrer">full tutorial</a> over on our <a href="https://www.gremlin.com/community/" target="_blank" rel="noopener noreferrer">community site</a>.</p>
+
+<h2 id="swapping-kubernetes-nodes-in-gke">Swapping Kubernetes Nodes in GKE</h2>
+
+<p>If you’re looking to get into Chaos Engineering with Kubernetes check out our <a href="/gremlin-chaos-monkey/advanced-tips#how-to-deploy-spinnaker-on-kubernetes">How to Deploy Spinnaker on Kubernetes</a> tutorial to get started with Amazon EKS.  On the other hand, to induce Chaos on Google Cloud Kubernetes Engine clusters you can use the <a href="https://github.com/chaostoolkit-incubator/chaostoolkit-google-cloud" target="_blank" rel="noopener noreferrer">Chaos Toolkit Google Cloud driver</a>.  A relatively simple failure injection involves attacking a node pool with an HTTP load balancing library like <a href="https://github.com/tsenart/vegeta" target="_blank" rel="noopener noreferrer">Vegeta</a>, calling the <a href="https://docs.chaostoolkit.org/drivers/gce/#swap_nodepool" target="_blank" rel="noopener noreferrer"><code class="highlighter-rouge">swap_nodepool</code></a> function to create a new node pool and drain the old pool.  This forces pods to be moved to the new pool.</p>
+
+<p>Check out <a href="https://medium.com/chaosiq/observing-the-impact-of-swapping-nodes-in-gke-with-chaos-engineering-ce5cf9b5fbc6" target="_blank" rel="noopener noreferrer">this tutorial</a> for more information.</p>
 
 
         
@@ -446,7 +452,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2018 Gabe Wyatt</div>
+<div class="page__footer-copyright">© 2018 Gabe Wyatt</div>
 
       </footer>
     </div>

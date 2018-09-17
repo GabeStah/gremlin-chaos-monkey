@@ -208,6 +208,7 @@ plugins:
   - jemoji
   - jekyll-toc
   - premonition
+  - jekyll-target-blank
 
 # mimic GitHub Pages with --safe
 whitelist:

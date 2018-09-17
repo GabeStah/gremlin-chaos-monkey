@@ -32,6 +32,6 @@ published: true
 
 ## Resources
 
-**(TODO)**: Format `_docs/outline/resourcesmd` per layout style.
+**(TODO)**: Format `_docs/outline/resources.md` per layout style.
 
 {% include nav-internal.md %}
