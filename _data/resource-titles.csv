@@ -1,0 +1,92 @@
+title
+"Chaos Engineering: the history, principles, and practice"
+The Limitations of Chaos Engineering – Production Ready – Medium
+Inside Azure Search: Chaos Engineering | Blog | Microsoft Azure
+"Business Continuity Plan & Disaster Recovery is too old, make a way for Chaos Engineering"
+Kafka in a Nutshell
+Exploring Multi-level Weaknesses using Automated Chaos Experiments
+Chaos Engineering — Review Lineage Driven Failure Injection(LDFI)
+Failure Testing for your private cloud | TechBlog | Outbrain.com
+Chaos Monkey for the Enterprise Cloud | Nutanix Community
+Can Spark Streaming survive Chaos Monkey? – Netflix TechBlog – Medium
+Chaos Engineering 101 – Production Ready – Medium
+Chaos Monkey for Fun and Profit – Production Ready – Medium
+Netflix Chaos Monkey Upgraded – Netflix TechBlog – Medium
+Agile DevOps: Unleash the Chaos Monkey
+Bees And Monkeys: 5 Cloud Lessons NAB Learned From AWS | Lifehacker Australia
+Working with the Chaos Monkey
+"You've Heard of the Netflix Chaos Monkey? We Propose, for Cyber-Security, an ""Infected Monkey"" - Powered by Battery"
+Building Your own Chaos Monkey - Server Density Blog
+FIT: Failure Injection Testing – Netflix TechBlog – Medium
+Automated Failure Testing – Netflix TechBlog – Medium
+ChAP: Chaos Automation Platform – Netflix TechBlog – Medium
+Active-Active for Multi-Regional Resiliency – Netflix TechBlog – Medium
+The Netflix Simian Army – Netflix TechBlog – Medium
+"Post-mortem of October 22, 2012 AWS degradation – Netflix TechBlog – Medium"
+Netflix to Open Source Army of Cloud Monkeys | WIRED
+Chaos Engineering Upgraded – Netflix TechBlog – Medium
+"When it Comes to Chaos, Gorillas Before Monkeys"
+Chaos Engineering - O'Reilly Media
+12 Factor Applications with…  by Tit Petric [PDF/iPad/Kindle]
+ERROR/INVALID
+"
+CHAOS ENGINEERING
+
+Companies, People, Tools & Practices
+"
+The Cloudcast: The Cloudcast #299 - The Discipline of Chaos Engineering
+Chaos Conf - The Chaos Engineering Community Conference
+chaosengineering - Slack profile on Slofile
+amazon web services - Who is this Chaos Monkey and why did he crash my server? - DevOps Stack Exchange
+ERROR/INVALID
+ERROR/INVALID
+"""1000 Actors, One Chaos Monkey and... Everything OK"" by Pavlo Baron - Coding Serbia Conference - YouTube"
+ERROR/INVALID
+Using chaos engineering to level up Kafka skills - Shlomi Hassan & Yaniv Ranen @ ZipRecruiter (Heb) - YouTube
+Daemon Behr - Chaos Engineering for vSphere - YouTube
+"Testing In Production, The Netflix Way - YouTube"
+Unbreakable: Learning to Bend But Not Break at Netflix
+Automating Chaos Experiments in Production
+Resiliency through Failure - Netflix's Approach to Extreme Availability in the Cloud
+GitHub - dastergon/awesome-chaos-engineering: A curated list of Chaos Engineering resources.
+Chaos Toolkit
+Marathon: A container orchestration platform for Mesos and DC/OS
+GitHub - smarx/WazMonkey: WazMonkey is a simple tool for testing resilience of Windows Azure cloud services.
+GitHub - alexei-led/pumba: Chaos testing and network emulation tool for Docker.
+GitHub - mlafeldt/docker-simianarmy: Docker image of Netflix's Simian Army
+GitHub - titpetric/docker-chaos-monkey: A Chaos Monkey system for Docker Swarm
+GitHub - dnsbl-io/chaosmonkey-elixir: Kill Elixir processes randomly
+GitHub - meadsteve/chaos-spawn: ☄️ Chaotic spawning for elixir
+GitHub - dkholod/GoogleCloudChaosMonkey: Google Cloud Chaos Monkey tool
+GitHub - chaostoolkit-incubator/chaostoolkit-google-cloud: Chaos Extension for the Google Cloud Engine platform
+GitHub - asobti/kube-monkey: An implementation of Netflix's Chaos Monkey for Kubernetes clusters
+GitHub - target/pod-reaper: Rule based pod killing kubernetes controller
+GitHub - bloomberg/powerfulseal: A powerful testing tool for Kubernetes clusters.
+GitHub - Produban/monkey-ops: Chaos Monkey for OpenShift V3.X
+GitHub - outbrain/GomJabbar: Chaos Monkey for your private cloud
+GitHub - Shopify/toxiproxy: A TCP proxy to simulate network and system conditions for chaos and resiliency testing
+GitHub - strepsirrhini-army/chaos-lemur: An adaptation of the Chaos Monkey concept to BOSH releases
+GitHub - Netflix/chaosmonkey: Chaos Monkey is a resiliency tool that helps applications tolerate random instance failures.
+GitHub - tsenart/vegeta: HTTP load testing tool and library. It's over 9000!
+GitHub - Netflix/SimianArmy: Tools for keeping your cloud operating in top form. Chaos Monkey is a resiliency tool that helps applications tolerate random instance failures.
+"GitHub - Netflix/security_monkey: Security Monkey monitors AWS, GCP, OpenStack, and GitHub orgs for assets and their changes over time."
+The Chaos Monkey Army · Netflix/SimianArmy Wiki · GitHub
+GitHub - BBVA/chaos-monkey-engine: A Chaos Engineering swiss army knife
+4 Chaos Experiments to Start With
+Chaos Engineering and Mesos
+Create chaos and failover tests for Azure Service Fabric | Microsoft Docs
+Induce Chaos in Service Fabric clusters | Microsoft Docs
+Chaos Testing for Docker Containers - Codefresh
+Pumba — Chaos Testing for Docker – Hacker Noon
+Running Chaos Monkey on Spinnaker/Google Compute Engine (GCE)
+Observing the Impact of Swapping Nodes in GKE with Chaos Engineering
+Chaos Monkey for Spring Boot | This project provides a Chaos Monkey for Spring Boot and will try to attack your running Spring Boot App.
+Improve your Cloud Native DevOps Flow with Chaos Engineering
+Chaos Experiment: Split Braining Akka Clusters
+How to deploy - Chaos Monkey
+Kubernetes Chaos Monkey on IBM Cloud Private - developerWorks Recipes
+Introduction to Chaos Monkey | Baeldung
+Using Chaos Monkey whenever you feel like it – Production Ready – Medium
+Home · Netflix/SimianArmy Wiki · GitHub
+Sailing with Spinnaker on AWS | AWS Open Source Blog
+1. Install Halyard - Spinnaker

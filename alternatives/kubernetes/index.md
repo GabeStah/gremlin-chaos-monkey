@@ -24,4 +24,10 @@ outline: "
 "
 ---
 
+## Engineering Chaos In Kubernetes
+
+Gremlin's [Failure as a Service][#gremlin-failure-as-a-service] simplifies your Chaos Engineering workflow for Kubernetes by making it safe and effortless to execute Chaos Experiments across all nodes.  As a distributed architecture Kubernetes is particularly sensitive to instability and unexpected failures.  Gremlin can perform a variety of attacks on your Kubernetes clusters, including overloading CPU, memory, disk, and IO; killing nodes; modifying network traffic; and much more.
+
+Check out [this tutorial](https://www.gremlin.com/community/tutorials/how-to-install-and-use-gremlin-with-kubernetes/) over on our [community site](https://www.gremlin.com/community/) to get started!
+
 {% include nav-internal.md %}

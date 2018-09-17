@@ -375,6 +375,7 @@
       <li><a href="#external-links">External Links</a></li>
     </ul>
   </li>
+  <li><a href="#resources">Resources</a></li>
 </ul>
             </nav>
           </aside>
@@ -468,6 +469,25 @@
 <h3 id="external-links">External Links</h3>
 
 <p>By default, all external links are processes with <code class="highlighter-rouge">target="_blank" rel="noreferrer noopener"</code> tags, opening them in a new window.  To disable this behavior disable the <code class="highlighter-rouge">jekyll-target-blank</code> gem and rebuild.</p>
+
+<h2 id="resources">Resources</h2>
+
+<ol>
+  <li>Google Sheets document found <a href="https://docs.google.com/spreadsheets/d/1SeNhnXx6dx7a3Ng4_hDS8LfKty8TVzxTt6g661OB6_E/" target="_blank" rel="noopener noreferrer">here</a>.</li>
+  <li>
+    <p>Save URLs to <code class="highlighter-rouge">_data/resource-urls.csv</code> and execute <code class="highlighter-rouge">titles</code> Scrapy spider, specifying full input and output file paths.</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> scrapy crawl titles <span class="nt">-a</span> <span class="nv">input</span><span class="o">=</span><span class="s2">"/mnt/hgfs/work/Gremlin/gremlin-projects/chaos-monkey/_data/resource-urls.csv"</span> <span class="nt">-t</span> csv <span class="nt">--nolog</span> <span class="nt">-o</span> - <span class="o">&gt;</span> <span class="s2">"/mnt/hgfs/work/Gremlin/gremlin-projects/chaos-monkey/_data/resource-titles.csv"</span>
+</code></pre></div>    </div>
+
+    <div class="premonition note modified">
+<div class="fa fa-check-square"></div>
+<div class="content"><p>Scraping will be very slow because <code class="highlighter-rouge">CONCURRENT_REQUESTS</code> and <code class="highlighter-rouge">CONCURRENT_ITEMS</code> are set to <code class="highlighter-rouge">1</code>, to maintain the same output order as input order.</p></div>
+</div>
+  </li>
+  <li>Paste exported <code class="highlighter-rouge">Titles</code> into Google Sheet column.</li>
+</ol>
 
 
         

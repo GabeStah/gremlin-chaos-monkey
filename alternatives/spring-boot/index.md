@@ -15,6 +15,7 @@ outline: "
   - https://jaxenter.com/chaos-monkey-spring-boot-143435.html
 - Competition
   - https://codecentric.github.io/chaos-monkey-spring-boot/
+  - https://www.baeldung.com/spring-boot-chaos-monkey
 "
 ---
 

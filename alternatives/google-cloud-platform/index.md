@@ -28,7 +28,7 @@ outline: "
 
 It's safe and easy to perform Chaos Experiments on Google Cloud Platform services like TensorFlow with Gremlin's [Failure as a Service][#gremlin-failure-as-a-service].  As a clustered configuration TensorFlow is ideal for running Chaos Experiments to test the fault tolerance and stability of each clustered node.  Gremlin can execute a wide range of attacks on your TensorFlow cluster, including overloading CPU, memory, disk, and IO; killing processes; altering system time; modifying network traffic; and more.
 
-Check out the [full tutorial](https://www.gremlin.com/community/tutorials/how-to-install-distributed-tensorflow-on-gcp-and-perform-chaos-engineering-experiments/#introduction-d4bc1640-1f87-4750-8cda-ed5448a6a120) over on our [community site](https://www.gremlin.com/community/).
+Check out the [full tutorial](https://www.gremlin.com/community/tutorials/how-to-install-distributed-tensorflow-on-gcp-and-perform-chaos-engineering-experiments/) over on our [community site](https://www.gremlin.com/community/).
 
 ## Swapping Kubernetes Nodes in GKE
 

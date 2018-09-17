@@ -80,4 +80,18 @@ All internal and frequently-used URLs are located in the `_internal/nav-internal
 
 By default, all external links are processes with `target="_blank" rel="noreferrer noopener"` tags, opening them in a new window.  To disable this behavior disable the `jekyll-target-blank` gem and rebuild.
 
+## Resources
+
+1. Google Sheets document found [here](https://docs.google.com/spreadsheets/d/1SeNhnXx6dx7a3Ng4_hDS8LfKty8TVzxTt6g661OB6_E/).
+2. Save URLs to `_data/resource-urls.csv` and execute `titles` Scrapy spider, specifying full input and output file paths.
+
+    ```bash
+    scrapy crawl titles -a input="/mnt/hgfs/work/Gremlin/gremlin-projects/chaos-monkey/_data/resource-urls.csv" -t csv --nolog -o - > "/mnt/hgfs/work/Gremlin/gremlin-projects/chaos-monkey/_data/resource-titles.csv"
+    ```
+
+    > note ""
+    > Scraping will be very slow because `CONCURRENT_REQUESTS` and `CONCURRENT_ITEMS` are set to `1`, to maintain the same output order as input order.
+
+3. Paste exported `Titles` into Google Sheet column.
+
 {% include nav-internal.md %}
