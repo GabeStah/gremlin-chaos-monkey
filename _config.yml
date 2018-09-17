@@ -217,7 +217,9 @@ whitelist:
   - jekyll-gist
   - jekyll-feed
   - jemoji
-
+  - jekyll-toc
+  - premonition
+  - jekyll-target-blank
 
 # Archives
 #  Type
