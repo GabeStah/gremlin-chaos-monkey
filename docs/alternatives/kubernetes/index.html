@@ -426,7 +426,7 @@
 
 <h2 id="the-chaos-toolkit">The Chaos Toolkit</h2>
 
-<p>The <a href="https://chaostoolkit.org/" target="_blank" rel="noopener noreferrer">Chaos Toolkit</a> is an open-source and extensible tool that is written in Python.  It uses platform-based drivers to connect to your Kubernetes cluster and to execute Chaos Experiments.  Every experiment performed by Chaos Toolkit is written in JSON using a <a href="https://docs.chaostoolkit.org/reference/api/experiment/" target="_blank" rel="noopener noreferrer">robust API</a>.  Every experiment is made up of a few key elements, which are executed sequentially and allow the experiment to bail out if any step in the process fails.</p>
+<p>The <a href="https://chaostoolkit.org/" target="_blank" rel="noopener noreferrer">Chaos Toolkit</a> is an open-source and extensible tool that is written in Python.  It uses <a href="https://github.com/chaostoolkit/chaostoolkit-kubernetes" target="_blank" rel="noopener noreferrer">platform-specific drivers</a> to connect to your Kubernetes cluster and execute Chaos Experiments.  Every experiment performed by Chaos Toolkit is written in JSON using a <a href="https://docs.chaostoolkit.org/reference/api/experiment/" target="_blank" rel="noopener noreferrer">robust API</a>.  Experiments are made up of a few key elements that are executed sequentially and allow the experiment to bail out if any step in the process fails.</p>
 
 <ul>
   <li>

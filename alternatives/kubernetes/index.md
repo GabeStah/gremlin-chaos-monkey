@@ -67,7 +67,7 @@ While not the most elegant tool, as little more than a shell script [Kubernetes 
 
 ## The Chaos Toolkit
 
-The [Chaos Toolkit](https://chaostoolkit.org/) is an open-source and extensible tool that is written in Python.  It uses platform-based drivers to connect to your Kubernetes cluster and to execute Chaos Experiments.  Every experiment performed by Chaos Toolkit is written in JSON using a [robust API](https://docs.chaostoolkit.org/reference/api/experiment/).  Every experiment is made up of a few key elements, which are executed sequentially and allow the experiment to bail out if any step in the process fails.
+The [Chaos Toolkit](https://chaostoolkit.org/) is an open-source and extensible tool that is written in Python.  It uses [platform-specific drivers](https://github.com/chaostoolkit/chaostoolkit-kubernetes) to connect to your Kubernetes cluster and execute Chaos Experiments.  Every experiment performed by Chaos Toolkit is written in JSON using a [robust API](https://docs.chaostoolkit.org/reference/api/experiment/).  Experiments are made up of a few key elements that are executed sequentially and allow the experiment to bail out if any step in the process fails.
 
 - **Steady State Hypothesis**: This element defines the normal or "steady" state of the system before the **Method** element is applied.  For our example we've defined a basic application with a steady state hypothesis titled "Service should have nodes."
 
