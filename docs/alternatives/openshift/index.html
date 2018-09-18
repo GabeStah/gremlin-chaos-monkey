@@ -363,7 +363,7 @@
 
 
 
-  2 minute read
+  3 minute read
 </p>
           
         </header>
@@ -477,7 +477,70 @@
 
 <h2 id="pumba">Pumba</h2>
 
-<p>**(TODO): http://www.lordofthejars.com/2017/10/adding-chaos-on-openshift-cluster.html</p>
+<p><strong>(TODO)</strong>: http://www.lordofthejars.com/2017/10/adding-chaos-on-openshift-cluster.html</p>
+
+<p><strong>(TODO)</strong>: Test daemonset for Gremlin.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">extensions/v1beta1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">DaemonSet</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">gremlin</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">&lt;namespace where you want to run an attack&gt;</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">k8s-app</span><span class="pi">:</span> <span class="s">gremlin</span>
+    <span class="na">version</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">template</span><span class="pi">:</span>
+    <span class="na">metadata</span><span class="pi">:</span>
+      <span class="na">labels</span><span class="pi">:</span>
+        <span class="na">k8s-app</span><span class="pi">:</span> <span class="s">gremlin</span>
+        <span class="na">version</span><span class="pi">:</span> <span class="s">v1</span>
+    <span class="na">spec</span><span class="pi">:</span>
+      <span class="na">containers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">gremlin</span>
+        <span class="na">image</span><span class="pi">:</span> <span class="s">gremlin/gremlin</span>
+        <span class="na">args</span><span class="pi">:</span> <span class="pi">[</span> <span class="s2">"</span><span class="s">daemon"</span> <span class="pi">]</span>
+        <span class="na">imagePullPolicy</span><span class="pi">:</span> <span class="s">Always</span>
+        <span class="na">securityContext</span><span class="pi">:</span>
+          <span class="na">capabilities</span><span class="pi">:</span>
+            <span class="na">add</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="s">NET_ADMIN</span>
+              <span class="pi">-</span> <span class="s">SYS_BOOT</span>
+              <span class="pi">-</span> <span class="s">SYS_TIME</span>
+              <span class="pi">-</span> <span class="s">KILL</span>
+        <span class="na">env</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">GREMLIN_TEAM_ID</span>
+            <span class="na">value</span><span class="pi">:</span> <span class="s">&lt;YOUR TEAM ID GOES HERE&gt;</span>
+          <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">GREMLIN_TEAM_SECRET</span>
+            <span class="na">value</span><span class="pi">:</span> <span class="s">&lt;YOUR SECRET GOES HERE&gt;</span>
+          <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">GREMLIN_IDENTIFIER</span>
+            <span class="na">valueFrom</span><span class="pi">:</span>
+              <span class="na">fieldRef</span><span class="pi">:</span>
+                <span class="na">fieldPath</span><span class="pi">:</span> <span class="s">spec.nodeName</span>
+        <span class="na">volumeMounts</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">docker-sock</span>
+            <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/var/run/docker.sock</span>
+          <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">gremlin-state</span>
+            <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/var/lib/gremlin</span>
+          <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">gremlin-logs</span>
+            <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/var/log/gremlin</span>
+      <span class="na">volumes</span><span class="pi">:</span>
+        <span class="c1"># Gremlin uses the Docker socket to discover eligible containers to attack,</span>
+        <span class="c1"># and to launch Gremlin sidecar containers</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">docker-sock</span>
+          <span class="na">hostPath</span><span class="pi">:</span>
+            <span class="na">path</span><span class="pi">:</span> <span class="s">/var/run/docker.sock</span>
+        <span class="c1"># The Gremlin daemon communicates with Gremlin sidecars via its state directory.</span>
+        <span class="c1"># This should be shared with the Kubernetes host</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">gremlin-state</span>
+          <span class="na">hostPath</span><span class="pi">:</span>
+            <span class="na">path</span><span class="pi">:</span> <span class="s">/var/lib/gremlin</span>
+        <span class="c1"># The Gremlin daemon forwards logs from the Gremlin sidecars to the Gremlin control plane</span>
+        <span class="c1"># These logs should be shared with the host</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">gremlin-logs</span>
+          <span class="na">hostPath</span><span class="pi">:</span>
+            <span class="na">path</span><span class="pi">:</span> <span class="s">/var/log/gremlin</span>
+</code></pre></div></div>
 
 
         
