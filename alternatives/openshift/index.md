@@ -101,6 +101,12 @@ Check out [this tutorial](https://help.gremlin.com/install-gremlin-centos-7/) to
 
 **(TODO)**: http://www.lordofthejars.com/2017/10/adding-chaos-on-openshift-cluster.html
 
+```bash
+oc adm policy  --as system:admin add-cluster-role-to-user cluster-admin developer
+oc adm policy add-scc-to-user privileged system:serviceaccount:fasttest:default
+oc edit scc restrict
+```
+
 **(TODO)**: Test daemonset for Gremlin.
 
 ```yaml
