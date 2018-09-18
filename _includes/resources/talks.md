@@ -1,0 +1,8 @@
+- [1000 Actors, One Chaos Monkey and... Everything OK](https://www.youtube.com/watch?v=W_j-5BeiaYE)
+- [Orchestrating Mayhem Functional Chaos Engineering](http://www.lambdadays.org/static/upload/media/1519982459833986szymonmentelsharableorchestratingmyhem.pdf)
+- [Using Chaos Engineering to Level Up Kafka Skills](https://www.youtube.com/watch?v=YNs2fVxYzq0)
+- [Chaos Engineering for vSphere](https://www.youtube.com/watch?v=R430b9JhyoI)
+- [Testing In Production, The Netflix Way](https://www.youtube.com/watch?v=3WRVgC8SiGc)
+- [Unbreakable: Learning to Bend But Not Break at Netflix](https://www.infoq.com/presentations/netflix-chaos-experiments)
+- [Automating Chaos Experiments in Production](https://www.infoq.com/presentations/netflix-chaos-platform)
+- [Resiliency Through Failure - Netflix's Approach to Extreme Availability in the Cloud](https://www.infoq.com/presentations/netflix-resiliency-failure-cloud)

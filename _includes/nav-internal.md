@@ -25,7 +25,9 @@
 [#chaos-monkey-use]:                    {{ "/developer-tutorial#how-to-use-chaos-monkey" | relative_url}}
 [#halyard-install]:                     {{ "/advanced-tips#how-to-install-halyard" | relative_url}}
 [#gremlin-account-signup]:              https://www.gremlin.com/demo
+[#gremlin-api]:                         https://help.gremlin.com/api/
 [#gremlin-failure-as-a-service]:        https://www.gremlin.com
+[#gremlin-web-ui]:                      https://app.gremlin.com/
 [#netflix-fit]:                         {{ "/origin-netflix#failure-injection-testing" | relative_url}}
 [#netflix-history]:                     {{ "/origin-netflix#the-history-of-netflix-streaming" | relative_url}}
 [#netflix-simian-army]:                 {{ "/origin-netflix#the-simian-army" | relative_url}}

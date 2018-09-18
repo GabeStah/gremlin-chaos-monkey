@@ -19,4 +19,10 @@ outline: "
 "
 ---
 
+## Injecting Failure in Spring Boot Applications with Gremlin
+
+Gremlin's [Failure as a Service][#gremlin-failure-as-a-service] makes it easy to execute thoughtful Chaos Experiments within your standalone Spring-based applications, including those built with Spring Boot.  Rather than inject itself directly into your application's Java code Gremlin performs attacks against the instances powering your application.  Gremlin can execute a wide range of attacks including draining disk space, hogging CPU and memory, overloading IO, manipulating network traffic, terminating instances, and more.
+
+Running your first Chaos Experiment with Gremlin is as simple as [signing up][#gremlin-account-signup] for a Gremlin account, [installing](https://help.gremlin.com/install-gremlin-ubuntu-1604/) the Gremlin daemon on the targeted instances, and then launching attacks via either the [web UI][#gremlin-web-ui] or [API][#gremlin-api].  Check out [this installation tutorial](https://help.gremlin.com/install-gremlin-ubuntu-1604/) to get started!
+
 {% include nav-internal.md %}
