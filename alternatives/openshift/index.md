@@ -99,6 +99,70 @@ Check out [this tutorial](https://help.gremlin.com/install-gremlin-centos-7/) to
 
 ## Pumba
 
-**(TODO): http://www.lordofthejars.com/2017/10/adding-chaos-on-openshift-cluster.html
+**(TODO)**: http://www.lordofthejars.com/2017/10/adding-chaos-on-openshift-cluster.html
+
+**(TODO)**: Test daemonset for Gremlin.
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: gremlin
+  namespace: <namespace where you want to run an attack>
+  labels:
+    k8s-app: gremlin
+    version: v1
+spec:
+  template:
+    metadata:
+      labels:
+        k8s-app: gremlin
+        version: v1
+    spec:
+      containers:
+      - name: gremlin
+        image: gremlin/gremlin
+        args: [ "daemon" ]
+        imagePullPolicy: Always
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
+              - SYS_BOOT
+              - SYS_TIME
+              - KILL
+        env:
+          - name: GREMLIN_TEAM_ID
+            value: <YOUR TEAM ID GOES HERE>
+          - name: GREMLIN_TEAM_SECRET
+            value: <YOUR SECRET GOES HERE>
+          - name: GREMLIN_IDENTIFIER
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+        volumeMounts:
+          - name: docker-sock
+            mountPath: /var/run/docker.sock
+          - name: gremlin-state
+            mountPath: /var/lib/gremlin
+          - name: gremlin-logs
+            mountPath: /var/log/gremlin
+      volumes:
+        # Gremlin uses the Docker socket to discover eligible containers to attack,
+        # and to launch Gremlin sidecar containers
+        - name: docker-sock
+          hostPath:
+            path: /var/run/docker.sock
+        # The Gremlin daemon communicates with Gremlin sidecars via its state directory.
+        # This should be shared with the Kubernetes host
+        - name: gremlin-state
+          hostPath:
+            path: /var/lib/gremlin
+        # The Gremlin daemon forwards logs from the Gremlin sidecars to the Gremlin control plane
+        # These logs should be shared with the host
+        - name: gremlin-logs
+          hostPath:
+            path: /var/log/gremlin
+```
 
 {% include nav-internal.md %}
