@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Gremlin: Chaos Monkey">
 <meta property="og:title" content="Chaos Monkey Alternatives - Private Cloud">
-<meta property="og:url" content="/gremlin-chaos-monkey/alternatives/private-cloud/">
+<meta property="og:url" content="http://localhost:4000/gremlin-chaos-monkey/alternatives/private-cloud/">
 
 
 
@@ -38,7 +38,7 @@
   
 
 
-<link rel="canonical" href="/gremlin-chaos-monkey/alternatives/private-cloud/">
+<link rel="canonical" href="http://localhost:4000/gremlin-chaos-monkey/alternatives/private-cloud/">
 
 
 
@@ -51,7 +51,7 @@
       "@context": "http://schema.org",
       "@type": "Person",
       "name": "Gabe Wyatt",
-      "url": "/gremlin-chaos-monkey",
+      "url": "http://localhost:4000/gremlin-chaos-monkey",
       "sameAs": null
     }
   </script>
@@ -151,7 +151,7 @@
     
       
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-          <a href="/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
+          <a href="http://localhost:4000/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
           <meta itemprop="position" content="1">
         </li>
         <span class="sep">/</span>
@@ -363,7 +363,7 @@
 
 
 
-  less than 1 minute read
+  1 minute read
 </p>
           
         </header>
@@ -375,11 +375,63 @@
             <nav class="toc">
               <header><h4 class="nav__title">
 <i class="fas fa-file-alt"></i> </h4></header>
-              
+              <ul class="toc__menu">
+  <li><a href="#gomjabbar">GomJabbar</a></li>
+</ul>
             </nav>
           </aside>
         
-        
+        <h2 id="gomjabbar">GomJabbar</h2>
+
+<p><a href="https://github.com/outbrain/GomJabbar" target="_blank" rel="noopener noreferrer">GomJabbar</a> is an open-source implementation of Chaos Monkey written in Java and designed to perform attacks within private cloud architecture.  Attacks are defined through the YAML configuration file and are executed as plain shell commands (e.g. <code class="highlighter-rouge">sudo service ${module} stop</code>).  It also integrates with <a href="https://docs.ansible.com/ansible/latest/index.html" target="_blank" rel="noopener noreferrer">Ansible</a> and <a href="https://rundeck.org/" target="_blank" rel="noopener noreferrer">Rundeck</a>.</p>
+
+<p>Attacks are defines in the <code class="highlighter-rouge">config.yaml</code> in the <code class="highlighter-rouge">commands</code> block.  The <code class="highlighter-rouge">fail</code> value is the fault command to be executed, while the (optional) <code class="highlighter-rouge">revert</code> value is executed to attempt reversion.  For example, here the <code class="highlighter-rouge">shutdown_service</code> command calls <code class="highlighter-rouge">sudo service &lt;service-name&gt; stop</code> as a fault and the opposite to revert.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">commands</span><span class="pi">:</span>
+  <span class="na">kill_service</span><span class="pi">:</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Kills</span><span class="nv"> </span><span class="s">services."</span>
+    <span class="na">fail</span><span class="pi">:</span> <span class="s2">"</span><span class="s">sudo</span><span class="nv"> </span><span class="s">pkill</span><span class="nv"> </span><span class="s">-s</span><span class="nv"> </span><span class="s">9</span><span class="nv"> </span><span class="s">-f</span><span class="nv"> </span><span class="s">${module}"</span>
+    <span class="na">revert</span><span class="pi">:</span> <span class="s2">"</span><span class="s">sudo</span><span class="nv"> </span><span class="s">service</span><span class="nv"> </span><span class="s">${module}</span><span class="nv"> </span><span class="s">start"</span>
+
+  <span class="na">shutdown_service</span><span class="pi">:</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Shuts</span><span class="nv"> </span><span class="s">down</span><span class="nv"> </span><span class="s">services."</span>
+    <span class="na">fail</span><span class="pi">:</span> <span class="s2">"</span><span class="s">sudo</span><span class="nv"> </span><span class="s">service</span><span class="nv"> </span><span class="s">${module}</span><span class="nv"> </span><span class="s">stop"</span>
+    <span class="na">revert</span><span class="pi">:</span> <span class="s2">"</span><span class="s">sudo</span><span class="nv"> </span><span class="s">service</span><span class="nv"> </span><span class="s">${module}</span><span class="nv"> </span><span class="s">start"</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">filters</code> block in <code class="highlighter-rouge">config.yaml</code> defines a list of <code class="highlighter-rouge">clusters</code>, <code class="highlighter-rouge">modules</code>, and <code class="highlighter-rouge">tags</code> to either be whitelisted or blacklisted (i.e. via <code class="highlighter-rouge">include</code> or <code class="highlighter-rouge">exclude</code>).</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">filters</span><span class="pi">:</span>
+  <span class="na">clusters</span><span class="pi">:</span>
+    <span class="na">include</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">gremlin-chaos</span>
+    <span class="na">exclude</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">grandmas-cluster</span>
+
+  <span class="na">modules</span><span class="pi">:</span>
+    <span class="na">include</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">nginx</span>
+      <span class="pi">-</span> <span class="s">redis-server</span>
+    <span class="na">exclude</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">critical</span>
+
+  <span class="na">tags</span><span class="pi">:</span>
+    <span class="na">include</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">development</span>
+      <span class="pi">-</span> <span class="s">production</span>
+    <span class="na">exclude</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">test</span>
+</code></pre></div></div>
+
+<p>As we saw in the <code class="highlighter-rouge">commands</code> block above <code class="highlighter-rouge">${module}</code> can be referenced in fault commands and will automatically be replaced with the relevant service name.  Once configured you can start the server by exporting the generated <code class="highlighter-rouge">GJ_OPTIONS</code> and calling the <code class="highlighter-rouge">gomjabbar.sh</code> script.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">GJ_OPTIONS</span><span class="o">=</span><span class="s2">"-Dcom.outbrain.gomjabbar.configFileUrl=&lt;config file url&gt; ..."</span>
+./gomjabbar.sh
+</code></pre></div></div>
+
+<p>You can then use the <a href="https://github.com/outbrain/GomJabbar/blob/master/docs/user-guide.md#rest-api" target="_blank" rel="noopener noreferrer">REST API</a> to trigger attacks and revert faults.</p>
+
+
         
       </section>
 

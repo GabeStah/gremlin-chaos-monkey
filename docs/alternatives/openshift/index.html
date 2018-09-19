@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Gremlin: Chaos Monkey">
 <meta property="og:title" content="Chaos Monkey Alternatives - OpenShift">
-<meta property="og:url" content="/gremlin-chaos-monkey/alternatives/openshift/">
+<meta property="og:url" content="http://localhost:4000/gremlin-chaos-monkey/alternatives/openshift/">
 
 
 
@@ -38,7 +38,7 @@
   
 
 
-<link rel="canonical" href="/gremlin-chaos-monkey/alternatives/openshift/">
+<link rel="canonical" href="http://localhost:4000/gremlin-chaos-monkey/alternatives/openshift/">
 
 
 
@@ -51,7 +51,7 @@
       "@context": "http://schema.org",
       "@type": "Person",
       "name": "Gabe Wyatt",
-      "url": "/gremlin-chaos-monkey",
+      "url": "http://localhost:4000/gremlin-chaos-monkey",
       "sameAs": null
     }
   </script>
@@ -151,7 +151,7 @@
     
       
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-          <a href="/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
+          <a href="http://localhost:4000/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
           <meta itemprop="position" content="1">
         </li>
         <span class="sep">/</span>
@@ -363,7 +363,7 @@
 
 
 
-  3 minute read
+  5 minute read
 </p>
           
         </header>
@@ -471,76 +471,99 @@
 
 <h2 id="engineering-chaos-in-openshift-with-gremlin">Engineering Chaos In OpenShift with Gremlin</h2>
 
-<p>Gremlin’s <a href="https://www.gremlin.com" target="_blank" rel="noopener noreferrer">Failure as a Service</a> simplifies your Chaos Engineering workflow for OpenShift by making it safe and effortless to execute Chaos Experiments across all application containers.  As a distributed architecture OpenShift is particularly sensitive to instability and unexpected failures, and yet containers are becoming first-class citizens for many organizations.  Gremlin can perform a variety of attacks on your OpenShift applications including overloading CPU, memory, disk, and IO; killing pods; modifying network traffic; and much more.</p>
+<p>Gremlin’s <a href="https://www.gremlin.com" target="_blank" rel="noopener noreferrer">Failure as a Service</a> simplifies your Chaos Engineering workflow for OpenShift by making it safe and effortless to execute Chaos Experiments across all application containers.  As a distributed architecture OpenShift is particularly sensitive to instability and unexpected failures.  Gremlin can perform a variety of attacks on your OpenShift applications including overloading CPU, memory, disk, and IO; killing pods; modifying network traffic; and much more.</p>
 
-<p>Check out <a href="https://help.gremlin.com/install-gremlin-centos-7/" target="_blank" rel="noopener noreferrer">this tutorial</a> to get started!</p>
+<p>Check out <a href="https://help.gremlin.com/install-gremlin-centos-7/" target="_blank" rel="noopener noreferrer">this tutorial</a> for installing Gremlin on Centos to get started!</p>
 
 <h2 id="pumba">Pumba</h2>
 
-<p><strong>(TODO)</strong>: http://www.lordofthejars.com/2017/10/adding-chaos-on-openshift-cluster.html</p>
+<p>As discussed in the <a href="/gremlin-chaos-monkey/alternatives/docker#pumba">Chaos Monkey Alternatives - Docker</a> chapter, <a href="https://github.com/alexei-led/pumba" target="_blank" rel="noopener noreferrer">Pumba</a> is a Chaos injection tool primarily built for Docker.  However, it can also be deployed on <a href="https://github.com/alexei-led/pumba/blob/master/deploy/pumba_kube.yml" target="_blank" rel="noopener noreferrer">Kubernetes</a> and, by extension, on <a href="https://github.com/alexei-led/pumba/blob/master/deploy/pumba_openshift.yml" target="_blank" rel="noopener noreferrer">OpenShift</a> using a DaemonSets.  Pumba can stop, pause, kill, and remove containers, which means it works fairly well with OpenShift pods that are made up of one or more containers.</p>
 
-<p><strong>(TODO)</strong>: Test daemonset for Gremlin.</p>
+<ol>
+  <li>
+    <p>To deploy Pumba in OpenShift nodes using a DaemonSet you must first add a security policy to allow the OpenShift <code class="highlighter-rouge">developer</code> user to administer Kubernetes clusters.</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">extensions/v1beta1</span>
-<span class="na">kind</span><span class="pi">:</span> <span class="s">DaemonSet</span>
-<span class="na">metadata</span><span class="pi">:</span>
-  <span class="na">name</span><span class="pi">:</span> <span class="s">gremlin</span>
-  <span class="na">namespace</span><span class="pi">:</span> <span class="s">&lt;namespace where you want to run an attack&gt;</span>
-  <span class="na">labels</span><span class="pi">:</span>
-    <span class="na">k8s-app</span><span class="pi">:</span> <span class="s">gremlin</span>
-    <span class="na">version</span><span class="pi">:</span> <span class="s">v1</span>
-<span class="na">spec</span><span class="pi">:</span>
-  <span class="na">template</span><span class="pi">:</span>
-    <span class="na">metadata</span><span class="pi">:</span>
-      <span class="na">labels</span><span class="pi">:</span>
-        <span class="na">k8s-app</span><span class="pi">:</span> <span class="s">gremlin</span>
-        <span class="na">version</span><span class="pi">:</span> <span class="s">v1</span>
-    <span class="na">spec</span><span class="pi">:</span>
-      <span class="na">containers</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">gremlin</span>
-        <span class="na">image</span><span class="pi">:</span> <span class="s">gremlin/gremlin</span>
-        <span class="na">args</span><span class="pi">:</span> <span class="pi">[</span> <span class="s2">"</span><span class="s">daemon"</span> <span class="pi">]</span>
-        <span class="na">imagePullPolicy</span><span class="pi">:</span> <span class="s">Always</span>
-        <span class="na">securityContext</span><span class="pi">:</span>
-          <span class="na">capabilities</span><span class="pi">:</span>
-            <span class="na">add</span><span class="pi">:</span>
-              <span class="pi">-</span> <span class="s">NET_ADMIN</span>
-              <span class="pi">-</span> <span class="s">SYS_BOOT</span>
-              <span class="pi">-</span> <span class="s">SYS_TIME</span>
-              <span class="pi">-</span> <span class="s">KILL</span>
-        <span class="na">env</span><span class="pi">:</span>
-          <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">GREMLIN_TEAM_ID</span>
-            <span class="na">value</span><span class="pi">:</span> <span class="s">&lt;YOUR TEAM ID GOES HERE&gt;</span>
-          <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">GREMLIN_TEAM_SECRET</span>
-            <span class="na">value</span><span class="pi">:</span> <span class="s">&lt;YOUR SECRET GOES HERE&gt;</span>
-          <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">GREMLIN_IDENTIFIER</span>
-            <span class="na">valueFrom</span><span class="pi">:</span>
-              <span class="na">fieldRef</span><span class="pi">:</span>
-                <span class="na">fieldPath</span><span class="pi">:</span> <span class="s">spec.nodeName</span>
-        <span class="na">volumeMounts</span><span class="pi">:</span>
-          <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">docker-sock</span>
-            <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/var/run/docker.sock</span>
-          <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">gremlin-state</span>
-            <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/var/lib/gremlin</span>
-          <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">gremlin-logs</span>
-            <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/var/log/gremlin</span>
-      <span class="na">volumes</span><span class="pi">:</span>
-        <span class="c1"># Gremlin uses the Docker socket to discover eligible containers to attack,</span>
-        <span class="c1"># and to launch Gremlin sidecar containers</span>
-        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">docker-sock</span>
-          <span class="na">hostPath</span><span class="pi">:</span>
-            <span class="na">path</span><span class="pi">:</span> <span class="s">/var/run/docker.sock</span>
-        <span class="c1"># The Gremlin daemon communicates with Gremlin sidecars via its state directory.</span>
-        <span class="c1"># This should be shared with the Kubernetes host</span>
-        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">gremlin-state</span>
-          <span class="na">hostPath</span><span class="pi">:</span>
-            <span class="na">path</span><span class="pi">:</span> <span class="s">/var/lib/gremlin</span>
-        <span class="c1"># The Gremlin daemon forwards logs from the Gremlin sidecars to the Gremlin control plane</span>
-        <span class="c1"># These logs should be shared with the host</span>
-        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">gremlin-logs</span>
-          <span class="na">hostPath</span><span class="pi">:</span>
-            <span class="na">path</span><span class="pi">:</span> <span class="s">/var/log/gremlin</span>
-</code></pre></div></div>
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> oc adm policy <span class="nt">--as</span> system:admin add-cluster-role-to-user cluster-admin developer
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Add the <code class="highlighter-rouge">privileged</code> security context restraint to the <code class="highlighter-rouge">default</code> user for your project.</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> oc adm policy add-scc-to-user privileged system:serviceaccount:&lt;project&gt;:default
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Set the <code class="highlighter-rouge">allowHostDirVolumePlugin</code> option to <code class="highlighter-rouge">true</code> in the <code class="highlighter-rouge">restricted</code> security restraint, which will allow OpenShift to connect to the Docker container.</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> oc edit scc restricted
+</code></pre></div>    </div>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="c"># Please edit the object below. Lines beginning with a '#' will be ignored,</span>
+ <span class="c"># and an empty file will abort the edit. If an error occurs while saving this file will be</span>
+ <span class="c"># reopened with the relevant failures.</span>
+ <span class="c">#</span>
+ allowHostDirVolumePlugin: <span class="nb">true
+ </span>allowHostIPC: <span class="nb">false
+ </span>allowHostNetwork: <span class="nb">false
+ </span>allowHostPID: <span class="nb">false
+ </span>allowHostPorts: <span class="nb">false
+ </span>allowPrivilegedContainer: <span class="nb">false
+ </span>allowedCapabilities: null
+ apiVersion: security.openshift.io/v1
+ <span class="c"># [...]</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Download the <a href="https://raw.githubusercontent.com/alexei-led/pumba/master/deploy/pumba_openshift.yml" target="_blank" rel="noopener noreferrer">pumba_openshift.yml</a> file and modify it as necessary.  By default every 30 seconds it will kill a container within a pod containing the string <code class="highlighter-rouge">"hello"</code> in its name.</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> curl <span class="nt">-O</span> https://raw.githubusercontent.com/alexei-led/pumba/master/deploy/pumba_openshift.yml
+</code></pre></div>    </div>
+
+    <div class="language-yaml highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">extensions/v1beta1</span>
+ <span class="na">kind</span><span class="pi">:</span> <span class="s">DaemonSet</span>
+ <span class="na">metadata</span><span class="pi">:</span>
+   <span class="na">name</span><span class="pi">:</span> <span class="s">pumba</span>
+ <span class="na">spec</span><span class="pi">:</span>
+   <span class="na">template</span><span class="pi">:</span>
+     <span class="na">metadata</span><span class="pi">:</span>
+       <span class="na">labels</span><span class="pi">:</span>
+         <span class="na">app</span><span class="pi">:</span> <span class="s">pumba</span>
+       <span class="na">name</span><span class="pi">:</span> <span class="s">pumba</span>
+     <span class="na">spec</span><span class="pi">:</span>
+       <span class="na">containers</span><span class="pi">:</span>
+       <span class="pi">-</span> <span class="na">image</span><span class="pi">:</span> <span class="s">gaiaadm/pumba:master</span>
+         <span class="na">imagePullPolicy</span><span class="pi">:</span> <span class="s">Always</span>
+         <span class="na">name</span><span class="pi">:</span> <span class="s">pumba</span>
+         <span class="na">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">pumba"</span><span class="pi">]</span> 
+         <span class="na">args</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">--random"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">--debug"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">--interval"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">30s"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">kill"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">--signal"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">SIGKILL"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">re2:.*hello.*"</span><span class="pi">]</span>
+         <span class="na">securityContext</span><span class="pi">:</span>
+           <span class="na">runAsUser</span><span class="pi">:</span> <span class="s">0</span>
+         <span class="na">volumeMounts</span><span class="pi">:</span>
+           <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">dockersocket</span>
+             <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/var/run/docker.sock</span>
+       <span class="na">volumes</span><span class="pi">:</span>
+         <span class="pi">-</span> <span class="na">hostPath</span><span class="pi">:</span>
+             <span class="na">path</span><span class="pi">:</span> <span class="s">/var/run/docker.sock</span>
+           <span class="na">name</span><span class="pi">:</span> <span class="s">dockersocket</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Finally, create the DaemonSet from the <code class="highlighter-rouge">pumba_openshift.yml</code>.</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> oc create <span class="nt">-f</span> pumba_openshift.yml
+ daemonset.extensions <span class="s2">"pumba"</span> created
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>That’s it.  Now just add some pods to your project that match the regex used in the DaemonSet, if any, and Pumba should pick up on them and start killing them off.  Check out this handy <a href="https://www.youtube.com/watch?v=kA0P-V2JPTA" target="_blank" rel="noopener noreferrer">video tutorial</a> for all the details.</p>
 
 
         

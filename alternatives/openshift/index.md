@@ -93,82 +93,90 @@ Installing Monkey-Ops as an OpenShift project is a bit more complex.
 
 ## Engineering Chaos In OpenShift with Gremlin
 
-Gremlin's [Failure as a Service][#gremlin-failure-as-a-service] simplifies your Chaos Engineering workflow for OpenShift by making it safe and effortless to execute Chaos Experiments across all application containers.  As a distributed architecture OpenShift is particularly sensitive to instability and unexpected failures, and yet containers are becoming first-class citizens for many organizations.  Gremlin can perform a variety of attacks on your OpenShift applications including overloading CPU, memory, disk, and IO; killing pods; modifying network traffic; and much more.
+Gremlin's [Failure as a Service][#gremlin-failure-as-a-service] simplifies your Chaos Engineering workflow for OpenShift by making it safe and effortless to execute Chaos Experiments across all application containers.  As a distributed architecture OpenShift is particularly sensitive to instability and unexpected failures.  Gremlin can perform a variety of attacks on your OpenShift applications including overloading CPU, memory, disk, and IO; killing pods; modifying network traffic; and much more.
 
-Check out [this tutorial](https://help.gremlin.com/install-gremlin-centos-7/) to get started!
+Check out [this tutorial](https://help.gremlin.com/install-gremlin-centos-7/) for installing Gremlin on Centos to get started!
 
 ## Pumba
 
-**(TODO)**: http://www.lordofthejars.com/2017/10/adding-chaos-on-openshift-cluster.html
+As discussed in the [Chaos Monkey Alternatives - Docker][/alternatives/docker#pumba] chapter, [Pumba](https://github.com/alexei-led/pumba) is a Chaos injection tool primarily built for Docker.  However, it can also be deployed on [Kubernetes](https://github.com/alexei-led/pumba/blob/master/deploy/pumba_kube.yml) and, by extension, on [OpenShift](https://github.com/alexei-led/pumba/blob/master/deploy/pumba_openshift.yml) using a DaemonSets.  Pumba can stop, pause, kill, and remove containers, which means it works fairly well with OpenShift pods that are made up of one or more containers.
 
-```bash
-oc adm policy  --as system:admin add-cluster-role-to-user cluster-admin developer
-oc adm policy add-scc-to-user privileged system:serviceaccount:fasttest:default
-oc edit scc restrict
-```
+1. To deploy Pumba in OpenShift nodes using a DaemonSet you must first add a security policy to allow the OpenShift `developer` user to administer Kubernetes clusters.
 
-**(TODO)**: Test daemonset for Gremlin.
+    ```bash
+    oc adm policy --as system:admin add-cluster-role-to-user cluster-admin developer
+    ```
 
-```yaml
-apiVersion: extensions/v1beta1
-kind: DaemonSet
-metadata:
-  name: gremlin
-  namespace: <namespace where you want to run an attack>
-  labels:
-    k8s-app: gremlin
-    version: v1
-spec:
-  template:
+2. Add the `privileged` security context restraint to the `default` user for your project.
+
+    ```bash
+    oc adm policy add-scc-to-user privileged system:serviceaccount:<project>:default
+    ```
+
+3. Set the `allowHostDirVolumePlugin` option to `true` in the `restricted` security restraint, which will allow OpenShift to connect to the Docker container.
+
+    ```bash
+    oc edit scc restricted
+    ```
+
+    ```bash
+    # Please edit the object below. Lines beginning with a '#' will be ignored,
+    # and an empty file will abort the edit. If an error occurs while saving this file will be
+    # reopened with the relevant failures.
+    #
+    allowHostDirVolumePlugin: true
+    allowHostIPC: false
+    allowHostNetwork: false
+    allowHostPID: false
+    allowHostPorts: false
+    allowPrivilegedContainer: false
+    allowedCapabilities: null
+    apiVersion: security.openshift.io/v1
+    # [...]
+    ```
+
+4. Download the [pumba_openshift.yml](https://raw.githubusercontent.com/alexei-led/pumba/master/deploy/pumba_openshift.yml) file and modify it as necessary.  By default every 30 seconds it will kill a container within a pod containing the string `"hello"` in its name.
+
+    ```bash
+    curl -O https://raw.githubusercontent.com/alexei-led/pumba/master/deploy/pumba_openshift.yml
+    ```
+
+    ```yaml
+    apiVersion: extensions/v1beta1
+    kind: DaemonSet
     metadata:
-      labels:
-        k8s-app: gremlin
-        version: v1
+      name: pumba
     spec:
-      containers:
-      - name: gremlin
-        image: gremlin/gremlin
-        args: [ "daemon" ]
-        imagePullPolicy: Always
-        securityContext:
-          capabilities:
-            add:
-              - NET_ADMIN
-              - SYS_BOOT
-              - SYS_TIME
-              - KILL
-        env:
-          - name: GREMLIN_TEAM_ID
-            value: <YOUR TEAM ID GOES HERE>
-          - name: GREMLIN_TEAM_SECRET
-            value: <YOUR SECRET GOES HERE>
-          - name: GREMLIN_IDENTIFIER
-            valueFrom:
-              fieldRef:
-                fieldPath: spec.nodeName
-        volumeMounts:
-          - name: docker-sock
-            mountPath: /var/run/docker.sock
-          - name: gremlin-state
-            mountPath: /var/lib/gremlin
-          - name: gremlin-logs
-            mountPath: /var/log/gremlin
-      volumes:
-        # Gremlin uses the Docker socket to discover eligible containers to attack,
-        # and to launch Gremlin sidecar containers
-        - name: docker-sock
-          hostPath:
-            path: /var/run/docker.sock
-        # The Gremlin daemon communicates with Gremlin sidecars via its state directory.
-        # This should be shared with the Kubernetes host
-        - name: gremlin-state
-          hostPath:
-            path: /var/lib/gremlin
-        # The Gremlin daemon forwards logs from the Gremlin sidecars to the Gremlin control plane
-        # These logs should be shared with the host
-        - name: gremlin-logs
-          hostPath:
-            path: /var/log/gremlin
-```
+      template:
+        metadata:
+          labels:
+            app: pumba
+          name: pumba
+        spec:
+          containers:
+          - image: gaiaadm/pumba:master
+            imagePullPolicy: Always
+            name: pumba
+            command: ["pumba"] 
+            args: ["--random", "--debug", "--interval", "30s", "kill", "--signal", "SIGKILL", "re2:.*hello.*"]
+            securityContext:
+              runAsUser: 0
+            volumeMounts:
+              - name: dockersocket
+                mountPath: /var/run/docker.sock
+          volumes:
+            - hostPath:
+                path: /var/run/docker.sock
+              name: dockersocket
+    ```
+
+5. Finally, create the DaemonSet from the `pumba_openshift.yml`.
+
+    ```bash
+    oc create -f pumba_openshift.yml
+    daemonset.extensions "pumba" created
+    ```
+
+That's it.  Now just add some pods to your project that match the regex used in the DaemonSet, if any, and Pumba should pick up on them and start killing them off.  Check out this handy [video tutorial](https://www.youtube.com/watch?v=kA0P-V2JPTA) for all the details.
 
 {% include nav-internal.md %}

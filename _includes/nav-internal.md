@@ -3,6 +3,7 @@
 [/alternatives]:                        {{ "/alternatives" | relative_url }}
 [/alternatives/azure]:                  {{ "/alternatives/azure" | relative_url}}
 [/alternatives/docker]:                 {{ "/alternatives/docker" | relative_url}}
+[/alternatives/docker#pumba]:           {{ "/alternatives/docker#pumba" | relative_url}}
 [/alternatives/google-cloud-platform]:  {{ "/alternatives/google-cloud-platform" | relative_url}}
 [/alternatives/kubernetes]:             {{ "/alternatives/kubernetes" | relative_url}}
 [/alternatives/openshift]:              {{ "/alternatives/openshift" | relative_url}}
