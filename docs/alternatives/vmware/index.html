@@ -363,7 +363,7 @@
 
 
 
-  less than 1 minute read
+  2 minute read
 </p>
           
         </header>
@@ -375,25 +375,91 @@
             <nav class="toc">
               <header><h4 class="nav__title">
 <i class="fas fa-file-alt"></i> </h4></header>
-              
+              <ul class="toc__menu">
+  <li><a href="#chaos-engineering-with-bosh-and-chaos-lemur">Chaos Engineering with BOSH and Chaos Lemur</a></li>
+</ul>
             </nav>
           </aside>
         
-        <ul>
-  <li>URL: <code class="highlighter-rouge">https://www.gremlin.com/chaos-monkey/alternatives/vmware</code>
-</li>
-  <li>Parent: <code class="highlighter-rouge">Category Section: Infrastructure</code>
-</li>
-  <li>Content:
-    <ul>
-      <li>
-<code class="highlighter-rouge">Overview</code>: <em>See above.</em>
-</li>
-      <li>
-<a href="https://github.com/strepsirrhini-army/chaos-lemur" target="_blank" rel="noopener noreferrer"><code class="highlighter-rouge">chaos-lemur</code></a>: A local application for random virtual machine destruction in BOSH-managed environments including <code class="highlighter-rouge">vSphere</code>/<code class="highlighter-rouge">VMware</code>, by using included infrastructure APIs.</li>
-    </ul>
-  </li>
-</ul>
+        <h2 id="chaos-engineering-with-bosh-and-chaos-lemur">Chaos Engineering with BOSH and Chaos Lemur</h2>
+
+<p>CloudFoundry’s <a href="http://bosh.cloudfoundry.org/docs/" target="_blank" rel="noopener noreferrer">BOSH</a> unifies CI/CD practices for virtualized, distributed systems like VMware vSphere and their open-source <a href="https://github.com/strepsirrhini-army/chaos-lemur" target="_blank" rel="noopener noreferrer">Chaos Lemur</a> tool makes it relatively easy to inject failure into these systems.  Chaos Lemur is a self-contained Java application that will randomly destroy virtual machines in any BOSH-managed environment.  Similar to the original Chaos Monkey, Chaos Lemur can be configured to execute on a daily schedule and target one or more VMs for destruction based on pseudo-random probabilities.  It can also be integrated with <a href="https://www.datadoghq.com/" target="_blank" rel="noopener noreferrer">Datadog</a> to log destruction events.</p>
+
+<p>Chaos Lemur is a standalone Java 8 application that requires Maven for building and deployment, but otherwise it can be hosted anywhere.  Configuration is handled using local environment variables.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">DEFAULT_PROBABILITY</code></td>
+      <td>Per-run probability a VM will be destroyed (0.0 to 1.0).</td>
+      <td>Float</td>
+      <td><code class="highlighter-rouge">0.2</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">DRYRUN</code></td>
+      <td>When enabled, Chaos Lemur will perform every step of the process <em>except</em> actual VM destruction.</td>
+      <td>Boolean</td>
+      <td><code class="highlighter-rouge">FALSE</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">SCHEDULE</code></td>
+      <td>The schedule using Spring cron syntax that indicates when to execute Chaos Lemur.</td>
+      <td>String</td>
+      <td><code class="highlighter-rouge">0 0 * * * *</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">BLACKLIST</code></td>
+      <td>A comma-separated list indicating the Deployments or Jobs that <em>are not</em> eligible for deletion.</td>
+      <td>String</td>
+      <td>
+<code class="highlighter-rouge">""</code> (All deployments/jobs eligible)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">WHITELIST</code></td>
+      <td>A comma-separated list indicating the Deployments or Jobs that <em>are</em> eligible for deletion.</td>
+      <td>String</td>
+      <td>
+<code class="highlighter-rouge">""</code>(All deployments/jobs eligible)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Chaos Lemur also requires an infrastructure on which to perform attacks.  This requires specifying credential environment variables for your applicable infrastructure.  The full list of supported infrastructures and their respective variables can be <a href="https://github.com/strepsirrhini-army/chaos-lemur#infrastructure" target="_blank" rel="noopener noreferrer">found here</a>, but below you’ll find the necessary settings for vSphere.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">VSPHERE_HOST</code></td>
+      <td>The vSphere host used to destroy VMs.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">VSPHERE_USERNAME</code></td>
+      <td>Username for <code class="highlighter-rouge">VSPHERE_HOST</code> access.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">VSPHERE_PASSWORD</code></td>
+      <td>Password for <code class="highlighter-rouge">VSPHERE_HOST</code> access.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The final (optional) component for using Chaos Lemur is Redis.  If configured, Chaos Lemur will use Redis to store persistence state information.</p>
+
+<p>Check out the <a href="https://github.com/strepsirrhini-army/chaos-lemur" target="_blank" rel="noopener noreferrer">official repository</a> and <a href="https://content.pivotal.io/blog/chaos-lemur-testing-high-availability-on-pivotal-cloud-foundry" target="_blank" rel="noopener noreferrer">this blog post</a> for more information on getting Chaos Lemur up and running within your BOSH-managed environment.</p>
 
 
         

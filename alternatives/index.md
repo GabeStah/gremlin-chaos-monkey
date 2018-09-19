@@ -146,6 +146,9 @@ In this chapter we'll explore a wide range of tools and techniques -- regardless
 **(TODO)**
 
 - https://github.com/mrwilson/byte-monkey
+- http://maven.fabric8.io/
+- https://fabric8.io/guide/chaosMonkey.html
+- https://github.com/strepsirrhini-army/chaos-lemur
 
 ### Spring Boot
 
