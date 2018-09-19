@@ -1,6 +1,6 @@
 ---
-title: "Chaos Monkey Alternatives - VMWare"
-description: "Explores Chaos Monkey alternative technologies on VMWare."
+title: "Chaos Monkey Alternatives - VMware"
+description: "Explores Chaos Monkey alternative technologies on VMware."
 date: 2018-08-30
 path: "/chaos-monkey/alternatives/vmware"
 url: "https://www.gremlin.com/chaos-monkey/alternatives/vmware"
@@ -12,6 +12,6 @@ published: true
 - Parent: `Category Section: Infrastructure`
 - Content:
   - `Overview`: _See above._
-  - [`chaos-lemur`](https://github.com/strepsirrhini-army/chaos-lemur): A local application for random virtual machine destruction in BOSH-managed environments including `vSphere`/`VMWare`, by using included infrastructure APIs.
+  - [`chaos-lemur`](https://github.com/strepsirrhini-army/chaos-lemur): A local application for random virtual machine destruction in BOSH-managed environments including `vSphere`/`VMware`, by using included infrastructure APIs.
 
 {% include nav-internal.md %}

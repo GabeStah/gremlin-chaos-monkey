@@ -19,7 +19,7 @@ In 2011, [Netflix announced](https://medium.com/netflix-techblog/the-netflix-sim
 
 The [*Chaos Monkey Guide for Engineers*][/] is a full how-to of Chaos Monkey, including what it is, its [origin story][/origin-netflix], its [pros](#pros-of-chaos-monkey) and [cons](#cons-of-chaos-monkey), its relation to the broader topic of Chaos Engineering, and much more.  We've also included [step-by-step technical tutorials][/developer-tutorial] for getting started with Chaos Monkey, along with [advanced engineering tips and guides][/advanced-tips] for those looking to go beyond the basics.  [The Simian Army][/simian-army] section explores all the additional tools created after Chaos Monkey.
 
-This guide also includes [resources, tutorials, and downloads][/downloads-resources] for engineers seeking to improve their own Chaos Engineering practices.  In fact, our [alternative technologies][/alternatives] chapter goes above and beyond by examining a curated list of the best alternatives to Chaos Monkey -- we dig into everything from [Azure][/alternatives/azure] and [Docker][/alternatives/docker] to [Kubernetes][/alternatives/kubernetes] and [VMWare][/alternatives/vmware]!
+This guide also includes [resources, tutorials, and downloads][/downloads-resources] for engineers seeking to improve their own Chaos Engineering practices.  In fact, our [alternative technologies][/alternatives] chapter goes above and beyond by examining a curated list of the best alternatives to Chaos Monkey -- we dig into everything from [Azure][/alternatives/azure] and [Docker][/alternatives/docker] to [Kubernetes][/alternatives/kubernetes] and [VMware][/alternatives/vmware]!
 
 ## Who Is This Guide For?
 

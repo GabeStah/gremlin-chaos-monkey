@@ -33,7 +33,7 @@ outline: "
       - Section: On Premise
       - Section: OpenStack
       - Section + Page: Private Cloud (`https://www.gremlin.com/chaos-monkey/alternatives/private-cloud`)
-      - Section + Page: VMWare (`https://www.gremlin.com/chaos-monkey/alternatives/vmware`)
+      - Section + Page: VMware (`https://www.gremlin.com/chaos-monkey/alternatives/vmware`)
     - Category Section: Java
       - Section: Maven
       - Section + Page: Spring Boot (`https://www.gremlin.com/chaos-monkey/alternatives/spring-boot`)
@@ -120,6 +120,9 @@ In this chapter we'll explore a wide range of tools and techniques -- regardless
 
 **(TODO)**
 
+- https://github.com/worstcase/blockade
+- https://github.com/Shopify/toxiproxy
+
 ### OpenStack
 
 **(TODO)**
@@ -128,7 +131,7 @@ In this chapter we'll explore a wide range of tools and techniques -- regardless
 
 **(TODO)**
 
-### VMWare
+### VMware
 
 **(TODO)**
 
@@ -136,9 +139,13 @@ In this chapter we'll explore a wide range of tools and techniques -- regardless
 
 **(TODO)**
 
+- https://github.com/osrg/namazu
+
 ### Maven
 
 **(TODO)**
+
+- https://github.com/mrwilson/byte-monkey
 
 ### Spring Boot
 
@@ -148,9 +155,13 @@ In this chapter we'll explore a wide range of tools and techniques -- regardless
 
 **(TODO)**
 
+- https://github.com/Shopify/toxiproxy
+
 ### Linux
 
 **(TODO)**
+
+- https://github.com/bbc/chaos-lambda
 
 ### Windows
 

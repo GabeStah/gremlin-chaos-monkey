@@ -333,7 +333,7 @@
             
             
 
-            <li><a href="/gremlin-chaos-monkey/alternatives/vmware" class="">VMWare</a></li>
+            <li><a href="/gremlin-chaos-monkey/alternatives/vmware" class="">VMware</a></li>
           
         </ul>
         
@@ -363,7 +363,7 @@
 
 
 
-  1 minute read
+  4 minute read
 </p>
           
         </header>
@@ -377,6 +377,8 @@
 <i class="fas fa-file-alt"></i> </h4></header>
               <ul class="toc__menu">
   <li><a href="#gomjabbar">GomJabbar</a></li>
+  <li><a href="#failure-injection-on-your-private-cloud-with-gremlin">Failure Injection on Your Private Cloud with Gremlin</a></li>
+  <li><a href="#muxy">Muxy</a></li>
 </ul>
             </nav>
           </aside>
@@ -430,6 +432,109 @@
 </code></pre></div></div>
 
 <p>You can then use the <a href="https://github.com/outbrain/GomJabbar/blob/master/docs/user-guide.md#rest-api" target="_blank" rel="noopener noreferrer">REST API</a> to trigger attacks and revert faults.</p>
+
+<h2 id="failure-injection-on-your-private-cloud-with-gremlin">Failure Injection on Your Private Cloud with Gremlin</h2>
+
+<p>Gremlin’s <a href="https://www.gremlin.com" target="_blank" rel="noopener noreferrer">Failure as a Service</a> locates weaknesses in your private cloud architecture before they cause problems.  Gremlin makes Chaos Engineering simple, safe, and secure, improving your private cloud’s stability and resilience.  You can begin executing Chaos Experiments in just a few minutes by <a href="https://www.gremlin.com/demo" target="_blank" rel="noopener noreferrer">signing up</a> for an account and <a href="https://help.gremlin.com/installation/" target="_blank" rel="noopener noreferrer">installing Gremlin</a>.  Gremlin can perform a variety of attacks against every major type of private cloud infrastructure including Linux, Docker, Kubernetes, OpenStack, VMware, and many more.</p>
+
+<p>Check out <a href="https://help.gremlin.com/installation/" target="_blank" rel="noopener noreferrer">this tutorial</a> to learn how to install Gremlin and start Chaos Engineering your private cloud today.</p>
+
+<h2 id="muxy">Muxy</h2>
+
+<p><a href="https://github.com/mefellows/muxy" target="_blank" rel="noopener noreferrer">Muxy</a> is an open-source tool written in Go that allows you to tamper with network traffic at the transport, TCP, or HTTP protocol layers of your systems.  In can simulate real-world network connectivity problems and can also be extended with plugins via the <a href="https://github.com/mefellows/plugo" target="_blank" rel="noopener noreferrer">Plugo</a> interface.</p>
+
+<p>Muxy is configured through a YAML file that defines an number of <code class="highlighter-rouge">proxy</code> and <code class="highlighter-rouge">middleware</code> blocks.</p>
+
+<ol>
+  <li>
+    <p>Start by installing Muxy with <code class="highlighter-rouge">go get</code>.</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> go get github.com/mefellows/muxy
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Create a YAML file and paste the following test configuration in it.</p>
+
+    <div class="language-yaml highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="c1"># config.yml</span>
+ <span class="na">proxy</span><span class="pi">:</span>
+   <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">http_proxy</span>
+     <span class="na">config</span><span class="pi">:</span>
+       <span class="na">host</span><span class="pi">:</span> <span class="s">0.0.0.0</span>
+       <span class="na">port</span><span class="pi">:</span> <span class="s">8181</span>
+       <span class="na">proxy_host</span><span class="pi">:</span> <span class="s">www.gremlin.com</span>
+       <span class="na">proxy_port</span><span class="pi">:</span> <span class="s">443</span>
+
+ <span class="c1"># Proxy plugins</span>
+ <span class="na">middleware</span><span class="pi">:</span>
+   <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">http_tamperer</span>
+     <span class="na">config</span><span class="pi">:</span>
+       <span class="na">request</span><span class="pi">:</span>
+         <span class="na">host</span><span class="pi">:</span> <span class="s">www.gremlin.com</span>
+         <span class="na">port</span><span class="pi">:</span> <span class="s">443</span>
+
+   <span class="c1"># Message Delay request/response plugin</span>
+   <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">delay</span>
+     <span class="na">config</span><span class="pi">:</span>
+       <span class="na">request_delay</span><span class="pi">:</span>  <span class="s">2500</span>
+       <span class="na">response_delay</span><span class="pi">:</span> <span class="s">2500</span>
+
+   <span class="c1"># Log in/out messages</span>
+   <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">logger</span>
+</code></pre></div>    </div>
+
+    <p>This configuration creates a <code class="highlighter-rouge">localhost:8181</code> proxy that targets <code class="highlighter-rouge">www.gremlin.com:443</code>.  It also creates an <code class="highlighter-rouge">http_tamperer</code> middleware that catches requests made to <code class="highlighter-rouge">www.gremlin.com:443</code> and adds a <code class="highlighter-rouge">2.5</code> second delay to both requests and responses.  Finally it outputs Muxy messages to the default terminal logger.</p>
+  </li>
+  <li>
+    <p>Start Muxy with the following command, ensuring you specify the location of the YAML configuration file.</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> muxy proxy <span class="nt">--config</span> ./gremlin.yml
+</code></pre></div>    </div>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="c"># OUTPUT</span>
+ 2018/09/18 22:47:39.179395 <span class="o">[</span>INFO]		Loading plugin 	http_tamperer
+ 2018/09/18 22:47:39.179415 <span class="o">[</span>INFO]		Loading plugin 	delay
+ 2018/09/18 22:47:39.179419 <span class="o">[</span>INFO]		Loading plugin 	logger
+ 2018/09/18 22:47:39.179451 <span class="o">[</span>INFO]		Loading proxy 	http_proxy
+ 2018/09/18 22:47:39.179465 <span class="o">[</span>DEBUG]		HTTP Tamperer Setup<span class="o">()</span>
+ 2018/09/18 22:47:39.179476 <span class="o">[</span>DEBUG]		Delay Symptom - Setup<span class="o">()</span>
+ 2018/09/18 22:47:39.179578 <span class="o">[</span>INFO]		HTTP proxy listening on http://0.0.0.0:8181
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Now that Muxy is listening at <code class="highlighter-rouge">http://0.0.0.0:8181</code> you can make a request to <code class="highlighter-rouge">www.gremlin.com</code> through the proxy to test it out.  It should add approximately 5 seconds of delay.</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="nb">time </span>curl <span class="nt">-H</span><span class="s2">"Host: www.gremlin.com"</span> http://localhost:8181/
+</code></pre></div>    </div>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="c"># OUTPUT</span>
+ real	0m5.070s
+ user	0m0.000s
+ sys	0m0.004s
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Now try the same timed test but without passing through the <code class="highlighter-rouge">localhost:8181</code> proxy, and you’ll see Muxy doesn’t catch or <em>muck</em> with this request.</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="nb">time </span>curl <span class="nt">-o</span> /dev/null https://www.gremlin.com
+</code></pre></div>    </div>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="c"># OUTPUT</span>
+ real	0m0.257s
+ user	0m0.036s
+ sys	0m0.012s
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Check out the <a href="https://github.com/mefellows/muxy/" target="_blank" rel="noopener noreferrer">official Muxy documentation</a> for more information on integrating Muxy into your private cloud Chaos Engineering.</p>
 
 
         

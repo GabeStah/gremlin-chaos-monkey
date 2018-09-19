@@ -43,7 +43,7 @@ Unless otherwise discussed or later modified, generally each `page` within this 
       - Section: On Premise
       - Section: OpenStack
       - Section + Page: Private Cloud (`https://www.gremlin.com/chaos-monkey/alternatives/private-cloud`)
-      - Section + Page: VMWare (`https://www.gremlin.com/chaos-monkey/alternatives/vmware`)
+      - Section + Page: VMware (`https://www.gremlin.com/chaos-monkey/alternatives/vmware`)
     - Category Section: Java
       - Section: Maven
       - Section + Page: Spring Boot (`https://www.gremlin.com/chaos-monkey/alternatives/spring-boot`)
@@ -329,13 +329,13 @@ _**Note: Gabe added this section temporarily, until approval or request for remo
   - `Overview`: _See above._
   - [`GomJabbar`](https://github.com/outbrain/GomJabbar): Detail the `GomJabbar` service, aimed at providing Chaos Monkey-like services and tools within a private cloud architecture.
 
-###### Section + Page: VMWare
+###### Section + Page: VMware
 
 - URL: `https://www.gremlin.com/chaos-monkey/alternatives/vmware`
 - Parent: `Category Section: Infrastructure`
 - Content:
   - `Overview`: _See above._
-  - [`chaos-lemur`](https://github.com/strepsirrhini-army/chaos-lemur): A local application for random virtual machine destruction in BOSH-managed environments including `vSphere`/`VMWare`, by using included infrastructure APIs.
+  - [`chaos-lemur`](https://github.com/strepsirrhini-army/chaos-lemur): A local application for random virtual machine destruction in BOSH-managed environments including `vSphere`/`VMware`, by using included infrastructure APIs.
 
 ##### Category Section: Java
 
@@ -462,7 +462,7 @@ Following is the current list of sources used during creation of this content.  
     - https://codecentric.github.io/chaos-monkey-spring-boot/
   - TCP
     - https://github.com/shopify/toxiproxy
-  - VMWare
+  - VMware
     - https://www.youtube.com/watch?v=R430b9JhyoI
     - https://github.com/strepsirrhini-army/chaos-lemur
     - http://www.thecloudcast.net/2017/05/the-cloudcast-299-discipline-of-chaos.html

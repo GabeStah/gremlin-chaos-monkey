@@ -80,7 +80,7 @@
     - https://codecentric.github.io/chaos-monkey-spring-boot/
   - TCP
     - https://github.com/shopify/toxiproxy
-  - VMWare
+  - VMware
     - https://www.youtube.com/watch?v=R430b9JhyoI
     - https://github.com/strepsirrhini-army/chaos-lemur
     - http://www.thecloudcast.net/2017/05/the-cloudcast-299-discipline-of-chaos.html

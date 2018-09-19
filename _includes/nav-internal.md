@@ -27,6 +27,7 @@
 [#halyard-install]:                     {{ "/advanced-tips#how-to-install-halyard" | relative_url}}
 [#gremlin-account-signup]:              https://www.gremlin.com/demo
 [#gremlin-api]:                         https://help.gremlin.com/api/
+[#gremlin-installation]:                https://help.gremlin.com/installation/
 [#gremlin-failure-as-a-service]:        https://www.gremlin.com
 [#gremlin-web-ui]:                      https://app.gremlin.com/
 [#netflix-fit]:                         {{ "/origin-netflix#failure-injection-testing" | relative_url}}
