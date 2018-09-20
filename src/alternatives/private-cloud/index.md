@@ -21,9 +21,9 @@ outline: "
 
 ## GomJabbar
 
-[GomJabbar](https://github.com/outbrain/GomJabbar) is an open-source implementation of Chaos Monkey written in Java and designed to perform attacks within private cloud architecture.  Attacks are defined through the YAML configuration file and are executed as plain shell commands (e.g. `sudo service ${module} stop`).  It also integrates with [Ansible](https://docs.ansible.com/ansible/latest/index.html) and [Rundeck](https://rundeck.org/).
+[GomJabbar](https://github.com/outbrain/GomJabbar) is an open-source implementation of Chaos Monkey written in Java and designed to perform attacks within a private cloud architecture.  Attacks are defined through the YAML configuration file and are executed as plain shell commands (e.g. `sudo service ${module} stop`).  It also integrates with [Ansible](https://docs.ansible.com/ansible/latest/index.html) and [Rundeck](https://rundeck.org/).
 
-Attacks are defines in the `config.yaml` in the `commands` block.  The `fail` value is the fault command to be executed, while the (optional) `revert` value is executed to attempt reversion.  For example, here the `shutdown_service` command calls `sudo service <service-name> stop` as a fault and the opposite to revert.
+Attacks are defined in the `config.yaml` within the `commands` block.  The `fail` value is the fault command to be executed, while the (optional) `revert` value is executed to attempt reversion.  For example, here the `shutdown_service` command calls `sudo service <service-name> stop` as a fault and the opposite to revert.
 
 ```yaml
 commands:
@@ -38,7 +38,7 @@ commands:
     revert: "sudo service ${module} start"
 ```
 
-The `filters` block in `config.yaml` defines a list of `clusters`, `modules`, and `tags` to either be whitelisted or blacklisted (i.e. via `include` or `exclude`).
+The `filters` block in `config.yaml` defines a list of `clusters`, `modules`, and `tags` to either be whitelisted or blacklisted via `include` or `exclude`, respectively.
 
 ```yaml
 filters:
@@ -76,13 +76,13 @@ You can then use the [REST API](https://github.com/outbrain/GomJabbar/blob/maste
 
 Gremlin's [Failure as a Service][#gremlin-failure-as-a-service] locates weaknesses in your private cloud architecture before they cause problems.  Gremlin makes Chaos Engineering simple, safe, and secure, improving your private cloud's stability and resilience.  You can begin executing Chaos Experiments in just a few minutes by [signing up][#gremlin-account-signup] for an account and [installing Gremlin][#gremlin-installation].  Gremlin can perform a variety of attacks against every major type of private cloud infrastructure including Linux, Docker, Kubernetes, OpenStack, VMware, and many more.
 
-Check out [this tutorial][#gremlin-installation] to learn how to install Gremlin and start Chaos Engineering your private cloud today.
+Check out [these tutorials][#gremlin-installation] to learn how to install Gremlin and start Chaos Engineering your private cloud today.
 
 ## Muxy
 
 [Muxy](https://github.com/mefellows/muxy) is an open-source tool written in Go that allows you to tamper with network traffic at the transport, TCP, or HTTP protocol layers of your systems.  In can simulate real-world network connectivity problems and can also be extended with plugins via the [Plugo](https://github.com/mefellows/plugo) interface.
 
-Muxy is configured through a YAML file that defines an number of `proxy` and `middleware` blocks.  
+Muxy is configured through a YAML file that defines a number of `proxy` and `middleware` blocks.  
 
 1. Start by installing Muxy with `go get`.
 
@@ -93,7 +93,7 @@ Muxy is configured through a YAML file that defines an number of `proxy` and `mi
 2. Create a YAML file and paste the following test configuration in it.
 
     ```yaml
-    # config.yml
+    # gremlin.yml
     proxy:
       - name: http_proxy
         config:
@@ -120,9 +120,9 @@ Muxy is configured through a YAML file that defines an number of `proxy` and `mi
       - name: logger
     ```
 
-    This configuration creates a `localhost:8181` proxy that targets `www.gremlin.com:443`.  It also creates an `http_tamperer` middleware that catches requests made to `www.gremlin.com:443` and adds a `2.5` second delay to both requests and responses.  Finally it outputs Muxy messages to the default terminal logger.
+    This configuration creates a `localhost:8181` proxy that targets `www.gremlin.com:443`.  It also creates an `http_tamperer` middleware that catches requests made to `www.gremlin.com:443` and adds a `2.5-second` delay to both requests and responses.  Finally, it outputs Muxy messages to the default terminal logger.
 
-3. Start Muxy with the following command, ensuring you specify the location of the YAML configuration file.
+3. Start Muxy with the following command, ensuring that you specify the location of the YAML configuration file.
 
     ```bash
     muxy proxy --config ./gremlin.yml
@@ -139,7 +139,7 @@ Muxy is configured through a YAML file that defines an number of `proxy` and `mi
     2018/09/18 22:47:39.179578 [INFO]		HTTP proxy listening on http://0.0.0.0:8181
     ```
 
-4. Now that Muxy is listening at `http://0.0.0.0:8181` you can make a request to `www.gremlin.com` through the proxy to test it out.  It should add approximately 5 seconds of delay.
+4. Now that Muxy is listening at `http://0.0.0.0:8181` you can make a request to `www.gremlin.com` through the proxy to test it out.  Muxy should add a delay of approximately 5 seconds to the request.
 
     ```bash
     time curl -H"Host: www.gremlin.com" http://localhost:8181/

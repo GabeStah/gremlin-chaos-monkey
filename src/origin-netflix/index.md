@@ -30,7 +30,7 @@ Netflix's move toward a horizontally scaled software stack required systems that
 
 ## The Simian Army
 
-**(TODO)**: Briefly explore Simian Army, as introduction and lead into [The Simian Army - Overview and Resources][/simian-army] chapter.
+The Simian Army is a suite of failure injection tools created by Netflix that shore up some of the limitations of Chaos Monkey's scope.  Check out the [Simian Army - Overview and Resources][/simian-army] chapter for all the details on what the Simian Army is, why it was created, the [tools][#simian-members] that make up the Army, the [strategies][#simian-chaos-strategies] used to perform various Chaos Experiments, and a [tutorial][#simian-use] to help you install and begin using the Simian Army tools.
 
 ## Chaos Monkey Today
 

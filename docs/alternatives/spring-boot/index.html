@@ -385,11 +385,11 @@
         
         <h2 id="chaos-monkey-for-spring-boot">Chaos Monkey for Spring Boot</h2>
 
-<p><a href="https://codecentric.github.io/chaos-monkey-spring-boot/2.0.0/" target="_blank" rel="noopener noreferrer">Chaos Monkey for Spring Boot</a> is an open-source tool written in Java that is installed as a dependency of your Spring Boot application.  Like Chaos Monkey, Spring Boot for Chaos Monkey can perform three types of <strong>Assaults</strong>: <strong>Latency</strong>, <strong>Exception</strong>, and <strong>KillApplication</strong>.  Assaults are triggered based on <strong>Watcher</strong> components that monitor <code class="highlighter-rouge">@Controller</code>, <code class="highlighter-rouge">@RestController</code>, <code class="highlighter-rouge">@Service</code>, <code class="highlighter-rouge">@Repository</code>, and <code class="highlighter-rouge">@Component</code> Spring Boot annotations (though only the <code class="highlighter-rouge">@Service</code> Watcher is enabled by default).</p>
+<p><a href="https://codecentric.github.io/chaos-monkey-spring-boot/2.0.0/" target="_blank" rel="noopener noreferrer">Chaos Monkey for Spring Boot</a> is an open-source tool written in Java that is installed as a dependency of your Spring Boot application.  Spring Boot for Chaos Monkey can perform three types of <strong>Assaults</strong>: <strong>Latency</strong>, <strong>Exception</strong>, and <strong>KillApplication</strong>.  Assaults are triggered based on <strong>Watcher</strong> components that monitor <code class="highlighter-rouge">@Controller</code>, <code class="highlighter-rouge">@RestController</code>, <code class="highlighter-rouge">@Service</code>, <code class="highlighter-rouge">@Repository</code>, and <code class="highlighter-rouge">@Component</code> Spring Boot annotations.</p>
 
-<p>A Watcher can be triggered only by <em>public</em> method calls, which can then execute a configured Assault.  A Latency Assault adds random latency to the request, an Exception Assault randomly throws a Runtime Exception, and a KillApplication Assault kills the Spring Boot application.</p>
+<p>A Watcher can only be triggered by <em>public</em> method calls, which can then execute a configured Assault.  A Latency Assault adds random latency to the request, an Exception Assault randomly throws a Runtime Exception, and a KillApplication Assault kills the Spring Boot application.</p>
 
-<p>A few minimal Assault and Watcher settings can be configured via <code class="highlighter-rouge">chaos.monkey</code> Properties, as listed below.</p>
+<p>A few minimal Assault and Watcher settings can be configured via <code class="highlighter-rouge">chaos.monkey</code> properties, as listed below.</p>
 
 <table>
   <thead>
@@ -476,7 +476,7 @@
   </tbody>
 </table>
 
-<p>Most are self-explanatory, but the Assault severity level property (<code class="highlighter-rouge">chaos.monkey.assaults.level</code>) actually determines two things: The number of requests between Assaults, and also how many Assaults will occur at that time.  Thus, a default level of <code class="highlighter-rouge">5</code> means that <code class="highlighter-rouge">5</code> Assaults will occur every fifth request.</p>
+<p>Most are self-explanatory, but the Assault severity level property (<code class="highlighter-rouge">chaos.monkey.assaults.level</code>) actually determines two things: The number of requests between Assaults, and also how many Assaults will occur at that time.  Thus, a default level of <code class="highlighter-rouge">5</code> means that <code class="highlighter-rouge">5</code> Assaults will occur on every fifth request.</p>
 
 <p>Unfortunately, because these properties are set at compile time, the only way to change the configuration properties during runtime is via the <a href="https://codecentric.github.io/chaos-monkey-spring-boot/2.0.0/#_http_endpoint" target="_blank" rel="noopener noreferrer">HTTP endpoint</a>.  For example, sending JSON configuration data to the <a href="https://codecentric.github.io/chaos-monkey-spring-boot/2.0.0/#assaultspost" target="_blank" rel="noopener noreferrer"><code class="highlighter-rouge">/chaosmonkey/assaults</code></a> endpoint can be used to modify future Assault configurations.</p>
 
@@ -501,9 +501,9 @@
 
 <h2 id="chaos-engineering-with-fabric8-and-spring-boot">Chaos Engineering with Fabric8 and Spring Boot</h2>
 
-<p>The <a href="http://www.fabric8.io/" target="_blank" rel="noopener noreferrer">Fabric8</a> development platform has <a href="http://spring.fabric8.io/" target="_blank" rel="noopener noreferrer">first-class support</a> for building Spring Boot applications and comes with a <a href="https://fabric8.io/guide/chaosMonkey.html" target="_blank" rel="noopener noreferrer">built-in Chaos Monkey</a> app.  The Fabric8 Chaos Monkey is rather simplistic and is only capable of deleting pods within Kubernetes/OpenShift applications.</p>
+<p>The <a href="http://www.fabric8.io/" target="_blank" rel="noopener noreferrer">Fabric8</a> development platform has <a href="http://spring.fabric8.io/" target="_blank" rel="noopener noreferrer">first-class support</a> for building Spring Boot applications and comes with a <a href="https://fabric8.io/guide/chaosMonkey.html" target="_blank" rel="noopener noreferrer">built-in Chaos Monkey</a> app.  The Fabric8 Chaos Monkey is rather basic and is only capable of deleting pods within Kubernetes/OpenShift applications.</p>
 
-<p>To get started in the Fabric8 console navigate to <strong>Apps</strong>, click <strong>Run…</strong>, select the <strong>Chaos Monkey</strong> app and run it.  Once the Chaos Monkey app is running within your Fabric8 Sprint Boot deployment you can configure Chaos Monkey using a few options.</p>
+<p>To get started in the Fabric8 console navigate to <strong>Apps</strong>, click <strong>Run…</strong>, select the <strong>Chaos Monkey</strong> app, and run it.  Once the Chaos Monkey app is running within your Fabric8 Sprint Boot deployment you can configure Chaos Monkey using a few options.</p>
 
 <ul>
   <li>

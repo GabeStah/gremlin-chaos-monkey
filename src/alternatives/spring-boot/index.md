@@ -21,11 +21,11 @@ outline: "
 
 ## Chaos Monkey for Spring Boot
 
-[Chaos Monkey for Spring Boot](https://codecentric.github.io/chaos-monkey-spring-boot/2.0.0/) is an open-source tool written in Java that is installed as a dependency of your Spring Boot application.  Like Chaos Monkey, Spring Boot for Chaos Monkey can perform three types of **Assaults**: **Latency**, **Exception**, and **KillApplication**.  Assaults are triggered based on **Watcher** components that monitor `@Controller`, `@RestController`, `@Service`, `@Repository`, and `@Component` Spring Boot annotations (though only the `@Service` Watcher is enabled by default).
+[Chaos Monkey for Spring Boot](https://codecentric.github.io/chaos-monkey-spring-boot/2.0.0/) is an open-source tool written in Java that is installed as a dependency of your Spring Boot application.  Spring Boot for Chaos Monkey can perform three types of **Assaults**: **Latency**, **Exception**, and **KillApplication**.  Assaults are triggered based on **Watcher** components that monitor `@Controller`, `@RestController`, `@Service`, `@Repository`, and `@Component` Spring Boot annotations.
 
-A Watcher can be triggered only by *public* method calls, which can then execute a configured Assault.  A Latency Assault adds random latency to the request, an Exception Assault randomly throws a Runtime Exception, and a KillApplication Assault kills the Spring Boot application.
+A Watcher can only be triggered by *public* method calls, which can then execute a configured Assault.  A Latency Assault adds random latency to the request, an Exception Assault randomly throws a Runtime Exception, and a KillApplication Assault kills the Spring Boot application.
 
-A few minimal Assault and Watcher settings can be configured via `chaos.monkey` Properties, as listed below.
+A few minimal Assault and Watcher settings can be configured via `chaos.monkey` properties, as listed below.
 
 | Property                                      | Description                           | Type           | Default |
 | --------------------------------------------- | ------------------------------------- | -------------- | ------- |
@@ -42,7 +42,7 @@ A few minimal Assault and Watcher settings can be configured via `chaos.monkey` 
 | `chaos.monkey.watcher.repository`             | Toggle Repository Watcher             | Boolean        | `FALSE` |
 | `chaos.monkey.watcher.component`              | Toggle Component Watcher              | Boolean        | `FALSE` |
 
-Most are self-explanatory, but the Assault severity level property (`chaos.monkey.assaults.level`) actually determines two things: The number of requests between Assaults, and also how many Assaults will occur at that time.  Thus, a default level of `5` means that `5` Assaults will occur every fifth request.
+Most are self-explanatory, but the Assault severity level property (`chaos.monkey.assaults.level`) actually determines two things: The number of requests between Assaults, and also how many Assaults will occur at that time.  Thus, a default level of `5` means that `5` Assaults will occur on every fifth request.
 
 Unfortunately, because these properties are set at compile time, the only way to change the configuration properties during runtime is via the [HTTP endpoint](https://codecentric.github.io/chaos-monkey-spring-boot/2.0.0/#_http_endpoint).  For example, sending JSON configuration data to the [`/chaosmonkey/assaults`](https://codecentric.github.io/chaos-monkey-spring-boot/2.0.0/#assaultspost) endpoint can be used to modify future Assault configurations.
 
@@ -68,9 +68,9 @@ Running your first Chaos Experiment with Gremlin is as simple as [signing up][#g
 
 ## Chaos Engineering with Fabric8 and Spring Boot
 
-The [Fabric8](http://www.fabric8.io/) development platform has [first-class support](http://spring.fabric8.io/) for building Spring Boot applications and comes with a [built-in Chaos Monkey](https://fabric8.io/guide/chaosMonkey.html) app.  The Fabric8 Chaos Monkey is rather simplistic and is only capable of deleting pods within Kubernetes/OpenShift applications.  
+The [Fabric8](http://www.fabric8.io/) development platform has [first-class support](http://spring.fabric8.io/) for building Spring Boot applications and comes with a [built-in Chaos Monkey](https://fabric8.io/guide/chaosMonkey.html) app.  The Fabric8 Chaos Monkey is rather basic and is only capable of deleting pods within Kubernetes/OpenShift applications.  
 
-To get started in the Fabric8 console navigate to **Apps**, click **Run...**, select the **Chaos Monkey** app and run it.  Once the Chaos Monkey app is running within your Fabric8 Sprint Boot deployment you can configure Chaos Monkey using a few options.
+To get started in the Fabric8 console navigate to **Apps**, click **Run...**, select the **Chaos Monkey** app, and run it.  Once the Chaos Monkey app is running within your Fabric8 Sprint Boot deployment you can configure Chaos Monkey using a few options.
 
 - **Chaos Monkey Excludes**: A comma-separated regex pattern list indicating which pods *are not* eligible for deletion.
 - **Chaos Monkey Includes**: A comma-separated regex pattern list indicating which pods *are* eligible for deletion.

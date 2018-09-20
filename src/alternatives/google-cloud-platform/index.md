@@ -32,7 +32,7 @@ Check out the [full tutorial](https://www.gremlin.com/community/tutorials/how-to
 
 ## Swapping Kubernetes Nodes in GKE with Chaos Toolkit
 
-If you're looking to get into Chaos Engineering with Kubernetes check out our [How to Deploy Spinnaker on Kubernetes][#spinnaker-kubernetes] tutorial to get started with Amazon EKS.  On the other hand, to induce Chaos on Google Cloud Kubernetes Engine clusters you can use the [Chaos Toolkit Google Cloud driver](https://github.com/chaostoolkit-incubator/chaostoolkit-google-cloud).  A relatively simple failure injection involves attacking a node pool with an HTTP load balancing library like [Vegeta](https://github.com/tsenart/vegeta), calling the [`swap_nodepool`](https://docs.chaostoolkit.org/drivers/gce/#swap_nodepool) function to create a new node pool and drain the old pool.  This forces pods to be moved to the new pool.
+If you're looking to get into Chaos Engineering with Kubernetes check out our [How to Deploy Spinnaker on Kubernetes][#spinnaker-kubernetes] tutorial to get started with Amazon EKS.  On the other hand, to induce Chaos on Google Cloud Kubernetes Engine clusters you can use the [Chaos Toolkit Google Cloud driver](https://github.com/chaostoolkit-incubator/chaostoolkit-google-cloud).  A relatively simple failure injection involves attacking a node pool with an HTTP load balancing library like [Vegeta](https://github.com/tsenart/vegeta) and then calling the [`swap_nodepool`](https://docs.chaostoolkit.org/drivers/gce/#swap_nodepool) function to create a new node pool and drain the old pool.  This forces pods to be moved to the new pool.
 
 Below is a simple **Action** configuration to perform such an attack, which can be added to your configuration file before executing Chaos Toolkit.
 

@@ -386,9 +386,9 @@
         
         <h2 id="kube-monkey">Kube Monkey</h2>
 
-<p><a href="https://github.com/asobti/kube-monkey" target="_blank" rel="noopener noreferrer">Kube-monkey</a> is an open-source implementation of Chaos Monkey for use on Kubernetes clusters and written in Go.  Like the original Chaos Monkey, Kube-monkey performs just one task: randomly deletes Kubernetes pods within the cluster, as a means of injecting failure in the system and testing the stability of the remaining pods.  It is based on pseudo-random rules, running at a pre-defined hour on weekdays to then build a schedule of random pod targets that will be attacked and killed at a random time during that same day, though the time-range is configurable.</p>
+<p><a href="https://github.com/asobti/kube-monkey" target="_blank" rel="noopener noreferrer">Kube-monkey</a> is an open-source implementation of Chaos Monkey for use on Kubernetes clusters and written in Go.  Like the original Chaos Monkey, Kube-monkey performs just one task: it randomly deletes Kubernetes pods within the cluster, as a means of injecting failure in the system and testing the stability of the remaining pods.  It is based on pseudo-random rules, running at a pre-defined hour on weekdays to then build a schedule.  Based on the generated schedule random pod targets that will be attacked and killed at a random time during that same day, although the time-range is configurable.</p>
 
-<p>Kube-monkey will only terminate pods that have explicitly opted in by specifying certain Kube-monkey <code class="highlighter-rouge">metadata labels</code>.  The following illustrates the basic labels that can be specified to allow Kube-monkey to kill pods within this application.</p>
+<p>Kube-monkey will only terminate pods that have explicitly opted in by specifying certain Kube-monkey <code class="highlighter-rouge">metadata labels</code>.  The following illustrates the basic labels that can be specified to allow Kube-monkey to kill pods within the application.</p>
 
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">extensions/v1beta1</span>
 <span class="na">kind</span><span class="pi">:</span> <span class="s">Deployment</span>
@@ -420,7 +420,7 @@
 
 <h2 id="kubernetes-pod-chaos-monkey">Kubernetes Pod Chaos Monkey</h2>
 
-<p><a href="https://github.com/jnewland/kubernetes-pod-chaos-monkey" target="_blank" rel="noopener noreferrer">Kubernetes Pod Chaos Monkey</a> is yet another Chaos Monkey-style tool for Kubernetes.  The code itself is just a local shell script that issues <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/" target="_blank" rel="noopener noreferrer">kubectl</a> command-line commands to occasionally retrieve and then delete Kubernetes pods.  It targets a cluster based on the configurable <code class="highlighter-rouge">NAMESPACE</code> and attempts to destroy a node every <code class="highlighter-rouge">DELAY</code> seconds (defaulting to 30).</p>
+<p><a href="https://github.com/jnewland/kubernetes-pod-chaos-monkey" target="_blank" rel="noopener noreferrer">Kubernetes Pod Chaos Monkey</a> is yet another Chaos Monkey-style tool for Kubernetes.  The code itself is just a local shell script that issues <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/" target="_blank" rel="noopener noreferrer">kubectl</a> commands to occasionally locate and then delete Kubernetes pods.  It targets a cluster based on the configurable <code class="highlighter-rouge">NAMESPACE</code> and attempts to destroy a node every <code class="highlighter-rouge">DELAY</code> seconds (defaulting to 30).</p>
 
 <p>While not the most elegant tool, as little more than a shell script <a href="https://github.com/jnewland/kubernetes-pod-chaos-monkey" target="_blank" rel="noopener noreferrer">Kubernetes Pod Chaos Monkey</a> can be modified quite easily.</p>
 
@@ -430,7 +430,7 @@
 
 <ul>
   <li>
-    <p><strong>Steady State Hypothesis</strong>: This element defines the normal or “steady” state of the system before the <strong>Method</strong> element is applied.  For our example we’ve defined a basic application with a steady state hypothesis titled “Service should have nodes.”</p>
+    <p><strong>Steady State Hypothesis</strong>: This element defines the normal or “steady” state of the system before the <strong>Method</strong> element is applied.  Here we’ve defined a basic application with a steady state hypothesis titled “Service should have nodes.”</p>
 
     <div class="language-json highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="p">{</span><span class="w">
@@ -539,7 +539,7 @@
   </li>
 </ul>
 
-<p>That’s just the basics to getting started with experimenting using the Chaos Toolkit.  Chaos Toolkit also has a fault injection <a href="https://github.com/chaostoolkit-incubator/chaostoolkit-gremlin" target="_blank" rel="noopener noreferrer">plugin for Gremlin</a> so you can easily perform attacks while utilizing the safety and security of the Gremlin platform.</p>
+<p>That’s the basics to begin experimenting using the Chaos Toolkit.  Chaos Toolkit also has a fault injection <a href="https://github.com/chaostoolkit-incubator/chaostoolkit-gremlin" target="_blank" rel="noopener noreferrer">plugin for Gremlin</a> so you can easily perform attacks while utilizing the safety and security of the Gremlin platform.</p>
 
 
         

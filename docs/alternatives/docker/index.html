@@ -410,7 +410,7 @@
 <div class="fa fa-check-square"></div>
 <div class="content">
 <p class="header">Execute Pumba Within a Container</p>
-<p>If you’d prefer to run Pumba from within a Docker container, you can preface your Pumba command with the following.  This creates a temporary container using the <a href="https://hub.docker.com/r/gaiaadm/pumba/" target="_blank" rel="noopener noreferrer"><code class="highlighter-rouge">gaiaadm/pumba</code></a> image.  The <code class="highlighter-rouge">-v</code> flag bind-mounts the local <code class="highlighter-rouge">docker.sock</code> file to the same path in the container, so Pumba can connect to the Docker daemon.  The <code class="highlighter-rouge">--rm</code> flag makes the container temporary and <code class="highlighter-rouge">-it</code> creates an interactive shell so we can pass <code class="highlighter-rouge">pumba</code> command that follows.</p>
+<p>If you’d prefer to run Pumba from within a Docker container, you can preface your Pumba command with the following.  This creates a temporary container using the <a href="https://hub.docker.com/r/gaiaadm/pumba/" target="_blank" rel="noopener noreferrer"><code class="highlighter-rouge">gaiaadm/pumba</code></a> image.  The <code class="highlighter-rouge">-v</code> flag bind-mounts the local <code class="highlighter-rouge">docker.sock</code> file to the same path in the container, so Pumba can connect to the Docker daemon.  The <code class="highlighter-rouge">--rm</code> flag makes the container temporary and <code class="highlighter-rouge">-it</code> creates an interactive shell so we can pass the <code class="highlighter-rouge">pumba</code> command that follows.</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-it</span> <span class="nt">--rm</span> <span class="nt">-v</span> /var/run/docker.sock:/var/run/docker.sock gaiaadm/pumba <span class="se">\</span>
 &lt;PUMBA_COMMAND&gt;
 </code></pre></div></div>
@@ -446,7 +446,7 @@
 
 <h3 id="network-emulation">Network Emulation</h3>
 
-<p>Pumba uses the <code class="highlighter-rouge">tc</code> utility for performing network emulation, which is typically installed with the <a href="https://wiki.linuxfoundation.org/networking/iproute2" target="_blank" rel="noopener noreferrer"><code class="highlighter-rouge">iproute2</code></a> tool set.  We’ll be creating containers using <a href="https://alpinelinux.org/" target="_blank" rel="noopener noreferrer">AlpineLinux</a> distributions in these samples, but make sure your own container images contain a copy of the <code class="highlighter-rouge">tc</code> utility when performing network emulations.</p>
+<p>Pumba uses the <code class="highlighter-rouge">tc</code> utility for performing network emulation, which is typically installed with the <a href="https://wiki.linuxfoundation.org/networking/iproute2" target="_blank" rel="noopener noreferrer"><code class="highlighter-rouge">iproute2</code></a> tool set.  We’ll be creating containers using <a href="https://alpinelinux.org/" target="_blank" rel="noopener noreferrer">Alpine Linux</a> distributions in these samples, but make sure your own container images contain a copy of the <code class="highlighter-rouge">tc</code> utility when performing network emulations.</p>
 
 <h4 id="causing-delays">Causing Delays</h4>
 
@@ -548,7 +548,7 @@
 
 <p>Gremlin’s <a href="https://www.gremlin.com" target="_blank" rel="noopener noreferrer">Failure as a Service</a> platform makes it easy to run Chaos Experiments on Docker containers.  You can start running experiments in just a few minutes after installing Docker and signing up for a <a href="https://www.gremlin.com/demo" target="_blank" rel="noopener noreferrer">Gremlin account</a>.  Once installed, Gremlin is intelligent enough to recognize each of your unique Docker containers and will accurately apply smart identifier tags, so you can target exactly the right services and systems.  Gremlin can perform a variety of attacks against Docker containers including killing containers, manipulating network traffic, overloading CPU/memory/disk/IO, and much more.</p>
 
-<p>Check out <a href="https://help.gremlin.com/install-gremlin-docker-ubuntu-1604/" target="_blank" rel="noopener noreferrer">this tutorial</a> to learn how to install Gremlin on Ubuntu and attack Docker containers.  Alternatively, <a href="https://help.gremlin.com/install-gremlin-docker-container-ubuntu-1604/" target="_blank" rel="noopener noreferrer">this guide</a> shows how to install Gremlin within a Docker container to use against other containers.</p>
+<p>Check out <a href="https://help.gremlin.com/install-gremlin-docker-ubuntu-1604/" target="_blank" rel="noopener noreferrer">this tutorial</a> to learn how to install Gremlin on Ubuntu and attack Docker containers.  Alternatively, <a href="https://help.gremlin.com/install-gremlin-docker-container-ubuntu-1604/" target="_blank" rel="noopener noreferrer">this guide</a> shows how to install Gremlin within a Docker container for use against other containers.</p>
 
 <h2 id="docker-chaos-monkey">Docker Chaos Monkey</h2>
 

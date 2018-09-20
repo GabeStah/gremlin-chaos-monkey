@@ -26,9 +26,9 @@ outline: "
 
 ## Kube Monkey
 
-[Kube-monkey](https://github.com/asobti/kube-monkey) is an open-source implementation of Chaos Monkey for use on Kubernetes clusters and written in Go.  Like the original Chaos Monkey, Kube-monkey performs just one task: randomly deletes Kubernetes pods within the cluster, as a means of injecting failure in the system and testing the stability of the remaining pods.  It is based on pseudo-random rules, running at a pre-defined hour on weekdays to then build a schedule of random pod targets that will be attacked and killed at a random time during that same day, though the time-range is configurable.
+[Kube-monkey](https://github.com/asobti/kube-monkey) is an open-source implementation of Chaos Monkey for use on Kubernetes clusters and written in Go.  Like the original Chaos Monkey, Kube-monkey performs just one task: it randomly deletes Kubernetes pods within the cluster, as a means of injecting failure in the system and testing the stability of the remaining pods.  It is based on pseudo-random rules, running at a pre-defined hour on weekdays to then build a schedule.  Based on the generated schedule random pod targets that will be attacked and killed at a random time during that same day, although the time-range is configurable.
 
-Kube-monkey will only terminate pods that have explicitly opted in by specifying certain Kube-monkey `metadata labels`.  The following illustrates the basic labels that can be specified to allow Kube-monkey to kill pods within this application.
+Kube-monkey will only terminate pods that have explicitly opted in by specifying certain Kube-monkey `metadata labels`.  The following illustrates the basic labels that can be specified to allow Kube-monkey to kill pods within the application.
 
 ```yaml
 apiVersion: extensions/v1beta1
@@ -61,7 +61,7 @@ Check out [this tutorial](https://www.gremlin.com/community/tutorials/how-to-ins
 
 ## Kubernetes Pod Chaos Monkey
 
-[Kubernetes Pod Chaos Monkey](https://github.com/jnewland/kubernetes-pod-chaos-monkey) is yet another Chaos Monkey-style tool for Kubernetes.  The code itself is just a local shell script that issues [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) command-line commands to occasionally retrieve and then delete Kubernetes pods.  It targets a cluster based on the configurable `NAMESPACE` and attempts to destroy a node every `DELAY` seconds (defaulting to 30).
+[Kubernetes Pod Chaos Monkey](https://github.com/jnewland/kubernetes-pod-chaos-monkey) is yet another Chaos Monkey-style tool for Kubernetes.  The code itself is just a local shell script that issues [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) commands to occasionally locate and then delete Kubernetes pods.  It targets a cluster based on the configurable `NAMESPACE` and attempts to destroy a node every `DELAY` seconds (defaulting to 30).
 
 While not the most elegant tool, as little more than a shell script [Kubernetes Pod Chaos Monkey](https://github.com/jnewland/kubernetes-pod-chaos-monkey) can be modified quite easily.
 
@@ -69,7 +69,7 @@ While not the most elegant tool, as little more than a shell script [Kubernetes 
 
 The [Chaos Toolkit](https://chaostoolkit.org/) is an open-source and extensible tool that is written in Python.  It uses [platform-specific drivers](https://github.com/chaostoolkit/chaostoolkit-kubernetes) to connect to your Kubernetes cluster and execute Chaos Experiments.  Every experiment performed by Chaos Toolkit is written in JSON using a [robust API](https://docs.chaostoolkit.org/reference/api/experiment/).  Experiments are made up of a few key elements that are executed sequentially and allow the experiment to bail out if any step in the process fails.
 
-- **Steady State Hypothesis**: This element defines the normal or "steady" state of the system before the **Method** element is applied.  For our example we've defined a basic application with a steady state hypothesis titled "Service should have nodes."
+- **Steady State Hypothesis**: This element defines the normal or "steady" state of the system before the **Method** element is applied.  Here we've defined a basic application with a steady state hypothesis titled "Service should have nodes."
 
     ```json
     {
@@ -172,6 +172,6 @@ The [Chaos Toolkit](https://chaostoolkit.org/) is an open-source and extensible 
     ]
     ```
 
-That's just the basics to getting started with experimenting using the Chaos Toolkit.  Chaos Toolkit also has a fault injection [plugin for Gremlin](https://github.com/chaostoolkit-incubator/chaostoolkit-gremlin) so you can easily perform attacks while utilizing the safety and security of the Gremlin platform.
+That's the basics to begin experimenting using the Chaos Toolkit.  Chaos Toolkit also has a fault injection [plugin for Gremlin](https://github.com/chaostoolkit-incubator/chaostoolkit-gremlin) so you can easily perform attacks while utilizing the safety and security of the Gremlin platform.
 
 {% include nav-internal.md %}

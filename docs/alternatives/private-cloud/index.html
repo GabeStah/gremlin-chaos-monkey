@@ -385,9 +385,9 @@
         
         <h2 id="gomjabbar">GomJabbar</h2>
 
-<p><a href="https://github.com/outbrain/GomJabbar" target="_blank" rel="noopener noreferrer">GomJabbar</a> is an open-source implementation of Chaos Monkey written in Java and designed to perform attacks within private cloud architecture.  Attacks are defined through the YAML configuration file and are executed as plain shell commands (e.g. <code class="highlighter-rouge">sudo service ${module} stop</code>).  It also integrates with <a href="https://docs.ansible.com/ansible/latest/index.html" target="_blank" rel="noopener noreferrer">Ansible</a> and <a href="https://rundeck.org/" target="_blank" rel="noopener noreferrer">Rundeck</a>.</p>
+<p><a href="https://github.com/outbrain/GomJabbar" target="_blank" rel="noopener noreferrer">GomJabbar</a> is an open-source implementation of Chaos Monkey written in Java and designed to perform attacks within a private cloud architecture.  Attacks are defined through the YAML configuration file and are executed as plain shell commands (e.g. <code class="highlighter-rouge">sudo service ${module} stop</code>).  It also integrates with <a href="https://docs.ansible.com/ansible/latest/index.html" target="_blank" rel="noopener noreferrer">Ansible</a> and <a href="https://rundeck.org/" target="_blank" rel="noopener noreferrer">Rundeck</a>.</p>
 
-<p>Attacks are defines in the <code class="highlighter-rouge">config.yaml</code> in the <code class="highlighter-rouge">commands</code> block.  The <code class="highlighter-rouge">fail</code> value is the fault command to be executed, while the (optional) <code class="highlighter-rouge">revert</code> value is executed to attempt reversion.  For example, here the <code class="highlighter-rouge">shutdown_service</code> command calls <code class="highlighter-rouge">sudo service &lt;service-name&gt; stop</code> as a fault and the opposite to revert.</p>
+<p>Attacks are defined in the <code class="highlighter-rouge">config.yaml</code> within the <code class="highlighter-rouge">commands</code> block.  The <code class="highlighter-rouge">fail</code> value is the fault command to be executed, while the (optional) <code class="highlighter-rouge">revert</code> value is executed to attempt reversion.  For example, here the <code class="highlighter-rouge">shutdown_service</code> command calls <code class="highlighter-rouge">sudo service &lt;service-name&gt; stop</code> as a fault and the opposite to revert.</p>
 
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">commands</span><span class="pi">:</span>
   <span class="na">kill_service</span><span class="pi">:</span>
@@ -401,7 +401,7 @@
     <span class="na">revert</span><span class="pi">:</span> <span class="s2">"</span><span class="s">sudo</span><span class="nv"> </span><span class="s">service</span><span class="nv"> </span><span class="s">${module}</span><span class="nv"> </span><span class="s">start"</span>
 </code></pre></div></div>
 
-<p>The <code class="highlighter-rouge">filters</code> block in <code class="highlighter-rouge">config.yaml</code> defines a list of <code class="highlighter-rouge">clusters</code>, <code class="highlighter-rouge">modules</code>, and <code class="highlighter-rouge">tags</code> to either be whitelisted or blacklisted (i.e. via <code class="highlighter-rouge">include</code> or <code class="highlighter-rouge">exclude</code>).</p>
+<p>The <code class="highlighter-rouge">filters</code> block in <code class="highlighter-rouge">config.yaml</code> defines a list of <code class="highlighter-rouge">clusters</code>, <code class="highlighter-rouge">modules</code>, and <code class="highlighter-rouge">tags</code> to either be whitelisted or blacklisted via <code class="highlighter-rouge">include</code> or <code class="highlighter-rouge">exclude</code>, respectively.</p>
 
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">filters</span><span class="pi">:</span>
   <span class="na">clusters</span><span class="pi">:</span>
@@ -437,13 +437,13 @@
 
 <p>Gremlin’s <a href="https://www.gremlin.com" target="_blank" rel="noopener noreferrer">Failure as a Service</a> locates weaknesses in your private cloud architecture before they cause problems.  Gremlin makes Chaos Engineering simple, safe, and secure, improving your private cloud’s stability and resilience.  You can begin executing Chaos Experiments in just a few minutes by <a href="https://www.gremlin.com/demo" target="_blank" rel="noopener noreferrer">signing up</a> for an account and <a href="https://help.gremlin.com/installation/" target="_blank" rel="noopener noreferrer">installing Gremlin</a>.  Gremlin can perform a variety of attacks against every major type of private cloud infrastructure including Linux, Docker, Kubernetes, OpenStack, VMware, and many more.</p>
 
-<p>Check out <a href="https://help.gremlin.com/installation/" target="_blank" rel="noopener noreferrer">this tutorial</a> to learn how to install Gremlin and start Chaos Engineering your private cloud today.</p>
+<p>Check out <a href="https://help.gremlin.com/installation/" target="_blank" rel="noopener noreferrer">these tutorials</a> to learn how to install Gremlin and start Chaos Engineering your private cloud today.</p>
 
 <h2 id="muxy">Muxy</h2>
 
 <p><a href="https://github.com/mefellows/muxy" target="_blank" rel="noopener noreferrer">Muxy</a> is an open-source tool written in Go that allows you to tamper with network traffic at the transport, TCP, or HTTP protocol layers of your systems.  In can simulate real-world network connectivity problems and can also be extended with plugins via the <a href="https://github.com/mefellows/plugo" target="_blank" rel="noopener noreferrer">Plugo</a> interface.</p>
 
-<p>Muxy is configured through a YAML file that defines an number of <code class="highlighter-rouge">proxy</code> and <code class="highlighter-rouge">middleware</code> blocks.</p>
+<p>Muxy is configured through a YAML file that defines a number of <code class="highlighter-rouge">proxy</code> and <code class="highlighter-rouge">middleware</code> blocks.</p>
 
 <ol>
   <li>
@@ -457,7 +457,7 @@
     <p>Create a YAML file and paste the following test configuration in it.</p>
 
     <div class="language-yaml highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code> <span class="c1"># config.yml</span>
+<div class="highlight"><pre class="highlight"><code> <span class="c1"># gremlin.yml</span>
  <span class="na">proxy</span><span class="pi">:</span>
    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">http_proxy</span>
      <span class="na">config</span><span class="pi">:</span>
@@ -484,10 +484,10 @@
    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">logger</span>
 </code></pre></div>    </div>
 
-    <p>This configuration creates a <code class="highlighter-rouge">localhost:8181</code> proxy that targets <code class="highlighter-rouge">www.gremlin.com:443</code>.  It also creates an <code class="highlighter-rouge">http_tamperer</code> middleware that catches requests made to <code class="highlighter-rouge">www.gremlin.com:443</code> and adds a <code class="highlighter-rouge">2.5</code> second delay to both requests and responses.  Finally it outputs Muxy messages to the default terminal logger.</p>
+    <p>This configuration creates a <code class="highlighter-rouge">localhost:8181</code> proxy that targets <code class="highlighter-rouge">www.gremlin.com:443</code>.  It also creates an <code class="highlighter-rouge">http_tamperer</code> middleware that catches requests made to <code class="highlighter-rouge">www.gremlin.com:443</code> and adds a <code class="highlighter-rouge">2.5-second</code> delay to both requests and responses.  Finally, it outputs Muxy messages to the default terminal logger.</p>
   </li>
   <li>
-    <p>Start Muxy with the following command, ensuring you specify the location of the YAML configuration file.</p>
+    <p>Start Muxy with the following command, ensuring that you specify the location of the YAML configuration file.</p>
 
     <div class="language-bash highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code> muxy proxy <span class="nt">--config</span> ./gremlin.yml
@@ -505,7 +505,7 @@
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Now that Muxy is listening at <code class="highlighter-rouge">http://0.0.0.0:8181</code> you can make a request to <code class="highlighter-rouge">www.gremlin.com</code> through the proxy to test it out.  It should add approximately 5 seconds of delay.</p>
+    <p>Now that Muxy is listening at <code class="highlighter-rouge">http://0.0.0.0:8181</code> you can make a request to <code class="highlighter-rouge">www.gremlin.com</code> through the proxy to test it out.  Muxy should add a delay of approximately 5 seconds to the request.</p>
 
     <div class="language-bash highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code> <span class="nb">time </span>curl <span class="nt">-H</span><span class="s2">"Host: www.gremlin.com"</span> http://localhost:8181/

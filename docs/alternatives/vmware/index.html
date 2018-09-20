@@ -363,7 +363,7 @@
 
 
 
-  2 minute read
+  3 minute read
 </p>
           
         </header>
@@ -377,15 +377,16 @@
 <i class="fas fa-file-alt"></i> </h4></header>
               <ul class="toc__menu">
   <li><a href="#chaos-engineering-with-bosh-and-chaos-lemur">Chaos Engineering with BOSH and Chaos Lemur</a></li>
+  <li><a href="#chaos-engineering-on-vmware-with-gremlin">Chaos Engineering on VMware with Gremlin</a></li>
 </ul>
             </nav>
           </aside>
         
         <h2 id="chaos-engineering-with-bosh-and-chaos-lemur">Chaos Engineering with BOSH and Chaos Lemur</h2>
 
-<p>CloudFoundry’s <a href="http://bosh.cloudfoundry.org/docs/" target="_blank" rel="noopener noreferrer">BOSH</a> unifies CI/CD practices for virtualized, distributed systems like VMware vSphere and their open-source <a href="https://github.com/strepsirrhini-army/chaos-lemur" target="_blank" rel="noopener noreferrer">Chaos Lemur</a> tool makes it relatively easy to inject failure into these systems.  Chaos Lemur is a self-contained Java application that will randomly destroy virtual machines in any BOSH-managed environment.  Similar to the original Chaos Monkey, Chaos Lemur can be configured to execute on a daily schedule and target one or more VMs for destruction based on pseudo-random probabilities.  It can also be integrated with <a href="https://www.datadoghq.com/" target="_blank" rel="noopener noreferrer">Datadog</a> to log destruction events.</p>
+<p>CloudFoundry’s <a href="http://bosh.cloudfoundry.org/docs/" target="_blank" rel="noopener noreferrer">BOSH</a> unifies CI/CD practices for virtualized, distributed systems like VMware vSphere and the open-source <a href="https://github.com/strepsirrhini-army/chaos-lemur" target="_blank" rel="noopener noreferrer">Chaos Lemur</a> tool makes it relatively easy to inject failure into BOSH systems.  Chaos Lemur is a self-contained Java application that will randomly destroy virtual machines in any BOSH-managed environment.  Similar to the original Chaos Monkey, Chaos Lemur can be configured to execute on a daily schedule and target one or more VMs for destruction based on pseudo-random probabilities.  It can also be integrated with <a href="https://www.datadoghq.com/" target="_blank" rel="noopener noreferrer">Datadog</a> to log destruction events.</p>
 
-<p>Chaos Lemur is a standalone Java 8 application that requires Maven for building and deployment, but otherwise it can be hosted anywhere.  Configuration is handled using local environment variables.</p>
+<p>Chaos Lemur is a standalone Java 8 application that requires Maven for building and deployment, but otherwise, it can be hosted anywhere.  Configuration is handled using local environment variables.</p>
 
 <table>
   <thead>
@@ -432,7 +433,7 @@
   </tbody>
 </table>
 
-<p>Chaos Lemur also requires an infrastructure on which to perform attacks.  This requires specifying credential environment variables for your applicable infrastructure.  The full list of supported infrastructures and their respective variables can be <a href="https://github.com/strepsirrhini-army/chaos-lemur#infrastructure" target="_blank" rel="noopener noreferrer">found here</a>, but below you’ll find the necessary settings for vSphere.</p>
+<p>Chaos Lemur also requires an infrastructure on which to perform attacks.  This requires specifying credential environment variables for your application infrastructure.  The full list of supported infrastructures and their respective variables can be <a href="https://github.com/strepsirrhini-army/chaos-lemur#infrastructure" target="_blank" rel="noopener noreferrer">found here</a>, but below you’ll find the necessary settings for vSphere.</p>
 
 <table>
   <thead>
@@ -460,6 +461,12 @@
 <p>The final (optional) component for using Chaos Lemur is Redis.  If configured, Chaos Lemur will use Redis to store persistence state information.</p>
 
 <p>Check out the <a href="https://github.com/strepsirrhini-army/chaos-lemur" target="_blank" rel="noopener noreferrer">official repository</a> and <a href="https://content.pivotal.io/blog/chaos-lemur-testing-high-availability-on-pivotal-cloud-foundry" target="_blank" rel="noopener noreferrer">this blog post</a> for more information on getting Chaos Lemur up and running within your BOSH-managed environment.</p>
+
+<h2 id="chaos-engineering-on-vmware-with-gremlin">Chaos Engineering on VMware with Gremlin</h2>
+
+<p>Gremlin’s <a href="https://www.gremlin.com" target="_blank" rel="noopener noreferrer">Failure as a Service</a> finds and helps you fix weaknesses in your VMware architecture before they cause problems.  Gremlin makes Chaos Engineering simple, safe, and secure, improving your system’s stability and resilience against unexpected failures.  You can start running Chaos Experiments on your VMware application in just a few minutes by <a href="https://www.gremlin.com/demo" target="_blank" rel="noopener noreferrer">signing up</a> for an account and <a href="https://help.gremlin.com/installation/" target="_blank" rel="noopener noreferrer">installing Gremlin</a>.  Gremlin can perform a wide range of attacks against your infrastructure including modifying network traffic; killing off virtual machines; overloading CPU, memory, disk, and IO; and much more.</p>
+
+<p>Check out <a href="https://help.gremlin.com/installation/" target="_blank" rel="noopener noreferrer">these tutorials</a> to learn how to install Gremlin and start injecting failure into your VMware system today.</p>
 
 
         

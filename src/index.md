@@ -9,7 +9,7 @@ sources: "See: _docs/resources.md"
 
 In 2010 [Netflix](https://www.netflix.com) announced the existence and success of their custom [resiliency tool](https://medium.com/netflix-techblog/5-lessons-weve-learned-using-aws-1f2a28588e4c) called *Chaos Monkey*.
 
-Netflix designed Chaos Monkey to test system stability by enforcing failures via the pseudo-random termination of instances and services within Netflix's architecture. Following their migration to the cloud,  Netflix's service was newly reliant upon Amazon Web Services (AWS), and needed a technology that could show them how their system responded when critical components of their production service infrastructure were taken down.  Intentionally causing this single failure would suss out any weaknesses in their systems and guide them towards automated solutions that gracefully handle future failures of this sort.
+Netflix designed Chaos Monkey to test system stability by enforcing failures via the pseudo-random termination of instances and services within Netflix's architecture. Following their migration to the cloud,  Netflix's service was newly reliant upon Amazon Web Services and needed a technology that could show them how their system responded when critical components of their production service infrastructure were taken down.  Intentionally causing this single failure would suss out any weaknesses in their systems and guide them towards automated solutions that gracefully handle future failures of this sort.
 
 Chaos Monkey helped jumpstart [**Chaos Engineering** as a new engineering practice](https://www.gremlin.com/community/tutorials/chaos-engineering-the-history-principles-and-practice/).  Chaos Engineering is "the discipline of experimenting on a distributed system in order to build confidence in the system's capability to withstand turbulent conditions in production."  By proactively testing how a system responds under stress, you can identify and fix failures before they become public facing outages. Chaos Engineering lets you compare what you think will happen with what is actually happening in your systems.  By performing the smallest possible experiments you can measure, you're able to "break things on purpose" in order to learn how to build more resilient systems.
 
@@ -29,11 +29,7 @@ We've created this guide primarily for engineers and other enterprise technologi
 
 Our goal here at Gremlin is to empower engineering teams to build more resilient systems through thoughtful Chaos Engineering.  We're on a constant quest to promote the [Chaos Community](https://www.gremlin.com/community/) through frequent [conferences & meetups](https://meetup.com/pro/chaos), in-depth [talks](https://www.gremlin.com/community/#talks), detailed [tutorials](https://www.gremlin.com/community/tutorials/), and the ever-growing list of [Chaos Engineering Slack channels](https://www.gremlin.com/slack).
 
-While Chaos Engineering extends well beyond the scope of one single technique or idea, Chaos Monkey is the most well-known tool for running Chaos Experiments, and is a common starting place for engineers getting started with the discipline.
-
-## When and Where Should This Guide Be Used?
-
-When and where should this guide be used?  Frankly, we leave that up to you!  We've streamlined every chapter of this guide, so you'll have quick access to all of the information within.  Whether reading this in the office, at home on your laptop, or even late night in bed via our [downloadable PDF version][/pdf-download], you'll have total access to every ounce of that sweet, tangy nectar we could squeeze into this thing.  Mmm, tasty!
+While Chaos Engineering extends well beyond the scope of one single technique or idea, Chaos Monkey is the most well-known tool for running Chaos Experiments and is a common starting place for engineers getting started with the discipline.
 
 ## The Pros and Cons of Chaos Monkey
 
@@ -41,7 +37,7 @@ Chaos Monkey is designed to induce one specific type of failure.  It randomly sh
 
 ### Pros of Chaos Monkey
 
-- **Planned Failure**: Chaos Monkey allows for planned instance failures when you and your team are best-prepared to handle them.  You can [schedule terminations][#chaos-monkey-schedule-terminations] so they occur based on a configurable *mean* number of days and during a given *time period* each day.
+- **Prepares You for Random Failures**: Chaos Monkey allows for planned instance failures when you and your team are best-prepared to handle them.  You can [schedule terminations][#chaos-monkey-schedule-terminations] so they occur based on a configurable *mean* number of days and during a given *time period* each day.
 - **Encourages Distribution**: As [Netflix learned][#netflix-history] all too well in 2008 prior to developing Chaos Monkey, a vertically-stacked architecture is dangerous and prone to single points of failure.  Conversely, a distributed architecture that Chaos Engineering practices and tools like Chaos Monkey encourage is inherently more resilient, so long as you proactively "break things on purpose" in an effort to learn.
 - **Encourages Redundancy**: Part and parcel of a distributed architecture, redundancy is another major benefit to smart Chaos Engineering practices.  If a single service or instance is brought down unexpectedly, a redundant backup may save the day.
 - **Discourages Wasteful Dependencies**: Chaos Engineering best practices emphasize the importance of separating the wheat from the chaff by eliminating all unnecessary dependencies and allowing the system to remain functional with the absolute minimal components and services.
@@ -76,14 +72,14 @@ Our [Advanced Developer Guide][/advanced-tips] gets into the nitty-gritty of usi
 
 ### The Simian Army - Overview and Resources
 
-**(TODO)**
+In [The Simian Army - Overview and Resources][/simian-army] we explore the origins of Netflix's Simian Army toolset, including what it is, why it was created, the software [tools][#simian-members] that make it up, the [strategies][#simian-chaos-strategies] used to perform various Chaos Experiments, and a [tutorial][#simian-use] to help you install and begin using the Simian Army right away.
 
 ### Chaos Monkey Resources, Guides, and Downloads for Engineers
 
-**(TODO)**
+The [Chaos Monkey Resources, Guides, and Downloads for Engineers][/downloads-resources] chapter contains **over 100** researched and highly-curated resources to help you learn about every aspect of Chaos Engineering.  We dive into Chaos Engineering's [origins and principles][/downloads-resources#practices-principles], provide a plethora of [in-depth tutorials][/downloads-resources#tutorials] to get experimenting right away, list a handful of critical Chaos Engineering [blogs][/downloads-resources#blogs], explore the many Chaos Engineering [tools][/downloads-resources#tools] available, and much more.
 
 ### Chaos Monkey Alternatives - Tools for Creating Chaos Outside of AWS
 
-**(TODO)**
+In [Chaos Monkey Alternatives - Tools for Creating Chaos Outside of AWS][/alternatives] we have laid out **dozens** of alternative tools and techniques for thoughtfully injecting failure into your own applications, *regardless* of the technology, platform, or architecture you may be using.  You'll find alternative solutions for every major technology including [Azure][/alternatives/azure], [Docker][/alternatives/docker], [Google Cloud Platform][/alternatives/google-cloud-platform], [Kubernetes][/alternatives/kubernetes], [OpenShift][/alternatives/openshift], and many more.
 
 {% include nav-internal.md %}

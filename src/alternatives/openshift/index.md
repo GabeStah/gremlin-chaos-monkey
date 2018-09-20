@@ -35,7 +35,7 @@ Create a Docker container with the following command.  Be sure to replace `TOKEN
 
 ```bash
 docker run produban/monkey-ops /monkey-ops \
-  --TOKEN="_uAGahsDihxorIVxQvasmiTRbijJCbwj1toFD0ifWw" \
+  --TOKEN="<TOKEN>" \
   --PROJECT_NAME="chaos-demo" \
   --API_SERVER="https://api.starter-us-west-2.openshift.com:443" \
   --INTERVAL=30 \
@@ -93,13 +93,13 @@ Installing Monkey-Ops as an OpenShift project is a bit more complex.
 
 ## Engineering Chaos In OpenShift with Gremlin
 
-Gremlin's [Failure as a Service][#gremlin-failure-as-a-service] simplifies your Chaos Engineering workflow for OpenShift by making it safe and effortless to execute Chaos Experiments across all application containers.  As a distributed architecture OpenShift is particularly sensitive to instability and unexpected failures.  Gremlin can perform a variety of attacks on your OpenShift applications including overloading CPU, memory, disk, and IO; killing pods; modifying network traffic; and much more.
+Gremlin's [Failure as a Service][#gremlin-failure-as-a-service] simplifies your Chaos Engineering workflow for OpenShift by making it safe and effortless to execute Chaos Experiments across all application containers.  As a distributed architecture OpenShift is particularly sensitive to instability and unexpected failures.  Gremlin can perform a variety of attacks on your OpenShift applications including draining disk space, hogging CPU and memory, overloading IO, manipulating network traffic, terminating instances, and much more.
 
 Check out [this tutorial](https://help.gremlin.com/install-gremlin-centos-7/) for installing Gremlin on Centos to get started!
 
 ## Pumba
 
-As discussed in the [Chaos Monkey Alternatives - Docker][/alternatives/docker#pumba] chapter, [Pumba](https://github.com/alexei-led/pumba) is a Chaos injection tool primarily built for Docker.  However, it can also be deployed on [Kubernetes](https://github.com/alexei-led/pumba/blob/master/deploy/pumba_kube.yml) and, by extension, on [OpenShift](https://github.com/alexei-led/pumba/blob/master/deploy/pumba_openshift.yml) using a DaemonSets.  Pumba can stop, pause, kill, and remove containers, which means it works fairly well with OpenShift pods that are made up of one or more containers.
+As discussed in the [Chaos Monkey Alternatives - Docker][/alternatives/docker#pumba] chapter, [Pumba](https://github.com/alexei-led/pumba) is a Chaos injection tool primarily built for Docker.  However, it can also be deployed on [Kubernetes](https://github.com/alexei-led/pumba/blob/master/deploy/pumba_kube.yml) and, by extension, on [OpenShift](https://github.com/alexei-led/pumba/blob/master/deploy/pumba_openshift.yml) using a **DaemonSet**.  Pumba can stop, pause, kill, and remove containers, which means it works fairly well with OpenShift pods that are made up of one or more containers.
 
 1. To deploy Pumba in OpenShift nodes using a DaemonSet you must first add a security policy to allow the OpenShift `developer` user to administer Kubernetes clusters.
 

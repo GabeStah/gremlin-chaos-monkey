@@ -405,7 +405,7 @@
 <p>Create a Docker container with the following command.  Be sure to replace <code class="highlighter-rouge">TOKEN</code> with your own OpenShift auth token and <code class="highlighter-rouge">PROJECT_NAME</code> with the appropriate value.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run produban/monkey-ops /monkey-ops <span class="se">\</span>
-  <span class="nt">--TOKEN</span><span class="o">=</span><span class="s2">"_uAGahsDihxorIVxQvasmiTRbijJCbwj1toFD0ifWw"</span> <span class="se">\</span>
+  <span class="nt">--TOKEN</span><span class="o">=</span><span class="s2">"&lt;TOKEN&gt;"</span> <span class="se">\</span>
   <span class="nt">--PROJECT_NAME</span><span class="o">=</span><span class="s2">"chaos-demo"</span> <span class="se">\</span>
   <span class="nt">--API_SERVER</span><span class="o">=</span><span class="s2">"https://api.starter-us-west-2.openshift.com:443"</span> <span class="se">\</span>
   <span class="nt">--INTERVAL</span><span class="o">=</span>30 <span class="se">\</span>
@@ -471,13 +471,13 @@
 
 <h2 id="engineering-chaos-in-openshift-with-gremlin">Engineering Chaos In OpenShift with Gremlin</h2>
 
-<p>Gremlin’s <a href="https://www.gremlin.com" target="_blank" rel="noopener noreferrer">Failure as a Service</a> simplifies your Chaos Engineering workflow for OpenShift by making it safe and effortless to execute Chaos Experiments across all application containers.  As a distributed architecture OpenShift is particularly sensitive to instability and unexpected failures.  Gremlin can perform a variety of attacks on your OpenShift applications including overloading CPU, memory, disk, and IO; killing pods; modifying network traffic; and much more.</p>
+<p>Gremlin’s <a href="https://www.gremlin.com" target="_blank" rel="noopener noreferrer">Failure as a Service</a> simplifies your Chaos Engineering workflow for OpenShift by making it safe and effortless to execute Chaos Experiments across all application containers.  As a distributed architecture OpenShift is particularly sensitive to instability and unexpected failures.  Gremlin can perform a variety of attacks on your OpenShift applications including draining disk space, hogging CPU and memory, overloading IO, manipulating network traffic, terminating instances, and much more.</p>
 
 <p>Check out <a href="https://help.gremlin.com/install-gremlin-centos-7/" target="_blank" rel="noopener noreferrer">this tutorial</a> for installing Gremlin on Centos to get started!</p>
 
 <h2 id="pumba">Pumba</h2>
 
-<p>As discussed in the <a href="/gremlin-chaos-monkey/alternatives/docker#pumba">Chaos Monkey Alternatives - Docker</a> chapter, <a href="https://github.com/alexei-led/pumba" target="_blank" rel="noopener noreferrer">Pumba</a> is a Chaos injection tool primarily built for Docker.  However, it can also be deployed on <a href="https://github.com/alexei-led/pumba/blob/master/deploy/pumba_kube.yml" target="_blank" rel="noopener noreferrer">Kubernetes</a> and, by extension, on <a href="https://github.com/alexei-led/pumba/blob/master/deploy/pumba_openshift.yml" target="_blank" rel="noopener noreferrer">OpenShift</a> using a DaemonSets.  Pumba can stop, pause, kill, and remove containers, which means it works fairly well with OpenShift pods that are made up of one or more containers.</p>
+<p>As discussed in the <a href="/gremlin-chaos-monkey/alternatives/docker#pumba">Chaos Monkey Alternatives - Docker</a> chapter, <a href="https://github.com/alexei-led/pumba" target="_blank" rel="noopener noreferrer">Pumba</a> is a Chaos injection tool primarily built for Docker.  However, it can also be deployed on <a href="https://github.com/alexei-led/pumba/blob/master/deploy/pumba_kube.yml" target="_blank" rel="noopener noreferrer">Kubernetes</a> and, by extension, on <a href="https://github.com/alexei-led/pumba/blob/master/deploy/pumba_openshift.yml" target="_blank" rel="noopener noreferrer">OpenShift</a> using a <strong>DaemonSet</strong>.  Pumba can stop, pause, kill, and remove containers, which means it works fairly well with OpenShift pods that are made up of one or more containers.</p>
 
 <ol>
   <li>

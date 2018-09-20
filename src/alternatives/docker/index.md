@@ -30,7 +30,7 @@ sudo chmod +x /usr/bin/pumba
 ```
 
 > note "Execute Pumba Within a Container"
-> If you'd prefer to run Pumba from within a Docker container, you can preface your Pumba command with the following.  This creates a temporary container using the [`gaiaadm/pumba`](https://hub.docker.com/r/gaiaadm/pumba/) image.  The `-v` flag bind-mounts the local `docker.sock` file to the same path in the container, so Pumba can connect to the Docker daemon.  The `--rm` flag makes the container temporary and `-it` creates an interactive shell so we can pass `pumba` command that follows.
+> If you'd prefer to run Pumba from within a Docker container, you can preface your Pumba command with the following.  This creates a temporary container using the [`gaiaadm/pumba`](https://hub.docker.com/r/gaiaadm/pumba/) image.  The `-v` flag bind-mounts the local `docker.sock` file to the same path in the container, so Pumba can connect to the Docker daemon.  The `--rm` flag makes the container temporary and `-it` creates an interactive shell so we can pass the `pumba` command that follows.
 > ```bash
 > docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock gaiaadm/pumba \
 > <PUMBA_COMMAND>
@@ -60,7 +60,7 @@ sudo chmod +x /usr/bin/pumba
 
 ### Network Emulation
 
-Pumba uses the `tc` utility for performing network emulation, which is typically installed with the [`iproute2`](https://wiki.linuxfoundation.org/networking/iproute2) tool set.  We'll be creating containers using [AlpineLinux](https://alpinelinux.org/) distributions in these samples, but make sure your own container images contain a copy of the `tc` utility when performing network emulations.
+Pumba uses the `tc` utility for performing network emulation, which is typically installed with the [`iproute2`](https://wiki.linuxfoundation.org/networking/iproute2) tool set.  We'll be creating containers using [Alpine Linux](https://alpinelinux.org/) distributions in these samples, but make sure your own container images contain a copy of the `tc` utility when performing network emulations.
 
 #### Causing Delays
 
@@ -152,7 +152,7 @@ Pumba uses the `tc` utility for performing network emulation, which is typically
 
 Gremlin's [Failure as a Service][#gremlin-failure-as-a-service] platform makes it easy to run Chaos Experiments on Docker containers.  You can start running experiments in just a few minutes after installing Docker and signing up for a [Gremlin account][#gremlin-account-signup].  Once installed, Gremlin is intelligent enough to recognize each of your unique Docker containers and will accurately apply smart identifier tags, so you can target exactly the right services and systems.  Gremlin can perform a variety of attacks against Docker containers including killing containers, manipulating network traffic, overloading CPU/memory/disk/IO, and much more.
 
-Check out [this tutorial](https://help.gremlin.com/install-gremlin-docker-ubuntu-1604/) to learn how to install Gremlin on Ubuntu and attack Docker containers.  Alternatively, [this guide](https://help.gremlin.com/install-gremlin-docker-container-ubuntu-1604/) shows how to install Gremlin within a Docker container to use against other containers.
+Check out [this tutorial](https://help.gremlin.com/install-gremlin-docker-ubuntu-1604/) to learn how to install Gremlin on Ubuntu and attack Docker containers.  Alternatively, [this guide](https://help.gremlin.com/install-gremlin-docker-container-ubuntu-1604/) shows how to install Gremlin within a Docker container for use against other containers.
 
 ## Docker Chaos Monkey
 

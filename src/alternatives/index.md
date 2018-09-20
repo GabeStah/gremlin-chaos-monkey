@@ -70,27 +70,11 @@ In this chapter we'll explore a wide range of tools and techniques -- regardless
 
 ### Docker
 
-**(TODO)**
-
-### Gremlin
-
-**(TODO)**: Decide if enough content to warrant this section, or should just mention Gremlin in footer of other relevant sections?  See discussion between John-Henry and Gabe below.
-
-> **JH**: There's an alternatives/gremlin page that's in the plan - let's talk about this in a video meeting when you have a few minutes to chat. There's some search for "chaos monkey vs gremlin" so it makes sense for this page to exist - but I also think it makes sense to put info on how to use Gremlin + [technology the page is about] on every subpage in the alternatives section. What do you think about this? My theory is that's how we can make this thing produce some free trails.
-
-> **Gabe**: I originally added the /chaos-monkey/alternatives/gremlin page on a whim because the brief mentions that the Alternatives page "should also feature Gremlin as an alternative to chaos monkey, and provide a CTA that explains that Gremlin is platform/technology agnostic."  I'm open to your suggestion here since I see the merits in both approaches, but you're the SEO expert and creator of the original brief.
-
-> **Gabe**: From my perspective, I still need to spend more time playing around with the actual Gremlin platform to see what it's capable of and where it is applicable before I can write all those bits, but for the sake of argument, let's assume for a moment that Gremlin is a "viable alternative" in, say, 75%+ of the cases in which we discuss an alternative technology.  In that scenario, I'd be a little concerned that an explicit mention of Gremlin within 3 out of every 4 alternative technology sections would stand out and come across as a little heavy-handed from the reader's perspective.
-
-> **Gabe**: That said, I'm all for CTAs and there's multiple mentions of good places to add them to the guide throughout the brief, so I'm open to further thoughts from you and/or Austin.  Additionally, even if Gremlin could reasonably be listed in 3 out of 4 alternative sections, that doesn't mean we have to do so at every opportunity.  
-
-> **Gabe**: As you suggest, maybe just doing so on every actual sub-page (i.e. those with a unique URL) is sufficient enough without being too overbearing (that'd be on about half of all alternative technology sections).  As mentioned, I won't be writing those sections for a while yet so we can always change stuff up, but for now I'll move forward with your suggestion of mentioning Gremlin only in sub-pages, and I'll also think about whether there's enough content to warrant the extra /chaos-monkey/alternatives/gremlin page on top of that.  Sound good?
-
-> **JH**: I think when Gremlin is a solution, linking to the specific Gremlin docs could be a good option that wont seem heavy handed, we don't need to suggest people sign up for a free trail or anything like that. I'm not sure the /alternatives/gremlin page is needed, that content could just go on the main /alternatives page. However, you will have much more expertise on the product and how to write about it after using it some more. If when exploring the product you come up with a better way to communicate this info, please don't hesitate to suggest and alternative way to communicate this. 
+Check out [Chaos Monkey Alternatives - Docker][/alternatives/docker] for details on using Pumba, Gremlin, Docker Chaos Monkey, and Docker Simian Army to inject chaos into your Docker containers.
 
 ### OpenShift
 
-**(TODO)**
+Head over to the [Chaos Monkey Alternatives - OpenShift][/alternatives/openshift] chapter for information on utilizing Monkey Ops, Gremlin, and Pumba to run Chaos Experiments in OpenShift distributions.
 
 ## Erlang VM
 
@@ -106,21 +90,26 @@ In this chapter we'll explore a wide range of tools and techniques -- regardless
 
 ### Azure
 
-**(TODO)**
+Have a look at our [Chaos Monkey Alternatives - Azure][/alternatives/azure] chapter for the guidance on how the Azure Search team created their own Search Chaos Monkey, along with implementing your own Chaos Engineering practices in Azure with Gremlin, WazMonkey, and Azure's Fault Analysis Service.
 
 ### Google Cloud Platform
 
-**(TODO)**
+Check out [Chaos Monkey Alternatives - Google Cloud Platform][/alternatives/google-cloud-platform] for details on using the simple Google Cloud Chaos Monkey tool, Gremlin's Failure as a Service, and the open-source Chaos Toolkit for injecting failure into your own Google Cloud Platform systems.
 
 ### Kubernetes
 
-**(TODO)**
+A quick read of our [Chaos Monkey Alternatives - Kubernetes][/alternatives/kubernetes] chapter will teach you all about the Kube Monkey, Kubernetes Pod Chaos Monkey, Chaos Toolkit, and Gremlin tools, which can be deployed on Kubernetes clusters to execute Chaos Experiments and create more resilient applications.
 
 ### On Premise
 
 **(TODO)**
 
+#### Blockade
+
 - https://github.com/worstcase/blockade
+
+#### Toxiproxy
+
 - https://github.com/Shopify/toxiproxy
 
 ### OpenStack
@@ -129,11 +118,11 @@ In this chapter we'll explore a wide range of tools and techniques -- regardless
 
 ### Private Cloud
 
-**(TODO)**
+Take a look at the [Chaos Monkey Alternatives - Private Cloud][/alternatives/private-cloud] chapter to see how to begin Chaos Engineering within your own private cloud architecture using GomJabbar, Gremlin, and Muxy.
 
 ### VMware
 
-**(TODO)**
+Check out the [Chaos Monkey Alternatives - VMware][/alternatives/vmware] chapter to learn about the Chaos Lemur tool and Gremlin's own Failure as a Service solution, both of will inject failure into your VMware- or BOSH-managed virtual machines with relative ease.
 
 ## Java
 
@@ -152,7 +141,7 @@ In this chapter we'll explore a wide range of tools and techniques -- regardless
 
 ### Spring Boot
 
-**(TODO)**
+Exploring our [Chaos Monkey Alternatives - Spring Boot][/alternatives/spring-boot] chapter will teach you about how to use Chaos Monkey for Spring Boot, Gremlin, and Fabric8 to execute Chaos Experiments against your Spring Boot applications.
 
 ## OS
 
