@@ -363,7 +363,7 @@
 
 
 
-  1 minute read
+  2 minute read
 </p>
           
         </header>
@@ -377,8 +377,8 @@
 <i class="fas fa-file-alt"></i> </h4></header>
               <ul class="toc__menu">
   <li><a href="#google-cloud-chaos-monkey">Google Cloud Chaos Monkey</a></li>
-  <li><a href="#engineering-chaos-experiments-with-tensorflow">Engineering Chaos Experiments with TensorFlow</a></li>
-  <li><a href="#swapping-kubernetes-nodes-in-gke">Swapping Kubernetes Nodes in GKE</a></li>
+  <li><a href="#engineering-chaos-experiments-on-tensorflow-with-gremlin">Engineering Chaos Experiments on TensorFlow with Gremlin</a></li>
+  <li><a href="#swapping-kubernetes-nodes-in-gke-with-chaos-toolkit">Swapping Kubernetes Nodes in GKE with Chaos Toolkit</a></li>
 </ul>
             </nav>
           </aside>
@@ -394,17 +394,50 @@
 <a href="https://github.com/dkholod/GoogleCloudChaosMonkey/blob/master/GoogleCloudChaosMonkey/GoogleCloud.fs#L34-L44" target="_blank" rel="noopener noreferrer">Stop and Start</a>: Stops the instance and then restarts it after <code class="highlighter-rouge">3</code> seconds.</li>
 </ul>
 
-<h2 id="engineering-chaos-experiments-with-tensorflow">Engineering Chaos Experiments with TensorFlow</h2>
+<h2 id="engineering-chaos-experiments-on-tensorflow-with-gremlin">Engineering Chaos Experiments on TensorFlow with Gremlin</h2>
 
 <p>It’s safe and easy to perform Chaos Experiments on Google Cloud Platform services like TensorFlow with Gremlin’s <a href="https://www.gremlin.com" target="_blank" rel="noopener noreferrer">Failure as a Service</a>.  As a clustered configuration TensorFlow is ideal for running Chaos Experiments to test the fault tolerance and stability of each clustered node.  Gremlin can execute a wide range of attacks on your TensorFlow cluster, including overloading CPU, memory, disk, and IO; killing processes; altering system time; modifying network traffic; and more.</p>
 
 <p>Check out the <a href="https://www.gremlin.com/community/tutorials/how-to-install-distributed-tensorflow-on-gcp-and-perform-chaos-engineering-experiments/" target="_blank" rel="noopener noreferrer">full tutorial</a> over on our <a href="https://www.gremlin.com/community/" target="_blank" rel="noopener noreferrer">community site</a>.</p>
 
-<h2 id="swapping-kubernetes-nodes-in-gke">Swapping Kubernetes Nodes in GKE</h2>
+<h2 id="swapping-kubernetes-nodes-in-gke-with-chaos-toolkit">Swapping Kubernetes Nodes in GKE with Chaos Toolkit</h2>
 
 <p>If you’re looking to get into Chaos Engineering with Kubernetes check out our <a href="/gremlin-chaos-monkey/advanced-tips#how-to-deploy-spinnaker-on-kubernetes">How to Deploy Spinnaker on Kubernetes</a> tutorial to get started with Amazon EKS.  On the other hand, to induce Chaos on Google Cloud Kubernetes Engine clusters you can use the <a href="https://github.com/chaostoolkit-incubator/chaostoolkit-google-cloud" target="_blank" rel="noopener noreferrer">Chaos Toolkit Google Cloud driver</a>.  A relatively simple failure injection involves attacking a node pool with an HTTP load balancing library like <a href="https://github.com/tsenart/vegeta" target="_blank" rel="noopener noreferrer">Vegeta</a>, calling the <a href="https://docs.chaostoolkit.org/drivers/gce/#swap_nodepool" target="_blank" rel="noopener noreferrer"><code class="highlighter-rouge">swap_nodepool</code></a> function to create a new node pool and drain the old pool.  This forces pods to be moved to the new pool.</p>
 
-<p>Check out <a href="https://medium.com/chaosiq/observing-the-impact-of-swapping-nodes-in-gke-with-chaos-engineering-ce5cf9b5fbc6" target="_blank" rel="noopener noreferrer">this tutorial</a> for more information.</p>
+<p>Below is a simple <strong>Action</strong> configuration to perform such an attack, which can be added to your configuration file before executing Chaos Toolkit.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"action"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"swap-out-nodepools"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"provider"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"python"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"module"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chaosgce.nodepool.actions"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"func"</span><span class="p">:</span><span class="w"> </span><span class="s2">"swap_nodepool"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"secrets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"gce"</span><span class="p">],</span><span class="w">
+        </span><span class="s2">"arguments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"nodePool"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> 
+                        </span><span class="s2">"oauthScopes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="s2">"gke-version-default"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"https://www.googleapis.com/auth/devstorage.read_only"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"https://www.googleapis.com/auth/logging.write"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"https://www.googleapis.com/auth/monitoring"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"https://www.googleapis.com/auth/service.management.readonly"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"https://www.googleapis.com/auth/servicecontrol"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"https://www.googleapis.com/auth/trace.append"</span><span class="w">
+                        </span><span class="p">]</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"initialNodeCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new-default-pool"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Head over to our <a href="/gremlin-chaos-monkey/alternatives/kubernetes#the-chaos-toolkit">Kubernetes Alternatives - Chaos Toolkit</a> section for more details on the inner-workings and configuration of Chaos Toolkit.  Additionally, check out <a href="https://medium.com/chaosiq/observing-the-impact-of-swapping-nodes-in-gke-with-chaos-engineering-ce5cf9b5fbc6" target="_blank" rel="noopener noreferrer">this tutorial</a> for more information on node swapping with Chaos Toolkit.</p>
 
 
         
