@@ -33,15 +33,17 @@ outline: "
 
 ## Chaos Engineering Best Practices & Principles
 
+
+
 {% include resources/best-practices-principles.md %}
 
 ## Chaos Engineering Blogs
 
 {% include resources/blogs.md %}
 
-## Chaos Engineering Community
+## Chaos Engineering Community & Culture
 
-{% include resources/community.md %}
+{% include resources/community-culture.md %}
 
 ## Chaos Engineering Talks
 

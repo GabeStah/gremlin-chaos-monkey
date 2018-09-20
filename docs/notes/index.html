@@ -353,7 +353,7 @@
 
 
 
-  3 minute read
+  4 minute read
 </p>
           
         </header>
@@ -366,6 +366,7 @@
               <header><h4 class="nav__title">
 <i class="fas fa-file-alt"></i> </h4></header>
               <ul class="toc__menu">
+  <li><a href="#titles">Titles</a></li>
   <li><a href="#images">Images</a></li>
   <li>
 <a href="#links">Links</a>
@@ -381,6 +382,12 @@
           </aside>
         
         <p>The following items are assorted things for Austin and/or other editors to take note of and evaluate.</p>
+
+<h2 id="titles">Titles</h2>
+
+<ol>
+  <li>During creation, the sections and content of the <a href="/gremlin-chaos-monkey/downloads-resources">Chaos Monkey Resources, Guides, and Downloads</a> evolved to encompass Chaos Engineering in general, as opposed to what the page title implies of just Chaos Monkey.  I recognize the intent of the title is to capture search traffic based on the “Chaos Monkey” keyword, so editors should consider whether the page title and/or section titles should change, as they are not all that congruent at present.</li>
+</ol>
 
 <h2 id="images">Images</h2>
 
@@ -475,10 +482,10 @@
 <ol>
   <li>Google Sheets document found <a href="https://docs.google.com/spreadsheets/d/1SeNhnXx6dx7a3Ng4_hDS8LfKty8TVzxTt6g661OB6_E/" target="_blank" rel="noopener noreferrer">here</a>.</li>
   <li>
-    <p>Save URLs to <code class="highlighter-rouge">_data/resource-urls.csv</code> and execute <code class="highlighter-rouge">titles</code> Scrapy spider, specifying full input and output file paths.</p>
+    <p>Save URLs to <code class="highlighter-rouge">src/_data/resource-urls.csv</code> and execute <code class="highlighter-rouge">titles</code> Scrapy spider, specifying full input and output file paths.</p>
 
     <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code> scrapy crawl titles <span class="nt">-a</span> <span class="nv">input</span><span class="o">=</span><span class="s2">"/mnt/hgfs/work/Gremlin/gremlin-projects/chaos-monkey/_data/resource-urls.csv"</span> <span class="nt">-t</span> csv <span class="nt">--nolog</span> <span class="nt">-o</span> - <span class="o">&gt;</span> <span class="s2">"/mnt/hgfs/work/Gremlin/gremlin-projects/chaos-monkey/_data/resource-titles.csv"</span>
+<div class="highlight"><pre class="highlight"><code> scrapy crawl titles <span class="nt">-a</span> <span class="nv">input</span><span class="o">=</span><span class="s2">"/mnt/hgfs/work/Gremlin/gremlin-projects/chaos-monkey/src/_data/resource-urls.csv"</span> <span class="nt">-t</span> csv <span class="nt">--nolog</span> <span class="nt">-o</span> - <span class="o">&gt;</span> <span class="s2">"/mnt/hgfs/work/Gremlin/gremlin-projects/chaos-monkey/src/_data/resource-titles.csv"</span>
 </code></pre></div>    </div>
 
     <div class="premonition note modified">

@@ -9,6 +9,10 @@ published: true
 
 The following items are assorted things for Austin and/or other editors to take note of and evaluate.
 
+## Titles
+
+1. During creation, the sections and content of the [Chaos Monkey Resources, Guides, and Downloads][/downloads-resources] evolved to encompass Chaos Engineering in general, as opposed to what the page title implies of just Chaos Monkey.  I recognize the intent of the title is to capture search traffic based on the "Chaos Monkey" keyword, so editors should consider whether the page title and/or section titles should change, as they are not all that congruent at present.
+
 ## Images
 
 1. The following `AWS Spinnaker Quick Start Architecture` image, as used in the [Developer Tutorial][/developer-tutorial], is **copyright of AWS**.  If desired, please recreate image for Gremlin.
@@ -83,10 +87,10 @@ By default, all external links are processes with `target="_blank" rel="noreferr
 ## Resources
 
 1. Google Sheets document found [here](https://docs.google.com/spreadsheets/d/1SeNhnXx6dx7a3Ng4_hDS8LfKty8TVzxTt6g661OB6_E/).
-2. Save URLs to `_data/resource-urls.csv` and execute `titles` Scrapy spider, specifying full input and output file paths.
+2. Save URLs to `src/_data/resource-urls.csv` and execute `titles` Scrapy spider, specifying full input and output file paths.
 
     ```bash
-    scrapy crawl titles -a input="/mnt/hgfs/work/Gremlin/gremlin-projects/chaos-monkey/_data/resource-urls.csv" -t csv --nolog -o - > "/mnt/hgfs/work/Gremlin/gremlin-projects/chaos-monkey/_data/resource-titles.csv"
+    scrapy crawl titles -a input="/mnt/hgfs/work/Gremlin/gremlin-projects/chaos-monkey/src/_data/resource-urls.csv" -t csv --nolog -o - > "/mnt/hgfs/work/Gremlin/gremlin-projects/chaos-monkey/src/_data/resource-titles.csv"
     ```
 
     > note ""

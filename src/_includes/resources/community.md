@@ -1,6 +1,0 @@
-- [CHAOS ENGINEERING - Companies, People, Tools & Practices](https://coggle.it/diagram/WiKceGDAwgABrmyv/t/chaos-engineering-companies%2C-people%2C-tools-practices/0a2d4968c94723e48e1256e67df51d0f4217027143924b23517832f53c536e62)
-- [The Cloudcast #299 - The Discipline of Chaos Engineering](http://www.thecloudcast.net/2017/05/the-cloudcast-299-discipline-of-chaos.html)
-- [Chaos Conf - The Chaos Engineering Community Conference](https://chaosconf.splashthat.com/)
-- [#chaosengineering Slack Channel](https://slofile.com/slack/chaosengineering)
-- [Who is this Chaos Monkey and why did he crash my server?](https://devops.stackexchange.com/questions/609/who-is-this-chaos-monkey-and-why-did-he-crash-my-server)
-- [Chaos Monkey and Resilience Testing - Insights From the Professionals](https://www.ibm.com/blogs/bluemix/2015/12/resilience-testing-insights-from-the-pros/)
