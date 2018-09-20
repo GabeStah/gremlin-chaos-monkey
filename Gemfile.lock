@@ -1,5 +1,5 @@
 PATH
-  remote: _includes/ruby/gems/premonition
+  remote: gems/premonition
   specs:
     premonition (2.0.0)
 

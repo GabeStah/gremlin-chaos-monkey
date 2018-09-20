@@ -1,6 +1,7 @@
 github_username:  gabestah
 theme: minimal-mistakes-jekyll
 destination: docs
+source: src
 
 # Theme Settings
 #
