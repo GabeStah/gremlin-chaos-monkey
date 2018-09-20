@@ -49,9 +49,7 @@ FIT works by first pushing failure simulation metadata to [Zuul](https://github.
 
 The introduction of FIT into Netflix's failure injection strategy was a monumental move toward better, modern-day Chaos Engineering practices.  Since FIT is a service unto itself, it allowed failure to be injected by a variety of teams, who could then perform proactive Chaos Experiments with greater precision.  This allowed Netflix to truly emphasize a core discipline of Chaos Engineering, knowing they were testing for failure in every nook and cranny, proving confidence that their systems were resilient to truly *unexpected* failures.
 
-**(TODO)**: https://docs.google.com/document/d/1sLcvq2zpEpHieI2bJdg3zbA4amEsDT2ant0u77vgKYE/edit?disco=uiAAAACMDlDW8
-
-> Austin: this would be a good place to put some of the Gremlin Demo account usage to work. Describe a couple failure states that Chaos Monkey couldn't test for that FIT could as a way of illustrating the limitations of Chaos Monkey
+Unlike Chaos Monkey, tools like FIT and Gremlin are able to test for a wide range of failure states beyond simple instance destruction.  In addition to killing instances, [Gremlin][#gremlin-failure-as-a-service] can fill available disk space, hog CPU and memory, overload IO, perform advanced network traffic manipulation, terminate processes, and much more.
 
 ## Chaos Monkey and Spinnaker
 
