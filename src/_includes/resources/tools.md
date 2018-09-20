@@ -1,6 +1,6 @@
 - [**Awesome Chaos Engineering**: A curated list of Chaos Engineering resources](https://github.com/dastergon/awesome-chaos-engineering)
 - [**Gremlin**: Break things on purpose.](https://www.gremlin.com/)
-- [**Chaos Toolkit**](https://chaostoolkit.org/)
+- [**Chaos Toolkit**: Chaos Engineering Experiments, Automation, & Orchestration](https://chaostoolkit.org/)
 - [**Marathon**: A container orchestration platform for Mesos and DC/OS](https://mesosphere.github.io/marathon/)
 - [**WazMonkey**: A simple tool for testing resilience of Windows Azure cloud services](https://github.com/smarx/WazMonkey)
 - [**Pumba**: Chaos testing and network emulation tool for Docker](https://github.com/alexei-led/pumba)

@@ -13,6 +13,12 @@
 [/alternatives/vmware]:                         {{ "/alternatives/vmware" | relative_url}}
 [/developer-tutorial]:                          {{ "/developer-tutorial" | relative_url}}
 [/downloads-resources]:                         {{ "/downloads-resources" | relative_url}}
+[/downloads-resources#practices-principles]:    {{ "/downloads-resources#chaos-engineering-best-practices--principles" | relative_url}}
+[/downloads-resources#blogs]:                   {{ "/downloads-resources#chaos-engineering-blogs" | relative_url}}
+[/downloads-resources#community-culture]:       {{ "/downloads-resources#chaos-engineering-community--culture" | relative_url}}
+[/downloads-resources#talks]:                   {{ "/downloads-resources#chaos-engineering-talks" | relative_url}}
+[/downloads-resources#tools]:                   {{ "/downloads-resources#chaos-engineering-tools" | relative_url}}
+[/downloads-resources#tutorials]:               {{ "/downloads-resources#chaos-engineering-tutorials" | relative_url}}
 [/origin-netflix]:                              {{ "/origin-netflix" | relative_url}}
 [/pdf-download]:                                {{ "/pdf-download" | relative_url}}
 [/simian-army]:                                 {{ "/simian-army" | relative_url}}

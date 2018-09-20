@@ -11,7 +11,7 @@ The following items are assorted things for Austin and/or other editors to take 
 
 ## Titles
 
-1. During creation, the sections and content of the [Chaos Monkey Resources, Guides, and Downloads][/downloads-resources] evolved to encompass Chaos Engineering in general, as opposed to what the page title implies of just Chaos Monkey.  I recognize the intent of the title is to capture search traffic based on the "Chaos Monkey" keyword, so editors should consider whether the page title and/or section titles should change, as they are not all that congruent at present.
+1. During creation, the sections and content of the [Chaos Monkey Resources, Guides, and Downloads][/downloads-resources] evolved to encompass Chaos Engineering in general, as opposed to just Chaos Monkey, as the page title implies.  I recognize the original intent of the title is to capture search traffic based on the "Chaos Monkey" keyword, but editors should consider whether the page title and/or section titles should change, as they are currently not all that congruent.
 
 ## Images
 

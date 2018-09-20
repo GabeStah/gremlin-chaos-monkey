@@ -1,5 +1,5 @@
 - [The Chaos Engineering Slack Channel](https://slofile.com/slack/chaosengineering)
-- [CHAOS ENGINEERING - Companies, People, Tools & Practices](https://coggle.it/diagram/WiKceGDAwgABrmyv/t/chaos-engineering-companies%2C-people%2C-tools-practices/0a2d4968c94723e48e1256e67df51d0f4217027143924b23517832f53c536e62)
+- [Chaos Engineering - Companies, People, Tools & Practices](https://coggle.it/diagram/WiKceGDAwgABrmyv/t/chaos-engineering-companies%2C-people%2C-tools-practices/0a2d4968c94723e48e1256e67df51d0f4217027143924b23517832f53c536e62)
 - [Chaos Conf - The Chaos Engineering Community Conference](https://chaosconf.splashthat.com/)
 - [Gremlin Community](https://www.gremlin.com/community/)
 - [Inside Azure Search: Chaos Engineering](https://azure.microsoft.com/en-gb/blog/inside-azure-search-chaos-engineering/)
