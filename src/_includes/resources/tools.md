@@ -18,7 +18,7 @@
 - [**Toxiproxy**: A TCP proxy to simulate network and system conditions for chaos and resiliency testing](https://github.com/shopify/toxiproxy)
 - [**Chaos Lemurr**: An adaptation of the Chaos Monkey concept to BOSH releases](https://github.com/strepsirrhini-army/chaos-lemur)
 - [**Chaos Monkey**: A resiliency tool that helps applications tolerate random instance failures](https://github.com/netflix/chaosmonkey)
-- [**Vegeta*: HTTP load testing tool and library.](https://github.com/tsenart/vegeta)
+- [**Vegeta**: HTTP load testing tool and library.](https://github.com/tsenart/vegeta)
 - [**Simian Army**: Tools for keeping your cloud operating in top form](https://github.com/Netflix/SimianArmy)
 - [**Security Monkey**: Monitors AWS, GCP, OpenStack, and GitHub orgs for assets and their changes over time](https://github.com/Netflix/security_monkey)
 - [**The Chaos Monkey Army**](https://github.com/Netflix/SimianArmy/wiki/The-Chaos-Monkey-Army)
