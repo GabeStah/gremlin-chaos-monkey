@@ -637,37 +637,4 @@ However, Chaos Monkey is just the tip of the Chaos Engineering iceberg.  While u
 
 Don't worry, though, we've got you covered in the remainder of this guide.  Have a look at some of [The Simian Army][/simian-army] chapter for info on a few other tools related to Chaos Monkey.  You can also take a look at our in-depth list of [Chaos Monkey Alternatives][/alternatives] to learn about the many other tools that can assist you and your organization with Engineering Chaos, regardless of the technology or stack you're using!  And, don't forget our [Resources, Guides, and Downloads][/downloads-resources] section, which contains dozens of curated resources to give you insight into every aspect of Chaos Engineering.
 
-## Monitoring Health and Stability
-
-**(TODO)**
-
-Chaos Monkey does a reasonable job at monitoring system stability, but fails **(TODO)**
-
-## Detecting Service Latency
-
-**(TODO)**
-
-## Discovering Security Vulnerabilities
-
-**(TODO)**
-
-## Examining Exception Handling
-
-**(TODO)**
-
-## On Demand Chaos
-
-**(TODO)**
-
-## Building Your Own Customized Monkey
-
-**(TODO)**
-
-> `Monitoring Health and Stability`
-> `Detecting Service Latency`
-> [`Discovering Security Vulnerabilities`](https://www.battery.com/powered/youve-heard-of-the-netflix-chaos-monkey-we-propose-for-cyber-security-an-infected-monkey/)
-> [`Examining Exception Handling`](https://www.baeldung.com/spring-boot-chaos-monkey)
-> [`On Demand Chaos`](https://medium.com/production-ready/using-chaos-monkey-whenever-you-feel-like-it-e5fe31257a07)
-> [`Building Your Own Customized Monkey`](https://blog.serverdensity.com/building-chaos-monkey/)
-
 {% include nav-internal.md %}
