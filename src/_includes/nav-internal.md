@@ -3,7 +3,7 @@
 [/alternatives]:                                {{ "/alternatives" | relative_url }}
 [/alternatives#elixir]:                         {{ "/alternatives#elixir" | relative_url }}
 [/alternatives#linux]:                          {{ "/alternatives#linux" | relative_url }}
-[/alternatives#maven]:                        {{ "/alternatives#maven" | relative_url }}
+[/alternatives#maven]:                          {{ "/alternatives#maven" | relative_url }}
 [/alternatives#windows]:                        {{ "/alternatives#windows" | relative_url }}
 [/alternatives/azure]:                          {{ "/alternatives/azure" | relative_url}}
 [/alternatives/azure#fault-analysis-service]:   {{ "/alternatives/azure#fault-analysis-service" | relative_url}}
