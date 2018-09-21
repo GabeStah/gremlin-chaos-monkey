@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Gremlin: Chaos Monkey">
 <meta property="og:title" content="Notes to Gremlin Editors">
-<meta property="og:url" content="http://localhost:4000/gremlin-chaos-monkey/notes/">
+<meta property="og:url" content="/gremlin-chaos-monkey/notes/">
 
 
 
@@ -38,7 +38,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/gremlin-chaos-monkey/notes/">
+<link rel="canonical" href="/gremlin-chaos-monkey/notes/">
 
 
 
@@ -51,7 +51,7 @@
       "@context": "http://schema.org",
       "@type": "Person",
       "name": "Gabe Wyatt",
-      "url": "http://localhost:4000/gremlin-chaos-monkey",
+      "url": "/gremlin-chaos-monkey",
       "sameAs": null
     }
   </script>
@@ -151,7 +151,7 @@
     
       
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-          <a href="http://localhost:4000/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
+          <a href="/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
           <meta itemprop="position" content="1">
         </li>
         <span class="sep">/</span>
@@ -377,6 +377,7 @@
     </ul>
   </li>
   <li><a href="#resources">Resources</a></li>
+  <li><a href="#notesadmonitions">Notes/Admonitions</a></li>
 </ul>
             </nav>
           </aside>
@@ -415,7 +416,7 @@
 
 <h2 id="links">Links</h2>
 
-<p>All internal and frequently-used URLs are located in the <code class="highlighter-rouge">_internal/nav-internal.md</code> template, which is then included via <code class="highlighter-rouge">{% include nav-internal.md %}</code> at the end of every Markdown file.  Therefore, to change a link throughout the full guide simply requires changing it in <code class="highlighter-rouge">nav-internal.md</code> and rebuilding.</p>
+<p>All internal and frequently-used URLs are located in the <code class="highlighter-rouge">src/_internal/nav-internal.md</code> template, which is then included via <code class="highlighter-rouge">{% include nav-internal.md %}</code> at the end of every Markdown file.  Therefore, to change a link throughout the full guide simply requires changing it in <code class="highlighter-rouge">nav-internal.md</code> and rebuilding.</p>
 
 <h3 id="testing-url-validity-and-functionality">Testing URL Validity and Functionality</h3>
 
@@ -464,14 +465,11 @@
 
 <h3 id="gremlin-links">Gremlin Links</h3>
 
-<ul>
-  <li>
-<strong>(TODO)</strong>: Find out where Gremlin service mention links should point to and update accordingly.
-    <ul>
-      <li>For example, where should references to signup for/acquire a Gremlin account point to?  At present, they use the <code class="highlighter-rouge">#gremlin-account-signup</code> navigation link key, which resolves to <a href="https://www.gremlin.com/demo" target="_blank" rel="noopener noreferrer">this URL</a>.</li>
-    </ul>
-  </li>
-</ul>
+<p>Gremlin-specific links may need to be updated, depending on what “landing” page users should be redirected to.</p>
+
+<p>For example, where should references to signup for/acquire a Gremlin account point to?  At present, they use the <code class="highlighter-rouge">#gremlin-account-signup</code> navigation link key, which resolves to <a href="https://www.gremlin.com/demo" target="_blank" rel="noopener noreferrer">this URL</a>.</p>
+
+<p>See all <code class="highlighter-rouge">#gremlin-</code> prefixed URLs in <code class="highlighter-rouge">src/_includes/nav-internal.md</code>.</p>
 
 <h3 id="external-links">External Links</h3>
 
@@ -495,6 +493,12 @@
   </li>
   <li>Paste exported <code class="highlighter-rouge">Titles</code> into Google Sheet column.</li>
 </ol>
+
+<h2 id="notesadmonitions">Notes/Admonitions</h2>
+
+<p>Throughout the Markdown text I’ve frequently used note/admonition syntax to highlight particular points or snippets.  For Jekyll I’m using the Premonition Ruby gem located in <code class="highlighter-rouge">gems/premonition</code>, which uses a quote (<code class="highlighter-rouge">&gt;</code>) syntax as seen in the <a href="https://github.com/amedia/premonition#usage" target="_blank" rel="noopener noreferrer">documentation here</a>.</p>
+
+<p>The purpose of these is similar to the <a href="https://squidfunk.github.io/mkdocs-material/extensions/admonition/" target="_blank" rel="noopener noreferrer">Admonition</a> extension of MkDocs.  Obviously the final Markdown parser and formatting of these callouts is up to you, but if possible I think the final product will look better if these blurbs can be highlighted in some way.</p>
 
 
         

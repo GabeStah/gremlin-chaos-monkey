@@ -32,7 +32,7 @@ The following items are assorted things for Austin and/or other editors to take 
 
 ## Links
 
-All internal and frequently-used URLs are located in the `_internal/nav-internal.md` template, which is then included via `{% raw %}{% include nav-internal.md %}{% endraw %}` at the end of every Markdown file.  Therefore, to change a link throughout the full guide simply requires changing it in `nav-internal.md` and rebuilding.
+All internal and frequently-used URLs are located in the `src/_internal/nav-internal.md` template, which is then included via `{% raw %}{% include nav-internal.md %}{% endraw %}` at the end of every Markdown file.  Therefore, to change a link throughout the full guide simply requires changing it in `nav-internal.md` and rebuilding.
 
 ### Testing URL Validity and Functionality
 
@@ -77,8 +77,11 @@ All internal and frequently-used URLs are located in the `_internal/nav-internal
 
 ### Gremlin Links
 
-- **(TODO)**: Find out where Gremlin service mention links should point to and update accordingly.
-    - For example, where should references to signup for/acquire a Gremlin account point to?  At present, they use the `#gremlin-account-signup` navigation link key, which resolves to [this URL][#gremlin-account-signup].
+Gremlin-specific links may need to be updated, depending on what "landing" page users should be redirected to.
+
+For example, where should references to signup for/acquire a Gremlin account point to?  At present, they use the `#gremlin-account-signup` navigation link key, which resolves to [this URL][#gremlin-account-signup].
+
+See all `#gremlin-` prefixed URLs in `src/_includes/nav-internal.md`.
 
 ### External Links
 
@@ -97,5 +100,11 @@ By default, all external links are processes with `target="_blank" rel="noreferr
     > Scraping will be very slow because `CONCURRENT_REQUESTS` and `CONCURRENT_ITEMS` are set to `1`, to maintain the same output order as input order.
 
 3. Paste exported `Titles` into Google Sheet column.
+
+## Notes/Admonitions
+
+Throughout the Markdown text I've frequently used note/admonition syntax to highlight particular points or snippets.  For Jekyll I'm using the Premonition Ruby gem located in `gems/premonition`, which uses a quote (`>`) syntax as seen in the [documentation here](https://github.com/amedia/premonition#usage).
+
+The purpose of these is similar to the [Admonition](https://squidfunk.github.io/mkdocs-material/extensions/admonition/) extension of MkDocs.  Obviously the final Markdown parser and formatting of these callouts is up to you, but if possible I think the final product will look better if these blurbs can be highlighted in some way.
 
 {% include nav-internal.md %}

@@ -1,16 +1,27 @@
 [/]:                                            {{ "/" | relative_url}}
 [/advanced-tips]:                               {{ "/advanced-tips" | relative_url }}
 [/alternatives]:                                {{ "/alternatives" | relative_url }}
+[/alternatives#elixir]:                         {{ "/alternatives#elixir" | relative_url }}
+[/alternatives#linux]:                          {{ "/alternatives#linux" | relative_url }}
+[/alternatives#maven]:                        {{ "/alternatives#maven" | relative_url }}
+[/alternatives#windows]:                        {{ "/alternatives#windows" | relative_url }}
 [/alternatives/azure]:                          {{ "/alternatives/azure" | relative_url}}
+[/alternatives/azure#fault-analysis-service]:   {{ "/alternatives/azure#fault-analysis-service" | relative_url}}
 [/alternatives/docker]:                         {{ "/alternatives/docker" | relative_url}}
 [/alternatives/docker#pumba]:                   {{ "/alternatives/docker#pumba" | relative_url}}
 [/alternatives/google-cloud-platform]:          {{ "/alternatives/google-cloud-platform" | relative_url}}
+[/alternatives/google-cloud-platform#gremlin]:  {{ "/alternatives/google-cloud-platform#engineering-chaos-experiments-on-tensorflow-with-gremlin" | relative_url}}
 [/alternatives/kubernetes]:                     {{ "/alternatives/kubernetes" | relative_url}}
 [/alternatives/kubernetes#chaos-toolkit]:       {{ "/alternatives/kubernetes#the-chaos-toolkit" | relative_url}}
 [/alternatives/openshift]:                      {{ "/alternatives/openshift" | relative_url}}
 [/alternatives/private-cloud]:                  {{ "/alternatives/private-cloud" | relative_url}}
+[/alternatives/private-cloud#muxy]:             {{ "/alternatives/private-cloud#muxy" | relative_url}}
 [/alternatives/spring-boot]:                    {{ "/alternatives/spring-boot" | relative_url}}
+[/alternatives/spring-boot#chaos-monkey]:       {{ "/alternatives/spring-boot#chaos-monkey-for-spring-boot" | relative_url}}
+[/alternatives/spring-boot#gremlin]:            {{ "/alternatives/spring-boot#injecting-failure-in-spring-boot-applications-with-gremlin" | relative_url}}
+[/alternatives/spring-boot#fabric8]:            {{ "/alternatives/spring-boot#chaos-engineering-with-fabric8-and-spring-boot" | relative_url}}
 [/alternatives/vmware]:                         {{ "/alternatives/vmware" | relative_url}}
+[/alternatives/vmware#chaos-lemur]:             {{ "/alternatives/vmware#chaos-engineering-with-bosh-and-chaos-lemur" | relative_url}}
 [/developer-tutorial]:                          {{ "/developer-tutorial" | relative_url}}
 [/downloads-resources]:                         {{ "/downloads-resources" | relative_url}}
 [/downloads-resources#practices-principles]:    {{ "/downloads-resources#chaos-engineering-best-practices--principles" | relative_url}}
@@ -34,6 +45,7 @@
 [#halyard-install]:                             {{ "/advanced-tips#how-to-install-halyard" | relative_url}}
 [#gremlin-account-signup]:                      https://www.gremlin.com/demo
 [#gremlin-api]:                                 https://help.gremlin.com/api/
+[#gremlin-installation-docker]:                 https://help.gremlin.com/install-gremlin-docker-container-ubuntu-1604/
 [#gremlin-installation]:                        https://help.gremlin.com/installation/
 [#gremlin-failure-as-a-service]:                https://www.gremlin.com
 [#gremlin-web-ui]:                              https://app.gremlin.com/
