@@ -2,7 +2,7 @@
 published: false
 ---
 
-**(TODO)**: https://geekflare.com/no-internet-connection-from-vmware-with-centos-7/
+- https://geekflare.com/no-internet-connection-from-vmware-with-centos-7/
 
 ```bash
 yum update -y
@@ -79,7 +79,7 @@ Using project "default".
 nmtui
 ```
 
-**(TODO)**: Test daemonset for Gremlin.
+- Test daemonset for Gremlin.
 
 ```yaml
 apiVersion: extensions/v1beta1

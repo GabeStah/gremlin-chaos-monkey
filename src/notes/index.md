@@ -7,7 +7,7 @@ sources: "See: _docs/resources.md"
 published: true
 ---
 
-The following items are assorted things for Austin and/or other editors to take note of and evaluate.
+The following items are assorted things for Austin and/or other editors to take note of and evaluate.  All project files and original Markdown can be found on the [gremlin-chaos-monkey](https://github.com/GabeStah/gremlin-chaos-monkey) GitHub repository.
 
 ## Titles
 
@@ -69,7 +69,7 @@ All internal and frequently-used URLs are located in the `src/_internal/nav-inte
     ```bash
     Running ["LinkCheck", "ScriptCheck", "ImageCheck"] on ["./docs"] on *.html...
 
-    Checking 105 external links...
+    Checking 257 external links...
     Ran on 16 files!
 
     HTML-Proofer finished successfully.
