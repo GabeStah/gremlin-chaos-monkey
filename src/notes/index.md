@@ -1,6 +1,6 @@
 ---
 title: "Notes to Gremlin Editors"
-description: "A step-by-step guide on setting up and using Chaos Monkey with AWS, and also explores specific scenarios in which Chaos Monkey may (or may not) be relevant."
+description: "A step-by-step guide on setting up and using Chaos Monkey with AWS, and also explores specific scenarios in which Chaos Monkey may or may not be relevant."
 path: "/chaos-monkey/notes"
 url: "https://www.gremlin.com/chaos-monkey/notes"
 sources: "See: _docs/resources.md"
