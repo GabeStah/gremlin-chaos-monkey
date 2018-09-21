@@ -5,19 +5,6 @@ path: "/chaos-monkey/alternatives/azure"
 url: "https://www.gremlin.com/chaos-monkey/alternatives/azure"
 sources: "See: _docs/resources.md"
 published: true
-outline: "
-  - URL: `https://www.gremlin.com/chaos-monkey/alternatives/azure`
-  - Parent: `Category Section: Infrastructure`
-  - Content:
-    - `Overview`: _See above._
-    - [`Azure Search`](https://azure.microsoft.com/en-gb/blog/inside-azure-search-chaos-engineering/): Detail how Microsoft utilizes multiple `Chaos levels` (low, medium, high) to categorize and inform severity and actionability of failures within the [Azure Search](https://azure.microsoft.com/en-us/services/search/) systems.
-    - [`WazMonkey`](https://github.com/smarx/WazMonkey): Provide details on `WazMonkey`, an alternative to Chaos Monkey specifically designed for testing resiliency within Azure cloud services.
-    - [`Fault Analysis Service`](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-testability-overview): Provide an overview of Azure's `Fault Analysis Service`, which is designed for testing services built atop [`Azure Service Fabric`](https://azure.microsoft.com/en-us/services/service-fabric/).
-      - https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-controlled-chaos
-    - Competition
-      - https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-testability-scenarios
-      - https://www.infoq.com/news/2012/09/azure-chaos-monkey
-"
 ---
 
 ## Search Chaos Monkey

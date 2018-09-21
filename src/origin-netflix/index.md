@@ -5,15 +5,6 @@ path: "/chaos-monkey/origin-netflix"
 url: "https://www.gremlin.com/chaos-monkey/origin-netflix"
 sources: "See: _docs/resources.md"
 published: true
-outline:
-  - URL: https://www.gremlin.com/chaos-monkey/origin-netflix
-  - Parent: 'Pillar Page: Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training'
-  - Content:
-    - Intro:
-      - Why: 'Answer the general question proposed in title as to why Netflix needed to create Chaos Monkey in the first place.  Detail the overall creation story.'
-      - What: 'Establish the current (and historic) role of Chaos Monkey within the Netflix architecture and engineering practices.'
-      - When/Where: 'Explore example scenarios where Chaos Monkey has been used and is most appropriate.'
-      - Who: 'Discuss other organizations using Chaos Monkey (Amazon, Spinnaker, etc).  Expound on the internal culture that Chaos Monkey helped to promote at both Netflix, Amazon, and elsewhere.'
 ---
 
 In this chapter we'll take a deep dive into the origins and history of Chaos Monkey, how [Netflix streaming services emerged][#netflix-history], and why Netflix needed to create failure within their systems to actually improve their service and customer experiences.  We'll also provide a brief overview of the [Simian Army][#netflix-simian-army] and its relation to the original Chaos Monkey technology.  Finally, we'll jump into the [present and future of Chaos Monkey][#chaos-monkey-today], dig into the creation and implementation of [Failure Injection Testing][#netflix-fit] at Netflix, and discuss the potential issues and limitations presented by Chaos Monkey's [reliance on Spinnaker][#spinnaker-strictly].

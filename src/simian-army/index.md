@@ -5,26 +5,6 @@ path: "/chaos-monkey/simian-army"
 url: "https://www.gremlin.com/chaos-monkey/simian-army"
 sources: "See: _docs/resources.md"
 published: true
-outline:
-  - URL: 'https://www.gremlin.com/chaos-monkey/simian-army'
-  - Parent: 'Pillar Page: Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training'
-  - Content:
-    - Intro:
-      - What: 'Detail what the Simian Army is and how it relates to the more well known topic of Chaos Monkey.'
-      - Who: 'Define the intended audience of engineers, developers, and so forth looking to educate themselves.'
-      - Why: 'Describe the purpose of the page, which is as an extensive collection of resources related to the broader Simian Army of tools and concepts.'
-      - When: "Given the extent of the resources and information provided, this page can be used within all manner of scenarios and for virtually any organization.  Include CTA to full downloadable `PDF` guide for offline viewing."
-    - SimianArmyVariants: 
-      - "Provide a brief overview of each individual `variant` within the Simian Army, as listed below."
-      - 'Chaos Gorilla (evacuating zone/region in AWS)'
-      - 'Chaos Kong (evacuating zone/region in AWS)'
-      - 'Latency Monkey (network attacks)'
-      - 'Doctor Monkey'
-      - 'Janitor Monkey'
-      - 'Conformity Monkey'
-      - 'Security Monkey'
-      - '10-18 Monkey'
-    - Simian Army Strategies: 'List and examine each of the dozen or so toggleable `strategies` defined [here](https://github.com/Netflix/SimianArmy/wiki/The-Chaos-Monkey-Army).'
 ---
 
 The **Simian Army** is a suite of failure-inducing tools designed to add more capabilities beyond [Chaos Monkey][/origin-netflix].  While Chaos Monkey solely handles termination of random instances, Netflix engineers needed additional tools able to induce *other* types of failure.  Some of the Simian Army tools have fallen out of favor in recent years, but each of the members serves a specific purpose aimed at bolstering a system's failure resilience.

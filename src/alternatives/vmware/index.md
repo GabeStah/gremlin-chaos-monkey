@@ -6,13 +6,6 @@ path: "/chaos-monkey/alternatives/vmware"
 url: "https://www.gremlin.com/chaos-monkey/alternatives/vmware"
 sources: "See: _docs/resources.md"
 published: true
-outline: "
-- URL: `https://www.gremlin.com/chaos-monkey/alternatives/vmware`
-- Parent: `Category Section: Infrastructure`
-- Content:
-  - `Overview`: _See above._
-  - [`chaos-lemur`](https://github.com/strepsirrhini-army/chaos-lemur): A local application for random virtual machine destruction in BOSH-managed environments including `vSphere`/`VMware`, by using included infrastructure APIs.
-"
 ---
 
 ## Chaos Engineering with BOSH and Chaos Lemur

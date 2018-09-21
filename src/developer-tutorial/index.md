@@ -5,16 +5,6 @@ path: "/chaos-monkey/developer-tutorial"
 url: "https://www.gremlin.com/chaos-monkey/developer-tutorial"
 sources: "See: _docs/resources.md"
 published: true
-outline:
-  - URL: 'https://www.gremlin.com/chaos-monkey/developer-tutorial'
-  - Parent: 'Pillar Page: Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training'
-  - Intro:
-    - What: "Describe the purpose of the tutorial, which is to give not only a step-by-step guide on setting up and using Chaos Monkey with AWS, but we'll also go beyond initial setup to explore specific _scenarios_ in which Chaos Monkey may (or may not) be relevant."
-    - Who: 'Define intended audiences (primarily technically-minded professionals or hobbyists, engineers, developers, etc).'
-    - When/Why: 'The entire page will expound on the _when_ and _why_, detailing scenarios (as listed below) in which using Chaos Monkey is appropriate, and providing the _how to_ technical steps to make it work.'
-    - Basic Usage Guide:
-      - 'Provide full walk through detailing propagation, configuration, setup, and execution of Chaos Monkey within an AWS instance.'
-    - Additional Resources: 'Section to include an abundance of additional links and resources, with careful consideration for _types_ of curated content.  Resources should include written tutorials, books, research papers, talks/conferences, podcasts, videos, and so forth.'
 ---
 
 This chapter will provide a step-by-step guide for setting up and using Chaos Monkey with AWS.  We also examine a handful of scenarios in which Chaos Monkey is not always the most relevant solution for Chaos Engineering implementation, due to its Spinnaker requirements and limited scope of only handling instance terminations.

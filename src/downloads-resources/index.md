@@ -5,30 +5,6 @@ path: "/chaos-monkey/downloads-resources"
 url: "https://www.gremlin.com/chaos-monkey/downloads-resources"
 sources: "See: _docs/resources.md"
 published: true
-outline: "
-- URL: `https://www.gremlin.com/chaos-monkey/downloads-resources`
-- Parent: `Pillar Page: Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training`
-- Layout: Model based on [this resource collection](https://www.helpscout.net/customer-acquisition/).
-- Content:
-  - `Intro`
-    - What: The goal of this `page` is to provide the full list of resources, tools, and other links discovered during research on this project, all of which should be valid and valuable to readers of all kinds.
-    - Who: All audiences are intended and welcome, including both technical and non-technical readers.
-    - Why: To provide useful resources for anyone trying to get started with Chaos Monkey and Chaos Engineering.
-  - `Resources`: Unless otherwise specified, every helpful and properly curated resource should be categorized and included in this list.  Generally, links should not be given any contextual explanation.  Instead, each `category` can include a brief explanation and overview to assist the reader in finding the appropriate resources via a quick scan or table of contents link.  _Note: The following `categories` are not finalized and can easily be modified as necessary.  Additionally, each `category` can be split by resource `type`, such as `text`, `audio`, `video` sub-sections._
-    - Blogs
-      - `Audio`
-      - `Text`
-      - `Video`
-    - Books
-    - Community
-    - Conferences & Meetups
-    - Discussion
-    - Research Papers
-    - Social Media
-    - Tools
-    - Tutorials
-  - `Additional Chaos Monkey Resources`: In addition to outside resources, _all_ unique pages/URLs found within this guide should be included in this section.  It can later be determined how best to format this, but one possibility is a separate section containing a `site map` link collection.
-"
 ---
 
 We've collected and curated well **over 100** resources to help you with every aspect of your journey into Chaos Engineering.  Learn about Chaos Engineering's [origins and principles][/downloads-resources#practices-principles] to shed light on what it's all about or dive right into one of the dozens of [in-depth tutorials][/downloads-resources#tutorials] to get experimenting right away.  You might also be interested in subscribing to some of the best Chaos Engineering [blogs][/downloads-resources#blogs] on the net or installing one of the [many tools][/downloads-resources#tools] designed to inject failure into your applications, no matter the platform.
