@@ -45,9 +45,10 @@
 [#halyard-install]:                             {{ "/advanced-tips#how-to-install-halyard" | relative_url}}
 [#gremlin-account-signup]:                      https://www.gremlin.com/demo
 [#gremlin-api]:                                 https://help.gremlin.com/api/
-[#gremlin-installation-docker]:                 https://help.gremlin.com/install-gremlin-docker-container-ubuntu-1604/
-[#gremlin-installation]:                        https://help.gremlin.com/installation/
 [#gremlin-failure-as-a-service]:                https://www.gremlin.com
+[#gremlin-installation]:                        https://help.gremlin.com/installation/
+[#gremlin-installation-docker]:                 https://help.gremlin.com/install-gremlin-docker-container-ubuntu-1604/
+[#gremlin-product]:                             https://www.gremlin.com/product
 [#gremlin-web-ui]:                              https://app.gremlin.com/
 [#netflix-fit]:                                 {{ "/origin-netflix#failure-injection-testing" | relative_url}}
 [#netflix-history]:                             {{ "/origin-netflix#the-history-of-netflix-streaming" | relative_url}}

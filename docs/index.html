@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Gremlin: Chaos Monkey">
 <meta property="og:title" content="Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training">
-<meta property="og:url" content="/gremlin-chaos-monkey/">
+<meta property="og:url" content="http://localhost:4000/gremlin-chaos-monkey/">
 
 
 
@@ -38,7 +38,7 @@
   
 
 
-<link rel="canonical" href="/gremlin-chaos-monkey/">
+<link rel="canonical" href="http://localhost:4000/gremlin-chaos-monkey/">
 
 
 
@@ -51,7 +51,7 @@
       "@context": "http://schema.org",
       "@type": "Person",
       "name": "Gabe Wyatt",
-      "url": "/gremlin-chaos-monkey",
+      "url": "http://localhost:4000/gremlin-chaos-monkey",
       "sameAs": null
     }
   </script>
@@ -340,6 +340,7 @@
               <header><h4 class="nav__title">
 <i class="fas fa-file-alt"></i> </h4></header>
               <ul class="toc__menu">
+  <li><a href="#what-is-chaos-monkey">What Is Chaos Monkey?</a></li>
   <li><a href="#what-is-this-guide">What Is This Guide?</a></li>
   <li><a href="#who-is-this-guide-for">Who Is This Guide For?</a></li>
   <li><a href="#why-did-we-create-this-guide">Why Did We Create This Guide?</a></li>
@@ -366,6 +367,8 @@
           </aside>
         
         <p>In 2010 <a href="https://www.netflix.com" target="_blank" rel="noopener noreferrer">Netflix</a> announced the existence and success of their custom <a href="https://medium.com/netflix-techblog/5-lessons-weve-learned-using-aws-1f2a28588e4c" target="_blank" rel="noopener noreferrer">resiliency tool</a> called <em>Chaos Monkey</em>.</p>
+
+<h2 id="what-is-chaos-monkey">What Is Chaos Monkey?</h2>
 
 <p>Netflix designed Chaos Monkey to test system stability by enforcing failures via the pseudo-random termination of instances and services within Netflix’s architecture. Following their migration to the cloud,  Netflix’s service was newly reliant upon Amazon Web Services and needed a technology that could show them how their system responded when critical components of their production service infrastructure were taken down.  Intentionally causing this single failure would suss out any weaknesses in their systems and guide them towards automated solutions that gracefully handle future failures of this sort.</p>
 

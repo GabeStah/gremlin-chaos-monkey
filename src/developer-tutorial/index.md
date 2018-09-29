@@ -625,6 +625,6 @@ You're all set now!  If you followed along through the entire process you should
 
 However, Chaos Monkey is just the tip of the Chaos Engineering iceberg.  While using Chaos Monkey can be beneficial in certain circumstances, it's worth remembering that you're still limited to the (basic) tasks that the tool can accomplish.  While good Chaos Engineering practices encourage resilient and thorough testing of every aspect of your system and architecture, Chaos Monkey's ability to randomly terminate instances can be helpful, but those abilities quickly reach their limit.
 
-Don't worry, though, we've got you covered in the remainder of this guide.  Have a look at some of [The Simian Army][/simian-army] chapter for info on a few other tools related to Chaos Monkey.  You can also take a look at our in-depth list of [Chaos Monkey Alternatives][/alternatives] to learn about the many other tools that can assist you and your organization with Engineering Chaos, regardless of the technology or stack you're using!  And, don't forget our [Resources, Guides, and Downloads][/downloads-resources] section, which contains dozens of curated resources to give you insight into every aspect of Chaos Engineering.
+The rest of this guide will cover the other tools in [The Simian Army][/simian-army] family, along with an in-depth look at the [Chaos Monkey Alternatives][/alternatives].  We built [Gremlin][#gremlin-product] to provide the framework to safely, securely, and easily simulate real outages with an ever-growing library of attacks.
 
 {% include nav-internal.md %}
