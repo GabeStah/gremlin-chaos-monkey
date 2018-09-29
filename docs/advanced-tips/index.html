@@ -125,7 +125,7 @@
 </ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
-          <span class="visually-hidden">Toggle Menu</span>
+          <span class="visually-hidden">Toggle menu</span>
           <div class="navicon"></div>
         </button>
         <ul class="hidden-links hidden"></ul>
@@ -182,7 +182,7 @@
 <nav class="nav__list">
   
   <input id="ac-toc" name="accordion-toc" type="checkbox">
-  <label for="ac-toc">Toggle Menu</label>
+  <label for="ac-toc">Toggle menu</label>
   <ul class="nav__items">
     
       <li>
@@ -364,7 +364,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title">
-<i class="fas fa-file-alt"></i> </h4></header>
+<i class="fas fa-file-alt"></i> On this page</h4></header>
               <ul class="toc__menu">
   <li><a href="#how-to-install-aws-cli">How to Install AWS CLI</a></li>
   <li><a href="#how-to-install-halyard">How to Install Halyard</a></li>
@@ -433,10 +433,11 @@
 
 <p>Start by installing the <a href="https://docs.aws.amazon.com/cli/latest/userguide/installing.html" target="_blank" rel="noopener noreferrer">AWS CLI tool</a> on your machine, if necessary.</p>
 
-<div class="premonition info modified">
-<div class="fa fa-info-circle"></div>
-<div class="content">
-<p class="header">Simplifying AWS Credentials</p>
+<div class="premonition info">
+  <div class="fa fa-info-circle"></div>
+  <div class="content">
+    <p class="header">Simplifying AWS Credentials</p>
+    
 <p>You can make future AWS CLI commands easier by creating AWS <code class="highlighter-rouge">profiles</code>, which will add configuration and credentials to the local <code class="highlighter-rouge">~/.aws/credentials</code> file.  In some cases you’ll be using two different accounts/profiles, so you can add the credentials for multiple accounts to <code class="highlighter-rouge">~/.aws/credentials</code> by using <code class="highlighter-rouge">aws configure --profile &lt;profile-name&gt;</code> commands.</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws configure <span class="nt">--profile</span> spinnaker-developer
 AWS Access Key ID <span class="o">[</span>None]: &lt;AWS_ACCESS_KEY_ID&gt;
@@ -452,7 +453,8 @@ Default output format <span class="o">[</span>None]: text
 </code></pre></div></div>
 
 <p>In the future, simply add the <code class="highlighter-rouge">--profile &lt;profile-name&gt;</code> flag to any AWS CLI command to force AWS CLI to use that account.</p>
-</div>
+
+  </div>
 </div>
 
 <h2 id="how-to-install-halyard">How to Install Halyard</h2>
@@ -1301,7 +1303,7 @@ hal config storage edit <span class="nt">--type</span> s3
 
 <p>Select the <code class="highlighter-rouge">spinnaker</code> app and you should see your <code class="highlighter-rouge">aws-primary</code> account with a <code class="highlighter-rouge">spinnaker-eks-nodes-NodeGroup</code> containing your three EC2 worker node instances.</p>
 
-<p><img src="/gremlin-chaos-monkey/images/advanced-tips-kubernetes-spinnaker.png" alt="advanced-tips-kubernetes-spinnaker"></p>
+<p><img src="../images/advanced-tips-kubernetes-spinnaker.png" alt="advanced-tips-kubernetes-spinnaker"></p>
 
 <h3 id="next-steps-4">Next Steps</h3>
 
@@ -1343,6 +1345,8 @@ hal config storage edit <span class="nt">--type</span> s3
 <!-- end custom footer snippets -->
         <div class="page__footer-follow">
   <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
     
     
     

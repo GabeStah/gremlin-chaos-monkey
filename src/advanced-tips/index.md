@@ -13,23 +13,24 @@ This chapter provides advanced developer tips for Chaos Monkey and other Chaos E
 
 Start by installing the [AWS CLI tool](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) on your machine, if necessary.
 
-> info "Simplifying AWS Credentials"
-> You can make future AWS CLI commands easier by creating AWS `profiles`, which will add configuration and credentials to the local `~/.aws/credentials` file.  In some cases you'll be using two different accounts/profiles, so you can add the credentials for multiple accounts to `~/.aws/credentials` by using `aws configure --profile <profile-name>` commands.
-> ```bash
-> aws configure --profile spinnaker-developer
-> AWS Access Key ID [None]: <AWS_ACCESS_KEY_ID>
-> AWS Secret Access Key [None]: <AWS_SECRET_ACCESS_KEY>
-> Default region name [None]: us-west-2
-> Default output format [None]: text
->    
-> aws configure --profile primary
-> AWS Access Key ID [None]: <AWS_ACCESS_KEY_ID>
-> AWS Secret Access Key [None]: <AWS_SECRET_ACCESS_KEY>
-> Default region name [None]: us-west-2
-> Default output format [None]: text
-> ```
-> 
-> In the future, simply add the `--profile <profile-name>` flag to any AWS CLI command to force AWS CLI to use that account.
+{% note type: 'info', title: 'Simplifying AWS Credentials' %}
+You can make future AWS CLI commands easier by creating AWS `profiles`, which will add configuration and credentials to the local `~/.aws/credentials` file.  In some cases you'll be using two different accounts/profiles, so you can add the credentials for multiple accounts to `~/.aws/credentials` by using `aws configure --profile <profile-name>` commands.
+```bash
+aws configure --profile spinnaker-developer
+AWS Access Key ID [None]: <AWS_ACCESS_KEY_ID>
+AWS Secret Access Key [None]: <AWS_SECRET_ACCESS_KEY>
+Default region name [None]: us-west-2
+Default output format [None]: text
+   
+aws configure --profile primary
+AWS Access Key ID [None]: <AWS_ACCESS_KEY_ID>
+AWS Secret Access Key [None]: <AWS_SECRET_ACCESS_KEY>
+Default region name [None]: us-west-2
+Default output format [None]: text
+```
+
+In the future, simply add the `--profile <profile-name>` flag to any AWS CLI command to force AWS CLI to use that account.
+{% endnote %}
 
 ## How to Install Halyard
 

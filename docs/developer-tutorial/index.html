@@ -125,7 +125,7 @@
 </ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
-          <span class="visually-hidden">Toggle Menu</span>
+          <span class="visually-hidden">Toggle menu</span>
           <div class="navicon"></div>
         </button>
         <ul class="hidden-links hidden"></ul>
@@ -182,7 +182,7 @@
 <nav class="nav__list">
   
   <input id="ac-toc" name="accordion-toc" type="checkbox">
-  <label for="ac-toc">Toggle Menu</label>
+  <label for="ac-toc">Toggle menu</label>
   <ul class="nav__items">
     
       <li>
@@ -364,7 +364,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title">
-<i class="fas fa-file-alt"></i> </h4></header>
+<i class="fas fa-file-alt"></i> On this page</h4></header>
               <ul class="toc__menu">
   <li>
 <a href="#how-to-quickly-deploy-spinnaker-for-chaos-monkey">How to Quickly Deploy Spinnaker for Chaos Monkey</a>
@@ -427,12 +427,14 @@
 
 <p>We’ll be deploying Spinnaker on AWS, and the easiest method for doing so is to use the <a href="https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Spinnaker&amp;templateURL=https:%2F%2Fs3.amazonaws.com%2Faws-quickstart%2Fquickstart-spinnaker%2Ftemplates%2Fquickstart-spinnakercf.template" target="_blank" rel="noopener noreferrer">CloudFormation Quick Start</a> template.</p>
 
-<div class="premonition info modified">
-<div class="fa fa-info-circle"></div>
-<div class="content">
-<p class="header">Looking to Deploy Spinnaker In Another Environment?</p>
-<p>If you’re looking to have the utmost control over your Spinnaker deployment you should check out our [How to Manually Deploy Spinnaker for Chaos Monkey][#spinnaker-manual] guide, which provides a step-by-step tutorial for setting up Halyard and Spinnaker on a local or virtual machine of your choice.</p>
-</div>
+<div class="premonition info">
+  <div class="fa fa-info-circle"></div>
+  <div class="content">
+    <p class="header">Looking to Deploy Spinnaker In Another Environment?</p>
+    
+<p>If you’re looking for the utmost control over your <code class="highlighter-rouge">Spinnaker</code> deployment you should check out our [How to Manually Deploy Spinnaker for Chaos Monkey][#spinnaker-manual] guide, which provides a step-by-step tutorial for setting up Halyard and Spinnaker on a local or virtual machine of your choice.</p>
+
+  </div>
 </div>
 
 <p>The <em>AWS Spinnaker Quick Start</em> will create a simple architecture for you containing two Virtual Private Cloud (VPC) subnets (one public and one private).  The public VPC contains a <a href="https://en.wikipedia.org/wiki/Bastion_host" target="_blank" rel="noopener noreferrer">Bastion host</a> instance designed to be strictly accessible, with just port 22 open for SSH access.  The Bastion host will then allow a pass through connection to the private VPC that is running Spinnaker.</p>
@@ -818,7 +820,7 @@
   <li>
     <p>In the UI that appears press enter to change the <strong>MySQL Server &amp; Cluster</strong> version to <code class="highlighter-rouge">mysql-5.7</code>.  Leave the other options as default and move down to <code class="highlighter-rouge">Ok</code> and press <code class="highlighter-rouge">Enter</code> to finalize your choice.</p>
 
-    <p><img src="/gremlin-chaos-monkey/images/advanced-tips-mysql-install.png" alt="advanced-tips-mysql-install"></p>
+    <p><img src="../images/advanced-tips-mysql-install.png" alt="advanced-tips-mysql-install"></p>
   </li>
   <li>
     <p>Now use <code class="highlighter-rouge">sudo apt-get update</code> to update the MySQL packages related to the version we selected (<code class="highlighter-rouge">mysql-5.7</code>, in this case).</p>
@@ -1116,7 +1118,7 @@ ip-10-100-11-180.us-west-2.compute.internal   Ready     &lt;none&gt;    20s     
 
 <p>Spinnaker also tracks this information.  Navigating to the your Spinnaker application <strong>INFRASTRUCTURE &gt; CLUSTERS &gt; <code class="highlighter-rouge">spinnaker-eks-nodes-NodeGroup</code> &gt; CAPACITY</strong> and click <strong>View Scaling Activities</strong> to see the Spinnaker scaling activities log for this node group.  In this case we see the successful activities that lead to the health check failure and new instance start.</p>
 
-<p><img src="/gremlin-chaos-monkey/images/advanced-tips-nodegroup-scaling-activities.png" alt="advanced-tips-nodegroup-scaling-activities"></p>
+<p><img src="../images/advanced-tips-nodegroup-scaling-activities.png" alt="advanced-tips-nodegroup-scaling-activities"></p>
 
 <h3 id="how-to-schedule-chaos-monkey-terminations">How to Schedule Chaos Monkey Terminations</h3>
 
@@ -1224,6 +1226,8 @@ ip-10-100-11-180.us-west-2.compute.internal   Ready     &lt;none&gt;    20s     
 <!-- end custom footer snippets -->
         <div class="page__footer-follow">
   <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
     
     
     
