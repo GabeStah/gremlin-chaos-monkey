@@ -49,6 +49,7 @@ Chaos Monkey is designed to induce one specific type of failure.  It randomly sh
 ### Cons of Chaos Monkey
 
 - **Requires Spinnaker**: As discussed in [The Origin of Chaos Monkey][#spinnaker-strictly], Chaos Monkey **does not** support deployments that are managed by anything other than Spinnaker.
+- **Requires MySQL**: Chaos Monkey also requires the use of MySQL 5.X, as discussed in more detail in the [Chaos Monkey Tutorial][/developer-tutorial] chapter.
 - **Limited Failure Mode**: Chaos Monkey's limited scope means it injects one type of failure – causing pseudo-random instance failure. Thoughtful Chaos Engineering is about looking at an application's future, toward unknowable and unpredictable failures, beyond those of a single AWS instance. Chaos Monkey only handles a tiny subset of the "long tail" failures that software will experience during its life cycle.  Check out the [Chaos Monkey Alternatives][/alternatives] chapter for more information.
 - **Lack of Coordination**: While Chaos Monkey can terminate instances and cause failures, it lacks much semblance of coordination.  Since Chaos Monkey is an open-source tool that was built by and for Netflix, it's left to you as the end-user to inject your own system-specific logic.  Bringing down an instance is great and all, but knowing how to coordinate and act on that information is critical.
 
@@ -56,7 +57,7 @@ Chaos Monkey is designed to induce one specific type of failure.  It randomly sh
 
 - **No Recovery Capabilities**: A big reason why Chaos Engineering encourages performing the smallest possible experiments is so any repercussions are somewhat contained.  Unlike some other [tools and services][/alternatives], Chaos Monkey doesn't provide any safety net features, such as a Halt All button.  If something goes wrong, it's entirely up to you and your team to recognize and resolve it.
 - **No User Interface**: As with most open source projects, Chaos Monkey is entirely executed through the command line, scripts, and configuration files. If your team wants an interface, it's up to you to build it.
-- **Limited Auditing Tools**: By itself, Chaos Monkey doesn't provide much auditing information.  Spinnaker supports a framework for creating your own Chaos Monkey auditing through its [Echo](https://github.com/spinnaker/echo) events microservice, but you'll generally be required to create your own [custom auditing tools](https://netflix.github.io/chaosmonkey/Tracker/) to get much info out of Chaos Monkey.
+- **Limited Helper Tools**: By itself, Chaos Monkey fails to provide many useful functions such as auditing, outage checking, termination tracking, and so forth.  Spinnaker supports a framework for creating your own Chaos Monkey auditing through its [Echo](https://github.com/spinnaker/echo) events microservice, but you'll generally be required to either integrate with Netflix's [existing software](https://netflix.github.io/) or to create your own [custom tools](https://netflix.github.io/chaosmonkey/Tracker/) in order to get much info out of Chaos Monkey.
 
 ## Guide Chapters
 
