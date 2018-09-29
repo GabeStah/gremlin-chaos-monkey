@@ -139,7 +139,7 @@ Pumba uses the `tc` utility for performing network emulation, which is typically
 
 ## Injecting Failure Into Docker with Gremlin
 
-Gremlin's [Failure as a Service][#gremlin-failure-as-a-service] platform makes it easy to run Chaos Experiments on Docker containers.  You can start running experiments in just a few minutes after installing Docker and signing up for a [Gremlin account][#gremlin-account-signup].  Once installed, Gremlin is intelligent enough to recognize each of your unique Docker containers and will accurately apply smart identifier tags, so you can target exactly the right services and systems.  Gremlin can perform a variety of attacks against Docker containers including killing containers, manipulating network traffic, overloading CPU/memory/disk/IO, and much more.
+Gremlin's [Failure as a Service][#gremlin-failure-as-a-service] platform makes it easy to run Chaos Experiments on Docker containers.  You can start running experiments in just a few minutes after installing Docker.  Once installed, Gremlin is intelligent enough to recognize each of your unique Docker containers and will accurately apply smart identifier tags, so you can target exactly the right services and systems.  Gremlin can perform a variety of attacks against Docker containers including killing containers, manipulating network traffic, overloading CPU/memory/disk/IO, and much more.
 
 Check out [this tutorial](https://help.gremlin.com/install-gremlin-docker-ubuntu-1604/) to learn how to install Gremlin on Ubuntu and attack Docker containers.  Alternatively, [this guide](https://help.gremlin.com/install-gremlin-docker-container-ubuntu-1604/) shows how to install Gremlin within a Docker container for use against other containers.
 
