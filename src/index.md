@@ -9,6 +9,8 @@ sources: "See: _docs/resources.md"
 
 In 2010 [Netflix](https://www.netflix.com) announced the existence and success of their custom [resiliency tool](https://medium.com/netflix-techblog/5-lessons-weve-learned-using-aws-1f2a28588e4c) called *Chaos Monkey*.
 
+## What Is Chaos Monkey?
+
 Netflix designed Chaos Monkey to test system stability by enforcing failures via the pseudo-random termination of instances and services within Netflix's architecture. Following their migration to the cloud,  Netflix's service was newly reliant upon Amazon Web Services and needed a technology that could show them how their system responded when critical components of their production service infrastructure were taken down.  Intentionally causing this single failure would suss out any weaknesses in their systems and guide them towards automated solutions that gracefully handle future failures of this sort.
 
 Chaos Monkey helped jumpstart [**Chaos Engineering** as a new engineering practice](https://www.gremlin.com/community/tutorials/chaos-engineering-the-history-principles-and-practice/).  Chaos Engineering is "the discipline of experimenting on a distributed system in order to build confidence in the system's capability to withstand turbulent conditions in production."  By proactively testing how a system responds under stress, you can identify and fix failures before they become public facing outages. Chaos Engineering lets you compare what you think will happen with what is actually happening in your systems.  By performing the smallest possible experiments you can measure, you're able to "break things on purpose" in order to learn how to build more resilient systems.
