@@ -45,9 +45,9 @@ Check out [this tutorial](https://www.gremlin.com/community/tutorials/how-to-ins
 
 ## Kubernetes Pod Chaos Monkey
 
-[Kubernetes Pod Chaos Monkey](https://github.com/jnewland/kubernetes-pod-chaos-monkey) is yet another Chaos Monkey-style tool for Kubernetes.  The code itself is just a local shell script that issues [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) commands to occasionally locate and then delete Kubernetes pods.  It targets a cluster based on the configurable `NAMESPACE` and attempts to destroy a node every `DELAY` seconds (defaulting to 30).
+[Kubernetes Pod Chaos Monkey](https://github.com/jnewland/kubernetes-pod-chaos-monkey) is a Chaos Monkey-style tool for Kubernetes.  The code itself is a local shell script that issues [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) commands to occasionally locate and then delete Kubernetes pods.  It targets a cluster based on the configurable `NAMESPACE` and attempts to destroy a node every `DELAY` seconds (defaulting to 30).
 
-While not the most elegant tool, as little more than a shell script [Kubernetes Pod Chaos Monkey](https://github.com/jnewland/kubernetes-pod-chaos-monkey) can be modified quite easily.
+Since [Kubernetes Pod Chaos Monkey](https://github.com/jnewland/kubernetes-pod-chaos-monkey) is essentially a simple shell script it can be modified quite easily.
 
 ## The Chaos Toolkit
 

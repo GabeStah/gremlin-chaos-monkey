@@ -7,7 +7,7 @@ sources: "See: _docs/resources.md"
 published: true
 ---
 
-This chapter provides advanced developer tips for Chaos Monkey and other Chaos Engineering tools, including tutorials for manually deploying Spinnaker stacks on a [local machine][#spinnaker-manual], [virtual machine][#spinnaker-manual], or [with Kubernetes][#spinnaker-stack-with-kubernetes].  From there you can configure and [deploy Spinnaker][#spinnaker-install] itself, along with [Chaos Monkey][#chaos-monkey-install] and [other Chaos Engineering tools][/alternatives]!
+This chapter provides advanced developer tips for Chaos Monkey and other Chaos Engineering tools, including tutorials for manually deploying Spinnaker stacks on a [local machine][#spinnaker-install], [virtual machine][#spinnaker-manual], or [with Kubernetes][#spinnaker-stack-with-kubernetes].  From there you can configure and [deploy Spinnaker][#spinnaker-install] itself, along with [Chaos Monkey][#chaos-monkey-install] and [other Chaos Engineering tools][/alternatives]!
 
 ## How to Install AWS CLI
 

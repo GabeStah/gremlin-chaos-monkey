@@ -10,7 +10,7 @@ published: true
 
 ## Chaos Engineering with BOSH and Chaos Lemur
 
-CloudFoundry's [BOSH](http://bosh.cloudfoundry.org/docs/) unifies CI/CD practices for virtualized, distributed systems like VMware vSphere and the open-source [Chaos Lemur](https://github.com/strepsirrhini-army/chaos-lemur) tool makes it relatively easy to inject failure into BOSH systems.  Chaos Lemur is a self-contained Java application that will randomly destroy virtual machines in any BOSH-managed environment.  Similar to the original Chaos Monkey, Chaos Lemur can be configured to execute on a daily schedule and target one or more VMs for destruction based on pseudo-random probabilities.  It can also be integrated with [Datadog](https://www.datadoghq.com/) to log destruction events.
+CloudFoundry's [BOSH](http://bosh.cloudfoundry.org/docs/) unifies CI/CD practices for virtualized, distributed systems like VMware vSphere and the open-source [Chaos Lemur](https://github.com/strepsirrhini-army/chaos-lemur) tool makes it relatively easy to inject failure into Pivotal Cloud Foundry systems.  Chaos Lemur is a self-contained Java application that will randomly destroy virtual machines in any BOSH-managed environment.  Similar to the original Chaos Monkey, Chaos Lemur can be configured to execute on a daily schedule and target one or more VMs for destruction based on pseudo-random probabilities.  It can also be integrated with [Datadog](https://www.datadoghq.com/) to log destruction events.
 
 Chaos Lemur is a standalone Java 8 application that requires Maven for building and deployment, but otherwise, it can be hosted anywhere.  Configuration is handled using local environment variables.
 
@@ -36,8 +36,8 @@ Check out the [official repository](https://github.com/strepsirrhini-army/chaos-
 
 ## Chaos Engineering on VMware with Gremlin
 
-Gremlin's [Failure as a Service][#gremlin-failure-as-a-service] finds and helps you fix weaknesses in your VMware architecture before they cause problems.  Gremlin makes Chaos Engineering simple, safe, and secure, improving your system's stability and resilience against unexpected failures.  You can start running Chaos Experiments on your VMware application in just a few minutes by [signing up][#gremlin-account-signup] for an account and [installing Gremlin][#gremlin-installation].  Gremlin can perform a wide range of attacks against your infrastructure including modifying network traffic; killing off virtual machines; overloading CPU, memory, disk, and IO; and much more.
+Gremlin's [Failure as a Service][#gremlin-failure-as-a-service] finds and helps you fix weaknesses in your VMware architecture before they cause problems.  Gremlin makes Chaos Engineering simple, safe, and secure, improving your system's stability and resilience against unexpected failures.  You can start running Chaos Experiments on your VMware application in just a few minutes by [installing Gremlin](https://github.com/gremlin/gremlin-boshrelease) as a Cloud Foundry add-on.  Gremlin can perform a wide range of attacks against your infrastructure including modifying network traffic; killing off virtual machines; overloading CPU, memory, disk, and IO; and much more.
 
-Check out [these tutorials][#gremlin-installation] to learn how to install Gremlin and start injecting failure into your VMware system today.
+Check out [these tutorials][#gremlin-installation] and the [official repository](https://github.com/gremlin/gremlin-boshrelease) to learn how to install Gremlin and start injecting failure into your VMware system today.
 
 {% include nav-internal.md %}

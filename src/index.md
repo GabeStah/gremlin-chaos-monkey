@@ -55,7 +55,7 @@ Chaos Monkey is designed to induce one specific type of failure.  It randomly sh
 
     ![now-what](images/now-what.gif 'Finding Nemo - Now What?')
 
-- **No Recovery Capabilities**: A big reason why Chaos Engineering encourages performing the smallest possible experiments is so any repercussions are somewhat contained.  Unlike some other [tools and services][/alternatives], Chaos Monkey doesn't provide any safety net features, such as a Halt All button.  If something goes wrong, it's entirely up to you and your team to recognize and resolve it.
+- **No Recovery Capabilities**: A big reason why Chaos Engineering encourages performing the smallest possible experiments is so any repercussions are somewhat contained -- if something goes awry, it's ideal to have a safety net or the ability to abort the experiment.  Unfortunately, while Chaos Monkey doesn't include such safety features, many other [tools and services][/alternatives] have these capabilities, including Gremlin's `Halt All` button, which immediately stops all active experiments.
 - **No User Interface**: As with most open source projects, Chaos Monkey is entirely executed through the command line, scripts, and configuration files. If your team wants an interface, it's up to you to build it.
 - **Limited Helper Tools**: By itself, Chaos Monkey fails to provide many useful functions such as auditing, outage checking, termination tracking, and so forth.  Spinnaker supports a framework for creating your own Chaos Monkey auditing through its [Echo](https://github.com/spinnaker/echo) events microservice, but you'll generally be required to either integrate with Netflix's [existing software](https://netflix.github.io/) or to create your own [custom tools](https://netflix.github.io/chaosmonkey/Tracker/) in order to get much info out of Chaos Monkey.
 
@@ -63,7 +63,7 @@ Chaos Monkey is designed to induce one specific type of failure.  It randomly sh
 
 ### The Origin of Chaos Monkey - Why Netflix Needed to Create Failure
 
-In [The Origin of Chaos Monkey][/origin-netflix] chapter, we examine why Chaos Monkey became the most prolific and well-known technology in Chaos Engineering.  We also dive further into why Netflix created Chaos Monkey after their dramatic database failure in mid-2008 forced them to devise a solution for random service failure.  We also explore the [future of Chaos Monkey][#chaos-monkey-today], Chaos Monkey's [reliance on Spinnaker][#spinnaker-strictly], and the introduction of [Netflix's Failure Injection Testing][#netflix-fit].
+In [The Origin of Chaos Monkey][/origin-netflix] chapter, we examine why Chaos Monkey became the most prolific and well-known technology in Chaos Engineering.  We also dive further into why Netflix created Chaos Monkey after a database failure in mid-2008 encouraged them to devise a solution for random service failure.  We also explore the [future of Chaos Monkey][#chaos-monkey-today], Chaos Monkey's [reliance on Spinnaker][#spinnaker-strictly], and the introduction of [Netflix's Failure Injection Testing][#netflix-fit].
 
 ### Chaos Monkey Tutorial - A Step-by-Step Guide to Creating Failure on AWS
 
@@ -71,7 +71,7 @@ In the [Chaos Monkey Developer Tutorial][/developer-tutorial] we provide in-dept
 
 ### Taking Chaos Monkey to the Next Level - Advanced Developer Guide
 
-Our [Advanced Developer Guide][/advanced-tips] gets into the nitty-gritty of using Chaos Monkey with walkthroughs for manually deploying Spinnaker stacks [locally][#spinnaker-manual], on a [virtual machine][#spinnaker-manual], or [with Kubernetes][#spinnaker-stack-with-kubernetes].  From there, we've also included instructions for [deploying Spinnaker][#spinnaker-install] itself, so you can begin your Chaos Experiments.
+Our [Advanced Developer Guide][/advanced-tips] gets into the nitty-gritty of using Chaos Monkey with walkthroughs for manually deploying Spinnaker stacks [locally][#spinnaker-install], on a [virtual machine][#spinnaker-manual], or [with Kubernetes][#spinnaker-stack-with-kubernetes].  From there, we've also included instructions for [deploying Spinnaker][#spinnaker-install] itself, so you can begin your Chaos Experiments.
 
 ### The Simian Army - Overview and Resources
 

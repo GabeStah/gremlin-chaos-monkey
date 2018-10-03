@@ -57,7 +57,7 @@ Running your first Chaos Experiment with Gremlin is as simple as [signing up][#g
 
 ## Chaos Engineering with Fabric8 and Spring Boot
 
-The [Fabric8](http://www.fabric8.io/) development platform has [first-class support](http://spring.fabric8.io/) for building Spring Boot applications and comes with a [built-in Chaos Monkey](https://fabric8.io/guide/chaosMonkey.html) app.  The Fabric8 Chaos Monkey is rather basic and is only capable of deleting pods within Kubernetes/OpenShift applications.  
+The [Fabric8](http://www.fabric8.io/) development platform has [first-class support](http://spring.fabric8.io/) for building Spring Boot applications and comes with a [built-in Chaos Monkey](https://fabric8.io/guide/chaosMonkey.html) app.  The Fabric8 Chaos Monkey is capable of deleting pods within Kubernetes/OpenShift applications.  
 
 To get started in the Fabric8 console navigate to **Apps**, click **Run...**, select the **Chaos Monkey** app, and run it.  Once the Chaos Monkey app is running within your Fabric8 Sprint Boot deployment you can configure Chaos Monkey using a few options.
 

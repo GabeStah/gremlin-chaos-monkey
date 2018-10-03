@@ -428,7 +428,7 @@
     <p><img src="images/now-what.gif" alt="now-what" title="Finding Nemo - Now What?"></p>
   </li>
   <li>
-<strong>No Recovery Capabilities</strong>: A big reason why Chaos Engineering encourages performing the smallest possible experiments is so any repercussions are somewhat contained.  Unlike some other <a href="/gremlin-chaos-monkey/alternatives">tools and services</a>, Chaos Monkey doesn’t provide any safety net features, such as a Halt All button.  If something goes wrong, it’s entirely up to you and your team to recognize and resolve it.</li>
+<strong>No Recovery Capabilities</strong>: A big reason why Chaos Engineering encourages performing the smallest possible experiments is so any repercussions are somewhat contained – if something goes awry, it’s ideal to have a safety net or the ability to abort the experiment.  Unfortunately, while Chaos Monkey doesn’t include such safety features, many other <a href="/gremlin-chaos-monkey/alternatives">tools and services</a> have these capabilities, including Gremlin’s <code class="highlighter-rouge">Halt All</code> button, which immediately stops all active experiments.</li>
   <li>
 <strong>No User Interface</strong>: As with most open source projects, Chaos Monkey is entirely executed through the command line, scripts, and configuration files. If your team wants an interface, it’s up to you to build it.</li>
   <li>
@@ -439,7 +439,7 @@
 
 <h3 id="the-origin-of-chaos-monkey---why-netflix-needed-to-create-failure">The Origin of Chaos Monkey - Why Netflix Needed to Create Failure</h3>
 
-<p>In <a href="/gremlin-chaos-monkey/origin-netflix">The Origin of Chaos Monkey</a> chapter, we examine why Chaos Monkey became the most prolific and well-known technology in Chaos Engineering.  We also dive further into why Netflix created Chaos Monkey after their dramatic database failure in mid-2008 forced them to devise a solution for random service failure.  We also explore the <a href="/gremlin-chaos-monkey/origin-netflix#chaos-monkey-today">future of Chaos Monkey</a>, Chaos Monkey’s <a href="/gremlin-chaos-monkey/origin-netflix#chaos-monkey-and-spinnaker">reliance on Spinnaker</a>, and the introduction of <a href="/gremlin-chaos-monkey/origin-netflix#failure-injection-testing">Netflix’s Failure Injection Testing</a>.</p>
+<p>In <a href="/gremlin-chaos-monkey/origin-netflix">The Origin of Chaos Monkey</a> chapter, we examine why Chaos Monkey became the most prolific and well-known technology in Chaos Engineering.  We also dive further into why Netflix created Chaos Monkey after a database failure in mid-2008 encouraged them to devise a solution for random service failure.  We also explore the <a href="/gremlin-chaos-monkey/origin-netflix#chaos-monkey-today">future of Chaos Monkey</a>, Chaos Monkey’s <a href="/gremlin-chaos-monkey/origin-netflix#chaos-monkey-and-spinnaker">reliance on Spinnaker</a>, and the introduction of <a href="/gremlin-chaos-monkey/origin-netflix#failure-injection-testing">Netflix’s Failure Injection Testing</a>.</p>
 
 <h3 id="chaos-monkey-tutorial---a-step-by-step-guide-to-creating-failure-on-aws">Chaos Monkey Tutorial - A Step-by-Step Guide to Creating Failure on AWS</h3>
 
@@ -447,7 +447,7 @@
 
 <h3 id="taking-chaos-monkey-to-the-next-level---advanced-developer-guide">Taking Chaos Monkey to the Next Level - Advanced Developer Guide</h3>
 
-<p>Our <a href="/gremlin-chaos-monkey/advanced-tips">Advanced Developer Guide</a> gets into the nitty-gritty of using Chaos Monkey with walkthroughs for manually deploying Spinnaker stacks <a href="/gremlin-chaos-monkey/advanced-tips#how-to-deploy-a-spinnaker-stack-for-chaos-monkey">locally</a>, on a <a href="/gremlin-chaos-monkey/advanced-tips#how-to-deploy-a-spinnaker-stack-for-chaos-monkey">virtual machine</a>, or <a href="/gremlin-chaos-monkey/advanced-tips#deploying-a-spinnaker-stack-with-kubernetes">with Kubernetes</a>.  From there, we’ve also included instructions for <a href="/gremlin-chaos-monkey/advanced-tips#how-to-install-spinnaker">deploying Spinnaker</a> itself, so you can begin your Chaos Experiments.</p>
+<p>Our <a href="/gremlin-chaos-monkey/advanced-tips">Advanced Developer Guide</a> gets into the nitty-gritty of using Chaos Monkey with walkthroughs for manually deploying Spinnaker stacks <a href="/gremlin-chaos-monkey/advanced-tips#how-to-install-spinnaker">locally</a>, on a <a href="/gremlin-chaos-monkey/advanced-tips#how-to-deploy-a-spinnaker-stack-for-chaos-monkey">virtual machine</a>, or <a href="/gremlin-chaos-monkey/advanced-tips#deploying-a-spinnaker-stack-with-kubernetes">with Kubernetes</a>.  From there, we’ve also included instructions for <a href="/gremlin-chaos-monkey/advanced-tips#how-to-install-spinnaker">deploying Spinnaker</a> itself, so you can begin your Chaos Experiments.</p>
 
 <h3 id="the-simian-army---overview-and-resources">The Simian Army - Overview and Resources</h3>
 

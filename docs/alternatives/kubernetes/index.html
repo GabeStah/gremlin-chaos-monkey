@@ -420,9 +420,9 @@
 
 <h2 id="kubernetes-pod-chaos-monkey">Kubernetes Pod Chaos Monkey</h2>
 
-<p><a href="https://github.com/jnewland/kubernetes-pod-chaos-monkey" target="_blank" rel="noopener noreferrer">Kubernetes Pod Chaos Monkey</a> is yet another Chaos Monkey-style tool for Kubernetes.  The code itself is just a local shell script that issues <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/" target="_blank" rel="noopener noreferrer">kubectl</a> commands to occasionally locate and then delete Kubernetes pods.  It targets a cluster based on the configurable <code class="highlighter-rouge">NAMESPACE</code> and attempts to destroy a node every <code class="highlighter-rouge">DELAY</code> seconds (defaulting to 30).</p>
+<p><a href="https://github.com/jnewland/kubernetes-pod-chaos-monkey" target="_blank" rel="noopener noreferrer">Kubernetes Pod Chaos Monkey</a> is a Chaos Monkey-style tool for Kubernetes.  The code itself is a local shell script that issues <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/" target="_blank" rel="noopener noreferrer">kubectl</a> commands to occasionally locate and then delete Kubernetes pods.  It targets a cluster based on the configurable <code class="highlighter-rouge">NAMESPACE</code> and attempts to destroy a node every <code class="highlighter-rouge">DELAY</code> seconds (defaulting to 30).</p>
 
-<p>While not the most elegant tool, as little more than a shell script <a href="https://github.com/jnewland/kubernetes-pod-chaos-monkey" target="_blank" rel="noopener noreferrer">Kubernetes Pod Chaos Monkey</a> can be modified quite easily.</p>
+<p>Since <a href="https://github.com/jnewland/kubernetes-pod-chaos-monkey" target="_blank" rel="noopener noreferrer">Kubernetes Pod Chaos Monkey</a> is essentially a simple shell script it can be modified quite easily.</p>
 
 <h2 id="the-chaos-toolkit">The Chaos Toolkit</h2>
 

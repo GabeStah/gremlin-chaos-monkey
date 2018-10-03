@@ -63,7 +63,7 @@ While rare, it is [not unheard of](https://aws.amazon.com/message/5467D2/) for a
 
 #### Latency Monkey
 
-Easily the [most problematic](https://medium.com/netflix-techblog/fit-failure-injection-testing-35d8e2a9bb2#7c1b) Simian Army member Netflix devised, **Latency Monkey** causes artificial delays in RESTful client-server communications.  By simulating network delays and/or failures, services can be tested to see how they react when their dependencies slow down or fail to respond.
+**Latency Monkey** causes artificial delays in RESTful client-server communications and while it proved to be a useful tool.  However, as [Netflix later discovered](https://medium.com/netflix-techblog/fit-failure-injection-testing-35d8e2a9bb2#7c1b), this particular Simian could be somewhat difficult to wrangle at times.  By simulating network delays and failures, it allowed services can be tested to see how they react when their dependencies slow down or fail to respond, but these actions also occasionally caused unintended effects within other applications.
 
 While Netflix never publicly released the Latency Monkey code, and it eventually evolved into their Failure Injection Testing (FIT) service, which we discuss in more detail [over here][#netflix-fit].
 
@@ -79,7 +79,7 @@ The **10-18 Monkey** (aka `l10n-i18n`) detects run time issues and problematic c
 
 ## Simian Chaos Strategies
 
-The original Chaos Monkey was built to inject failure by terminating EC2 instances.  However, this provides an exceptionally limited simulation scope, so Chaos **Strategies** were added to the Simian Army toolset.  Most of these strategies are disabled by default, but they can be toggled in the `SimianArmy/src/main/resources/chaos.properties` configuration file.
+The original Chaos Monkey was built to inject failure by terminating EC2 instances.  However, this provides a limited simulation scope, so Chaos **Strategies** were added to the Simian Army toolset.  Most of these strategies are disabled by default, but they can be toggled in the `SimianArmy/src/main/resources/chaos.properties` configuration file.
 
 ### Instance Shutdown (Simius Mortus)
 
@@ -402,6 +402,6 @@ By default, the [`simianarmy.chaos.leashed = true`](https://github.com/Netflix/S
 
 ## Next Steps
 
-Now that you've learned about the old school Simian Army, check out our [Developer Tutorial][/developer-tutorial] to find out how to install and use the newer Chaos Monkey toolset.  You can also learn about the many [alternatives to Chaos Monkey][/alternatives], in which we shed light on tools and services designed to bring intelligent failure injection and powerful Chaos Engineering practices to your fingertips.
+Now that you've learned about the Simian Army, check out our [Developer Tutorial][/developer-tutorial] to find out how to install and use the newer Chaos Monkey toolset.  You can also learn about the many [alternatives to Chaos Monkey][/alternatives], in which we shed light on tools and services designed to bring intelligent failure injection and powerful Chaos Engineering practices to your fingertips.
 
 {% include nav-internal.md %}

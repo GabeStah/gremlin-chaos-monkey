@@ -8,6 +8,8 @@ task :test do
     url_ignore: [
       # Documentation link.
       "http://localhost:9000",
+      # Private GitHub.
+      "https://github.com/GabeStah/gremlin-chaos-monkey",
       # PDF Download not implemented
       "/pdf-download",
     ]

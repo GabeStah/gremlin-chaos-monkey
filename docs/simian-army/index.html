@@ -353,7 +353,7 @@
 
 
 
-  13 minute read
+  14 minute read
 </p>
           
         </header>
@@ -566,7 +566,7 @@
 
 <h4 id="latency-monkey">Latency Monkey</h4>
 
-<p>Easily the <a href="https://medium.com/netflix-techblog/fit-failure-injection-testing-35d8e2a9bb2#7c1b" target="_blank" rel="noopener noreferrer">most problematic</a> Simian Army member Netflix devised, <strong>Latency Monkey</strong> causes artificial delays in RESTful client-server communications.  By simulating network delays and/or failures, services can be tested to see how they react when their dependencies slow down or fail to respond.</p>
+<p><strong>Latency Monkey</strong> causes artificial delays in RESTful client-server communications and while it proved to be a useful tool.  However, as <a href="https://medium.com/netflix-techblog/fit-failure-injection-testing-35d8e2a9bb2#7c1b" target="_blank" rel="noopener noreferrer">Netflix later discovered</a>, this particular Simian could be somewhat difficult to wrangle at times.  By simulating network delays and failures, it allowed services can be tested to see how they react when their dependencies slow down or fail to respond, but these actions also occasionally caused unintended effects within other applications.</p>
 
 <p>While Netflix never publicly released the Latency Monkey code, and it eventually evolved into their Failure Injection Testing (FIT) service, which we discuss in more detail <a href="/gremlin-chaos-monkey/origin-netflix#failure-injection-testing">over here</a>.</p>
 
@@ -582,7 +582,7 @@
 
 <h2 id="simian-chaos-strategies">Simian Chaos Strategies</h2>
 
-<p>The original Chaos Monkey was built to inject failure by terminating EC2 instances.  However, this provides an exceptionally limited simulation scope, so Chaos <strong>Strategies</strong> were added to the Simian Army toolset.  Most of these strategies are disabled by default, but they can be toggled in the <code class="highlighter-rouge">SimianArmy/src/main/resources/chaos.properties</code> configuration file.</p>
+<p>The original Chaos Monkey was built to inject failure by terminating EC2 instances.  However, this provides a limited simulation scope, so Chaos <strong>Strategies</strong> were added to the Simian Army toolset.  Most of these strategies are disabled by default, but they can be toggled in the <code class="highlighter-rouge">SimianArmy/src/main/resources/chaos.properties</code> configuration file.</p>
 
 <h3 id="instance-shutdown-simius-mortus">Instance Shutdown (Simius Mortus)</h3>
 
@@ -934,7 +934,7 @@
 
 <h2 id="next-steps">Next Steps</h2>
 
-<p>Now that you’ve learned about the old school Simian Army, check out our <a href="/gremlin-chaos-monkey/developer-tutorial">Developer Tutorial</a> to find out how to install and use the newer Chaos Monkey toolset.  You can also learn about the many <a href="/gremlin-chaos-monkey/alternatives">alternatives to Chaos Monkey</a>, in which we shed light on tools and services designed to bring intelligent failure injection and powerful Chaos Engineering practices to your fingertips.</p>
+<p>Now that you’ve learned about the Simian Army, check out our <a href="/gremlin-chaos-monkey/developer-tutorial">Developer Tutorial</a> to find out how to install and use the newer Chaos Monkey toolset.  You can also learn about the many <a href="/gremlin-chaos-monkey/alternatives">alternatives to Chaos Monkey</a>, in which we shed light on tools and services designed to bring intelligent failure injection and powerful Chaos Engineering practices to your fingertips.</p>
 
 
         

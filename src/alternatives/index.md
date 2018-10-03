@@ -7,7 +7,7 @@ sources: "See: _docs/resources.md"
 published: true
 ---
 
-Chaos Monkey serves a singular purpose -- to randomly terminate instances.  As discussed in [Chaos Monkey and Spinnaker][#spinnaker-strictly] and [The Pros and Cons of Chaos Monkey][#chaos-monkey-pros-cons], Chaos Monkey is incapable of covering the broad spectrum of experimentation and failure injection required for proper Chaos Engineering.
+Chaos Monkey serves a singular purpose -- to randomly terminate instances.  As discussed in [Chaos Monkey and Spinnaker][#spinnaker-strictly] and [The Pros and Cons of Chaos Monkey][#chaos-monkey-pros-cons], additional tools are required when using Chaos Monkey, in order to cover the broad spectrum of experimentation and failure injection required for proper Chaos Engineering.
 
 In this chapter, we'll explore a wide range of tools and techniques -- regardless of the underlying technologies -- that you and your team can use to intelligently induce failures while confidently building toward a more resilient system.
 
@@ -458,7 +458,7 @@ Take a look at the [Chaos Monkey Alternatives - Private Cloud][/alternatives/pri
 
 ### VMware
 
-Check out the [Chaos Monkey Alternatives - VMware][/alternatives/vmware] chapter to learn about the Chaos Lemur tool and Gremlin's own Failure as a Service solution, both of will inject failure into your VMware- or BOSH-managed virtual machines with relative ease.
+Check out the [Chaos Monkey Alternatives - VMware][/alternatives/vmware] chapter to learn about the Chaos Lemur tool and Gremlin's own Failure as a Service solution, both of will inject failure into your VMware and other BOSH-managed virtual machines with relative ease.
 
 ## Java
 
