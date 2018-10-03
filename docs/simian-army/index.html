@@ -372,8 +372,8 @@
       <li>
 <a href="#active-simians">Active Simians</a>
         <ul>
-          <li><a href="#janitor-monkey">Janitor Monkey</a></li>
-          <li><a href="#conformity-monkey">Conformity Monkey</a></li>
+          <li><a href="#janitor-monkey---now-swabbie">Janitor Monkey - Now Swabbie</a></li>
+          <li><a href="#conformity-monkey---now-part-of-spinnaker">Conformity Monkey - Now Part of Spinnaker</a></li>
           <li><a href="#security-monkey">Security Monkey</a></li>
         </ul>
       </li>
@@ -508,9 +508,9 @@
             </nav>
           </aside>
         
-        <p>The <strong>Simian Army</strong> is a suite of failure-inducing tools designed to add more capabilities beyond <a href="/gremlin-chaos-monkey/origin-netflix">Chaos Monkey</a>.  While Chaos Monkey solely handles termination of random instances, Netflix engineers needed additional tools able to induce <em>other</em> types of failure.  Some of the Simian Army tools have fallen out of favor in recent years, but each of the members serves a specific purpose aimed at bolstering a system’s failure resilience.</p>
+        <p>The <strong>Simian Army</strong> is a suite of failure-inducing tools designed to add more capabilities beyond <a href="/gremlin-chaos-monkey/origin-netflix">Chaos Monkey</a>.  While Chaos Monkey solely handles termination of random instances, Netflix engineers needed additional tools able to induce <em>other</em> types of failure.  Some of the Simian Army tools have fallen out of favor in recent years and are deprecated, but each of the members serves a specific purpose aimed at bolstering a system’s failure resilience.</p>
 
-<p>In this chapter we’ll jump into <a href="/gremlin-chaos-monkey/simian-army#simian-army-members">each member</a> of the Simian Army and examine how these tools helped shaped modern Chaos Engineering best practices.  We’ll also explore each of the Simian <a href="/gremlin-chaos-monkey/simian-army#simian-chaos-strategies">Chaos Strategies</a> used to define which Chaos Experiments the system should undergo.  Lastly, we’ll plunge into a short <a href="/gremlin-chaos-monkey/simian-army#using-simian-army-tools">tutorial</a> walking through the basics of installing and using the Simian Army toolset.</p>
+<p>In this chapter we’ll jump into <a href="/gremlin-chaos-monkey/simian-army#simian-army-members">each member</a> of the Simian Army and examine how these tools helped shape modern Chaos Engineering best practices.  We’ll also explore each of the Simian <a href="/gremlin-chaos-monkey/simian-army#simian-chaos-strategies">Chaos Strategies</a> used to define which Chaos Experiments the system should undergo.  Lastly, we’ll plunge into a short <a href="/gremlin-chaos-monkey/simian-army#using-simian-army-tools">tutorial</a> walking through the basics of installing and using the Simian Army toolset.</p>
 
 <h2 id="simian-army-members">Simian Army Members</h2>
 
@@ -520,7 +520,7 @@
 
 <p>In addition to <a href="/gremlin-chaos-monkey/origin-netflix">Chaos Monkey</a>, the following simian trio are the only Army personnel to be publicly released, and which remain available for use today.</p>
 
-<h4 id="janitor-monkey">Janitor Monkey</h4>
+<h4 id="janitor-monkey---now-swabbie">Janitor Monkey - Now Swabbie</h4>
 
 <p><strong>Janitor Monkey</strong> also seeks out and disposes of unused resources within the cloud.  It checks any given resource against a set of configurable rules to determine if its an eligible candidate for cleanup.  Janitor Monkey features a number of <a href="https://github.com/Netflix/SimianArmy/wiki/Janitor-Settings" target="_blank" rel="noopener noreferrer">configurable options</a>, but the default behavior looks for resources like orphaned (non-auto-scaled) instances, volumes that are not attached to an instance, unused auto-scaling groups, and more.</p>
 
@@ -528,7 +528,9 @@
 
 <p><img src="../images/simian-army-janitor-monkey.png" alt="simian-army-janitor-monkey" title="A magnificent Janitor Monkey"></p>
 
-<h4 id="conformity-monkey">Conformity Monkey</h4>
+<p><strong>Update</strong>: <a href="https://github.com/spinnaker/swabbie" target="_blank" rel="noopener noreferrer">Swabbie</a> is the Spinnaker service that replaces the functionality provided by Janitor Monkey.  Find out more in the <a href="https://github.com/spinnaker/swabbie" target="_blank" rel="noopener noreferrer">official documentation</a>.</p>
+
+<h4 id="conformity-monkey---now-part-of-spinnaker">Conformity Monkey - Now Part of Spinnaker</h4>
 
 <p>The <strong>Conformity Monkey</strong> is similar to <strong>Janitor Monkey</strong> – it seeks out instances that don’t conform to predefined rule sets and shuts them down.  Here are a few of the non-conformities that Conformity Monkey looks for.</p>
 
@@ -538,7 +540,7 @@
   <li>Instances that are older than a certain age threshold.</li>
 </ul>
 
-<p>Conformity Monkey capabilities have also been rolled into <a href="/gremlin-chaos-monkey/advanced-tips#how-to-manually-deploy-spinnaker-for-chaos-monkey">Spinnaker</a>.  More info on using Conformity Monkey can be found under <a href="/gremlin-chaos-monkey/simian-army#using-simian-army-tools">Using Simian Army Tools</a>.</p>
+<p>Conformity Monkey capabilities have also been rolled into <a href="/gremlin-chaos-monkey/advanced-tips#how-to-deploy-a-spinnaker-stack-for-chaos-monkey">Spinnaker</a>.  More info on using Conformity Monkey can be found under <a href="/gremlin-chaos-monkey/simian-army#using-simian-army-tools">Using Simian Army Tools</a>.</p>
 
 <h4 id="security-monkey">Security Monkey</h4>
 
@@ -875,7 +877,7 @@
     </ul>
   </li>
   <li>
-    <p><em>(Optional)</em> Modify the <code class="highlighter-rouge">janitor.properties</code> configuration to change <a href="/gremlin-chaos-monkey/simian-army#janitor-monkey">Janitor Monkey’s</a> behavior.</p>
+    <p><em>(Optional)</em> Modify the <code class="highlighter-rouge">janitor.properties</code> configuration to change <a href="/gremlin-chaos-monkey/simian-army#janitor-monkey---now-swabbie">Janitor Monkey’s</a> behavior.</p>
 
     <div class="language-bash highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code> nano ~/SimianArmy/src/main/resources/janitormonkey.properties

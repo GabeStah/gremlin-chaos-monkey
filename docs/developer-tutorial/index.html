@@ -432,12 +432,12 @@
   <div class="content">
     <p class="header">Looking to Deploy Spinnaker In Another Environment?</p>
     
-<p>If you’re looking for the utmost control over your <code class="highlighter-rouge">Spinnaker</code> deployment you should check out our [How to Manually Deploy Spinnaker for Chaos Monkey][#spinnaker-manual] guide, which provides a step-by-step tutorial for setting up Halyard and Spinnaker on a local or virtual machine of your choice.</p>
+<p>If you’re looking for the utmost control over your <code class="highlighter-rouge">Spinnaker</code> deployment you should check out our [How to Deploy a Spinnaker Stack for Chaos Monkey][#spinnaker-manual] guide, which provides a step-by-step tutorial for setting up Halyard and Spinnaker on a local or virtual machine of your choice.</p>
 
   </div>
 </div>
 
-<p>The <em>AWS Spinnaker Quick Start</em> will create a simple architecture for you containing two Virtual Private Cloud (VPC) subnets (one public and one private).  The public VPC contains a <a href="https://en.wikipedia.org/wiki/Bastion_host" target="_blank" rel="noopener noreferrer">Bastion host</a> instance designed to be strictly accessible, with just port 22 open for SSH access.  The Bastion host will then allow a pass through connection to the private VPC that is running Spinnaker.</p>
+<p>The <em>AWS Spinnaker Quick Start</em> will create a simple architecture for you containing two subnets (one public and one private) in a Virtual Private Cloud (VPC).  The public subnet contains a <a href="https://en.wikipedia.org/wiki/Bastion_host" target="_blank" rel="noopener noreferrer">Bastion host</a> instance designed to be strictly accessible, with just port 22 open for SSH access.  The Bastion host will then allow a pass through connection to the private subnet that is running Spinnaker.</p>
 
 <p><img src="../images/developer-tutorial-aws-spinnaker-quick-start-architecture.png" alt="developer-tutorial-aws-spinnaker-quick-start-architecture" title="AWS Spinnaker Quick Start Architecture"></p>
 
@@ -787,7 +787,7 @@
   <li>
 <a href="/gremlin-chaos-monkey/developer-tutorial#how-to-quickly-deploy-spinnaker-for-chaos-monkey">How to Quickly Deploy Spinnaker for Chaos Monkey</a> will guide you through a rapid deployment of Spinnaker on AWS.</li>
   <li>
-<a href="/gremlin-chaos-monkey/advanced-tips#how-to-manually-deploy-spinnaker-for-chaos-monkey">How to Manually Deploy Spinnaker for Chaos Monkey</a> provides a much more in-depth tutorial for installing Spinnaker as it was intended, with the help of the Halyard tool, on a local or virtual machine.</li>
+<a href="/gremlin-chaos-monkey/advanced-tips#how-to-deploy-a-spinnaker-stack-for-chaos-monkey">How to Deploy a Spinnaker Stack for Chaos Monkey</a> provides a much more in-depth tutorial for installing Spinnaker as it was intended, with the help of the Halyard tool, on a local or virtual machine.</li>
 </ul>
 
 <h3 id="installing-mysql">Installing MySQL</h3>
@@ -1173,7 +1173,7 @@ ip-10-100-11-180.us-west-2.compute.internal   Ready     &lt;none&gt;    20s     
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Lastly, the <code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey-terminate.sh</code> script that is called by the generated <code class="highlighter-rouge">/etc/cron.d/chaosmonkey-schedule</code> cron job should issue the <code class="highlighter-rouge">chaosmonkey terminate</code> command and output the result to the log.  Paste the following into ``/apps/chaosmonkey/chaosmonkey-terminate.sh`.</p>
+    <p>Lastly, the <code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey-terminate.sh</code> script that is called by the generated <code class="highlighter-rouge">/etc/cron.d/chaosmonkey-schedule</code> cron job should issue the <code class="highlighter-rouge">chaosmonkey terminate</code> command and output the result to the log.  Paste the following into <code class="highlighter-rouge">/apps/chaosmonkey/chaosmonkey-terminate.sh</code>.</p>
 
     <div class="language-bash highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code> <span class="c">#!/bin/bash</span>

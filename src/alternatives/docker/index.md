@@ -148,7 +148,7 @@ Check out [this tutorial](https://help.gremlin.com/install-gremlin-docker-ubuntu
 [Docker Chaos Monkey](https://github.com/titpetric/docker-chaos-monkey) is a simple shell script that terminates [Docker Swarm](https://docs.docker.com/engine/swarm/) [services](https://docs.docker.com/engine/swarm/swarm-tutorial/deploy-service/).  Targetable services are specified by applying the `role=disposable` label.
 
 ```bash
-docker service create -l role=disposable --name gremlin gremlin/gremlin
+docker service create -l role=disposable --name nginx nginx:stable
 ```
 
 The script kills off the first Docker image with the `role=disposable` label that also meets the following criteria:
@@ -168,15 +168,15 @@ Here it is in action.
 | Running this script will kill off 1 docker image with label: role=disposable
 | You have 5 seconds to change your mind and CTRL+C out of this.
 ----------------------------------------------------------------------------
-hsn3ezlkqow7  gremlin   replicated  2/2             gremlin/gremlin:latest
-jam29chanegg  gremlin2  replicated  1/1             gremlin/gremlin:latest
+hsn3ezlkqow7  nginx   replicated  2/2                           nginx:stable
+jam29chanegg  nginx2  replicated  1/1                           nginx:stable
 ----------------------------------------------------------------------------
 
-hsn3ezlkqow7 gremlin: swarm1
+hsn3ezlkqow7 nginx: swarm1
 removing a container
-> gremlin.2.zecjcxha6zbr0bpfqb017v8vb
+> nginx.2.zecjcxha6zbr0bpfqb017v8vb
 
-jam29chanegg gremlin2: service has only one running container - skipping
+jam29chanegg nginx2: service has only one running container - skipping
 ```
 
 ## Docker Simian Army

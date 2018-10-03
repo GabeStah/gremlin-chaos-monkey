@@ -66,7 +66,59 @@ In the future, simply add the `--profile <profile-name>` flag to any AWS CLI com
 
 5. That's the basics!  Halyard is now ready to be configured and used for [manual][#spinnaker-manual] or [quick start][#spinnaker-quick-start] Spinnaker deployments.
 
-## How to Manually Deploy Spinnaker for Chaos Monkey
+## How to Install Spinnaker
+
+This section walks you through the most basic Spinnaker installation process, suitable for simple Spinnaker deployments.
+
+1. Use the `hal version list` command to view the current Spinnaker version list.
+
+    ```bash
+    hal version list
+    ```
+
+2. Configure Halyard to use the latest version of Spinnaker.
+
+    ```bash
+    hal config version edit --version 1.9.2
+    ```
+
+3. *(Optional)* Enable Chaos Monkey in the Halyard config.
+
+    ```bash
+    hal config features edit --chaos true
+    ```
+
+4. Tell Halyard what type of environment you're deploying Spinnaker to.  Most production setups will want to use Kubernetes or another distributed solution, but the default deployment is a local installation.  The `hal config deploy edit --type` flag can be used to change the environment.
+
+    ```bash
+    hal config deploy edit --type localdebian
+    ```
+
+5. Halyard requires some form of persistent storage, so we'll use AWS S3 for simplicity.  Modify the Halyard config and be sure to pass an AWS `ACCESS_KEY_ID` and `SECRET_ACCESS_KEY` with privileges to create and use S3 buckets.
+
+    ```bash
+    hal config storage s3 edit --access-key-id <AWS_ACCESS_KEY_ID> --secret-access-key --region us-west-2
+    ```
+
+6. Configure Halyard to use the `s3` storage type.
+
+    ```bash
+    hal config storage edit --type s3
+    ```
+
+7. Now use `sudo hal deploy apply` to deploy Spinnaker to the local machine.
+
+    ```bash
+    sudo hal deploy apply
+    ```
+
+8. After deployment finishes you should have a functioning Spinnaker installation!  If you've installed on your local machine you can navigate to the Spinnaker Deck UI at [localhost:9000](http://localhost:9000) to see it in action.  If Spinnaker was deployed on a remote machine use the `hal deploy connect` command to quickly establish SSH tunnels and connect.
+
+### Next Steps
+
+You're now ready to [install][#chaos-monkey-install] and then start [using Chaos Monkey][#chaos-monkey-use] or other [Simian Army][/simian-army] tools.
+
+## How to Deploy a Spinnaker Stack for Chaos Monkey
 
 Manually deploying Spinnaker with the help of Halyard is the best way to have the utmost control over your Spinnaker installation, and is ideal for advanced deployments to EC2 instances, EKS/Kubernetes clusters, and the like.  Choose one of the three options depending on your needs.
 
@@ -265,58 +317,6 @@ Follow these steps to setup a CloudFormation EKS/Kubernetes stack for Spinnaker 
 #### Next Steps
 
 You now have an EKS/Kubernetes CloudFormation stack ready for Spinnaker.  You can now proceed with the [deployment of Spinnaker on Kubernetes][#spinnaker-kubernetes], and then move on to [installing and using Chaos Monkey][#chaos-monkey-install].  If Chaos Monkey doesn't suit all your Chaos Engineering needs check out our [Chaos Monkey Alternatives][/alternatives] chapter.
-
-## How to Install Spinnaker
-
-This section walks you through the most basic Spinnaker installation process, suitable for simple Spinnaker deployments.
-
-1. Use the `hal version list` command to view the current Spinnaker version list.
-
-    ```bash
-    hal version list
-    ```
-
-2. Configure Halyard to use the latest version of Spinnaker.
-
-    ```bash
-    hal config version edit --version 1.9.2
-    ```
-
-3. *(Optional)* Enable Chaos Monkey in the Halyard config.
-
-    ```bash
-    hal config features edit --chaos true
-    ```
-
-4. Tell Halyard what type of environment you're deploying Spinnaker to.  Most production setups will want to use Kubernetes or another distributed solution, but the default deployment is a local installation.  The `hal config deploy edit --type` flag can be used to change the environment.
-
-    ```bash
-    hal config deploy edit --type localdebian
-    ```
-
-5. Halyard requires some form of persistent storage, so we'll use AWS S3 for simplicity.  Modify the Halyard config and be sure to pass an AWS `ACCESS_KEY_ID` and `SECRET_ACCESS_KEY` with privileges to create and use S3 buckets.
-
-    ```bash
-    hal config storage s3 edit --access-key-id <AWS_ACCESS_KEY_ID> --secret-access-key --region us-west-2
-    ```
-
-6. Configure Halyard to use the `s3` storage type.
-
-    ```bash
-    hal config storage edit --type s3
-    ```
-
-7. Now use `sudo hal deploy apply` to deploy Spinnaker to the local machine.
-
-    ```bash
-    sudo hal deploy apply
-    ```
-
-8. After deployment finishes you should have a functioning Spinnaker installation!  If you've installed on your local machine you can navigate to the Spinnaker Deck UI at [localhost:9000](http://localhost:9000) to see it in action.  If Spinnaker was deployed on a remote machine use the `hal deploy connect` command to quickly establish SSH tunnels and connect.
-
-### Next Steps
-
-You're now ready to [install][#chaos-monkey-install] and then start [using Chaos Monkey][#chaos-monkey-use] or other [Simian Army][/simian-army] tools.
 
 ## How to Deploy Spinnaker on Kubernetes
 

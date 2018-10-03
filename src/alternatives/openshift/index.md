@@ -83,7 +83,7 @@ Installing Monkey-Ops as an OpenShift project is a bit more complex.
 
 Gremlin's [Failure as a Service][#gremlin-failure-as-a-service] simplifies your Chaos Engineering workflow for OpenShift by making it safe and effortless to execute Chaos Experiments across all application containers.  As a distributed architecture OpenShift is particularly sensitive to instability and unexpected failures.  Gremlin can perform a variety of attacks on your OpenShift applications including draining disk space, hogging CPU and memory, overloading IO, manipulating network traffic, terminating instances, and much more.
 
-Check out [this tutorial](https://help.gremlin.com/install-gremlin-centos-7/) for installing Gremlin on Centos to get started!
+Check out [this tutorial](https://help.gremlin.com/install-gremlin-centos-7/) for installing Gremlin on CentOS or [this guide](https://help.gremlin.com/installation/#how-to-install-gremlin-with-kubernetes) for installing Gremlin on OpenShift via a Kubernetes DaemonSet to get started!
 
 ## Pumba
 

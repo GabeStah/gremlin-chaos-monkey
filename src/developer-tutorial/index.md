@@ -18,10 +18,10 @@ That said, in this first section we'll explore the fastest and simplest way to g
 We'll be deploying Spinnaker on AWS, and the easiest method for doing so is to use the [CloudFormation Quick Start](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Spinnaker&templateURL=https:%2F%2Fs3.amazonaws.com%2Faws-quickstart%2Fquickstart-spinnaker%2Ftemplates%2Fquickstart-spinnakercf.template) template.
 
 {% note type: 'info', title: 'Looking to Deploy Spinnaker In Another Environment?' %}
-If you're looking for the utmost control over your `Spinnaker` deployment you should check out our [How to Manually Deploy Spinnaker for Chaos Monkey][#spinnaker-manual] guide, which provides a step-by-step tutorial for setting up Halyard and Spinnaker on a local or virtual machine of your choice.
+If you're looking for the utmost control over your `Spinnaker` deployment you should check out our [How to Deploy a Spinnaker Stack for Chaos Monkey][#spinnaker-manual] guide, which provides a step-by-step tutorial for setting up Halyard and Spinnaker on a local or virtual machine of your choice.
 {% endnote %}
 
-The *AWS Spinnaker Quick Start* will create a simple architecture for you containing two Virtual Private Cloud (VPC) subnets (one public and one private).  The public VPC contains a [Bastion host](https://en.wikipedia.org/wiki/Bastion_host) instance designed to be strictly accessible, with just port 22 open for SSH access.  The Bastion host will then allow a pass through connection to the private VPC that is running Spinnaker.
+The *AWS Spinnaker Quick Start* will create a simple architecture for you containing two subnets (one public and one private) in a Virtual Private Cloud (VPC).  The public subnet contains a [Bastion host](https://en.wikipedia.org/wiki/Bastion_host) instance designed to be strictly accessible, with just port 22 open for SSH access.  The Bastion host will then allow a pass through connection to the private subnet that is running Spinnaker.
 
 ![developer-tutorial-aws-spinnaker-quick-start-architecture](../images/developer-tutorial-aws-spinnaker-quick-start-architecture.png 'AWS Spinnaker Quick Start Architecture')
 
@@ -288,7 +288,7 @@ While a lot can go wrong, below are a few potential issues you may encounter run
 Before you can use Chaos Monkey you'll need to have Spinnaker deployed and running.  We've created a handful of step-by-step tutorials for deploying Spinnaker, depending on the environment and level of control you're looking for.
 
 - [How to Quickly Deploy Spinnaker for Chaos Monkey][#spinnaker-quick-start] will guide you through a rapid deployment of Spinnaker on AWS.
-- [How to Manually Deploy Spinnaker for Chaos Monkey][#spinnaker-manual] provides a much more in-depth tutorial for installing Spinnaker as it was intended, with the help of the Halyard tool, on a local or virtual machine.
+- [How to Deploy a Spinnaker Stack for Chaos Monkey][#spinnaker-manual] provides a much more in-depth tutorial for installing Spinnaker as it was intended, with the help of the Halyard tool, on a local or virtual machine.
 
 ### Installing MySQL
 
@@ -613,7 +613,7 @@ Now that we've confirmed we can manually terminate instances via Chaos Monkey yo
     9 16 9 9 0 root /apps/chaosmonkey/chaosmonkey-terminate.sh spinnaker aws-primary --cluster=spinnaker-eks-nodes-NodeGroup-KLBYTZDP0F89 --region=us-west-2
     ```
 
-6. Lastly, the `/apps/chaosmonkey/chaosmonkey-terminate.sh` script that is called by the generated `/etc/cron.d/chaosmonkey-schedule` cron job should issue the `chaosmonkey terminate` command and output the result to the log.  Paste the following into ``/apps/chaosmonkey/chaosmonkey-terminate.sh`.
+6. Lastly, the `/apps/chaosmonkey/chaosmonkey-terminate.sh` script that is called by the generated `/etc/cron.d/chaosmonkey-schedule` cron job should issue the `chaosmonkey terminate` command and output the result to the log.  Paste the following into `/apps/chaosmonkey/chaosmonkey-terminate.sh`.
 
     ```bash
     #!/bin/bash

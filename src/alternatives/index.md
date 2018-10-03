@@ -13,7 +13,7 @@ In this chapter, we'll explore a wide range of tools and techniques -- regardles
 
 ## Apache
 
-Perhaps the most prominent fault-tolerance testing tool for Apache is [Cassandra](https://cassandra.apache.org/), the NoSQL, performant, highly-scalable data management solution.  Check out [this talk](https://www.youtube.com/watch?v=Mu01DmxQjWA) by Christos Kalantzis, Netflix's Director of Engineering for a great example of how Chaos Engineering can be applied with Cassandra.
+Perhaps the most prominent fault-tolerant tool for Apache is [Cassandra](https://cassandra.apache.org/), the NoSQL, performant, highly-scalable data management solution.  Check out [this talk](https://www.youtube.com/watch?v=Mu01DmxQjWA) by Christos Kalantzis, Netflix's Director of Engineering for a great example of how Chaos Engineering can be applied within Cassandra.
 
 ### Hadoop
 
