@@ -7,15 +7,17 @@ sources: "See: _docs/resources.md"
 published: true
 ---
 
-This chapter will provide a step-by-step guide for setting up and using Chaos Monkey with AWS.  We also examine a handful of scenarios in which Chaos Monkey is not always the most relevant solution for Chaos Engineering implementation, due to its Spinnaker requirements and limited scope of only handling instance terminations.
+This chapter will provide a step-by-step guide for setting up and using Chaos Monkey with AWS.  We also examine the scenarios where Chaos Monkey is the right solution, and its limitations since it only handles random instance terminations.
 
 ## How to Quickly Deploy Spinnaker for Chaos Monkey
 
 Modern Chaos Monkey **requires** the use of [Spinnaker](https://www.spinnaker.io/), which is an open-source, multi-cloud continuous delivery platform developed by Netflix.  Spinnaker allows for automated deployments across multiple cloud platforms (such as AWS, Azure, Google Cloud Platform, and more).  Spinnaker can also be used to deploy across multiple accounts and regions, often using **pipelines** that define a series of events that should occur every time a new version is released.  Spinnaker is a powerful tool, but since both Spinnaker and Chaos Monkey were developed by and for Netflix's own architecture, you'll need to do the extra legwork to configure Spinnaker to work within your application and infrastructure.
 
-That said, in this first section we'll explore the fastest and simplest way to get Spinnaker up and running, which will then allow you to move onto [installing][#chaos-monkey-install] and then [using][#chaos-monkey-use].
+in this first section we'll explore the fastest and simplest way to get Spinnaker up and running, which will then allow you to move onto [installing][#chaos-monkey-install] and then [using][#chaos-monkey-use].
 
 We'll be deploying Spinnaker on AWS, and the easiest method for doing so is to use the [CloudFormation Quick Start](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Spinnaker&templateURL=https:%2F%2Fs3.amazonaws.com%2Faws-quickstart%2Fquickstart-spinnaker%2Ftemplates%2Fquickstart-spinnakercf.template) template.
+
+....
 
 {% note type: 'info', title: 'Looking to Deploy Spinnaker In Another Environment?' %}
 If you're looking for the utmost control over your `Spinnaker` deployment you should check out our [How to Deploy a Spinnaker Stack for Chaos Monkey][#spinnaker-manual] guide, which provides a step-by-step tutorial for setting up Halyard and Spinnaker on a local or virtual machine of your choice.
@@ -622,10 +624,10 @@ Now that we've confirmed we can manually terminate instances via Chaos Monkey yo
 
 #### Next Steps
 
-You're all set now!  If you followed along through the entire process you should have a functional Spinnaker deployment with Chaos Monkey enabled, which will perform a cron job once a day to terminate random instances based on your configuration!
+You're all set now!  You should have a functional Spinnaker deployment with Chaos Monkey enabled, which will perform a cron job once a day to terminate random instances based on your configuration!
 
-However, Chaos Monkey is just the tip of the Chaos Engineering iceberg.  While using Chaos Monkey can be beneficial in certain circumstances, it's worth remembering that you're still limited to the (basic) tasks that the tool can accomplish.  While good Chaos Engineering practices encourage resilient and thorough testing of every aspect of your system and architecture, Chaos Monkey's ability to randomly terminate instances can be helpful, but those abilities quickly reach their limit.
+Chaos Monkey is just the tip of the Chaos Engineering iceberg, and there are a lot more failure modes you can experiment with to learn about your system.
 
-The rest of this guide will cover the other tools in [The Simian Army][/simian-army] family, along with an in-depth look at the [Chaos Monkey Alternatives][/alternatives].  We built [Gremlin][#gremlin-product] to provide the framework to safely, securely, and easily simulate real outages with an ever-growing library of attacks.
+The rest of this guide will cover the other tools in [The Simian Army][/simian-army] family, along with an in-depth look at the [Chaos Monkey Alternatives][/alternatives].  We built [Gremlin][#gremlin-product] to provide a production-ready framework to safely, securely, and easily simulate real outages with an ever-growing library of attacks.
 
 {% include nav-internal.md %}
