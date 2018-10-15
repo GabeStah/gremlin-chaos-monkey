@@ -17,8 +17,6 @@ in this first section we'll explore the fastest and simplest way to get Spinnake
 
 We'll be deploying Spinnaker on AWS, and the easiest method for doing so is to use the [CloudFormation Quick Start](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Spinnaker&templateURL=https:%2F%2Fs3.amazonaws.com%2Faws-quickstart%2Fquickstart-spinnaker%2Ftemplates%2Fquickstart-spinnakercf.template) template.
 
-....
-
 {% note type: 'info', title: 'Looking to Deploy Spinnaker In Another Environment?' %}
 If you're looking for the utmost control over your `Spinnaker` deployment you should check out our [How to Deploy a Spinnaker Stack for Chaos Monkey][#spinnaker-manual] guide, which provides a step-by-step tutorial for setting up Halyard and Spinnaker on a local or virtual machine of your choice.
 {% endnote %}
