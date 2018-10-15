@@ -13,7 +13,7 @@ This chapter will provide a step-by-step guide for setting up and using Chaos Mo
 
 Modern Chaos Monkey **requires** the use of [Spinnaker](https://www.spinnaker.io/), which is an open-source, multi-cloud continuous delivery platform developed by Netflix.  Spinnaker allows for automated deployments across multiple cloud platforms (such as AWS, Azure, Google Cloud Platform, and more).  Spinnaker can also be used to deploy across multiple accounts and regions, often using **pipelines** that define a series of events that should occur every time a new version is released.  Spinnaker is a powerful tool, but since both Spinnaker and Chaos Monkey were developed by and for Netflix's own architecture, you'll need to do the extra legwork to configure Spinnaker to work within your application and infrastructure.
 
-in this first section we'll explore the fastest and simplest way to get Spinnaker up and running, which will then allow you to move onto [installing][#chaos-monkey-install] and then [using][#chaos-monkey-use].
+In this first section we'll explore the fastest and simplest way to get Spinnaker up and running, which will then allow you to move onto [installing][#chaos-monkey-install] and then [using][#chaos-monkey-use].
 
 We'll be deploying Spinnaker on AWS, and the easiest method for doing so is to use the [CloudFormation Quick Start](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Spinnaker&templateURL=https:%2F%2Fs3.amazonaws.com%2Faws-quickstart%2Fquickstart-spinnaker%2Ftemplates%2Fquickstart-spinnakercf.template) template.
 
