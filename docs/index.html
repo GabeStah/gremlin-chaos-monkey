@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Gremlin: Chaos Monkey">
 <meta property="og:title" content="Chaos Monkey Guide for Engineers - Tips, Tutorials, and Training">
-<meta property="og:url" content="http://localhost:4000/gremlin-chaos-monkey/">
+<meta property="og:url" content="/gremlin-chaos-monkey/">
 
 
 
@@ -38,7 +38,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/gremlin-chaos-monkey/">
+<link rel="canonical" href="/gremlin-chaos-monkey/">
 
 
 
@@ -51,7 +51,7 @@
       "@context": "http://schema.org",
       "@type": "Person",
       "name": "Gabe Wyatt",
-      "url": "http://localhost:4000/gremlin-chaos-monkey",
+      "url": "/gremlin-chaos-monkey",
       "sameAs": null
     }
   </script>
@@ -374,7 +374,7 @@
 
 <p>Netflix designed Chaos Monkey to test system stability by enforcing failures via the pseudo-random termination of instances and services within Netflix’s architecture. Following their migration to the cloud,  Netflix’s service was newly reliant upon Amazon Web Services and needed a technology that could show them how their system responded when critical components of their production service infrastructure were taken down.  Intentionally causing this single failure would suss out any weaknesses in their systems and guide them towards automated solutions that gracefully handle future failures of this sort.</p>
 
-<p>Chaos Monkey helped jumpstart <a href="https://www.gremlin.com/community/tutorials/chaos-engineering-the-history-principles-and-practice/" target="_blank" rel="noopener noreferrer"><strong>Chaos Engineering</strong> as a new engineering practice</a>.  Chaos Engineering is “Chaos Engineering is a disciplined approach to identifying failures before they become outages.”  By proactively testing how a system responds to failure conditions, you can identify and fix failures before they become public facing outages. Chaos Engineering lets you validate what you think will happen with what is actually happening in your systems.  By performing the smallest possible experiments you can measure, you’re able to “break things on purpose” in order to learn how to build more resilient systems.</p>
+<p>Chaos Monkey helped jumpstart <a href="https://www.gremlin.com/community/tutorials/chaos-engineering-the-history-principles-and-practice/" target="_blank" rel="noopener noreferrer"><strong>Chaos Engineering</strong> as a new engineering practice</a>.  Chaos Engineering is a disciplined approach to identifying failures before they become outages.  By proactively testing how a system responds to failure conditions, you can identify and fix failures before they become public facing outages. Chaos Engineering lets you validate what you think will happen with what is actually happening in your systems.  By performing the smallest possible experiments you can measure, you’re able to “break things on purpose” in order to learn how to build more resilient systems.</p>
 
 <p>In 2011, <a href="https://medium.com/netflix-techblog/the-netflix-simian-army-16e57fbab116" target="_blank" rel="noopener noreferrer">Netflix announced</a> the evolution of Chaos Monkey with a series of additional tools known as <a href="/gremlin-chaos-monkey/simian-army"><em>The Simian Army</em></a>.  Inspired by the success of their original Chaos Monkey tool aimed at randomly disabling production instances and services, the engineering team developed additional “simians” built to cause other types of failure and induce abnormal system conditions.  For example, the <em>Latency Monkey</em> tool introduces artificial delays in RESTful client-server communication, allowing the team at Netflix to simulate service unavailability without actually taking down said service.  This guide will cover all the details of these tools in <a href="/gremlin-chaos-monkey/simian-army">The Simian Army</a> chapter.</p>
 
