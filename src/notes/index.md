@@ -32,7 +32,7 @@ The following items are assorted things for Austin and/or other editors to take 
 
 ## Links
 
-All internal and frequently-used URLs are located in the `src/_internal/nav-internal.md` template, which is then included via `{% raw %}{% include nav-internal.md %}{% endraw %}` at the end of every Markdown file.  Therefore, to change a link throughout the full guide simply requires changing it in `nav-internal.md` and rebuilding.
+All internal and frequently-used URLs are located in the `src/_includes/nav-internal.md` template, which is then included via `{% raw %}{% include nav-internal.md %}{% endraw %}` at the end of every Markdown file.  Therefore, to change a link throughout the full guide simply requires changing it in `nav-internal.md` and rebuilding.
 
 ### Testing URL Validity and Functionality
 
