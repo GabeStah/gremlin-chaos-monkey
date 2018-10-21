@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Gremlin: Chaos Monkey">
 <meta property="og:title" content="Taking Chaos Monkey to the Next Level - Advanced Developer Guide">
-<meta property="og:url" content="/gremlin-chaos-monkey/advanced-tips/">
+<meta property="og:url" content="http://localhost:4000/gremlin-chaos-monkey/advanced-tips/">
 
 
 
@@ -38,7 +38,7 @@
   
 
 
-<link rel="canonical" href="/gremlin-chaos-monkey/advanced-tips/">
+<link rel="canonical" href="http://localhost:4000/gremlin-chaos-monkey/advanced-tips/">
 
 
 
@@ -51,7 +51,7 @@
       "@context": "http://schema.org",
       "@type": "Person",
       "name": "Gabe Wyatt",
-      "url": "/gremlin-chaos-monkey",
+      "url": "http://localhost:4000/gremlin-chaos-monkey",
       "sameAs": null
     }
   </script>
@@ -150,7 +150,7 @@
     
       
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-          <a href="/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
+          <a href="http://localhost:4000/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
           <meta itemprop="position" content="1">
         </li>
         <span class="sep">/</span>
@@ -552,7 +552,7 @@ Default output format <span class="o">[</span>None]: text
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>After deployment finishes you should have a functioning Spinnaker installation!  If you’ve installed on your local machine you can navigate to the Spinnaker Deck UI at <a href="http://localhost:9000" target="_blank" rel="noopener noreferrer">localhost:9000</a> to see it in action.  If Spinnaker was deployed on a remote machine use the <code class="highlighter-rouge">hal deploy connect</code> command to quickly establish SSH tunnels and connect.</p>
+    <p>After deployment finishes you should have a functioning Spinnaker installation!  If you’ve installed on your local machine you can navigate to the Spinnaker Deck UI at <a href="http://localhost:9000">localhost:9000</a> to see it in action.  If Spinnaker was deployed on a remote machine use the <code class="highlighter-rouge">hal deploy connect</code> command to quickly establish SSH tunnels and connect.</p>
   </li>
 </ol>
 
@@ -1298,7 +1298,7 @@ hal config storage edit <span class="nt">--type</span> s3
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hal config provider aws account edit aws-primary <span class="nt">--add-region</span> us-west-2
 </code></pre></div></div>
 
-<p>That’s it, you should now have a Spinnaker deployment up and running on a Kubernetes cluster, using EKS and EC2 worker node instances!  Issue the <code class="highlighter-rouge">hal deploy connect</code> command to provide port forwarding on your local machine to the Kubernetes cluster running Spinnaker, then open <a href="http://localhost:9000" target="_blank" rel="noopener noreferrer">http://localhost:9000</a> to make sure everything is up and running.</p>
+<p>That’s it, you should now have a Spinnaker deployment up and running on a Kubernetes cluster, using EKS and EC2 worker node instances!  Issue the <code class="highlighter-rouge">hal deploy connect</code> command to provide port forwarding on your local machine to the Kubernetes cluster running Spinnaker, then open <a href="http://localhost:9000">http://localhost:9000</a> to make sure everything is up and running.</p>
 
 <p>Select the <code class="highlighter-rouge">spinnaker</code> app and you should see your <code class="highlighter-rouge">aws-primary</code> account with a <code class="highlighter-rouge">spinnaker-eks-nodes-NodeGroup</code> containing your three EC2 worker node instances.</p>
 

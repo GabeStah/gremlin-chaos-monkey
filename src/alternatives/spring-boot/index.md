@@ -10,7 +10,7 @@ published: true
 
 ## Chaos Monkey for Spring Boot
 
-[Chaos Monkey for Spring Boot](https://codecentric.github.io/chaos-monkey-spring-boot/2.0.0/) is an open-source tool written in Java that is installed as a dependency of your Spring Boot application.  Spring Boot for Chaos Monkey can perform three types of **Assaults**: **Latency**, **Exception**, and **KillApplication**.  Assaults are triggered based on **Watcher** components that monitor `@Controller`, `@RestController`, `@Service`, `@Repository`, and `@Component` Spring Boot annotations.
+[Chaos Monkey for Spring Boot](https://codecentric.github.io/chaos-monkey-spring-boot/2.0.0/) is an open-source tool written in Java that is installed as either an [internal](https://codecentric.github.io/chaos-monkey-spring-boot/2.0.1/#_dependency_in_your_pom_file) or [external](https://codecentric.github.io/chaos-monkey-spring-boot/2.0.1/#_external_dependency_jar_file) dependency at startup.  Spring Boot for Chaos Monkey can perform three types of **Assaults**: **Latency**, **Exception**, and **KillApplication**.  Assaults are triggered based on **Watcher** components that monitor `@Controller`, `@RestController`, `@Service`, `@Repository`, and `@Component` Spring Boot annotations.
 
 A Watcher can only be triggered by *public* method calls, which can then execute a configured Assault.  A Latency Assault adds random latency to the request, an Exception Assault randomly throws a Runtime Exception, and a KillApplication Assault kills the Spring Boot application.
 
@@ -33,7 +33,7 @@ A few minimal Assault and Watcher settings can be configured via `chaos.monkey` 
 
 Most are self-explanatory, but the Assault severity level property (`chaos.monkey.assaults.level`) actually determines two things: The number of requests between Assaults, and also how many Assaults will occur at that time.  Thus, a default level of `5` means that `5` Assaults will occur on every fifth request.
 
-Unfortunately, because these properties are set at compile time, the only way to change the configuration properties during runtime is via the [HTTP endpoint](https://codecentric.github.io/chaos-monkey-spring-boot/2.0.0/#_http_endpoint).  For example, sending JSON configuration data to the [`/chaosmonkey/assaults`](https://codecentric.github.io/chaos-monkey-spring-boot/2.0.0/#assaultspost) endpoint can be used to modify future Assault configurations.
+Configuration properties can be changed at runtime via the [HTTP endpoints](https://codecentric.github.io/chaos-monkey-spring-boot/2.0.1/#_http_endpoint).  For example, sending JSON configuration data to the [`/chaosmonkey/assaults`](https://codecentric.github.io/chaos-monkey-spring-boot/2.0.1/#assaultspost) endpoint can be used to modify future Assault configurations.
 
 ```json
 {
@@ -43,11 +43,12 @@ Unfortunately, because these properties are set at compile time, the only way to
   "latencyActive": true,
   "exceptionsActive": true,
   "killApplicationActive": true,
-  "restartApplicationActive": true
+  "restartApplicationActive": true,
+  "watchedCustomServices": [ "com.example.chaos.monkey.chaosdemo.controller.HelloController.sayHello" ]
 }
 ```
 
-Check out the [reference guide](https://codecentric.github.io/chaos-monkey-spring-boot/2.0.0) for more information on getting Chaos Monkey for Spring Boot up and running.
+Check out the [reference guide](https://codecentric.github.io/chaos-monkey-spring-boot/2.0.1) for more information on getting Chaos Monkey for Spring Boot up and running.
 
 ## Injecting Failure in Spring Boot Applications with Gremlin
 
