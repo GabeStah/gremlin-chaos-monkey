@@ -6,6 +6,7 @@ path: "/chaos-monkey/alternatives/vmware"
 url: "https://www.gremlin.com/chaos-monkey/alternatives/vmware"
 sources: "See: _docs/resources.md"
 published: true
+redirect_to: https://www.gremlin.com/chaos-monkey/chaos-monkey-alternatives/vmware/
 ---
 
 ## Chaos Engineering with BOSH and Chaos Lemur

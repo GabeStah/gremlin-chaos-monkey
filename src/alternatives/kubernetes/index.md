@@ -6,6 +6,7 @@ path: "/chaos-monkey/alternatives/kubernetes"
 url: "https://www.gremlin.com/chaos-monkey/alternatives/kubernetes"
 sources: "See: _docs/resources.md"
 published: true
+redirect_to: https://www.gremlin.com/chaos-monkey/chaos-monkey-alternatives/kubernetes/
 ---
 
 ## Kube Monkey

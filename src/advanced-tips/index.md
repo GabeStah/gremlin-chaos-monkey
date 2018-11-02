@@ -5,6 +5,7 @@ path: "/chaos-monkey/advanced-tips"
 url: "https://www.gremlin.com/chaos-monkey/advanced-tips"
 sources: "See: _docs/resources.md"
 published: true
+redirect_to: https://www.gremlin.com/chaos-monkey/advanced-developer-guide/
 ---
 
 This chapter provides advanced developer tips for Chaos Monkey and other Chaos Engineering tools, including tutorials for manually deploying Spinnaker stacks on a [local machine][#spinnaker-install], [virtual machine][#spinnaker-manual], or [with Kubernetes][#spinnaker-stack-with-kubernetes].  From there you can configure and [deploy Spinnaker][#spinnaker-install] itself, along with [Chaos Monkey][#chaos-monkey-install] and [other Chaos Engineering tools][/alternatives]!

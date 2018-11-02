@@ -5,6 +5,7 @@ path: "/chaos-monkey/origin-netflix"
 url: "https://www.gremlin.com/chaos-monkey/origin-netflix"
 sources: "See: _docs/resources.md"
 published: true
+redirect_to: https://www.gremlin.com/chaos-monkey/the-origin-of-chaos-monkey/
 ---
 
 In this chapter we'll take a deep dive into the origins and history of Chaos Monkey, how [Netflix streaming services emerged][#netflix-history], and why Netflix needed to create failure within their systems to improve their service and customer experiences.  We'll also provide a brief overview of the [Simian Army][#netflix-simian-army] and its relation to the original Chaos Monkey technology.  Finally, we'll jump into the [present and future of Chaos Monkey][#chaos-monkey-today], dig into the creation and implementation of [Failure Injection Testing][#netflix-fit] at Netflix, and discuss the potential issues and limitations presented by Chaos Monkey's [reliance on Spinnaker][#spinnaker-strictly].

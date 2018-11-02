@@ -6,6 +6,7 @@ path: "/chaos-monkey/alternatives/spring-boot"
 url: "https://www.gremlin.com/chaos-monkey/alternatives/spring-boot"
 sources: "See: _docs/resources.md"
 published: true
+redirect_to: https://www.gremlin.com/chaos-monkey/chaos-monkey-alternatives/spring-boot/
 ---
 
 ## Chaos Monkey for Spring Boot

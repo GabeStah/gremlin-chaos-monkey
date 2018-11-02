@@ -5,6 +5,7 @@ path: "/chaos-monkey/developer-tutorial"
 url: "https://www.gremlin.com/chaos-monkey/developer-tutorial"
 sources: "See: _docs/resources.md"
 published: true
+redirect_to: https://www.gremlin.com/chaos-monkey/chaos-monkey-tutorial/
 ---
 
 This chapter will provide a step-by-step guide for setting up and using Chaos Monkey with AWS.  We also examine the scenarios where Chaos Monkey is the right solution, and its limitations since it only handles random instance terminations.

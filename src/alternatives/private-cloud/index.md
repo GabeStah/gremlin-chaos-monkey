@@ -6,6 +6,7 @@ path: "/chaos-monkey/alternatives/private-cloud"
 url: "https://www.gremlin.com/chaos-monkey/alternatives/private-cloud"
 sources: "See: _docs/resources.md"
 published: true
+redirect_to: https://www.gremlin.com/chaos-monkey/chaos-monkey-alternatives/private-cloud/
 ---
 
 ## GomJabbar

@@ -5,6 +5,7 @@ path: "/chaos-monkey/alternatives"
 url: "https://www.gremlin.com/chaos-monkey/alternatives"
 sources: "See: _docs/resources.md"
 published: true
+redirect_to: https://www.gremlin.com/chaos-monkey/chaos-monkey-alternatives/
 ---
 
 Chaos Monkey serves a singular purpose -- to randomly terminate instances.  As discussed in [Chaos Monkey and Spinnaker][#spinnaker-strictly] and [The Pros and Cons of Chaos Monkey][#chaos-monkey-pros-cons], additional tools are required when using Chaos Monkey, in order to cover the broad spectrum of experimentation and failure injection required for proper Chaos Engineering.

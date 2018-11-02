@@ -6,6 +6,7 @@ path: "/chaos-monkey/alternatives/openshift"
 url: "https://www.gremlin.com/chaos-monkey/alternatives/openshift"
 sources: "See: _docs/resources.md"
 published: true
+redirect_to: https://www.gremlin.com/chaos-monkey/chaos-monkey-alternatives/openshift/
 ---
 
 ## Monkey-Ops

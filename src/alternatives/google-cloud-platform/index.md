@@ -5,6 +5,7 @@ path: "/chaos-monkey/alternatives/google-cloud-platform"
 url: "https://www.gremlin.com/chaos-monkey/alternatives/google-cloud-platform"
 sources: "See: _docs/resources.md"
 published: true
+redirect_to: https://www.gremlin.com/chaos-monkey/chaos-monkey-alternatives/google-cloud-platform/
 ---
 
 ## Google Cloud Chaos Monkey

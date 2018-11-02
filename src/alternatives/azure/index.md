@@ -5,6 +5,7 @@ path: "/chaos-monkey/alternatives/azure"
 url: "https://www.gremlin.com/chaos-monkey/alternatives/azure"
 sources: "See: _docs/resources.md"
 published: true
+redirect_to: https://www.gremlin.com/chaos-monkey/chaos-monkey-alternatives/azure/
 ---
 
 ## Search Chaos Monkey

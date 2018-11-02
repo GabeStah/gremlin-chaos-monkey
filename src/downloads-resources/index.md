@@ -5,6 +5,7 @@ path: "/chaos-monkey/downloads-resources"
 url: "https://www.gremlin.com/chaos-monkey/downloads-resources"
 sources: "See: _docs/resources.md"
 published: true
+redirect_to: https://www.gremlin.com/chaos-monkey/for-engineers/
 ---
 
 We've collected and curated well **over 100** resources to help you with every aspect of your journey into Chaos Engineering.  Learn about Chaos Engineering's [origins and principles][/downloads-resources#practices-principles] to shed light on what it's all about or dive right into one of the dozens of [in-depth tutorials][/downloads-resources#tutorials] to get experimenting right away.  You might also be interested in subscribing to some of the best Chaos Engineering [blogs][/downloads-resources#blogs] on the net or installing one of the [many tools][/downloads-resources#tools] designed to inject failure into your applications, no matter the platform.

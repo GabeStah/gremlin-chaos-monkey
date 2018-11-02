@@ -5,6 +5,7 @@ path: "/chaos-monkey/simian-army"
 url: "https://www.gremlin.com/chaos-monkey/simian-army"
 sources: "See: _docs/resources.md"
 published: true
+redirect_to: https://www.gremlin.com/chaos-monkey/the-simian-army/
 ---
 
 The **Simian Army** is a suite of failure-inducing tools designed to add more capabilities beyond [Chaos Monkey][/origin-netflix].  While Chaos Monkey solely handles termination of random instances, Netflix engineers needed additional tools able to induce *other* types of failure.  Some of the Simian Army tools have fallen out of favor in recent years and are deprecated, but each of the members serves a specific purpose aimed at bolstering a system's failure resilience.
