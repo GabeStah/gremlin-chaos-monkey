@@ -5,6 +5,7 @@ path: "/chaos-monkey"
 url: "https://www.gremlin.com/chaos-monkey"
 published: true
 sources: "See: _docs/resources.md"
+redirect_to: https://www.gremlin.com/chaos-monkey/
 ---
 
 In 2010 [Netflix](https://www.netflix.com) announced the existence and success of their custom [resiliency tool](https://medium.com/netflix-techblog/5-lessons-weve-learned-using-aws-1f2a28588e4c) called *Chaos Monkey*.
