@@ -1,11 +1,609 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.13.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Chaos Monkey Alternatives - Kubernetes - Gremlin: Chaos Monkey</title>
+<meta name="description" content="Explores Chaos Monkey alternative technologies using Kubernetes.">
 
 
-  <meta charset="utf-8">
-  <title>Redirecting…</title>
-  <link rel="canonical" href="https://www.gremlin.com/chaos-monkey/chaos-monkey-alternatives/kubernetes/">
-  <script>location="https://www.gremlin.com/chaos-monkey/chaos-monkey-alternatives/kubernetes/"</script>
-  <meta http-equiv="refresh" content="0; url=https://www.gremlin.com/chaos-monkey/chaos-monkey-alternatives/kubernetes/">
-  <meta name="robots" content="noindex">
-  <h1>Redirecting…</h1>
-  <a href="https://www.gremlin.com/chaos-monkey/chaos-monkey-alternatives/kubernetes/" target="_blank" rel="noopener noreferrer">Click here if you are not redirected.</a>
 
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Gremlin: Chaos Monkey">
+<meta property="og:title" content="Chaos Monkey Alternatives - Kubernetes">
+<meta property="og:url" content="http://localhost:4000/gremlin-chaos-monkey/alternatives/kubernetes/">
+
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2018-08-30T00:00:00-07:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/gremlin-chaos-monkey/alternatives/kubernetes/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Gabe Wyatt",
+      "url": "http://localhost:4000/gremlin-chaos-monkey",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/gremlin-chaos-monkey/feed.xml" type="application/atom+xml" rel="alternate" title="Gremlin: Chaos Monkey Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/gremlin-chaos-monkey/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<meta name="robots" content="noindex, nofollow" />
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/gremlin-chaos-monkey/">Gremlin: Chaos Monkey</a>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/gremlin-chaos-monkey/notes">Notes to Editor</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="https://drive.google.com/drive/folders/16PhHEJGZtF428eyko_6-2BxpDGAU9JhW?usp=sharing" target="_blank" rel="noopener noreferrer">Google Drive Exports</a>
+            </li>
+</ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="http://localhost:4000/gremlin-chaos-monkey/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1">
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="/gremlin-chaos-monkey/alternatives" itemprop="item"><span itemprop="name">Alternatives</span></a>
+          <meta itemprop="position" content="2">
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Chaos Monkey Alternatives - Kubernetes</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox">
+  <label for="ac-toc">Toggle menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">Hub Pages</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/" class="">Chaos Monkey Guide for Engineers</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/origin-netflix" class="">The Origin of Chaos Monkey</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/developer-tutorial" class="">Chaos Monkey Tutorial</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/advanced-tips" class="">Advanced Developer Guide</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/simian-army" class="">The Simian Army</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/downloads-resources" class="">Chaos Monkey Resources</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives" class="">Chaos Monkey Alternatives</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Alternatives</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/azure" class="">Azure</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/docker" class="">Docker</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/google-cloud-platform" class="">Google Cloud Platform</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/kubernetes" class="">Kubernetes</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/openshift" class="">OpenShift</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/private-cloud" class="">Private Cloud</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/spring-boot" class="">Spring Boot</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/gremlin-chaos-monkey/alternatives/vmware" class="">VMware</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Chaos Monkey Alternatives - Kubernetes">
+    
+    <meta itemprop="datePublished" content="August 30, 2018">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Chaos Monkey Alternatives - Kubernetes
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#kube-monkey">Kube Monkey</a></li>
+  <li><a href="#engineering-chaos-in-kubernetes-with-gremlin">Engineering Chaos In Kubernetes with Gremlin</a></li>
+  <li><a href="#kubernetes-pod-chaos-monkey">Kubernetes Pod Chaos Monkey</a></li>
+  <li><a href="#the-chaos-toolkit">The Chaos Toolkit</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <h2 id="kube-monkey">Kube Monkey</h2>
+
+<p><a href="https://github.com/asobti/kube-monkey" target="_blank" rel="noopener noreferrer">Kube-monkey</a> is an open-source implementation of Chaos Monkey for use on Kubernetes clusters and written in Go.  Like the original Chaos Monkey, Kube-monkey performs just one task: it randomly deletes Kubernetes pods within the cluster, as a means of injecting failure in the system and testing the stability of the remaining pods.  It is based on pseudo-random rules, running at a pre-defined hour on weekdays to then build a schedule.  Based on the generated schedule random pod targets that will be attacked and killed at a random time during that same day, although the time-range is configurable.</p>
+
+<p>Kube-monkey will only terminate pods that have explicitly opted in by specifying certain Kube-monkey <code class="highlighter-rouge">metadata labels</code>.  The following illustrates the basic labels that can be specified to allow Kube-monkey to kill pods within the application.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">extensions/v1beta1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Deployment</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">monkey-victim</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">app-namespace</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="s">kube-monkey/enabled</span><span class="pi">:</span> <span class="s">enabled</span>
+    <span class="s">kube-monkey/identifier</span><span class="pi">:</span> <span class="s">monkey-victim</span>
+    <span class="s">kube-monkey/mtbf</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2'</span>
+    <span class="s">kube-monkey/kill-mode</span><span class="pi">:</span> <span class="s2">"</span><span class="s">fixed"</span>
+    <span class="s">kube-monkey/kill-value</span><span class="pi">:</span> <span class="s">1</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">template</span><span class="pi">:</span>
+    <span class="na">metadata</span><span class="pi">:</span>
+      <span class="na">labels</span><span class="pi">:</span>
+        <span class="s">kube-monkey/enabled</span><span class="pi">:</span> <span class="s">enabled</span>
+        <span class="s">kube-monkey/identifier</span><span class="pi">:</span> <span class="s">monkey-victim</span>
+<span class="c1"># ...</span>
+</code></pre></div></div>
+
+<p>Check out the <a href="https://github.com/asobti/kube-monkey" target="_blank" rel="noopener noreferrer">GitHub repository</a> for more information on installing and using Kube-monkey.</p>
+
+<h2 id="engineering-chaos-in-kubernetes-with-gremlin">Engineering Chaos In Kubernetes with Gremlin</h2>
+
+<p>Gremlin’s <a href="https://www.gremlin.com" target="_blank" rel="noopener noreferrer">Failure as a Service</a> simplifies your Chaos Engineering workflow for Kubernetes by making it safe and effortless to execute Chaos Experiments across all nodes.  As a distributed architecture Kubernetes is particularly sensitive to instability and unexpected failures.  Gremlin can perform a variety of attacks on your Kubernetes clusters, including overloading CPU, memory, disk, and IO; killing nodes; modifying network traffic; and much more.</p>
+
+<p>Check out <a href="https://www.gremlin.com/community/tutorials/how-to-install-and-use-gremlin-with-kubernetes/" target="_blank" rel="noopener noreferrer">this tutorial</a> over on our <a href="https://www.gremlin.com/community/" target="_blank" rel="noopener noreferrer">community site</a> to get started!</p>
+
+<h2 id="kubernetes-pod-chaos-monkey">Kubernetes Pod Chaos Monkey</h2>
+
+<p><a href="https://github.com/jnewland/kubernetes-pod-chaos-monkey" target="_blank" rel="noopener noreferrer">Kubernetes Pod Chaos Monkey</a> is a Chaos Monkey-style tool for Kubernetes.  The code itself is a local shell script that issues <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/" target="_blank" rel="noopener noreferrer">kubectl</a> commands to occasionally locate and then delete Kubernetes pods.  It targets a cluster based on the configurable <code class="highlighter-rouge">NAMESPACE</code> and attempts to destroy a node every <code class="highlighter-rouge">DELAY</code> seconds (defaulting to 30).</p>
+
+<p>Since <a href="https://github.com/jnewland/kubernetes-pod-chaos-monkey" target="_blank" rel="noopener noreferrer">Kubernetes Pod Chaos Monkey</a> is essentially a simple shell script it can be modified quite easily.</p>
+
+<h2 id="the-chaos-toolkit">The Chaos Toolkit</h2>
+
+<p>The <a href="https://chaostoolkit.org/" target="_blank" rel="noopener noreferrer">Chaos Toolkit</a> is an open-source and extensible tool that is written in Python.  It uses <a href="https://github.com/chaostoolkit/chaostoolkit-kubernetes" target="_blank" rel="noopener noreferrer">platform-specific drivers</a> to connect to your Kubernetes cluster and execute Chaos Experiments.  Every experiment performed by Chaos Toolkit is written in JSON using a <a href="https://docs.chaostoolkit.org/reference/api/experiment/" target="_blank" rel="noopener noreferrer">robust API</a>.  Experiments are made up of a few key elements that are executed sequentially and allow the experiment to bail out if any step in the process fails.</p>
+
+<ul>
+  <li>
+    <p><strong>Steady State Hypothesis</strong>: This element defines the normal or “steady” state of the system before the <strong>Method</strong> element is applied.  Here we’ve defined a basic application with a steady state hypothesis titled “Service should have nodes.”</p>
+
+    <div class="language-json highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gremlin EKS App"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gremlin EKS App"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"service"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"kubernetes"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"steady-state-hypothesis"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Service should have nodes."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"probes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"probe"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nodes_found"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"tolerance"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"provider"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"python"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"module"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chaosk8s.node.probes"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"func"</span><span class="p">:</span><span class="w"> </span><span class="s2">"get_nodes"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"arguments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"label_selector"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eks-gremlin-chaos"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Probe</strong>: A Probe is an element that collects system information, such as checking the health status of a node.  Here we define a Probe element, which we’ve added to our steady state Probes list above, that calls the <a href="https://github.com/chaostoolkit/chaostoolkit-kubernetes/blob/master/chaosk8s/node/probes.py#L12" target="_blank" rel="noopener noreferrer"><code class="highlighter-rouge">get_nodes</code></a> function and retrieves the list of nodes for the specified <code class="highlighter-rouge">label-selector</code>.</p>
+
+    <div class="language-json highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"probe"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nodes_found"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tolerance"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"provider"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"python"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"module"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chaosk8s.node.probes"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"func"</span><span class="p">:</span><span class="w"> </span><span class="s2">"get_nodes"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"arguments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"label_selector"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eks-gremlin-chaos"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Action</strong>: An Action element performs an operation against the system, such as draining or deleting a node.  In the example we call the <a href="https://github.com/chaostoolkit/chaostoolkit-kubernetes/blob/master/chaosk8s/node/actions.py#L22" target="_blank" rel="noopener noreferrer"><code class="highlighter-rouge">delete_nodes</code></a> function, passing the required <code class="highlighter-rouge">label-selector</code> argument, and setting <code class="highlighter-rouge">all</code> to <code class="highlighter-rouge">true</code> so we delete all nodes in the cluster.</p>
+
+    <div class="language-json highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"action"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delete_all_nodes"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"provider"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"python"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"module"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chaosk8s.node.actions"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"func"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delete_nodes"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"arguments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"all"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"label-selector"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eks-gremlin-chaos"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Method</strong>: A Method element defines the series of Probe and Action elements that make up the experiment.  Here we’re first using the <code class="highlighter-rouge">nodes_found</code> Probe to make sure nodes exist, executing the <code class="highlighter-rouge">delete_all_nodes</code> Action to delete all nodes in the cluster, then performing another explicit Probe to verify that no nodes remain.</p>
+
+    <div class="language-json highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nodes_found"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"action"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delete_all_nodes"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"provider"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"python"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"module"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chaosk8s.node.actions"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"func"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delete_nodes"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"arguments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"all"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"label-selector"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eks-gremlin-chaos"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"probe"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nodes_not_found"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"tolerance"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"provider"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"python"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"module"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chaosk8s.node.probes"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"func"</span><span class="p">:</span><span class="w"> </span><span class="s2">"get_nodes"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"arguments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"label_selector"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eks-gremlin-chaos"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>That’s the basics to begin experimenting using the Chaos Toolkit.  Chaos Toolkit also has a fault injection <a href="https://github.com/chaostoolkit-incubator/chaostoolkit-gremlin" target="_blank" rel="noopener noreferrer">plugin for Gremlin</a> so you can easily perform attacks while utilizing the safety and security of the Gremlin platform.</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-08-30T00:00:00-07:00">August 30, 2018</time></p>
+        
+      </footer>
+
+      
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+    
+    
+    <li><a href="/gremlin-chaos-monkey/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2018 Gabe Wyatt</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/gremlin-chaos-monkey/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

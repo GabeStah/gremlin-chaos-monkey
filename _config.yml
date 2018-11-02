@@ -210,7 +210,6 @@ plugins:
   - jekyll-toc
   - premonition
   - jekyll-target-blank
-  - jekyll-redirect-from
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -222,7 +221,6 @@ whitelist:
   - jekyll-toc
   - premonition
   - jekyll-target-blank
-  - jekyll-redirect-from
 
 # Archives
 #  Type
